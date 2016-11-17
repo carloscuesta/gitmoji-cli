@@ -1,0 +1,25 @@
+{
+  "name": "gitmoji-cli",
+  "version": "1.0.0",
+  "description": "A gitmoji client for using emojis on commit messages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carloscuesta/gitmoji-cli.git"
+  },
+  "keywords": [
+    "gitmoji",
+    "emoji",
+    "carloscuesta",
+    "commit"
+  ],
+  "author": "Carlos Cuesta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carloscuesta/gitmoji-cli/issues"
+  },
+  "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme"
+}
