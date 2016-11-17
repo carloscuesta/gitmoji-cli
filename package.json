@@ -2,7 +2,9 @@
   "name": "gitmoji-cli",
   "version": "0.1.0",
   "description": "A gitmoji client for using emojis on commit messages.",
-  "main": "index.js",
+  "bin": {
+    "gitmoji": "cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/carloscuesta/gitmoji-cli/issues"
   },
-  "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme"
+  "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
+  "dependencies": {
+    "axios": "^0.15.2",
+    "inquirer": "^1.2.3",
+    "meow": "^3.7.0"
+  }
 }
