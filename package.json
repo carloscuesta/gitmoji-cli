@@ -5,8 +5,12 @@
   "bin": {
     "gitmoji": "cli.js"
   },
+  "xo": {
+    "esnext": true
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "xo cli.js",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -28,5 +32,8 @@
     "axios": "^0.15.2",
     "inquirer": "^1.2.3",
     "meow": "^3.7.0"
+  },
+  "devDependencies": {
+    "xo": "^0.17.1"
   }
 }
