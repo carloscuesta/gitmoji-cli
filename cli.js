@@ -42,3 +42,7 @@ if (cli.flags.search) {
 		return gitmojiCli.search(element);
 	});
 }
+
+if (cli.flags.commit) {
+	gitmojiCli.ask();
+}

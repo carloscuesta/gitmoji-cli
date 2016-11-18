@@ -7,9 +7,9 @@
   },
   "xo": {
     "esnext": true,
-	"rules": {
-		"array-callback-return": 1
-	}
+    "rules": {
+      "array-callback-return": 1
+    }
   },
   "scripts": {
     "lint": "xo",
