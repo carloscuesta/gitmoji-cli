@@ -6,10 +6,13 @@
     "gitmoji": "cli.js"
   },
   "xo": {
-    "esnext": true
+    "esnext": true,
+	"rules": {
+		"array-callback-return": 1
+	}
   },
   "scripts": {
-    "lint": "xo cli.js",
+    "lint": "xo",
     "test": "npm run lint"
   },
   "repository": {
@@ -30,6 +33,7 @@
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
     "axios": "^0.15.2",
+    "chalk": "^1.1.3",
     "inquirer": "^1.2.3",
     "meow": "^3.7.0"
   },
