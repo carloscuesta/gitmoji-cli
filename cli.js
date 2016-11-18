@@ -26,9 +26,7 @@ if (cli.flags.list) {
 			const gitmojiList = res.data.gitmojis;
 
 			const gitmojiPrettyList = gitmojiList.map(obj => {
-				let list = {};
-				list = `${obj.emoji}  - ${obj.code} - ${obj.description}`;
-				return list;
+				return `${obj.emoji}  - ${obj.code} - ${obj.description}`;
 			});
 
 			console.log(gitmojiPrettyList);
