@@ -50,7 +50,7 @@ class GitmojiCli {
 	_commit(answers) {
 		let signed;
 		const commitTitle = `${answers.gitmoji} ${answers.title}`;
-		const commitBody = `${answers.body} ${answers.reference}`;
+		const commitBody = `${answers.message} #${answers.reference}`;
 
 		if (answers.signed === true) {
 			signed = '-s';
@@ -58,12 +58,13 @@ class GitmojiCli {
 			signed = '';
 		}
 
-		execa.stdout('git', ['commit', signed, `-m ${commitTitle}`, `-m ${commitBody}`])
+		execa.stdout('git', ['add', '.']).then(res => console.log(res)).catch(err => console.error(err));
+		execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
 			.then(res => {
-				console.log(res);
+				console.log(res.stdout);
 			})
 			.catch(err => {
-				console.err(err);
+				console.error(chalk.red(`ERROR: ${err.stderr}`));
 			});
 	}
 
@@ -96,7 +97,19 @@ class GitmojiCli {
 			},
 			{
 				name: 'reference',
-				message: 'Issue / PR reference #'
+				message: 'Issue / PR reference #',
+				validate(value) {
+					if (value === '') {
+						return true;
+					}
+					if (value !== null) {
+						const validReference = value.match(/^[1-9]+$/);
+						if (validReference) {
+							return true;
+						}
+						return chalk.red('Enter the number of the reference without the #. Eg: 12');
+					}
+				}
 			},
 			{
 				name: 'signed',
