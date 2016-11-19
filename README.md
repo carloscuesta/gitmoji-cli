@@ -7,11 +7,9 @@
 
 ## About
 
-This project provides an easy solution for using [**gitmoji**](https://github.com/carloscuesta/gitmoji) from your command line. gitmoji-cli removes the hassle of searching the emoji code and gitmoji description. Includes a bunch of options you can play with! :tada:
+This project provides an easy solution for using [**gitmoji**](https://github.com/carloscuesta/gitmoji) from your command line. Gitmoji-cli solves the hassle of searching through the gitmoji list. Includes a bunch of options you can play with! :tada:
 
 ## Install
-
-Install gitmoji from npm:
 
 ```bash
 $ npm i -g gitmoji-cli
@@ -37,10 +35,25 @@ A gitmoji interactive client for using gitmojis on commit messages.
 
 ### Commit
 
+Add your changes and start the interactive commit client, to auto generate your commit based on your prompts.
+
+```bash
+$ gitmoji -c
+```
+
+```
 ### List
 
 Pretty print all the available gitmojis.
 
+```bash
+$ gitmoji -l
+```
+
 ### Search
 
 Search using specific keywords to find the right gitmoji.
+
+```bash
+$ gitmoji bug linter -s
+```
