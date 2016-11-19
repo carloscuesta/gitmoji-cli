@@ -104,7 +104,7 @@ class GitmojiCli {
 						return true;
 					}
 					if (value !== null) {
-						const validReference = value.match(/^[1-9]+$/);
+						const validReference = value.match(/(^0|[1-9][0-9]*)+$/);
 						if (validReference) {
 							return true;
 						}
