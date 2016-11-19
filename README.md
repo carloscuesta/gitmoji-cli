@@ -41,13 +41,7 @@ Add your changes and start the interactive commit client, to auto generate your 
 $ gitmoji -c
 ```
 
-### List
-
-Pretty print all the available gitmojis.
-
-```bash
-$ gitmoji -l
-```
+![gitmoji commit](https://cloud.githubusercontent.com/assets/7629661/20454513/5db2750a-ae43-11e6-99d7-4757108fe640.png)
 
 ### Search
 
@@ -56,3 +50,16 @@ Search using specific keywords to find the right gitmoji.
 ```bash
 $ gitmoji bug linter -s
 ```
+
+![gitmoji list](https://cloud.githubusercontent.com/assets/7629661/20454469/1815550e-ae42-11e6-8c23-33ab7a3e48a3.png)
+
+
+### List
+
+Pretty print all the available gitmojis.
+
+```bash
+$ gitmoji -l
+```
+
+![gitmoji list](https://cloud.githubusercontent.com/assets/7629661/20454472/1c351e6c-ae42-11e6-8f3c-da73429d8eff.png)
