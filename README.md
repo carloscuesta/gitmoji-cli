@@ -1,9 +1,9 @@
 # gitmoji-cli
 
-> A [gitmoji](https://github.com/carloscuesta/gitmoji) interactive for using gitmojis on commit messages.
-
 [![Travis Build Status](https://img.shields.io/travis/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://travis-ci.org/carloscuesta/gitmoji-cli)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/sindresorhus/xo)
+
+> A [gitmoji](https://github.com/carloscuesta/gitmoji) interactive client for using gitmojis on commit messages.
 
 ## About
 
@@ -21,8 +21,10 @@ $ npm i -g gitmoji-cli
 
 ```bash
 $ gitmoji --help
+```
 
-A gitmoji client for using emojis on commit messages.
+```
+A gitmoji interactive client for using gitmojis on commit messages.
 
   Usage
     $ gitmoji
@@ -33,4 +35,12 @@ A gitmoji client for using emojis on commit messages.
   	--search, -s	Search gitmojis
 ```
 
-### `$ gitmoji`
+### Commit
+
+### List
+
+Pretty print all the available gitmojis.
+
+### Search
+
+Search using specific keywords to find the right gitmoji.
