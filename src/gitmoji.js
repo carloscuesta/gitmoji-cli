@@ -51,7 +51,6 @@ class GitmojiCli {
 		let signed;
 		const commitTitle = `${answers.gitmoji} ${answers.title}`;
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
-		console.log(reference);
 		const commitBody = `${answers.message} ${reference}`;
 
 		if (answers.signed === true) {
