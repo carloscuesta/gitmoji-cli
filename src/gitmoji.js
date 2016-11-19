@@ -64,7 +64,7 @@ class GitmojiCli {
 			})
 			.catch(err => {
 				console.err(err);
-			})
+			});
 	}
 
 	_questions(gitmojis) {

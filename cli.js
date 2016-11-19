@@ -10,6 +10,7 @@ const cli = meow(`
 	  $ gitmoji
 	Options
 		--init, -i	Create and initialize the gitmoji commit hook
+		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
 	Examples
@@ -18,6 +19,7 @@ const cli = meow(`
 `, {
 	alias: {
 		i: 'init',
+		c: 'commit',
 		l: 'list',
 		s: 'search',
 		h: 'help'
