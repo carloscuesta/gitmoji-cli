@@ -17,9 +17,7 @@ class GitmojiCli {
 			url: '/src/data/gitmojis.json'
 		}).then(res => res.data.gitmojis)
 			.then(gitmojis => this._parseGitmojis(gitmojis))
-			.catch(err => {
-				console.error(chalk.red(`ERROR: gitmoji list not found - ${err.code}`));
-			});
+			.catch(err => console.error(chalk.red(`ERROR: gitmoji list not found - ${err.code}`)));
 	}
 
 	search(name) {
@@ -28,7 +26,8 @@ class GitmojiCli {
 			url: '/src/data/gitmojis.json'
 		}).then(res => res.data.gitmojis)
 			.then(gitmojis => gitmojis.filter(gitmoji => gitmoji.name.concat(gitmoji.description).indexOf(name) !== -1))
-			.then(gitmojisFiltered => this._parseGitmojis(gitmojisFiltered));
+			.then(gitmojisFiltered => this._parseGitmojis(gitmojisFiltered))
+		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 	}
 
 	ask() {
@@ -42,9 +41,7 @@ class GitmojiCli {
 					this._commit(answers);
 				});
 			})
-			.catch(err => {
-				console.error(err);
-			});
+		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 	}
 
 	_commit(answers) {
@@ -59,14 +56,12 @@ class GitmojiCli {
 			signed = '';
 		}
 
-		execa.stdout('git', ['add', '.']).then(res => console.log(res)).catch(err => console.error(err));
+		execa.stdout('git', ['add', '.'])
+			.then(res => console.log(chalk.blue(res)))
+			.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
 		execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
-			.then(res => {
-				console.log(res.stdout);
-			})
-			.catch(err => {
-				console.error(chalk.red(`ERROR: ${err.stderr}`));
-			});
+			.then(res => console.log(chalk.blue(res.stdout)))
+			.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
 	}
 
 	_questions(gitmojis) {
