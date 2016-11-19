@@ -41,7 +41,6 @@ Add your changes and start the interactive commit client, to auto generate your 
 $ gitmoji -c
 ```
 
-```
 ### List
 
 Pretty print all the available gitmojis.
