@@ -3,6 +3,8 @@
 [![Travis Build Status](https://img.shields.io/travis/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://travis-ci.org/carloscuesta/gitmoji-cli)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/sindresorhus/xo)
 
+![gitmoji-cli](https://cloud.githubusercontent.com/assets/7629661/20454643/11eb9e40-ae47-11e6-90db-a1ad8a87b495.gif)
+
 > A [gitmoji](https://github.com/carloscuesta/gitmoji) interactive client for using gitmojis on commit messages.
 
 ## About
@@ -27,7 +29,6 @@ A gitmoji interactive client for using gitmojis on commit messages.
   Usage
     $ gitmoji
   Options
-  	--init, -i	Create and initialize the gitmoji commit hook
   	--commit, -c Interactively commit using the prompts
   	--list, -l  List all the available gitmojis
   	--search, -s	Search gitmojis
