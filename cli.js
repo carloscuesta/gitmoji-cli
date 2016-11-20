@@ -3,13 +3,16 @@
 
 const meow = require('meow');
 const axios = require('axios');
+const updateNotifier = require('update-notifier');
 const GitmojiCli = require('./src/gitmoji.js');
+const pkg = require('./package.json');
+
+updateNotifier({pkg}).notify();
 
 const cli = meow(`
 	Usage
 	  $ gitmoji
 	Options
-		--init, -i	Create and initialize the gitmoji commit hook
 		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
