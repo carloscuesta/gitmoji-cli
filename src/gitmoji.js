@@ -44,9 +44,9 @@ class GitmojiCli {
 					});
 				})
 			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
-		} else {
-			console.error(chalk.red('ERROR: This directory is not a git repository.'));
 		}
+
+		console.error(chalk.red('ERROR: This directory is not a git repository.'));
 	}
 
 	_commit(answers) {

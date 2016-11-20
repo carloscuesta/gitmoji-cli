@@ -12,12 +12,15 @@
     "esnext": true,
     "rules": {
       "array-callback-return": 1
-    }
+  },
+  "ignores": [
+	"test/**"
+  ]
   },
   "scripts": {
     "lint": "xo",
 	"mocha": "mocha ./test/*.js",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run mocha"
   },
   "repository": {
     "type": "git",
