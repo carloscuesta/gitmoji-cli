@@ -3,6 +3,7 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
+const fs = require('fs');
 
 class GitmojiCli {
 
@@ -45,16 +46,10 @@ class GitmojiCli {
 	}
 
 	_commit(answers) {
-		let signed;
 		const commitTitle = `${answers.gitmoji} ${answers.title}`;
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
+		const signed = this._isCommitSigned(answers.signed);
 		const commitBody = `${answers.message} ${reference}`;
-
-		if (answers.signed === true) {
-			signed = '-s';
-		} else {
-			signed = '';
-		}
 
 		execa.stdout('git', ['add', '.'])
 			.then(res => console.log(chalk.blue(res)))
@@ -121,6 +116,18 @@ class GitmojiCli {
 		return gitmojis.map(gitmoji => {
 			console.log(`${gitmoji.emoji}  - ${chalk.blue(gitmoji.code)} - ${gitmoji.description}`);
 		});
+	}
+
+	_isCommitSigned(sign) {
+		let signed;
+
+		if (sign) {
+			signed = '-s';
+		} else {
+			signed = '';
+		}
+
+		return signed;
 	}
 }
 
