@@ -32,7 +32,7 @@ class GitmojiCli {
 	}
 
 	ask() {
-		if (this._isAGitRepo()) {
+		if (this._isAGitRepo('.git')) {
 			return this._gitmojiApiClient.request({
 				method: 'GET',
 				url: '/src/data/gitmojis.json'
@@ -44,6 +44,8 @@ class GitmojiCli {
 					});
 				})
 			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
+		} else {
+			console.error(chalk.red('ERROR: This directory is not a git repository.'));
 		}
 	}
 
@@ -132,14 +134,8 @@ class GitmojiCli {
 		return signed;
 	}
 
-	_isAGitRepo() {
-		const path = pathExists.sync('.git');
-
-		if (!path) {
-			console.error(chalk.red('ERROR: This directory is not a git repository.'));
-		}
-
-		return path;
+	_isAGitRepo(dir) {
+		return pathExists.sync(dir);
 	}
 }
 

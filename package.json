@@ -16,6 +16,7 @@
   },
   "scripts": {
     "lint": "xo",
+	"mocha": "mocha ./test/*.js",
     "test": "npm run lint"
   },
   "repository": {
