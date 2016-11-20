@@ -4,12 +4,28 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
+const fs = require('fs');
 
 class GitmojiCli {
 
 	constructor(gitmojiApiClient, gitmojis) {
 		this._gitmojiApiClient = gitmojiApiClient;
 		this._gitmojis = gitmojis;
+	}
+
+	init() {
+		if (this._isAGitRepo('.git')) {
+			const path = `${process.env.PWD}/.git/hooks`;
+			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\ngitmoji -c`;
+
+			fs.writeFile(`${path}/prepare-commit-message`, fileContents, {mode: 755}, (err) => {
+				if (err) {
+					console.error(chalk.red(`ERROR: ${err}`));
+				}
+				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
+			});
+		}
+		console.error(chalk.red('ERROR: This directory is not a git repository.'));
 	}
 
 	list() {

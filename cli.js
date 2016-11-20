@@ -13,6 +13,7 @@ const cli = meow(`
 	Usage
 	  $ gitmoji
 	Options
+		--init, -i	Initialize gitmoji as a commit hook
 		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
@@ -50,4 +51,8 @@ if (cli.flags.search) {
 
 if (cli.flags.commit) {
 	gitmojiCli.ask();
+}
+
+if (cli.flags.init) {
+	gitmojiCli.init();
 }
