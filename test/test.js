@@ -17,7 +17,6 @@ const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 describe('gitmoji', function() {
 
 	describe('_isAGitRepo', function() {
-
 		it('should find a .git repo and return true', function() {
 			gitmojiCli._isAGitRepo('.git').should.be.true();
 		});
@@ -25,19 +24,15 @@ describe('gitmoji', function() {
 		it('should not find a .git repo and return false', function() {
 			gitmojiCli._isAGitRepo('.notagit').should.be.false();
 		});
-
 	});
 
 	describe('_isCommitSigned', function() {
-
-		it('should have the signed commit flag', function() {
+		it('should have the signed commit flag "-s"', function() {
 			gitmojiCli._isCommitSigned(true).should.equal('-s');
 		});
 
 		it('should not have the signed commit flag', function() {
 			gitmojiCli._isCommitSigned(false).should.equal('');
 		});
-
 	});
-
 });
