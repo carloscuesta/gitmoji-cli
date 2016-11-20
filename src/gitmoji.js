@@ -3,7 +3,7 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
-const fs = require('fs');
+const pathExists = require('path-exists');
 
 class GitmojiCli {
 
@@ -32,17 +32,19 @@ class GitmojiCli {
 	}
 
 	ask() {
-		return this._gitmojiApiClient.request({
-			method: 'GET',
-			url: '/src/data/gitmojis.json'
-		}).then(res => res.data.gitmojis)
-			.then(gitmojis => this._questions(gitmojis))
-			.then(questions => {
-				inquirer.prompt(questions).then(answers => {
-					this._commit(answers);
-				});
-			})
-		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
+		if (this._isAGitRepo()) {
+			return this._gitmojiApiClient.request({
+				method: 'GET',
+				url: '/src/data/gitmojis.json'
+			}).then(res => res.data.gitmojis)
+				.then(gitmojis => this._questions(gitmojis))
+				.then(questions => {
+					inquirer.prompt(questions).then(answers => {
+						this._commit(answers);
+					});
+				})
+			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
+		}
 	}
 
 	_commit(answers) {
@@ -128,6 +130,16 @@ class GitmojiCli {
 		}
 
 		return signed;
+	}
+
+	_isAGitRepo() {
+		const path = pathExists.sync('.git');
+
+		if (!path) {
+			console.error(chalk.red('ERROR: This directory is not a git repository.'));
+		}
+
+		return path;
 	}
 }
 
