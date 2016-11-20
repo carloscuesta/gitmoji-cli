@@ -67,7 +67,7 @@ class GitmojiCli {
 		const questions = [
 			{
 				name: 'gitmoji',
-				message: 'Choose a gitmoji',
+				message: 'Choose a gitmoji:',
 				type: 'list',
 				choices: gitmojis.map(gitmoji => {
 					return {
@@ -78,7 +78,7 @@ class GitmojiCli {
 			},
 			{
 				name: 'title',
-				message: 'Enter the commit title',
+				message: 'Enter the commit title:',
 				validate(value) {
 					if (value === '') {
 						return chalk.red('Enter the commit title');
@@ -88,11 +88,11 @@ class GitmojiCli {
 			},
 			{
 				name: 'message',
-				message: 'Enter the commit message'
+				message: 'Enter the commit message:'
 			},
 			{
 				name: 'reference',
-				message: 'Issue / PR reference #',
+				message: 'Issue / PR reference #:',
 				validate(value) {
 					if (value === '') {
 						return true;
@@ -108,7 +108,7 @@ class GitmojiCli {
 			},
 			{
 				name: 'signed',
-				message: 'Signed commit',
+				message: 'Signed commit:',
 				type: 'confirm'
 			}
 		];
