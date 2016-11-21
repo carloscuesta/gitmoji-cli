@@ -1,10 +1,10 @@
 'use strict';
 
+const fs = require('fs');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
-const fs = require('fs');
 
 class GitmojiCli {
 
@@ -18,7 +18,7 @@ class GitmojiCli {
 			const path = `${process.env.PWD}/.git/hooks`;
 			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\ngitmoji -c`;
 
-			fs.writeFile(`${path}/prepare-commit-message`, fileContents, {mode: 755}, (err) => {
+			fs.writeFile(`${path}/prepare-commit-message`, fileContents, {mode: 755}, err => {
 				if (err) {
 					console.error(chalk.red(`ERROR: ${err}`));
 				}
