@@ -42,7 +42,7 @@ class GitmojiCli {
 			method: 'GET',
 			url: '/src/data/gitmojis.json'
 		}).then(res => res.data.gitmojis)
-			.then(gitmojis => gitmojis.filter(gitmoji => gitmoji.name.concat(gitmoji.description).indexOf(name) !== -1))
+			.then(gitmojis => gitmojis.filter(gitmoji => gitmoji.name.concat(gitmoji.description).toLowerCase().indexOf(name.toLowerCase()) !== -1))
 			.then(gitmojisFiltered => this._parseGitmojis(gitmojisFiltered))
 		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 	}
