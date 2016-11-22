@@ -16,16 +16,15 @@ class GitmojiCli {
 	init() {
 		if (this._isAGitRepo('.git')) {
 			const path = `${process.env.PWD}/.git/hooks`;
-			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\ngitmoji -c`;
+			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\ngitmoji -c $1`;
 
-			fs.writeFile(`${path}/prepare-commit-message`, fileContents, {mode: 755}, err => {
+			fs.writeFile(`${path}/prepare-commit-msg`, fileContents, {mode: 755}, err => {
 				if (err) {
 					console.error(chalk.red(`ERROR: ${err}`));
 				}
 				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
 			});
 		}
-		console.error(chalk.red('ERROR: This directory is not a git repository.'));
 	}
 
 	list() {
