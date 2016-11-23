@@ -16,7 +16,7 @@ class GitmojiCli {
 	init() {
 		if (this._isAGitRepo('.git')) {
 			const path = `${process.env.PWD}/.git/hooks`;
-			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\ngitmoji -c $1`;
+			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji --hook $1`;
 
 			fs.writeFile(`${path}/prepare-commit-msg`, fileContents, {mode: 755}, err => {
 				if (err) {
@@ -46,7 +46,7 @@ class GitmojiCli {
 		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 	}
 
-	ask() {
+	ask(mode) {
 		if (this._isAGitRepo('.git')) {
 			return this._gitmojiApiClient.request({
 				method: 'GET',
@@ -55,13 +55,28 @@ class GitmojiCli {
 				.then(gitmojis => this._questions(gitmojis))
 				.then(questions => {
 					inquirer.prompt(questions).then(answers => {
-						this._commit(answers);
+						switch (mode) {
+							case 'client':
+								this._commit(answers);
+							break;
+
+							case 'hook':
+								this._hook(answers);
+							break;
+						}
 					});
 				})
 			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 		}
-
 		console.error(chalk.red('ERROR: This directory is not a git repository.'));
+	}
+
+	_hook(answers) {
+		const commitTitle = `${answers.gitmoji} ${answers.title}`;
+		const reference = (answers.reference) ? `#${answers.reference}` : '';
+		const commitBody = `${answers.message} ${reference}`;
+
+		fs.writeFileSync(process.argv[3], `${commitTitle}\n${commitBody}`);
 	}
 
 	_commit(answers) {

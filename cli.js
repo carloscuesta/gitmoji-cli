@@ -50,9 +50,13 @@ if (cli.flags.search) {
 }
 
 if (cli.flags.commit) {
-	gitmojiCli.ask();
+	gitmojiCli.ask('client');
 }
 
 if (cli.flags.init) {
 	gitmojiCli.init();
+}
+
+if (cli.flags.hook) {
+	gitmojiCli.ask('hook');
 }
