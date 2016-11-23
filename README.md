@@ -39,10 +39,24 @@ A gitmoji interactive client for using gitmojis on commit messages.
 
 ### Commit
 
-Add your changes and start the interactive commit client, to auto generate your commit based on your prompts.
+You can use the commit functionality in two ways, directly or via a commit-hook.
+
+#### Client
+
+Start the interactive commit client, to auto generate your commit based on your prompts.
 
 ```bash
 $ gitmoji -c
+```
+
+#### Hook
+
+Run the init option, add your changes and commit them, after that the prompts will begin and your commit message will be built.
+
+```bash
+$ gitmoji -i # this will create the .git/hook/prepare-commit-msg
+$ git add .
+$ git commit
 ```
 
 ![gitmoji commit](https://cloud.githubusercontent.com/assets/7629661/20454513/5db2750a-ae43-11e6-99d7-4757108fe640.png)
