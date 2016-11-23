@@ -11,7 +11,8 @@
   "xo": {
     "esnext": true,
     "rules": {
-      "array-callback-return": 1
+      "array-callback-return": 1,
+	  "default-case": 1
   },
   "ignores": [
 	"test/**"

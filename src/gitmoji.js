@@ -58,11 +58,11 @@ class GitmojiCli {
 						switch (mode) {
 							case 'client':
 								this._commit(answers);
-							break;
+								break;
 
 							case 'hook':
 								this._hook(answers);
-							break;
+								break;
 						}
 					});
 				})
