@@ -95,12 +95,16 @@ class GitmojiCli {
 		const signed = this._isCommitSigned(answers.signed);
 		const commitBody = `${answers.message} ${reference}`;
 
-		execa.stdout('git', ['add', '.'])
-			.then(res => console.log(chalk.blue(res)))
-			.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
-		execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
-			.then(res => console.log(chalk.blue(res.stdout)))
-			.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
+		if (this._isAGitRepo('.git')) {
+			execa.stdout('git', ['add', '.'])
+				.then(res => console.log(chalk.blue(res)))
+				.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
+			execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
+				.then(res => console.log(chalk.blue(res.stdout)))
+				.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
+		}
+
+		return `git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`;
 	}
 
 	_questions(gitmojis) {

@@ -13,9 +13,24 @@ const gitmojiApiClient = axios.create({
 	params: {}
 });
 
+const prompts = {
+	gitmoji: ':zap:',
+	title: 'Improving performance issues.',
+	message: 'Refactored code.',
+	reference: '5',
+	signed: true
+};
+
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
+
 describe('gitmoji', function() {
+
+	describe('commit', function() {
+		it('should return the formed commit based on the input prompts', function() {
+			gitmojiCli._commit(prompts).should.equal('git commit -s -m ":zap: Improving performance issues." -m "Refactored code. #5"');
+		});
+	});
 
 	describe('init', function() {
 		it('path should be set to .git/hooks/prepare-commit-msg', function() {
