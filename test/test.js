@@ -4,6 +4,7 @@ const meow = require('meow');
 const axios = require('axios');
 const GitmojiCli = require('./../src/gitmoji.js');
 const should = require('should');
+const pkg = require('./../package.json');
 
 const gitmojiApiClient = axios.create({
 	baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
