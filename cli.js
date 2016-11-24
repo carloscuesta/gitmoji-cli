@@ -47,10 +47,13 @@ const commands = {
 	init: () => gitmojiCli.init(),
 	hook: () => gitmojiCli.ask('hook'),
 	version: () => console.log(gitmojiCli.version(pkg.version)),
-	commit: () => gitmojiCli.ask('client')
+	commit: () => gitmojiCli.ask('client'),
+	undefined: () => gitmojiCli.ask('client')
 };
 
 const arg = Object.keys(cli.flags)[1];
-if (arg) {
+if (commands[arg]) {
 	commands[arg]();
+} else {
+	cli.showHelp();
 }
