@@ -17,6 +17,7 @@ const cli = meow(`
 		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
+		--version, -v	Print gitmoji-cli installed version
 	Examples
 		$ gitmoji -l
 		$ gitmoji bug linter -s
@@ -26,7 +27,8 @@ const cli = meow(`
 		c: 'commit',
 		l: 'list',
 		s: 'search',
-		h: 'help'
+		h: 'help',
+		v: 'version'
 	}
 });
 
@@ -59,4 +61,8 @@ if (cli.flags.init) {
 
 if (cli.flags.hook) {
 	gitmojiCli.ask('hook');
+}
+
+if (cli.flags.version) {
+	console.log(gitmojiCli.version(pkg.version));
 }

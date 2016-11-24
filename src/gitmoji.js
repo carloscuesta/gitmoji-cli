@@ -27,6 +27,10 @@ class GitmojiCli {
 		}
 	}
 
+	version(number) {
+		return number;
+	}
+
 	list() {
 		return this._gitmojiApiClient.request({
 			method: 'GET',
