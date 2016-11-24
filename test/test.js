@@ -16,9 +16,14 @@ const gitmojiApiClient = axios.create({
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 describe('gitmoji', function() {
+	
 	describe('version', function() {
-		it('should return a version number and equal to the package.json one', function() {
+		it('should return the version number equal to the package.json one', function() {
 			gitmojiCli.version(pkg.version).should.be.equal(pkg.version);
+		});
+		
+		it('should return a version number not equal to the package.json', function() {
+			gitmojiCli.version(pkg.version).should.not.be.equal('1.0.0');
 		});
 	});
 
