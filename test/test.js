@@ -4,6 +4,7 @@ const meow = require('meow');
 const axios = require('axios');
 const GitmojiCli = require('./../src/gitmoji.js');
 const should = require('should');
+const pkg = require('./../package.json');
 
 const gitmojiApiClient = axios.create({
 	baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
@@ -16,6 +17,12 @@ const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 describe('gitmoji', function() {
 
+	describe('version', function() {
+		it('should return a version number and equal to the package.json one', function() {
+			gitmojiCli.version(pkg.version).should.be.equal(pkg.version);
+		});
+	});
+	
 	describe('_isAGitRepo', function() {
 		it('should find a .git repo and return true', function() {
 			gitmojiCli._isAGitRepo('.git').should.be.true();
