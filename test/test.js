@@ -16,12 +16,22 @@ const gitmojiApiClient = axios.create({
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 describe('gitmoji', function() {
-	
+
+	describe('init', function() {
+		it('path should be set to .git/hooks/prepare-commit-msg', function() {
+			gitmojiCli.init().path.should.containEql('.git/hooks/prepare-commit-msg');
+		});
+
+		it('prepare-commit-msg should contain the hook script', function() {
+			gitmojiCli.init().fileContents.should.containEql('exec < /dev/tty\ngitmoji --hook $1');
+		});
+	});
+
 	describe('version', function() {
 		it('should return the version number equal to the package.json one', function() {
 			gitmojiCli.version(pkg.version).should.be.equal(pkg.version);
 		});
-		
+
 		it('should return a version number not equal to the package.json', function() {
 			gitmojiCli.version(pkg.version).should.not.be.equal('1.0.0');
 		});

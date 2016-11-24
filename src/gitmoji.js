@@ -17,7 +17,7 @@ class GitmojiCli {
 		const hookFile = 'prepare-commit-msg';
 		const path = `${process.env.PWD}/.git/hooks/${hookFile}`;
 		const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji --hook $1`;
-		
+
 		if (this._isAGitRepo('.git')) {
 			fs.writeFile(path, fileContents, {mode: 755}, err => {
 				if (err) {
@@ -26,7 +26,7 @@ class GitmojiCli {
 				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
 			});
 		}
-		
+
 		return {
 			path,
 			fileContents
