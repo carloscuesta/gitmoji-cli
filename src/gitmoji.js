@@ -15,15 +15,20 @@ class GitmojiCli {
 
 	init() {
 		if (this._isAGitRepo('.git')) {
-			const path = `${process.env.PWD}/.git/hooks`;
+			const hookFile = 'prepare-commit-msg';
+			const path = `${process.env.PWD}/.git/hooks/${hookFile}`;
 			const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji --hook $1`;
 
-			fs.writeFile(`${path}/prepare-commit-msg`, fileContents, {mode: 755}, err => {
+			fs.writeFile(path, fileContents, {mode: 755}, err => {
 				if (err) {
 					console.error(chalk.red(`ERROR: ${err}`));
 				}
 				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
 			});
+		}
+		return {
+			path: path,
+			file: fileContents
 		}
 	}
 
