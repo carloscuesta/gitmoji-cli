@@ -32,9 +32,11 @@ A gitmoji interactive client for using gitmojis on commit messages.
   Usage
     $ gitmoji
   Options
+  	--init, -i	Initialize gitmoji as a commit hook
   	--commit, -c Interactively commit using the prompts
   	--list, -l  List all the available gitmojis
   	--search, -s	Search gitmojis
+	--version, -v	Print gitmoji-cli installed version
 ```
 
 ### Commit
