@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
+const pkg = require('./package.json');
 
 class GitmojiCli {
 
@@ -25,6 +26,10 @@ class GitmojiCli {
 				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
 			});
 		}
+	}
+	
+	version() {
+		return pkg.version;
 	}
 
 	list() {
