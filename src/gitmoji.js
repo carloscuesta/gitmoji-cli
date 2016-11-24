@@ -5,7 +5,6 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
-const pkg = require('./package.json');
 
 class GitmojiCli {
 
@@ -28,8 +27,8 @@ class GitmojiCli {
 		}
 	}
 	
-	version() {
-		return pkg.version;
+	version(number) {
+		return number;
 	}
 
 	list() {
