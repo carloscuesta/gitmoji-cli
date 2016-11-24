@@ -26,7 +26,7 @@ class GitmojiCli {
 			});
 		}
 	}
-	
+
 	version(number) {
 		return number;
 	}
