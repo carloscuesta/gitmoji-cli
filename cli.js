@@ -41,28 +41,16 @@ const gitmojiApiClient = axios.create({
 
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
-if (cli.flags.list) {
-	gitmojiCli.list();
-}
+const commands = {
+	list: () => gitmojiCli.list(),
+	search: () => cli.input.map(element => gitmojiCli.search(element)),
+	init: () => gitmojiCli.init(),
+	hook: () => gitmojiCli.ask('hook'),
+	version: () => console.log(gitmojiCli.version(pkg.version)),
+	commit: () => gitmojiCli.ask('client')
+};
 
-if (cli.flags.search) {
-	cli.input.map(element => {
-		return gitmojiCli.search(element);
-	});
-}
-
-if (cli.flags.commit) {
-	gitmojiCli.ask('client');
-}
-
-if (cli.flags.init) {
-	gitmojiCli.init();
-}
-
-if (cli.flags.hook) {
-	gitmojiCli.ask('hook');
-}
-
-if (cli.flags.version) {
-	console.log(gitmojiCli.version(pkg.version));
+const arg = Object.keys(cli.flags)[1];
+if (arg) {
+	commands[arg]();
 }
