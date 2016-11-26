@@ -19,7 +19,7 @@ class GitmojiCli {
 		const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji --hook $1`;
 
 		if (this._isAGitRepo('.git')) {
-			fs.writeFile(path, fileContents, {mode: 755}, err => {
+			fs.writeFile(path, fileContents, {mode: 0o775}, err => {
 				if (err) {
 					console.error(chalk.red(`ERROR: ${err}`));
 				}
