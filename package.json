@@ -1,6 +1,6 @@
 {
   "name": "gitmoji-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
     "node": ">=4"
@@ -12,15 +12,15 @@
     "esnext": true,
     "rules": {
       "array-callback-return": 1,
-	  "default-case": 1
-  },
-  "ignores": [
-	"test/**"
-  ]
+      "default-case": 1
+    },
+    "ignores": [
+      "test/**"
+    ]
   },
   "scripts": {
     "lint": "xo",
-	"mocha": "mocha ./test/*.js",
+    "mocha": "mocha ./test/*.js",
     "test": "npm run lint && npm run mocha"
   },
   "repository": {
