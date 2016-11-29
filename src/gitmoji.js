@@ -65,6 +65,10 @@ class GitmojiCli {
 							case 'hook':
 								this._hook(answers);
 								break;
+							default:
+								console.error(chalk.red(
+									`ERROR: unexpected mode [${mode}]`
+								));
 						}
 					});
 				})
@@ -158,7 +162,7 @@ class GitmojiCli {
 	}
 
 	_parseGitmojis(gitmojis) {
-		return gitmojis.map(gitmoji => {
+		return gitmojis.forEach(gitmoji => {
 			console.log(`${gitmoji.emoji}  - ${chalk.blue(gitmoji.code)} - ${gitmoji.description}`);
 		});
 	}
@@ -191,7 +195,7 @@ class GitmojiCli {
 	_createCache(cachePath, emojis) {
 		const cacheDir = path.dirname(cachePath);
 		if (!pathExists.sync(cacheDir)) {
-			fs.mkdirSync(cacheDir)
+			fs.mkdirSync(cacheDir);
 		}
 		fs.writeFileSync(cachePath, JSON.stringify(emojis));
 	}
@@ -200,7 +204,7 @@ class GitmojiCli {
 		return this._gitmojiApiClient.request({
 			method: 'GET',
 			url: '/src/data/gitmojis.json'
-		}).then(res => res.data.gitmojis)
+		}).then(res => res.data.gitmojis);
 	}
 
 	_fetchCachedEmojis(cachePath) {
@@ -211,13 +215,12 @@ class GitmojiCli {
 		const cachePath = this._getCachePath();
 		if (this._isCacheExist(cachePath)) {
 			return this._fetchCachedEmojis(cachePath);
-		} else {
-			return this._fetchRemoteEmojis()
-				.then(emojis => {
-					this._createCache(cachePath, emojis);
-					return emojis;
-				});
 		}
+		return this._fetchRemoteEmojis()
+			.then(emojis => {
+				this._createCache(cachePath, emojis);
+				return emojis;
+			});
 	}
 }
 
