@@ -18,6 +18,7 @@ const cli = meow(`
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
 		--version, -v	Print gitmoji-cli installed version
+		--update, -u	Sync emoji list with the repo
 	Examples
 		$ gitmoji -l
 		$ gitmoji bug linter -s
@@ -28,7 +29,8 @@ const cli = meow(`
 		l: 'list',
 		s: 'search',
 		h: 'help',
-		v: 'version'
+		v: 'version',
+		u: 'update'
 	}
 });
 
@@ -48,6 +50,7 @@ const commands = {
 	hook: () => gitmojiCli.ask('hook'),
 	version: () => console.log(gitmojiCli.version(pkg.version)),
 	commit: () => gitmojiCli.ask('client'),
+	update: () => gitmojiCli.updateCache(),
 	undefined: () => {
 		if (process.argv[2] === '--hook') {
 			gitmojiCli.ask('hook');

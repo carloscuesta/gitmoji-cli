@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
@@ -38,19 +39,13 @@ class GitmojiCli {
 	}
 
 	list() {
-		return this._gitmojiApiClient.request({
-			method: 'GET',
-			url: '/src/data/gitmojis.json'
-		}).then(res => res.data.gitmojis)
+		return this._fetchEmojis()
 			.then(gitmojis => this._parseGitmojis(gitmojis))
 			.catch(err => console.error(chalk.red(`ERROR: gitmoji list not found - ${err.code}`)));
 	}
 
 	search(name) {
-		return this._gitmojiApiClient.request({
-			method: 'GET',
-			url: '/src/data/gitmojis.json'
-		}).then(res => res.data.gitmojis)
+		return this._fetchEmojis()
 			.then(gitmojis => gitmojis.filter(gitmoji => gitmoji.name.concat(gitmoji.description).toLowerCase().indexOf(name.toLowerCase()) !== -1))
 			.then(gitmojisFiltered => this._parseGitmojis(gitmojisFiltered))
 		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
@@ -58,10 +53,7 @@ class GitmojiCli {
 
 	ask(mode) {
 		if (this._isAGitRepo('.git')) {
-			return this._gitmojiApiClient.request({
-				method: 'GET',
-				url: '/src/data/gitmojis.json'
-			}).then(res => res.data.gitmojis)
+			return this._fetchEmojis()
 				.then(gitmojis => this._questions(gitmojis))
 				.then(questions => {
 					inquirer.prompt(questions).then(answers => {
@@ -73,12 +65,21 @@ class GitmojiCli {
 							case 'hook':
 								this._hook(answers);
 								break;
+							default:
+								console.error(chalk.red(
+									`ERROR: unexpected mode [${mode}]`
+								));
 						}
 					});
 				})
 			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
 		}
 		console.error(chalk.red('ERROR: This directory is not a git repository.'));
+	}
+
+	updateCache() {
+		this._fetchRemoteEmojis()
+			.then(emojis => this._createCache(this._getCachePath(), emojis));
 	}
 
 	_hook(answers) {
@@ -161,7 +162,7 @@ class GitmojiCli {
 	}
 
 	_parseGitmojis(gitmojis) {
-		return gitmojis.map(gitmoji => {
+		return gitmojis.forEach(gitmoji => {
 			console.log(`${gitmoji.emoji}  - ${chalk.blue(gitmoji.code)} - ${gitmoji.description}`);
 		});
 	}
@@ -180,6 +181,46 @@ class GitmojiCli {
 
 	_isAGitRepo(dir) {
 		return pathExists.sync(dir);
+	}
+
+	_getCachePath() {
+		const home = process.env.HOME || process.env.USERPROFILE;
+		return path.join(home, '.gitmoji', 'gitmojis.json');
+	}
+
+	_isCacheExist(cachePath) {
+		return pathExists.sync(cachePath);
+	}
+
+	_createCache(cachePath, emojis) {
+		const cacheDir = path.dirname(cachePath);
+		if (!pathExists.sync(cacheDir)) {
+			fs.mkdirSync(cacheDir);
+		}
+		fs.writeFileSync(cachePath, JSON.stringify(emojis));
+	}
+
+	_fetchRemoteEmojis() {
+		return this._gitmojiApiClient.request({
+			method: 'GET',
+			url: '/src/data/gitmojis.json'
+		}).then(res => res.data.gitmojis);
+	}
+
+	_fetchCachedEmojis(cachePath) {
+		return Promise.resolve(JSON.parse(fs.readFileSync(cachePath)));
+	}
+
+	_fetchEmojis() {
+		const cachePath = this._getCachePath();
+		if (this._isCacheExist(cachePath)) {
+			return this._fetchCachedEmojis(cachePath);
+		}
+		return this._fetchRemoteEmojis()
+			.then(emojis => {
+				this._createCache(cachePath, emojis);
+				return emojis;
+			});
 	}
 }
 
