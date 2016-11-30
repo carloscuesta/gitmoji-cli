@@ -49,7 +49,7 @@ const commands = {
 	version: () => console.log(gitmojiCli.version(pkg.version)),
 	commit: () => gitmojiCli.ask('client'),
 	undefined: () => {
-		if (process.argv[2]==='--hook') {
+		if (process.argv[2] === '--hook') {
 			gitmojiCli.ask('hook');
 		} else {
 			gitmojiCli.ask('client');
