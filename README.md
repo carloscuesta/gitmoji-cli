@@ -37,6 +37,7 @@ A gitmoji interactive client for using gitmojis on commit messages.
   	--list, -l  List all the available gitmojis
   	--search, -s	Search gitmojis
 	--version, -v	Print gitmoji-cli installed version
+	--update, -u	Update the gitmoji.json cache.
 ```
 
 ### Commit
@@ -83,3 +84,11 @@ $ gitmoji -l
 ```
 
 ![gitmoji list](https://cloud.githubusercontent.com/assets/7629661/20454472/1c351e6c-ae42-11e6-8f3c-da73429d8eff.png)
+
+### Update
+
+Update the gitmojis list, by default the first time you run gitmoji, the cli creates a cache to allow using this tool without internet connection.
+
+```bash
+$ gitmoji -u
+```
