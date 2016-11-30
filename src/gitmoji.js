@@ -65,6 +65,7 @@ class GitmojiCli {
 							case 'hook':
 								this._hook(answers);
 								break;
+
 							default:
 								console.error(chalk.red(
 									`ERROR: unexpected mode [${mode}]`
@@ -188,7 +189,7 @@ class GitmojiCli {
 		return path.join(home, '.gitmoji', 'gitmojis.json');
 	}
 
-	_isCacheExist(cachePath) {
+	_cacheAvailable(cachePath) {
 		return pathExists.sync(cachePath);
 	}
 
@@ -213,7 +214,7 @@ class GitmojiCli {
 
 	_fetchEmojis() {
 		const cachePath = this._getCachePath();
-		if (this._isCacheExist(cachePath)) {
+		if (this._cacheAvailable(cachePath)) {
 			return this._fetchCachedEmojis(cachePath);
 		}
 		return this._fetchRemoteEmojis()
