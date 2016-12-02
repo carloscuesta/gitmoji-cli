@@ -67,9 +67,7 @@ class GitmojiCli {
 								break;
 
 							default:
-								console.error(chalk.red(
-									`ERROR: unexpected mode [${mode}]`
-								));
+								console.error(chalk.red(`ERROR: unexpected mode [${mode}]`));
 						}
 					});
 				})
@@ -195,17 +193,24 @@ class GitmojiCli {
 
 	_createCache(cachePath, emojis) {
 		const cacheDir = path.dirname(cachePath);
-		if (!pathExists.sync(cacheDir)) {
-			fs.mkdirSync(cacheDir);
+
+		if (emojis !== undefined) {
+			if (!pathExists.sync(cacheDir)) {
+				fs.mkdirSync(cacheDir);
+			}
+			fs.writeFileSync(cachePath, JSON.stringify(emojis));
 		}
-		fs.writeFileSync(cachePath, JSON.stringify(emojis));
 	}
 
 	_fetchRemoteEmojis() {
 		return this._gitmojiApiClient.request({
 			method: 'GET',
 			url: '/src/data/gitmojis.json'
-		}).then(res => res.data.gitmojis);
+		}).then(res => {
+			console.log(`${chalk.yellow('Gitmojis')} updated succesfully!`);
+			return res.data.gitmojis;
+		})
+		.catch(err => console.error(chalk.red(`ERROR: Network connection not found - ${err.code}`)));
 	}
 
 	_fetchCachedEmojis(cachePath) {
