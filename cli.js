@@ -2,9 +2,9 @@
 'use strict';
 
 const meow = require('meow');
-const axios = require('axios');
 const updateNotifier = require('update-notifier');
-const GitmojiCli = require('./src/gitmoji.js');
+const GitmojiCli = require('./src/gitmoji');
+const gitmojiApiClient = require('./src/api-client');
 const pkg = require('./package.json');
 
 updateNotifier({pkg}).notify();
@@ -34,14 +34,8 @@ const cli = meow(`
 	}
 });
 
-const gitmojiApiClient = axios.create({
-	baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-	timeout: 5000,
-	headers: {},
-	params: {}
-});
-
-const gitmojiCli = new GitmojiCli(gitmojiApiClient);
+const apiClient = gitmojiApiClient('https://raw.githubusercontent.com/carloscuesta/gitmoji/master');
+const gitmojiCli = new GitmojiCli(apiClient);
 
 const commands = {
 	list: () => gitmojiCli.list(),

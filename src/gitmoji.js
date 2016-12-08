@@ -89,11 +89,19 @@ class GitmojiCli {
 		fs.writeFileSync(process.argv[3], `${commitTitle}\n${commitBody}`);
 	}
 
-	_commit(answers) {
-		const commitTitle = `${answers.gitmoji} ${answers.title}`;
+	_commitTitle(answers) {
+		return `${answers.gitmoji} ${answers.title}`;
+	}
+
+	_commitBody(answers) {
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
+		return `${answers.message} ${reference}`;
+	}
+
+	_commit(answers) {
+		const commitTitle = this._commitTitle(answers);
+		const commitBody = this._commitBody(answers);
 		const signed = this._isCommitSigned(answers.signed);
-		const commitBody = `${answers.message} ${reference}`;
 
 		if (this._isAGitRepo('.git')) {
 			execa.stdout('git', ['add', '.'])
