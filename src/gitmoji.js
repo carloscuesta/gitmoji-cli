@@ -86,29 +86,30 @@ class GitmojiCli {
 	}
 
 	_hook(answers) {
-		const commitTitle = `${answers.gitmoji} ${answers.title}`;
+		const title = `${answers.gitmoji} ${answers.title}`;
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
-		const commitBody = `${answers.message} ${reference}`;
+		const body = `${answers.message} ${reference}`;
 
-		fs.writeFileSync(process.argv[3], `${commitTitle}\n${commitBody}`);
+		fs.writeFileSync(process.argv[3], `${title}\n${body}`);
 	}
 
 	_commit(answers) {
-		const commitTitle = `${answers.gitmoji} ${answers.title}`;
+		const title = `${answers.gitmoji} ${answers.title}`;
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
 		const signed = this._isCommitSigned(answers.signed);
-		const commitBody = `${answers.message} ${reference}`;
+		const body = `${answers.message} ${reference}`;
+		const commit = `git commit ${signed} -m "${title}" -m "${body}"`;
 
 		if (this._isAGitRepo('.git')) {
 			execa.stdout('git', ['add', '.'])
 				.then(res => console.log(chalk.blue(res)))
 				.catch(err => this._errorMessage(err.stderr));
-			execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
+			execa.shell(commit)
 				.then(res => console.log(chalk.blue(res.stdout)))
 				.catch(err => this._errorMessage(err.stderr));
 		}
 
-		return `git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`;
+		return commit;
 	}
 
 	_questions(gitmojis) {
