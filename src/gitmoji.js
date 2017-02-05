@@ -22,7 +22,7 @@ class GitmojiCli {
 		if (this._isAGitRepo('.git')) {
 			fs.writeFile(path, fileContents, {mode: 0o775}, err => {
 				if (err) {
-					console.error(chalk.red(`ERROR: ${err}`));
+					this._errorMessage(err);
 				}
 				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
 			});
@@ -41,14 +41,14 @@ class GitmojiCli {
 	list() {
 		return this._fetchEmojis()
 			.then(gitmojis => this._parseGitmojis(gitmojis))
-			.catch(err => console.error(chalk.red(`ERROR: gitmoji list not found - ${err.code}`)));
+			.catch(err => this._errorMessage(`gitmoji list not found - ${err.code}`));
 	}
 
 	search(name) {
 		return this._fetchEmojis()
 			.then(gitmojis => gitmojis.filter(gitmoji => gitmoji.name.concat(gitmoji.description).toLowerCase().indexOf(name.toLowerCase()) !== -1))
 			.then(gitmojisFiltered => this._parseGitmojis(gitmojisFiltered))
-		.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
+		.catch(err => this._errorMessage(err.code));
 	}
 
 	ask(mode) {
@@ -67,18 +67,22 @@ class GitmojiCli {
 								break;
 
 							default:
-								console.error(chalk.red(`ERROR: unexpected mode [${mode}]`));
+								this._errorMessage(`Unexpected mode [${mode}]`);
 						}
 					});
 				})
-			.catch(err => console.error(chalk.red(`ERROR: ${err.code}`)));
+			.catch(err => this._errorMessage(err.code));
 		}
-		console.error(chalk.red('ERROR: This directory is not a git repository.'));
+		this._errorMessage('This directory is not a git repository.');
 	}
 
 	updateCache() {
 		this._fetchRemoteEmojis()
 			.then(emojis => this._createCache(this._getCachePath(), emojis));
+	}
+
+	_errorMessage(message) {
+		console.error(chalk.red(`ERROR: ${message}`));
 	}
 
 	_hook(answers) {
@@ -98,10 +102,10 @@ class GitmojiCli {
 		if (this._isAGitRepo('.git')) {
 			execa.stdout('git', ['add', '.'])
 				.then(res => console.log(chalk.blue(res)))
-				.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
+				.catch(err => this._errorMessage(err.stderr));
 			execa.shell(`git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`)
 				.then(res => console.log(chalk.blue(res.stdout)))
-				.catch(err => console.error(chalk.red(`ERROR: ${err.stderr}`)));
+				.catch(err => this._errorMessage(err.stderr));
 		}
 
 		return `git commit ${signed} -m "${commitTitle}" -m "${commitBody}"`;
@@ -210,7 +214,7 @@ class GitmojiCli {
 			console.log(`${chalk.yellow('Gitmojis')} updated succesfully!`);
 			return res.data.gitmojis;
 		})
-		.catch(err => console.error(chalk.red(`ERROR: Network connection not found - ${err.code}`)));
+		.catch(err => this._errorMessage(`Network connection not found - ${err.code}`));
 	}
 
 	_fetchCachedEmojis(cachePath) {
