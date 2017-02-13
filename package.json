@@ -46,7 +46,7 @@
     "inquirer": "^3.0.1",
     "meow": "^3.7.0",
     "path-exists": "^3.0.0",
-    "update-notifier": "^1.0.2"
+    "update-notifier": "^2.0.0"
   },
   "devDependencies": {
     "mocha": "^3.1.2",
