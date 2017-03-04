@@ -107,7 +107,7 @@ class GitmojiCli {
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
 		const body = `${answers.message} ${reference}`;
 
-		fs.writeFileSync(process.argv[3], `${title}\n${body}`);
+		fs.writeFileSync(process.argv[3], `${title}\n\n${body}`);
 	}
 
 	_commit(answers) {
