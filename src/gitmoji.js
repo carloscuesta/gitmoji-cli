@@ -6,12 +6,38 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
+const Conf = require('conf');
+const config = new Conf();
 
 class GitmojiCli {
 
 	constructor(gitmojiApiClient, gitmojis) {
 		this._gitmojiApiClient = gitmojiApiClient;
 		this._gitmojis = gitmojis;
+	}
+
+	config() {
+		const questions = [
+			{
+				name: 'add',
+				message: 'Enable automatic "git add ."',
+				type: 'confirm'
+			},
+			{
+				name: 'emojiUse',
+				message: 'Select how emojis should be used in commits',
+				type: 'list',
+				choices: [
+					{ name: ':Emoji:', value: 'unicode'},
+					{ name: 'Emoji', value: 'emoji'}
+				]
+			}
+		];
+
+		inquirer.prompt(questions).then(answers => {
+			config.set('autoadd', answers.add);
+			config.set('emojimode', answers.emojiUse)
+		});
 	}
 
 	init() {
@@ -101,9 +127,11 @@ class GitmojiCli {
 		const commit = `git commit ${signed} -m "${title}" -m "${body}"`;
 
 		if (this._isAGitRepo('.git')) {
-			execa.stdout('git', ['add', '.'])
-				.then(res => console.log(chalk.blue(res)))
-				.catch(err => this._errorMessage(err.stderr));
+			if (config.get('autoadd')) {
+				execa.stdout('git', ['add', '.'])
+					.then(res => console.log(chalk.blue(res)))
+					.catch(err => this._errorMessage(err.stderr));
+			}
 			execa.shell(commit)
 				.then(res => console.log(chalk.blue(res.stdout)))
 				.catch(err => this._errorMessage(err.stderr));
@@ -121,7 +149,7 @@ class GitmojiCli {
 				choices: gitmojis.map(gitmoji => {
 					return {
 						name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-						value: gitmoji.code
+						value: (config.get('emojimode') === 'emoji') ? gitmoji.emoji : gitmoji.code
 					};
 				})
 			},

@@ -14,6 +14,7 @@ const cli = meow(`
 	  $ gitmoji
 	Options
 		--init, -i	Initialize gitmoji as a commit hook
+		--config, -g Setup gitmoji-cli preferences.
 		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
 		--search, -s	Search gitmojis
@@ -30,7 +31,8 @@ const cli = meow(`
 		s: 'search',
 		h: 'help',
 		v: 'version',
-		u: 'update'
+		u: 'update',
+		g: 'config'
 	}
 });
 
@@ -45,6 +47,7 @@ const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 const commands = {
 	list: () => gitmojiCli.list(),
+	config: () => gitmojiCli.config(),
 	search: () => cli.input.map(element => gitmojiCli.search(element)),
 	init: () => gitmojiCli.init(),
 	hook: () => gitmojiCli.ask('hook'),
