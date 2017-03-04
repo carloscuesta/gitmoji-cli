@@ -34,6 +34,7 @@ A gitmoji interactive client for using gitmojis on commit messages.
     $ gitmoji
   Options
   	--init, -i	Initialize gitmoji as a commit hook
+	--config, -g 	Setup gitmoji-cli preferences
   	--commit, -c Interactively commit using the prompts
   	--list, -l  List all the available gitmojis
   	--search, -s	Search gitmojis
@@ -93,3 +94,9 @@ Update the gitmojis list, by default the first time you run gitmoji, the cli cre
 ```bash
 $ gitmoji -u
 ```
+
+### Config
+
+Run `gitmoji -g` to setup some gitmoji-cli preferences, such as the auto `git add .` feature.
+
+![gitmoji config](https://cloud.githubusercontent.com/assets/7629661/23577826/82e8745e-00c9-11e7-9d7e-623a0a51bff9.png)
