@@ -7,6 +7,7 @@ const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
 const Conf = require('conf');
+
 const config = new Conf();
 
 class GitmojiCli {
@@ -22,21 +23,11 @@ class GitmojiCli {
 				name: 'add',
 				message: 'Enable automatic "git add ."',
 				type: 'confirm'
-			},
-			{
-				name: 'emojiUse',
-				message: 'Select how emojis should be used in commits',
-				type: 'list',
-				choices: [
-					{ name: ':Emoji:', value: 'unicode'},
-					{ name: 'Emoji', value: 'emoji'}
-				]
 			}
 		];
 
 		inquirer.prompt(questions).then(answers => {
 			config.set('autoadd', answers.add);
-			config.set('emojimode', answers.emojiUse)
 		});
 	}
 
@@ -149,7 +140,7 @@ class GitmojiCli {
 				choices: gitmojis.map(gitmoji => {
 					return {
 						name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-						value: (config.get('emojimode') === 'emoji') ? gitmoji.emoji : gitmoji.code
+						value: gitmoji.code
 					};
 				})
 			},
