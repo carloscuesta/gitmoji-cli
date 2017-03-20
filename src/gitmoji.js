@@ -140,7 +140,7 @@ class GitmojiCli {
 				choices: gitmojis.map(gitmoji => {
 					return {
 						name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-						value: gitmoji.code
+						value: gitmoji.emoji
 					};
 				})
 			},
