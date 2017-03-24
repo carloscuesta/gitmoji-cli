@@ -45,6 +45,7 @@
     "conf": "^0.12.0",
     "execa": "^0.6.0",
     "inquirer": "^3.0.1",
+    "inquirer-autocomplete-prompt": "^0.8.0",
     "meow": "^3.7.0",
     "path-exists": "^3.0.0",
     "update-notifier": "^2.0.0"

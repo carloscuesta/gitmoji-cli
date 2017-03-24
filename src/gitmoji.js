@@ -7,6 +7,7 @@ const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
 const Conf = require('conf');
+inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
 const config = new Conf();
 
@@ -136,13 +137,17 @@ class GitmojiCli {
 			{
 				name: 'gitmoji',
 				message: 'Choose a gitmoji:',
-				type: 'list',
-				choices: gitmojis.map(gitmoji => {
-					return {
-						name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-						value: gitmoji.code
-					};
-				})
+				type: 'autocomplete',
+				source: (answersSoFor, input) => {
+					return Promise.resolve(gitmojis
+						.filter(gitmoji => !input || gitmoji.name.concat(gitmoji.description).toLowerCase().indexOf(input.toLowerCase()) !== -1)
+						.map(gitmoji => {
+							return {
+								name: `${gitmoji.emoji}  - ${gitmoji.description}`,
+								value: gitmoji.code
+							};
+						}));
+				}
 			},
 			{
 				name: 'title',
