@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
-    "axios": "^0.15.2",
+    "axios": "^0.16.1",
     "chalk": "^1.1.3",
     "conf": "^0.12.0",
     "execa": "^0.6.0",
