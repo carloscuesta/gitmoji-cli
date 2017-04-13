@@ -16,6 +16,7 @@ class GitmojiCli {
 	constructor(gitmojiApiClient, gitmojis) {
 		this._gitmojiApiClient = gitmojiApiClient;
 		this._gitmojis = gitmojis;
+		if (config.get('autoadd') === undefined) config.set('autoadd', true)
 	}
 
 	config() {
