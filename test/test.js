@@ -1,5 +1,6 @@
 'use strict';
 
+const Conf = require('conf');
 const meow = require('meow');
 const axios = require('axios');
 const GitmojiCli = require('./../src/gitmoji.js');
@@ -22,12 +23,22 @@ const prompts = {
 };
 
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
+const config = new Conf();
+const originalConfig = Object.assign({}, config.store);
 
 
 describe('gitmoji', function() {
 
+	after(function() {
+		config.store = originalConfig;
+	});
+
 	describe('commit', function() {
 		it('should return the formed commit based on the input prompts', function() {
+			config.set('titleTemplate', '{title} {gitmoji}');
+			gitmojiCli._commit(prompts).should.equal('git commit -s -m "Improving performance issues. :zap:" -m "Refactored code. #5"');
+
+			config.set('titleTemplate', '{gitmoji} {title}');
 			gitmojiCli._commit(prompts).should.equal('git commit -s -m ":zap: Improving performance issues." -m "Refactored code. #5"');
 		});
 	});
