@@ -129,7 +129,7 @@ class GitmojiCli {
 			}
 			execa.shell(commit)
 				.then(res => console.log(chalk.blue(res.stdout)))
-				.catch(err => this._errorMessage(err.stderr));
+				.catch(err => this._errorMessage(err.stderr ? err.stderr : err.stdout));
 		}
 
 		return commit;
