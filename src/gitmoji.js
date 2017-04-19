@@ -45,7 +45,7 @@ class GitmojiCli {
 				if (err) {
 					this._errorMessage(err);
 				}
-				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
+				console.log(`${chalk.yellow('gitmoji')} commit hook created successfully.`);
 			});
 		}
 
@@ -239,7 +239,7 @@ class GitmojiCli {
 			method: 'GET',
 			url: '/src/data/gitmojis.json'
 		}).then(res => {
-			console.log(`${chalk.yellow('Gitmojis')} updated succesfully!`);
+			console.log(`${chalk.yellow('Gitmojis')} updated successfully!`);
 			return res.data.gitmojis;
 		})
 		.catch(err => this._errorMessage(`Network connection not found - ${err.code}`));
