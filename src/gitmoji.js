@@ -19,6 +19,9 @@ class GitmojiCli {
 		if (config.get('autoadd') === undefined) {
 			config.set('autoadd', true);
 		}
+		if (config.get('titleTemplate') === undefined) {
+			config.set('titleTemplate', '{gitmoji} {title}');
+		}
 	}
 
 	config() {
@@ -27,11 +30,18 @@ class GitmojiCli {
 				name: 'add',
 				message: 'Enable automatic "git add ."',
 				type: 'confirm'
+			},
+			{
+				name: 'titleTemplate',
+				message: 'Title template',
+				type: 'input',
+				default: '{gitmoji} {title}'
 			}
 		];
 
 		inquirer.prompt(questions).then(answers => {
 			config.set('autoadd', answers.add);
+			config.set('titleTemplate', answers.titleTemplate);
 		});
 	}
 
@@ -107,7 +117,7 @@ class GitmojiCli {
 	}
 
 	_hook(answers) {
-		const title = `${answers.gitmoji} ${answers.title}`;
+		const title = this._commitTitle(answers);
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
 		const body = `${answers.message} ${reference}`;
 
@@ -115,7 +125,7 @@ class GitmojiCli {
 	}
 
 	_commit(answers) {
-		const title = `${answers.gitmoji} ${answers.title}`;
+		const title = this._commitTitle(answers);
 		const reference = (answers.reference) ? `#${answers.reference}` : '';
 		const signed = this._isCommitSigned(answers.signed);
 		const body = `${answers.message} ${reference}`;
@@ -190,6 +200,13 @@ class GitmojiCli {
 		];
 
 		return questions;
+	}
+
+	_commitTitle(answers) {
+		return config.get('titleTemplate').replace(
+			/\{([^}]+)\}/g,
+			(_, item) => answers[item]
+		);
 	}
 
 	_parseGitmojis(gitmojis) {
