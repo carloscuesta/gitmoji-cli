@@ -28,7 +28,7 @@ describe('gitmoji', function() {
 
 	describe('commit', function() {
 		it('should return the formed commit based on the input prompts', function() {
-			gitmojiCli._commit(prompts).should.equal('git commit -s -m ":zap: Improving performance issues." -m "Refactored code. #5"');
+			gitmojiCli._commit(prompts).should.equal('git commit -S -m ":zap: Improving performance issues." -m "Refactored code. #5"');
 		});
 	});
 
@@ -63,8 +63,8 @@ describe('gitmoji', function() {
 	});
 
 	describe('_isCommitSigned', function() {
-		it('should have the signed commit flag "-s"', function() {
-			gitmojiCli._isCommitSigned(true).should.equal('-s');
+		it('should have the signed commit flag "-S"', function() {
+			gitmojiCli._isCommitSigned(true).should.equal('-S');
 		});
 
 		it('should not have the signed commit flag', function() {

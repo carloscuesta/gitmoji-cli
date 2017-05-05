@@ -202,7 +202,7 @@ class GitmojiCli {
 		let signed;
 
 		if (sign) {
-			signed = '-s';
+			signed = '-S';
 		} else {
 			signed = '';
 		}
