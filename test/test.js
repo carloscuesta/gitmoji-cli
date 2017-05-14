@@ -5,6 +5,9 @@ const axios = require('axios');
 const GitmojiCli = require('./../src/gitmoji.js');
 const should = require('should');
 const pkg = require('./../package.json');
+const Conf = require('conf');
+
+const config = new Conf();
 
 const gitmojiApiClient = axios.create({
 	baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
@@ -21,14 +24,30 @@ const prompts = {
 	signed: true
 };
 
+const promptsForJiraCommit = {
+	gitmoji: ':zap:',
+	title: 'Improving performance issues.',
+	message: 'Refactored code.',
+	reference: 'ABC-123',
+	signed: true
+};
+
 const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 
 describe('gitmoji', function() {
 
-	describe('commit', function() {
+	describe('commit-with-github-format', function() {
 		it('should return the formed commit based on the input prompts', function() {
+			config.set('issueFormat', 'github');
 			gitmojiCli._commit(prompts).should.equal('git commit -S -m ":zap: Improving performance issues." -m "Refactored code. #5"');
+		});
+	});
+
+	describe('commit-with-jira-format', function() {
+		it('should return the formed commit based on the input prompts', function() {
+			config.set('issueFormat', 'jira');
+			gitmojiCli._commit(promptsForJiraCommit).should.equal('git commit -S -m ":zap: Improving performance issues." -m "Refactored code. ABC-123"');
 		});
 	});
 

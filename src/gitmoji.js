@@ -19,6 +19,9 @@ class GitmojiCli {
 		if (config.get('autoadd') === undefined) {
 			config.set('autoadd', true);
 		}
+		if (config.get('issueFormat') === undefined) {
+			config.set('issueFormat', 'github');
+		}
 	}
 
 	config() {
@@ -27,11 +30,18 @@ class GitmojiCli {
 				name: 'add',
 				message: 'Enable automatic "git add ."',
 				type: 'confirm'
+			},
+			{
+				name: 'issueFormat',
+				message: 'Choose Issue Format',
+				type: 'list',
+				choices: ['github', 'jira']
 			}
 		];
 
 		inquirer.prompt(questions).then(answers => {
 			config.set('autoadd', answers.add);
+			config.set('issueFormat', answers.issueFormat);
 		});
 	}
 
@@ -45,7 +55,7 @@ class GitmojiCli {
 				if (err) {
 					this._errorMessage(err);
 				}
-				console.log(`${chalk.yellow('gitmoji')} commit hook created succesfully.`);
+				console.log(`${chalk.yellow('gitmoji')} commit hook created successfully.`);
 			});
 		}
 
@@ -116,7 +126,8 @@ class GitmojiCli {
 
 	_commit(answers) {
 		const title = `${answers.gitmoji} ${answers.title}`;
-		const reference = (answers.reference) ? `#${answers.reference}` : '';
+		const prefixReference = config.get('issueFormat') === 'github' ? '#' : '';
+		const reference = (answers.reference) ? `${prefixReference}${answers.reference}` : '';
 		const signed = this._isCommitSigned(answers.signed);
 		const body = `${answers.message} ${reference}`;
 		const commit = `git commit ${signed} -m "${title}" -m "${body}"`;
@@ -168,17 +179,28 @@ class GitmojiCli {
 			},
 			{
 				name: 'reference',
-				message: 'Issue / PR reference #:',
+				message: 'Issue / PR reference:',
 				validate(value) {
 					if (value === '') {
 						return true;
 					}
 					if (value !== null) {
-						const validReference = value.match(/(^[1-9][0-9]*)+$/);
+						let validReference = '';
+						let errorReference = '';
+						switch (config.get('issueFormat')) {
+							case 'jira':
+								validReference = value.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g);
+								errorReference = 'Enter the JIRA reference key, such as ABC-123';
+								break;
+							default:
+								validReference = value.match(/(^[1-9][0-9]*)+$/);
+								errorReference = 'Enter the number of the reference without the #. Eg: 12';
+						}
+
 						if (validReference) {
 							return true;
 						}
-						return chalk.red('Enter the number of the reference without the #. Eg: 12');
+						return chalk.red(errorReference);
 					}
 				}
 			},
@@ -239,7 +261,7 @@ class GitmojiCli {
 			method: 'GET',
 			url: '/src/data/gitmojis.json'
 		}).then(res => {
-			console.log(`${chalk.yellow('Gitmojis')} updated succesfully!`);
+			console.log(`${chalk.yellow('Gitmojis')} updated successfully!`);
 			return res.data.gitmojis;
 		})
 		.catch(err => this._errorMessage(`Network connection not found - ${err.code}`));
