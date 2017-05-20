@@ -219,14 +219,14 @@ concat-stream@^1.5.2:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
-conf@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-0.12.0.tgz#8498c599e2487fec703505d181c113875b8c310c"
+conf@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-1.1.1.tgz#238d0a3090ac4916ed2d40c7e81d7a11667bc7ba"
   dependencies:
     dot-prop "^4.1.0"
     env-paths "^1.0.0"
-    mkdirp "^0.5.1"
-    pkg-up "^1.0.0"
+    make-dir "^1.0.0"
+    pkg-up "^2.0.0"
 
 configstore@^3.0.0:
   version "3.0.0"
@@ -302,13 +302,13 @@ d@1:
   dependencies:
     es5-ext "^0.10.9"
 
-debug@2.2.0:
+debug@2.2.0, debug@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
 
-debug@^2.1.1, debug@^2.2.0, debug@^2.4.5:
+debug@^2.1.1, debug@^2.4.5:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
@@ -704,7 +704,7 @@ find-up@^1.0.0:
     path-exists "^2.0.0"
     pinkie-promise "^2.0.0"
 
-find-up@^2.0.0:
+find-up@^2.0.0, find-up@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
   dependencies:
@@ -1277,6 +1277,12 @@ lru-cache@^4.0.0, lru-cache@^4.0.1:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
 
+make-dir@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
+  dependencies:
+    pify "^2.3.0"
+
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
@@ -1513,7 +1519,7 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
-pify@^2.0.0:
+pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
 
@@ -1545,6 +1551,12 @@ pkg-up@^1.0.0:
   resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-1.0.0.tgz#3e08fb461525c4421624a33b9f7e6d0af5b05a26"
   dependencies:
     find-up "^1.0.0"
+
+pkg-up@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-2.0.0.tgz#c819ac728059a461cab1c3889a2be3c49a004d7f"
+  dependencies:
+    find-up "^2.1.0"
 
 plur@^2.1.2:
   version "2.1.2"
