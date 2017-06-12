@@ -22,6 +22,9 @@ class GitmojiCli {
 		if (config.get('issueFormat') === undefined) {
 			config.set('issueFormat', 'github');
 		}
+		if (config.get('emojiFormat') === undefined) {
+			config.set('emojiFormat', 'code');
+		}
 	}
 
 	config() {
@@ -41,10 +44,7 @@ class GitmojiCli {
 				name: 'emojiFormat',
 				message: 'Select how emojis should be used in commits',
 				type: 'list',
-				choices: [
-          {name: ':smile:', value: 'code'},
-          {name: '😄', value: 'emoji'}
-				]
+				choices: [{name: ':smile:', value: 'code'}, {name: '😄', value: 'emoji'}]
 			}
 		];
 
