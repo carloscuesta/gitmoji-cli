@@ -22,6 +22,9 @@ class GitmojiCli {
 		if (config.get('issueFormat') === undefined) {
 			config.set('issueFormat', 'github');
 		}
+		if (config.get('emojiFormat') === undefined) {
+			config.set('emojiFormat', 'code');
+		}
 	}
 
 	config() {
@@ -36,12 +39,19 @@ class GitmojiCli {
 				message: 'Choose Issue Format',
 				type: 'list',
 				choices: ['github', 'jira']
+			},
+			{
+				name: 'emojiFormat',
+				message: 'Select how emojis should be used in commits',
+				type: 'list',
+				choices: [{name: ':smile:', value: 'code'}, {name: '😄', value: 'emoji'}]
 			}
 		];
 
 		inquirer.prompt(questions).then(answers => {
 			config.set('autoadd', answers.add);
 			config.set('issueFormat', answers.issueFormat);
+			config.set('emojiFormat', answers.emojiFormat);
 		});
 	}
 
@@ -158,7 +168,7 @@ class GitmojiCli {
 						.map(gitmoji => {
 							return {
 								name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-								value: gitmoji.code
+								value: gitmoji[config.get('emojiFormat') || 'code']
 							};
 						}));
 				}

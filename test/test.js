@@ -37,6 +37,39 @@ const gitmojiCli = new GitmojiCli(gitmojiApiClient);
 
 describe('gitmoji', function() {
 
+  describe('commit-with-text-emoji', function() {
+    it('should use the unicode emoji', function() {
+      config.set('emojiFormat', 'code');
+      const gitmojis = [
+        { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
+      ]
+      const emojiQuestion = gitmojiCli._questions(gitmojis)[0]
+      return emojiQuestion.source(null, 'zap').then(function (emojis) {
+        emojis[0].value.should.equal(':zap:')
+      })
+    });
+  });
+
+  describe('commit-with-unicode-emoji', function() {
+    it('should use the unicode emoji', function() {
+      config.set('emojiFormat', 'emoji');
+      const gitmojis = [
+        { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
+      ]
+      const emojiQuestion = gitmojiCli._questions(gitmojis)[0]
+      return emojiQuestion.source(null, 'zap').then(function (emojis) {
+        emojis[0].value.should.equal('⚡️')
+      })
+    });
+  });
+
+  describe('commit-with-jira-format', function() {
+    it('should return the formed commit based on the input prompts', function() {
+      config.set('issueFormat', 'jira');
+      gitmojiCli._commit(promptsForJiraCommit).should.equal('git commit -S -m ":zap: Improving performance issues." -m "Refactored code. ABC-123"');
+    });
+  });
+
 	describe('commit-with-github-format', function() {
 		it('should return the formed commit based on the input prompts', function() {
 			config.set('issueFormat', 'github');
