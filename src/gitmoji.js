@@ -74,11 +74,11 @@ class GitmojiCli {
 			fileContents
 		};
 	}
-	
-	unhook() {
+
+	remove() {
 		const hookFile = 'prepare-commit-msg';
 		const path = `${process.env.PWD}/.git/hooks/${hookFile}`;
-		
+
 		if (this._isAGitRepo('.git')) {
 			fs.unlink(path, err => {
 				if (err) {
