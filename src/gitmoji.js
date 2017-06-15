@@ -74,6 +74,24 @@ class GitmojiCli {
 			fileContents
 		};
 	}
+	
+	unhook() {
+		const hookFile = 'prepare-commit-msg';
+		const path = `${process.env.PWD}/.git/hooks/${hookFile}`;
+		
+		if (this._isAGitRepo('.git')) {
+			fs.unlink(path, err => {
+				if (err) {
+					this._errorMessage(err);
+				}
+				console.log(`${chalk.yellow('gitmoji')} commit hook unlinked successfully.`);
+			});
+		}
+
+		return {
+			path
+		};
+	}
 
 	version(number) {
 		return number;
