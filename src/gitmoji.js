@@ -80,8 +80,9 @@ class GitmojiCli {
 			fs.unlink(commitHookPath, err => {
 				if (err) {
 					this._errorMessage(err);
+				} else {
+					console.log(`${chalk.yellow('gitmoji')} commit hook unlinked successfully.`);
 				}
-				console.log(`${chalk.yellow('gitmoji')} commit hook unlinked successfully.`);
 			});
 		}
 
