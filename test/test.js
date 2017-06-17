@@ -86,11 +86,17 @@ describe('gitmoji', function() {
 
 	describe('init', function() {
 		it('path should be set to .git/hooks/prepare-commit-msg', function() {
-			gitmojiCli.init().path.should.containEql('.git/hooks/prepare-commit-msg');
+			gitmojiCli.init().commitHookPath.should.containEql('.git/hooks/prepare-commit-msg');
 		});
 
 		it('prepare-commit-msg should contain the hook script', function() {
 			gitmojiCli.init().fileContents.should.containEql('exec < /dev/tty\ngitmoji --hook $1');
+		});
+	});
+
+	describe('remove', function() {
+		it('path should be set to .git/hooks/prepare-commit-msg', function() {
+			gitmojiCli.remove().commitHookPath.should.containEql('.git/hooks/prepare-commit-msg');
 		});
 	});
 
