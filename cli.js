@@ -14,6 +14,7 @@ const cli = meow(`
 	  $ gitmoji
 	Options
 		--init, -i	Initialize gitmoji as a commit hook
+		--remove -r Remove a previously initialized commit hook
 		--config, -g Setup gitmoji-cli preferences.
 		--commit, -c Interactively commit using the prompts
 		--list, -l  List all the available gitmojis
@@ -26,6 +27,7 @@ const cli = meow(`
 `, {
 	alias: {
 		i: 'init',
+		r: 'remove',
 		c: 'commit',
 		l: 'list',
 		s: 'search',
@@ -50,6 +52,7 @@ const commands = {
 	config: () => gitmojiCli.config(),
 	search: () => cli.input.map(element => gitmojiCli.search(element)),
 	init: () => gitmojiCli.init(),
+	remove: () => gitmojiCli.remove(),
 	hook: () => gitmojiCli.ask('hook'),
 	version: () => console.log(gitmojiCli.version(pkg.version)),
 	commit: () => gitmojiCli.ask('client'),

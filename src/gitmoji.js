@@ -11,6 +11,8 @@ inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 const config = new Conf();
 
+const commitHookPath = `${process.env.PWD}/.git/hooks/prepare-commit-msg`;
+
 class GitmojiCli {
 
 	constructor(gitmojiApiClient, gitmojis) {
@@ -56,12 +58,10 @@ class GitmojiCli {
 	}
 
 	init() {
-		const hookFile = 'prepare-commit-msg';
-		const path = `${process.env.PWD}/.git/hooks/${hookFile}`;
 		const fileContents = `#!/bin/sh\n# gitmoji as a commit hook\nexec < /dev/tty\ngitmoji --hook $1`;
 
 		if (this._isAGitRepo('.git')) {
-			fs.writeFile(path, fileContents, {mode: 0o775}, err => {
+			fs.writeFile(commitHookPath, fileContents, {mode: 0o775}, err => {
 				if (err) {
 					this._errorMessage(err);
 				}
@@ -70,8 +70,23 @@ class GitmojiCli {
 		}
 
 		return {
-			path,
+			commitHookPath,
 			fileContents
+		};
+	}
+
+	remove() {
+		if (this._isAGitRepo('.git')) {
+			fs.unlink(commitHookPath, err => {
+				if (err) {
+					this._errorMessage(err);
+				}
+				console.log(`${chalk.yellow('gitmoji')} commit hook unlinked successfully.`);
+			});
+		}
+
+		return {
+			commitHookPath
 		};
 	}
 
