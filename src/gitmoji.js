@@ -192,15 +192,21 @@ class GitmojiCli {
 				name: 'title',
 				message: 'Enter the commit title:',
 				validate(value) {
-					if (value === '') {
-						return chalk.red('Enter the commit title');
+					if (value === '' || value.includes('`')) {
+						return chalk.red('Enter a valid commit title');
 					}
 					return true;
 				}
 			},
 			{
 				name: 'message',
-				message: 'Enter the commit message:'
+				message: 'Enter the commit message:',
+				validate(value) {
+					if (value.includes('`')) {
+						return chalk.red('Enter a valid commit message');
+					}
+					return true;
+				}
 			},
 			{
 				name: 'reference',
