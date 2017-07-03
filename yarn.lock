@@ -1508,6 +1508,10 @@ package-json@^4.0.0:
     registry-url "^3.0.3"
     semver "^5.1.0"
 
+parent-dirs@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parent-dirs/-/parent-dirs-1.0.0.tgz#b88851d1534013db421ce1695766906d0fbfb392"
+
 parse-gitignore@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/parse-gitignore/-/parse-gitignore-0.3.1.tgz#09adda265a4a5be2ce5e905b95a02f7f0e0044fa"
