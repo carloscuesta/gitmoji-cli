@@ -6,6 +6,7 @@ const chalk = require('chalk');
 const inquirer = require('inquirer');
 const execa = require('execa');
 const pathExists = require('path-exists');
+const parentDirs = require('parent-dirs');
 const Conf = require('conf');
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
 
@@ -265,7 +266,7 @@ class GitmojiCli {
 	}
 
 	_isAGitRepo(dir) {
-		return pathExists.sync(dir);
+		return parentDirs(process.cwd()).some(directory => pathExists.sync(path.resolve(directory, dir)));
 	}
 
 	_getCachePath() {
