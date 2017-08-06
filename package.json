@@ -9,6 +9,7 @@
     "gitmoji": "cli.js"
   },
   "scripts": {
+    "lint": "standard \"src/**/*.js\"",
     "mocha": "mocha ./test/*.js",
     "test": "npm run mocha"
   },
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "mocha": "^3.1.2",
-    "should": "^11.1.1"
+    "should": "^11.1.1",
+    "standard": "^10.0.2"
   }
 }
