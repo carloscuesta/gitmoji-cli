@@ -36,7 +36,7 @@ class GitmojiCli {
     }
 
     fs.writeFile(
-      process.env.PWD + constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
+      process.cwd() + constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
       { mode: constants.HOOK_PERMISSIONS },
       (err) => {
         if (err) this._errorMessage(err)
@@ -52,7 +52,7 @@ class GitmojiCli {
       return this._errorMessage('Couldn\'t remove hook, not a git repository')
     }
 
-    fs.unlink(process.env.PWD + constants.HOOK_PATH, (err) => {
+    fs.unlink(process.cwd() + constants.HOOK_PATH, (err) => {
       if (err) return this._errorMessage(err)
       return console.log(
         `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
