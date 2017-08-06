@@ -8,20 +8,9 @@
   "bin": {
     "gitmoji": "cli.js"
   },
-  "xo": {
-    "esnext": true,
-    "rules": {
-      "array-callback-return": 1,
-      "default-case": 1
-    },
-    "ignores": [
-      "test/**"
-    ]
-  },
   "scripts": {
-    "lint": "xo",
     "mocha": "mocha ./test/*.js",
-    "test": "npm run lint && npm run mocha"
+    "test": "npm run mocha"
   },
   "repository": {
     "type": "git",
@@ -53,7 +42,6 @@
   },
   "devDependencies": {
     "mocha": "^3.1.2",
-    "should": "^11.1.1",
-    "xo": "^0.18.1"
+    "should": "^11.1.1"
   }
 }
