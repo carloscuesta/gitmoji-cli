@@ -1,17 +1,14 @@
 const chalk = require('chalk')
-const Conf = require('conf')
 const execa = require('execa')
 const fs = require('fs')
 const inquirer = require('inquirer')
 const parentDirs = require('parent-dirs')
 const path = require('path')
 const pathExists = require('path-exists')
-const config = new Conf()
-const utils = require('./utils')
+const config = require('./config')
+const prompts = require('./prompts')
+const constants = require('./constants')
 
-const getAutoAdd = () => config.get(utils.AUTO_ADD)
-const getIssueFormat = () => config.get(utils.ISSUE_FORMAT)
-const getEmojiFormat = () => config.get(utils.EMOJI_FORMAT)
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
 )
@@ -20,16 +17,16 @@ class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
-    if (!getAutoAdd()) config.set(utils.AUTO_ADD, true)
-    if (!getIssueFormat()) config.set(utils.ISSUE_FORMAT, utils.GITHUB)
-    if (!getEmojiFormat()) config.set(utils.EMOJI_FORMAT, 'code')
+    if (!config.getAutoAdd()) config.setAutoAdd(true)
+    if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
+    if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
   }
 
   config () {
-    inquirer.prompt(utils.configQuestions).then(answers => {
-      config.set(utils.AUTO_ADD, answers.autoAdd)
-      config.set(utils.ISSUE_FORMAT, answers.issueFormat)
-      config.set(utils.EMOJI_FORMAT, answers.emojiFormat)
+    inquirer.prompt(prompts.config).then(answers => {
+      config.setAutoAdd(answers.autoAdd)
+      config.setIssueFormat(answers.issueFormat)
+      config.setEmojiFormat(answers.emojiFormat)
     })
   }
 
@@ -38,7 +35,8 @@ class GitmojiCli {
       return this._errorMessage('Not a git repository - @init')
     }
 
-    fs.writeFile(utils.hookPath, utils.hookFileContents, { mode: 0o775 },
+    fs.writeFile(constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
+      { mode: constants.HOOK_PERMISSIONS },
       (err) => {
         if (err) this._errorMessage(err)
         console.log(
@@ -53,7 +51,7 @@ class GitmojiCli {
       return this._errorMessage('Couldn\'t remove hook, not a git repository')
     }
 
-    fs.unlink(utils.hookPath, (err) => {
+    fs.unlink(constants.HOOK_PATH, (err) => {
       if (err) return this._errorMessage(err)
       return console.log(
         `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
@@ -87,10 +85,10 @@ class GitmojiCli {
     }
 
     return this._fetchEmojis()
-      .then((gitmojis) => utils.gitmojiQuestions(gitmojis, getEmojiFormat(), getIssueFormat()))
+      .then((gitmojis) => prompts.gitmoji(gitmojis, config.getEmojiFormat(), config.getIssueFormat()))
       .then((questions) => {
         inquirer.prompt(questions).then((answers) => {
-          if (mode === utils.HOOK) this._hook(answers)
+          if (mode === constants.HOOK_MODE) this._hook(answers)
           return this._commit(answers)
         })
       })
@@ -115,7 +113,9 @@ class GitmojiCli {
 
   _commit (answers) {
     const title = `${answers.gitmoji} ${answers.title}`
-    const prefixReference = getIssueFormat() === utils.GITHUB ? '#' : ''
+    const prefixReference = config.getIssueFormat() === constants.GITHUB
+      ? '#'
+      : ''
     const reference = (answers.reference)
       ? `${prefixReference}${answers.reference}`
       : ''
@@ -127,7 +127,7 @@ class GitmojiCli {
       return this._errorMessage('Not a git repository')
     }
 
-    if (getAutoAdd()) {
+    if (config.getAutoAdd()) {
       execa.stdout('git', ['add', '.'])
         .then((res) => console.log(chalk.blue(res)))
         .catch((err) => this._errorMessage(err.stderr))

@@ -1,27 +1,18 @@
+const constants = require('./constants')
 const chalk = require('chalk')
 
-const AUTO_ADD = 'autoAdd'
-const ISSUE_FORMAT = 'issueFormat'
-const GITHUB = 'github'
-const JIRA = 'jira'
-const HOOK = 'hook'
-const EMOJI_FORMAT = 'emojiFormat'
-const hookPath = `${process.env.PWD}/.git/hooks/prepare-commit-msg`
-const hookFileContents = '#!/bin/sh\n# gitmoji as a commit hook\n' +
-  'exec < /dev/tty\ngitmoji --hook $1'
-const hookPermissions = 0o775
-const configQuestions = [
+const config = [
   {
-    name: AUTO_ADD,
+    name: constants.AUTO_ADD,
     message: 'Enable automatic "git add ."',
     type: 'confirm'
   }, {
-    name: ISSUE_FORMAT,
+    name: constants.ISSUE_FORMAT,
     message: 'Choose Issue Format',
     type: 'list',
     choices: ['github', 'jira']
   }, {
-    name: EMOJI_FORMAT,
+    name: constants.EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
@@ -29,7 +20,8 @@ const configQuestions = [
     ]
   }
 ]
-const gitmojiQuestions = (gitmojis, emojiFormat, issueFormat) => {
+
+const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
   return [
     {
       name: 'gitmoji',
@@ -96,15 +88,6 @@ const gitmojiQuestions = (gitmojis, emojiFormat, issueFormat) => {
 }
 
 module.exports = {
-  AUTO_ADD,
-  configQuestions,
-  EMOJI_FORMAT,
-  GITHUB,
-  gitmojiQuestions,
-  HOOK,
-  hookFileContents,
-  hookPath,
-  hookPermissions,
-  ISSUE_FORMAT,
-  JIRA
+  config,
+  gitmoji
 }
