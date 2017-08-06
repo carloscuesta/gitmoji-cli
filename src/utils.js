@@ -1,26 +1,15 @@
 const chalk = require('chalk')
 
-const config = {
-  autoAdd: {
-    name: 'autoAdd'
-  },
-  issueFormat: {
-    name: 'issueFormat',
-    options: ['github', 'jira']
-  },
-  emojiFormat: {
-    name: 'emojiFormat',
-    options: [
-      { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
-    ]
-  }
-}
-const AUTO_ADD = config.autoAdd.name
-const ISSUE_FORMAT = config.issueFormat.name
-const EMOJI_FORMAT = config.emojiFormat.name
+const AUTO_ADD = 'autoAdd'
+const ISSUE_FORMAT = 'issueFormat'
+const GITHUB = 'github'
+const JIRA = 'jira'
+const HOOK = 'hook'
+const EMOJI_FORMAT = 'emojiFormat'
 const hookPath = `${process.env.PWD}/.git/hooks/prepare-commit-msg`
 const hookFileContents = '#!/bin/sh\n# gitmoji as a commit hook\n' +
   'exec < /dev/tty\ngitmoji --hook $1'
+const hookPermissions = 0o775
 const configQuestions = [
   {
     name: AUTO_ADD,
@@ -30,12 +19,14 @@ const configQuestions = [
     name: ISSUE_FORMAT,
     message: 'Choose Issue Format',
     type: 'list',
-    choices: config.issueFormat.options
+    choices: ['github', 'jira']
   }, {
     name: EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
-    choices: config.emojiFormat.options
+    choices: [
+      { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
+    ]
   }
 ]
 const gitmojiQuestions = (gitmojis, emojiFormat, issueFormat) => {
@@ -55,7 +46,7 @@ const gitmojiQuestions = (gitmojis, emojiFormat, issueFormat) => {
     }, {
       name: 'title',
       message: 'Enter the commit title:',
-      validate(value) {
+      validate (value) {
         if (value === '' || value.includes('`')) {
           return chalk.red('Enter a valid commit title')
         }
@@ -105,12 +96,15 @@ const gitmojiQuestions = (gitmojis, emojiFormat, issueFormat) => {
 }
 
 module.exports = {
-  config,
   AUTO_ADD,
-  ISSUE_FORMAT,
-  EMOJI_FORMAT,
-  hookPath,
   configQuestions,
+  EMOJI_FORMAT,
+  GITHUB,
+  gitmojiQuestions,
+  HOOK,
   hookFileContents,
-  gitmojiQuestions
+  hookPath,
+  hookPermissions,
+  ISSUE_FORMAT,
+  JIRA
 }

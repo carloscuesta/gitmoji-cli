@@ -1,5 +1,3 @@
-'use strict'
-
 const chalk = require('chalk')
 const Conf = require('conf')
 const execa = require('execa')
@@ -10,17 +8,20 @@ const path = require('path')
 const pathExists = require('path-exists')
 const config = new Conf()
 const utils = require('./utils')
+
 const getAutoAdd = () => config.get(utils.AUTO_ADD)
 const getIssueFormat = () => config.get(utils.ISSUE_FORMAT)
 const getEmojiFormat = () => config.get(utils.EMOJI_FORMAT)
-inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+inquirer.registerPrompt(
+  'autocomplete', require('inquirer-autocomplete-prompt')
+)
 
 class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
     if (!getAutoAdd()) config.set(utils.AUTO_ADD, true)
-    if (!getIssueFormat()) config.set(utils.ISSUE_FORMAT, 'github')
+    if (!getIssueFormat()) config.set(utils.ISSUE_FORMAT, utils.GITHUB)
     if (!getEmojiFormat()) config.set(utils.EMOJI_FORMAT, 'code')
   }
 
@@ -33,7 +34,7 @@ class GitmojiCli {
   }
 
   init () {
-    if (!this._isAGitRepo('.git')) {
+    if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository - @init')
     }
 
@@ -48,7 +49,7 @@ class GitmojiCli {
   }
 
   remove () {
-    if (!this._isAGitRepo('.git')) {
+    if (!this._isAGitRepo()) {
       return this._errorMessage('Couldn\'t remove hook, not a git repository')
     }
 
@@ -81,7 +82,7 @@ class GitmojiCli {
   }
 
   ask (mode) {
-    if (!this._isAGitRepo('.git')) {
+    if (!this._isAGitRepo()) {
       return this._errorMessage('This directory is not a git repository.')
     }
 
@@ -89,7 +90,7 @@ class GitmojiCli {
       .then((gitmojis) => utils.gitmojiQuestions(gitmojis, getEmojiFormat(), getIssueFormat()))
       .then((questions) => {
         inquirer.prompt(questions).then((answers) => {
-          if (mode === 'hook') this._hook(answers)
+          if (mode === utils.HOOK) this._hook(answers)
           return this._commit(answers)
         })
       })
@@ -114,7 +115,7 @@ class GitmojiCli {
 
   _commit (answers) {
     const title = `${answers.gitmoji} ${answers.title}`
-    const prefixReference = getIssueFormat() === 'github' ? '#' : ''
+    const prefixReference = getIssueFormat() === utils.GITHUB ? '#' : ''
     const reference = (answers.reference)
       ? `${prefixReference}${answers.reference}`
       : ''
@@ -122,7 +123,7 @@ class GitmojiCli {
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
 
-    if (!this._isAGitRepo('.git')) {
+    if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository')
     }
 
@@ -159,9 +160,9 @@ class GitmojiCli {
     return signed
   }
 
-  _isAGitRepo (dir) {
+  _isAGitRepo () {
     return parentDirs(process.cwd())
-      .some((directory) => pathExists.sync(path.resolve(directory, dir)))
+      .some((directory) => pathExists.sync(path.resolve(directory, '.git')))
   }
 
   _getCachePath () {
