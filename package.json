@@ -10,8 +10,7 @@
   },
   "scripts": {
     "lint": "standard \"src/**/*.js\"",
-    "mocha": "mocha ./test/*.js",
-    "test": "npm run mocha"
+    "test": "npm run lint && jest"
   },
   "repository": {
     "type": "git",
