@@ -28,23 +28,29 @@ const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
       message: 'Choose a gitmoji:',
       type: 'autocomplete',
       source: (answersSoFor, input) => {
-        return Promise.resolve(gitmojis.filter(gitmoji => !input || gitmoji.name.concat(gitmoji.description).toLowerCase().indexOf(input.toLowerCase()) !== -1).map(gitmoji => {
-          return {
+        return Promise.resolve(
+          gitmojis.filter((gitmoji) => {
+            const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
+            return (!input || emoji.indexOf(input.toLowerCase()) !== -1)
+          })
+          .map((gitmoji) => ({
             name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-            value: gitmoji[emojiFormat || 'code']
-          }
-        }))
+            value: gitmoji[emojiFormat || constants.CODE]
+          }))
+        )
       }
-    }, {
+    },
+    {
       name: 'title',
       message: 'Enter the commit title:',
       validate (value) {
-        if (value === '' || value.includes('`')) {
+        if (!value || value.includes('`')) {
           return chalk.red('Enter a valid commit title')
         }
         return true
       }
-    }, {
+    },
+    {
       name: 'message',
       message: 'Enter the commit message:',
       validate (value) {
@@ -53,33 +59,25 @@ const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
         }
         return true
       }
-    }, {
+    },
+    {
       name: 'reference',
       message: 'Issue / PR reference:',
       validate (value) {
-        if (value === '') {
-          return true
+        if (!value) return true
+        const validGithubRef = value.match(/(^[1-9][0-9]*)+$/)
+        const validJiraRef = value.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
+        if (validGithubRef) return true
+        if (issueFormat === 'jira') {
+          if (validJiraRef) return true
+          return chalk.red('Enter the JIRA reference key, such as ABC-123')
         }
-        if (value !== null) {
-          let validReference = ''
-          let errorReference = ''
-          switch (issueFormat) {
-            case 'jira':
-              validReference = value.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
-              errorReference = 'Enter the JIRA reference key, such as ABC-123'
-              break
-            default:
-              validReference = value.match(/(^[1-9][0-9]*)+$/)
-              errorReference = 'Enter the number of the reference without the #. Eg: 12'
-          }
-
-          if (validReference) {
-            return true
-          }
-          return chalk.red(errorReference)
-        }
+        return chalk.red(
+          'Enter the number of the reference without the #. Eg: 12'
+        )
       }
-    }, {
+    },
+    {
       name: 'signed',
       message: 'Signed commit:',
       type: 'confirm'
