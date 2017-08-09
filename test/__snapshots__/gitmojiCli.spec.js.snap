@@ -52,7 +52,7 @@ GitmojiCli {
 
 exports[`prompts module should commit using the text emoji 1`] = `":zap:"`;
 
-exports[`prompts module should commit using the unicode emoji 1`] = `":zap:"`;
+exports[`prompts module should commit using the unicode emoji 1`] = `"⚡️"`;
 
 exports[`prompts module should match for the config prompts 1`] = `
 Array [

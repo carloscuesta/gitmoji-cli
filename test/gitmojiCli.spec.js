@@ -25,6 +25,7 @@ describe('prompts module', () => {
   })
 
   it('should commit using the text emoji', () => {
+    config.setEmojiFormat('code')
     const question = prompts.gitmoji(stubs.gitmojis, 'code', 'github')[0]
     return question.source(null, 'zap').then((emojis) => {
       expect(emojis[0].value).toMatchSnapshot()
@@ -32,7 +33,7 @@ describe('prompts module', () => {
   })
 
   it('should commit using the unicode emoji', () => {
-    config.setEmojiFormat('code')
+    config.setEmojiFormat('emoji')
     const question = prompts.gitmoji(stubs.gitmojis, 'emoji', 'github')[0]
     return question.source(null, 'zap').then((emojis) => {
       expect(emojis[0].value).toMatchSnapshot()
