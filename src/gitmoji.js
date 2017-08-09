@@ -86,7 +86,7 @@ class GitmojiCli {
     }
 
     return this._fetchEmojis()
-      .then((gitmojis) => prompts.gitmoji(gitmojis, config.getEmojiFormat(), config.getIssueFormat()))
+      .then((gitmojis) => prompts.gitmoji(gitmojis))
       .then((questions) => {
         inquirer.prompt(questions).then((answers) => {
           if (mode === constants.HOOK_MODE) this._hook(answers)
@@ -194,7 +194,9 @@ class GitmojiCli {
       console.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
       return res.data.gitmojis
     })
-    .catch((err) => this._errorMessage(`Network connection not found - ${err.code}`))
+    .catch((error) =>
+      this._errorMessage(`Network connection not found - ${error.code}`)
+    )
   }
 
   _fetchCachedEmojis (cachePath) {
@@ -206,7 +208,7 @@ class GitmojiCli {
     if (this._cacheAvailable(cachePath)) {
       return this._fetchCachedEmojis(cachePath)
     }
-    return this._fetchRemoteEmojis().then(emojis => {
+    return this._fetchRemoteEmojis().then((emojis) => {
       this._createCache(cachePath, emojis)
       return emojis
     })

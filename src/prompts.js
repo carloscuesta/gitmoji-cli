@@ -1,4 +1,5 @@
 const constants = require('./constants')
+const configVault = require('./config')
 const chalk = require('chalk')
 
 const config = [
@@ -6,12 +7,14 @@ const config = [
     name: constants.AUTO_ADD,
     message: 'Enable automatic "git add ."',
     type: 'confirm'
-  }, {
+  },
+  {
     name: constants.ISSUE_FORMAT,
     message: 'Choose Issue Format',
     type: 'list',
     choices: ['github', 'jira']
-  }, {
+  },
+  {
     name: constants.EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
@@ -21,7 +24,7 @@ const config = [
   }
 ]
 
-const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
+const gitmoji = (gitmojis) => {
   return [
     {
       name: 'gitmoji',
@@ -35,7 +38,7 @@ const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
           })
           .map((gitmoji) => ({
             name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-            value: gitmoji[emojiFormat || constants.CODE]
+            value: gitmoji[configVault.getEmojiFormat() || constants.CODE]
           }))
         )
       }
@@ -68,7 +71,7 @@ const gitmoji = (gitmojis, emojiFormat, issueFormat) => {
         const validGithubRef = value.match(/(^[1-9][0-9]*)+$/)
         const validJiraRef = value.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
         if (validGithubRef) return true
-        if (issueFormat === 'jira') {
+        if (configVault.getIssueFormat() === constants.JIRA) {
           if (validJiraRef) return true
           return chalk.red('Enter the JIRA reference key, such as ABC-123')
         }
