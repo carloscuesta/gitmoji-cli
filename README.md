@@ -32,13 +32,14 @@ A gitmoji interactive client for using gitmojis on commit messages.
   Usage
     $ gitmoji
   Options
-  	--init, -i	Initialize gitmoji as a commit hook
-	--config, -g 	Setup gitmoji-cli preferences
-  	--commit, -c Interactively commit using the prompts
-  	--list, -l  List all the available gitmojis
-  	--search, -s	Search gitmojis
-	--version, -v	Print gitmoji-cli installed version
-	--update, -u	Update the gitmoji.json cache.
+    --init, -i      Initialize gitmoji as a commit hook
+    --remove, -r    Remove a previously initialized commit hook
+    --config, -g    Setup gitmoji-cli preferences.
+    --commit, -c    Interactively commit using the prompts
+    --list, -l      List all the available gitmojis
+    --search, -s    Search gitmojis
+    --version, -v   Print gitmoji-cli installed version
+    --update, -u    Sync emoji list with the repo
 ```
 
 ### Commit
