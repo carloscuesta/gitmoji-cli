@@ -46,8 +46,7 @@ const gitmojiApiClient = axios.create({
 })
 
 const gitmojiCli = new GitmojiCli(gitmojiApiClient)
-
-const commands = {
+const options = {
   list: () => gitmojiCli.list(),
   config: () => gitmojiCli.config(),
   search: () => cli.input.map(element => gitmojiCli.search(element)),
@@ -63,9 +62,5 @@ const commands = {
   }
 }
 
-const arg = Object.keys(cli.flags)[1]
-if (commands[arg]) {
-  commands[arg]()
-} else {
-  cli.showHelp()
-}
+const command = Object.keys(cli.flags).filter((flag) => options[flag])
+options[command] ? options[command]() : cli.showHelp()
