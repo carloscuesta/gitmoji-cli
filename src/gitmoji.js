@@ -26,10 +26,10 @@ class GitmojiCli {
 
   config () {
     inquirer.prompt(prompts.config).then(answers => {
-      config.setAutoAdd(answers.autoAdd)
-      config.setIssueFormat(answers.issueFormat)
-      config.setEmojiFormat(answers.emojiFormat)
-      config.setSignedCommit(answers.signedCommit)
+      config.setAutoAdd(answers[constants.AUTO_ADD])
+      config.setIssueFormat(answers[constants.ISSUE_FORMAT])
+      config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
+      config.setSignedCommit(answers[constants.SIGNED_COMMIT])
     })
   }
 
