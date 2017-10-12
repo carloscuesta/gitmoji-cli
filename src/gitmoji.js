@@ -91,11 +91,9 @@ class GitmojiCli {
     return this._fetchEmojis()
       .then((gitmojis) => prompts.gitmoji(gitmojis))
       .then((questions) => {
-
         if (config.getSignedCommit() !== constants.NONE) {
           questions = questions.filter(q => q.name !== 'signed')
         }
-
         inquirer.prompt(questions).then((answers) => {
           if (config.getSignedCommit() !== constants.NONE) {
             answers.signed = config.getSignedCommit() === 'yes'
