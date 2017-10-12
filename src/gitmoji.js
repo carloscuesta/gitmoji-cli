@@ -17,9 +17,11 @@ class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
+    /* set defaults */
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
+    if (!config.getSignedCommit()) config.setSignedCommit(constants.NONE)
   }
 
   config () {
@@ -27,6 +29,7 @@ class GitmojiCli {
       config.setAutoAdd(answers.autoAdd)
       config.setIssueFormat(answers.issueFormat)
       config.setEmojiFormat(answers.emojiFormat)
+      config.setSignedCommit(answers.signedCommit)
     })
   }
 
@@ -88,7 +91,15 @@ class GitmojiCli {
     return this._fetchEmojis()
       .then((gitmojis) => prompts.gitmoji(gitmojis))
       .then((questions) => {
+
+        if (config.getSignedCommit() !== constants.NONE) {
+          questions = questions.filter(q => q.name !== 'signed')
+        }
+
         inquirer.prompt(questions).then((answers) => {
+          if (config.getSignedCommit() !== constants.NONE) {
+            answers.signed = config.getSignedCommit() === 'yes'
+          }
           if (mode === constants.HOOK_MODE) this._hook(answers)
           return this._commit(answers)
         })

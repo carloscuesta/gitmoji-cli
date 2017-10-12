@@ -21,6 +21,12 @@ const config = [
     choices: [
       { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
     ]
+  },
+  {
+    name: constants.SIGNED_COMMIT,
+    message: 'Choose default answer for Signed commit',
+    type: 'list',
+    choices: [ 'none', 'yes', 'no' ]
   }
 ]
 
