@@ -10,7 +10,6 @@ const HOOK_PERMISSIONS = 0o775
 const ISSUE_FORMAT = 'issueFormat'
 const JIRA = 'jira'
 const SIGNED_COMMIT = 'signedCommit'
-const NONE = 'none'
 
 module.exports = {
   AUTO_ADD,
@@ -23,6 +22,5 @@ module.exports = {
   HOOK_PERMISSIONS,
   ISSUE_FORMAT,
   JIRA,
-  SIGNED_COMMIT,
-  NONE
+  SIGNED_COMMIT
 }
