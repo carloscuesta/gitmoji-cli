@@ -60,6 +60,11 @@ describe('config module', () => {
     config.setIssueFormat('github')
     expect(config.getIssueFormat()).toMatchSnapshot()
   })
+
+  it('should match for setSignedCommit and getSignedCommit', () => {
+    config.setSignedCommit('no')
+    expect(config.getSignedCommit()).toMatchSnapshot()
+  })
 })
 
 describe('gitmoji module', () => {

@@ -6,6 +6,8 @@ exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = 
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
 
+exports[`config module should match for setSignedCommit and getSignedCommit 1`] = `"no"`;
+
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
