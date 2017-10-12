@@ -11,9 +11,11 @@ Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
   "getIssueFormat": [Function],
+  "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setIssueFormat": [Function],
+  "setSignedCommit": [Function],
 }
 `;
 
@@ -32,6 +34,8 @@ gitmoji --hook $1",
   "HOOK_PERMISSIONS": 509,
   "ISSUE_FORMAT": "issueFormat",
   "JIRA": "jira",
+  "NONE": "none",
+  "SIGNED_COMMIT": "signedCommit",
 }
 `;
 
@@ -83,6 +87,16 @@ Array [
     ],
     "message": "Select how emojis should be used in commits",
     "name": "emojiFormat",
+    "type": "list",
+  },
+  Object {
+    "choices": Array [
+      "none",
+      "yes",
+      "no",
+    ],
+    "message": "Choose default answer for Signed commit",
+    "name": "signedCommit",
     "type": "list",
   },
 ]
