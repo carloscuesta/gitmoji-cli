@@ -62,7 +62,7 @@ describe('config module', () => {
   })
 
   it('should match for setSignedCommit and getSignedCommit', () => {
-    config.setSignedCommit('no')
+    config.setSignedCommit(false)
     expect(config.getSignedCommit()).toMatchSnapshot()
   })
 })
