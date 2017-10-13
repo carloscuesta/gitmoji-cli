@@ -50,7 +50,7 @@ describe('config module', () => {
     config.setAutoAdd(false)
     expect(config.getAutoAdd()).toMatchSnapshot()
   })
-  
+
   it('should match for setEmojiFormat and getEmojiFormat', () => {
     config.setEmojiFormat('code')
     expect(config.getEmojiFormat()).toMatchSnapshot()
@@ -87,14 +87,8 @@ describe('gitmoji module', () => {
 
     it('should match for the commit snapshot with the given prompts', () => {
       config.setIssueFormat('jira')
-      config.setSignedCommit(true)
-      expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
-    })
-
-    it('should match for the commit snapshot with the given prompts', () => {
-      config.setIssueFormat('github')
       config.setSignedCommit(false)
-      expect(gitmojiCli._commit(stubs.promptsUnsigned)).toMatchSnapshot()
+      expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
   })
 
