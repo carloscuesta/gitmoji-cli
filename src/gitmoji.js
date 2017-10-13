@@ -122,9 +122,7 @@ class GitmojiCli {
     const reference = (answers.reference)
       ? `${prefixReference}${answers.reference}`
       : ''
-    const signed = config.getSignedCommit()
-      ? '-S'
-      : ''
+    const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
 
