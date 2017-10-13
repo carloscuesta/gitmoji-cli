@@ -23,6 +23,14 @@ const promptsJira = {
   signed: true
 }
 
+const promptsUnsigned = {
+  gitmoji: ':zap:',
+  title: 'Improving performance issues.',
+  message: 'Refactored code.',
+  reference: '5',
+  signed: true
+}
+
 const gitmojis = [
   { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
 ]
@@ -31,5 +39,6 @@ module.exports = {
   gitmojiApiClient,
   prompts,
   promptsJira,
+  promptsUnsigned,
   gitmojis
 }

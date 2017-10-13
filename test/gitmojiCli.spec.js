@@ -50,7 +50,7 @@ describe('config module', () => {
     config.setAutoAdd(false)
     expect(config.getAutoAdd()).toMatchSnapshot()
   })
-
+  
   it('should match for setEmojiFormat and getEmojiFormat', () => {
     config.setEmojiFormat('code')
     expect(config.getEmojiFormat()).toMatchSnapshot()
@@ -81,28 +81,26 @@ describe('gitmoji module', () => {
   describe('commit', () => {
     it('should match for the commit snapshot with the given prompts', () => {
       config.setIssueFormat('github')
+      config.setSignedCommit(true)
       expect(gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
     })
 
     it('should match for the commit snapshot with the given prompts', () => {
       config.setIssueFormat('jira')
+      config.setSignedCommit(true)
       expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
+    })
+
+    it('should match for the commit snapshot with the given prompts', () => {
+      config.setIssueFormat('github')
+      config.setSignedCommit(false)
+      expect(gitmojiCli._commit(stubs.promptsUnsigned)).toMatchSnapshot()
     })
   })
 
   describe('_isAGitRepo', () => {
     it('should return true if a git repo is found', () => {
       expect(gitmojiCli._isAGitRepo()).toBe(true)
-    })
-  })
-
-  describe('_isCommitSigned', () => {
-    it('should have the signed commit flag "-S"', () => {
-      expect(gitmojiCli._isCommitSigned(true)).toMatchSnapshot()
-    })
-
-    it('should not have the signed commit flag', () => {
-      expect(gitmojiCli._isCommitSigned(false)).toMatchSnapshot()
     })
   })
 })
