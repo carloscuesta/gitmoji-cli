@@ -11,16 +11,14 @@ const prompts = {
   gitmoji: ':zap:',
   title: 'Improving performance issues.',
   message: 'Refactored code.',
-  reference: '5',
-  signed: true
+  reference: '5'
 }
 
 const promptsJira = {
   gitmoji: ':zap:',
   title: 'Improving performance issues.',
   message: 'Refactored code.',
-  reference: 'ABC-123',
-  signed: true
+  reference: 'ABC-123'
 }
 
 const gitmojis = [

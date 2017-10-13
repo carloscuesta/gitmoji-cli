@@ -20,13 +20,15 @@ class GitmojiCli {
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
+    if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
   }
 
   config () {
     inquirer.prompt(prompts.config).then(answers => {
-      config.setAutoAdd(answers.autoAdd)
-      config.setIssueFormat(answers.issueFormat)
-      config.setEmojiFormat(answers.emojiFormat)
+      config.setAutoAdd(answers[constants.AUTO_ADD])
+      config.setIssueFormat(answers[constants.ISSUE_FORMAT])
+      config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
+      config.setSignedCommit(answers[constants.SIGNED_COMMIT])
     })
   }
 
@@ -120,7 +122,9 @@ class GitmojiCli {
     const reference = (answers.reference)
       ? `${prefixReference}${answers.reference}`
       : ''
-    const signed = this._isCommitSigned(answers.signed)
+    const signed = config.getSignedCommit()
+      ? '-S'
+      : ''
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
 
@@ -147,18 +151,6 @@ class GitmojiCli {
       const description = gitmoji.description
       return console.log(`${emoji} - ${chalk.blue(code)} - ${description}`)
     })
-  }
-
-  _isCommitSigned (sign) {
-    let signed
-
-    if (sign) {
-      signed = '-S'
-    } else {
-      signed = ''
-    }
-
-    return signed
   }
 
   _isAGitRepo () {

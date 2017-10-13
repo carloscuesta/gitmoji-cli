@@ -21,6 +21,11 @@ const config = [
     choices: [
       { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
     ]
+  },
+  {
+    name: constants.SIGNED_COMMIT,
+    message: 'Enable signed commits',
+    type: 'confirm'
   }
 ]
 
@@ -79,11 +84,6 @@ const gitmoji = (gitmojis) => {
           'Enter the number of the reference without the #. Eg: 12'
         )
       }
-    },
-    {
-      name: 'signed',
-      message: 'Signed commit:',
-      type: 'confirm'
     }
   ]
 }

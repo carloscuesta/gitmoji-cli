@@ -6,14 +6,18 @@ exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = 
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
 
+exports[`config module should match for setSignedCommit and getSignedCommit 1`] = `false`;
+
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
   "getIssueFormat": [Function],
+  "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setIssueFormat": [Function],
+  "setSignedCommit": [Function],
 }
 `;
 
@@ -32,16 +36,13 @@ gitmoji --hook $1",
   "HOOK_PERMISSIONS": 509,
   "ISSUE_FORMAT": "issueFormat",
   "JIRA": "jira",
+  "SIGNED_COMMIT": "signedCommit",
 }
 `;
 
-exports[`gitmoji module _isCommitSigned should have the signed commit flag "-S" 1`] = `"-S"`;
-
-exports[`gitmoji module _isCommitSigned should not have the signed commit flag 1`] = `""`;
-
 exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit -S -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
@@ -85,6 +86,11 @@ Array [
     "name": "emojiFormat",
     "type": "list",
   },
+  Object {
+    "message": "Enable signed commits",
+    "name": "signedCommit",
+    "type": "confirm",
+  },
 ]
 `;
 
@@ -110,11 +116,6 @@ Array [
     "message": "Issue / PR reference:",
     "name": "reference",
     "validate": [Function],
-  },
-  Object {
-    "message": "Signed commit:",
-    "name": "signed",
-    "type": "confirm",
   },
 ]
 `;

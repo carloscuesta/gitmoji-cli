@@ -9,6 +9,7 @@ const HOOK_PATH = '/.git/hooks/prepare-commit-msg'
 const HOOK_PERMISSIONS = 0o775
 const ISSUE_FORMAT = 'issueFormat'
 const JIRA = 'jira'
+const SIGNED_COMMIT = 'signedCommit'
 
 module.exports = {
   AUTO_ADD,
@@ -20,5 +21,6 @@ module.exports = {
   HOOK_PATH,
   HOOK_PERMISSIONS,
   ISSUE_FORMAT,
-  JIRA
+  JIRA,
+  SIGNED_COMMIT
 }
