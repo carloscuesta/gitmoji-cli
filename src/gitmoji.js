@@ -153,18 +153,6 @@ class GitmojiCli {
     })
   }
 
-  _isCommitSigned (sign) {
-    let signed
-
-    if (sign) {
-      signed = '-S'
-    } else {
-      signed = ''
-    }
-
-    return signed
-  }
-
   _isAGitRepo () {
     return parentDirs(process.cwd())
       .some((directory) => pathExists.sync(path.resolve(directory, '.git')))
