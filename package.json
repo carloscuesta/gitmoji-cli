@@ -3,7 +3,7 @@
   "version": "1.8.0",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "bin": {
     "gitmoji": "cli.js"
