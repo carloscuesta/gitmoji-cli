@@ -111,7 +111,14 @@ class GitmojiCli {
     const title = `${answers.gitmoji} ${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
-    fs.writeFileSync(process.argv[3], `${title}\n\n${body}`)
+
+    fs.writeFile(process.argv[3], `${title}\n\n${body}`, (error) => {
+      if (error) {
+        return this._errorMessage(error)
+      }
+
+      process.exit(0)
+    })
   }
 
   _commit (answers) {
