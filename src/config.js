@@ -1,4 +1,5 @@
 const Conf = require('conf')
+
 const constants = require('./constants')
 const config = new Conf()
 
