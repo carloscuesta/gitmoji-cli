@@ -22,15 +22,27 @@ const message = (message) => {
 const reference = (reference, mode) => {
   if (!reference) return true
 
+  const githubGuard = (reference) => {
+    const error = chalk.red(errors.referenceGithub)
+    return reference.match(/(^[1-9][0-9]*)+$/) ? true : error
+  }
+
+  const jiraGuard = (reference) => {
+    const error = chalk.red(errors.referenceJira)
+    return reference.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g) ? true : error
+  }
+
   switch (mode) {
     case constants.GITHUB: {
-      const githubGuard = reference.match(/(^[1-9][0-9]*)+$/)
-      return githubGuard ? true : chalk.red(errors.referenceGithub)
+      return githubGuard(reference)
     }
 
     case constants.JIRA: {
-      const jiraGuard = reference.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
-      return jiraGuard ? true : chalk.red(errors.referenceJira)
+      return jiraGuard(reference)
+    }
+
+    default: {
+      return githubGuard(reference)
     }
   }
 }
