@@ -3,35 +3,28 @@ const chalk = require('chalk')
 const constants = require('./constants')
 
 const errors = {
-  title: 'Enter a valid commit title',
-  message: 'Enter a valid commit message',
-  referenceGithub: 'Enter the number of the reference without the #. Eg: 12',
-  referenceJira: 'Enter the JIRA reference key, such as ABC-123'
+  title: chalk.red('Enter a valid commit title'),
+  message: chalk.red('Enter a valid commit message'),
+  referenceGithub: chalk.red(
+    'Enter the number of the reference without the #. Eg: 12'
+  ),
+  referenceJira: chalk.red('Enter the JIRA reference key, such as ABC-123')
 }
 
-const title = (title) => {
-  if (!title || title.includes('`')) return chalk.red(errors.title)
-  return true
-}
+const title = (title) => (!title || title.includes('`')) ? errors.title : true
 
-const message = (message) => {
-  if (message.includes('`')) return chalk.red(errors.message)
-  return true
-}
+const message = (message) => message.includes('`') ? errors.message : true
+
+const githubGuard = (ref) => ref.match(/(^[1-9][0-9]*)+$/)
+  ? true
+  : errors.referenceGithub
+
+const jiraGuard = (ref) => ref.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
+  ? true
+  : errors.referenceJira
 
 const reference = (reference, mode) => {
   if (!reference) return true
-
-  const githubGuard = (reference) => {
-    const error = chalk.red(errors.referenceGithub)
-    return reference.match(/(^[1-9][0-9]*)+$/) ? true : error
-  }
-
-  const jiraGuard = (reference) => {
-    const error = chalk.red(errors.referenceJira)
-    return reference.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g) ? true : error
-  }
-
   switch (mode) {
     case constants.GITHUB: {
       return githubGuard(reference)
