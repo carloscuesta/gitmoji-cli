@@ -53,6 +53,8 @@ GitmojiCli {
 
 exports[`guard module message should return error message when contains invalid characters 1`] = `"[31mEnter a valid commit message[39m"`;
 
+exports[`guard module reference default should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
+
 exports[`guard module reference github should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
 
 exports[`guard module reference jira should return error message when contains invalid characters 1`] = `"[31mEnter the JIRA reference key, such as ABC-123[39m"`;

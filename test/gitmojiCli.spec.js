@@ -126,8 +126,20 @@ describe('guard module', () => {
   })
 
   describe('reference', () => {
-    it('should return true if no reference is provided', () => {
-      expect(guard.reference(undefined)).toBe(true)
+    describe('default', () => {
+      it('should return true if no reference is provided', () => {
+        expect(guard.reference(undefined)).toBe(true)
+      })
+
+      it('should match return true when is valid github reference', () => {
+        const assert = guard.reference(stubs.prompts.reference)
+        expect(assert).toBe(true)
+      })
+
+      it('should return error message when contains invalid characters', () => {
+        const assert = guard.reference(`#${stubs.prompts.reference}`)
+        expect(assert).toMatchSnapshot()
+      })
     })
 
     describe('github', () => {
