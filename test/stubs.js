@@ -25,9 +25,12 @@ const gitmojis = [
   { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
 ]
 
+const invalidTitleMessageChar = '`'
+
 module.exports = {
   gitmojiApiClient,
   prompts,
   promptsJira,
-  gitmojis
+  gitmojis,
+  invalidTitleMessageChar
 }

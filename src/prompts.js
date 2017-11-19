@@ -1,6 +1,6 @@
 const constants = require('./constants')
 const configVault = require('./config')
-const chalk = require('chalk')
+const guard = require('./guard')
 
 const config = [
   {
@@ -51,39 +51,17 @@ const gitmoji = (gitmojis) => {
     {
       name: 'title',
       message: 'Enter the commit title:',
-      validate (value) {
-        if (!value || value.includes('`')) {
-          return chalk.red('Enter a valid commit title')
-        }
-        return true
-      }
+      validate: guard.title
     },
     {
       name: 'message',
       message: 'Enter the commit message:',
-      validate (value) {
-        if (value.includes('`')) {
-          return chalk.red('Enter a valid commit message')
-        }
-        return true
-      }
+      validate: guard.message
     },
     {
       name: 'reference',
       message: 'Issue / PR reference:',
-      validate (value) {
-        if (!value) return true
-        const validGithubRef = value.match(/(^[1-9][0-9]*)+$/)
-        const validJiraRef = value.match(/^([A-Z][A-Z0-9]{1,9}-[0-9]+)$/g)
-        if (validGithubRef) return true
-        if (configVault.getIssueFormat() === constants.JIRA) {
-          if (validJiraRef) return true
-          return chalk.red('Enter the JIRA reference key, such as ABC-123')
-        }
-        return chalk.red(
-          'Enter the number of the reference without the #. Eg: 12'
-        )
-      }
+      validate: (value) => guard.reference(value, configVault.getIssueFormat())
     }
   ]
 }

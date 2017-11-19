@@ -3,6 +3,7 @@ const GitmojiCli = require('../src/gitmoji')
 const config = require('../src/config')
 const prompts = require('../src/prompts')
 const constants = require('../src/constants')
+const guard = require('../src/guard')
 const pkg = require('../package.json')
 const stubs = require('./stubs')
 
@@ -95,6 +96,86 @@ describe('gitmoji module', () => {
   describe('_isAGitRepo', () => {
     it('should return true if a git repo is found', () => {
       expect(gitmojiCli._isAGitRepo()).toBe(true)
+    })
+  })
+})
+
+describe('guard module', () => {
+  describe('title', () => {
+    it('should return true when is valid', () => {
+      expect(guard.title(stubs.prompts.title)).toBe(true)
+    })
+
+    it('should return error message when contains invalid characters', () => {
+      expect(guard.title(stubs.invalidTitleMessageChar)).toMatchSnapshot()
+    })
+
+    it('should return an error message when its empty', () => {
+      expect(guard.title(undefined)).toMatchSnapshot()
+    })
+  })
+
+  describe('message', () => {
+    it('should return true when is valid', () => {
+      expect(guard.message(stubs.prompts.message)).toBe(true)
+    })
+
+    it('should return error message when contains invalid characters', () => {
+      expect(guard.message(stubs.invalidTitleMessageChar)).toMatchSnapshot()
+    })
+  })
+
+  describe('reference', () => {
+    describe('default', () => {
+      it('should return true if no reference is provided', () => {
+        expect(guard.reference(undefined)).toBe(true)
+      })
+
+      it('should match return true when is valid github reference', () => {
+        const assert = guard.reference(stubs.prompts.reference)
+        expect(assert).toBe(true)
+      })
+
+      it('should return error message when contains invalid characters', () => {
+        const assert = guard.reference(`#${stubs.prompts.reference}`)
+        expect(assert).toMatchSnapshot()
+      })
+    })
+
+    describe('github', () => {
+      it('should return true when is valid', () => {
+        const assert = guard.reference(
+          stubs.prompts.reference,
+          constants.GITHUB
+        )
+        expect(assert).toBe(true)
+      })
+
+      it('should return error message when contains invalid characters', () => {
+        const assert = guard.reference(
+          `#${stubs.prompts.reference}`,
+          constants.GITHUB
+        )
+        expect(assert).toMatchSnapshot()
+      })
+    })
+
+    describe('jira', () => {
+      it('should return true when is valid', () => {
+        const assert = guard.reference(
+          stubs.promptsJira.reference,
+          constants.JIRA
+        )
+        expect(assert).toBe(true)
+      })
+
+      it('should return error message when contains invalid characters', () => {
+        const assert = guard.reference(
+          `#${stubs.promptsJira.reference}`,
+          constants.JIRA
+        )
+        expect(assert).toMatchSnapshot()
+      })
     })
   })
 })
