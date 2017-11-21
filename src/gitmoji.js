@@ -37,7 +37,11 @@ class GitmojiCli {
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository - @init')
     }
-
+    try {
+      fs.accessSync(process.cwd() + constants.HOOK_DIR)
+    } catch (e) {
+      fs.mkdirSync(process.cwd() + constants.HOOK_DIR)
+    }
     fs.writeFile(
       process.cwd() + constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
       { mode: constants.HOOK_PERMISSIONS },
