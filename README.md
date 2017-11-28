@@ -11,10 +11,6 @@
 
 > A [gitmoji](https://github.com/carloscuesta/gitmoji) interactive client for using gitmojis on commit messages.
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/NbtLi32wZqEa13D5s5unT5w1/carloscuesta/gitmoji-cli'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/NbtLi32wZqEa13D5s5unT5w1/carloscuesta/gitmoji-cli.svg' />
-</a>
-
 ## About
 
 This project provides an easy solution for using [**gitmoji**](https://github.com/carloscuesta/gitmoji) from your command line. Gitmoji-cli solves the hassle of searching through the gitmoji list. Includes a bunch of options you can play with! :tada:
