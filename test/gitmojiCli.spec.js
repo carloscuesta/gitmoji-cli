@@ -4,7 +4,6 @@ const config = require('../src/config')
 const prompts = require('../src/prompts')
 const constants = require('../src/constants')
 const guard = require('../src/guard')
-const pkg = require('../package.json')
 const stubs = require('./stubs')
 
 const gitmojiCli = new GitmojiCli(stubs.gitmojiApiClient)
@@ -71,12 +70,6 @@ describe('config module', () => {
 describe('gitmoji module', () => {
   it('should match for gitmoji class', () => {
     expect(gitmojiCli).toMatchSnapshot()
-  })
-
-  describe('version', () => {
-    it('should return the version number equal to the package.json one', () => {
-      expect(gitmojiCli.version(pkg.version)).toEqual(pkg.version)
-    })
   })
 
   describe('commit', () => {

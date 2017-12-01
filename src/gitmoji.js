@@ -63,10 +63,6 @@ class GitmojiCli {
     })
   }
 
-  version (number) {
-    return number
-  }
-
   list () {
     return this._fetchEmojis()
       .then(gitmojis => this._parseGitmojis(gitmojis))

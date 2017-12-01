@@ -7,7 +7,7 @@ const updateNotifier = require('update-notifier')
 const GitmojiCli = require('./src/gitmoji.js')
 const pkg = require('./package.json')
 
-updateNotifier({pkg}).notify()
+updateNotifier({ pkg }).notify()
 
 const cli = meow(`
   Usage
@@ -25,16 +25,16 @@ const cli = meow(`
     $ gitmoji -l
     $ gitmoji bug linter -s
 `, {
-  alias: {
-    c: 'commit',
-    g: 'config',
-    h: 'help',
-    i: 'init',
-    l: 'list',
-    r: 'remove',
-    s: 'search',
-    u: 'update',
-    v: 'version'
+  flags: {
+    commit: { type: 'boolean', alias: 'c' },
+    config: { type: 'boolean', alias: 'g' },
+    help: { type: 'boolean', alias: 'h' },
+    init: { type: 'boolean', alias: 'i' },
+    list: { type: 'boolean', alias: 'l' },
+    remove: { type: 'boolean', alias: 'r' },
+    search: { type: 'boolean', alias: 's' },
+    update: { type: 'boolean', alias: 'u' },
+    version: { type: 'boolean', alias: 'v' }
   }
 })
 
@@ -54,9 +54,10 @@ const options = {
   list: () => gitmojiCli.list(),
   remove: () => gitmojiCli.remove(),
   search: () => cli.input.map(element => gitmojiCli.search(element)),
-  update: () => gitmojiCli.updateCache(),
-  version: () => console.log(gitmojiCli.version(pkg.version))
+  update: () => gitmojiCli.updateCache()
 }
 
-const command = Object.keys(cli.flags).filter((flag) => options[flag])
+const command = Object.keys(cli.flags)
+  .map((flag) => cli.flags[flag] && flag)
+  .filter((flag) => options[flag])
 options[command] ? options[command]() : cli.showHelp()
