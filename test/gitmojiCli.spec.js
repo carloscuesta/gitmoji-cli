@@ -1,9 +1,10 @@
 /* global describe, it, expect */
 const GitmojiCli = require('../src/gitmoji')
 const config = require('../src/config')
-const prompts = require('../src/prompts')
 const constants = require('../src/constants')
 const guard = require('../src/guard')
+const prompts = require('../src/prompts')
+const utils = require('../src/utils')
 const stubs = require('./stubs')
 
 const gitmojiCli = new GitmojiCli(stubs.gitmojiApiClient)
@@ -89,6 +90,20 @@ describe('gitmoji module', () => {
   describe('_isAGitRepo', () => {
     it('should return true if a git repo is found', () => {
       expect(gitmojiCli._isAGitRepo()).toBe(true)
+    })
+  })
+})
+
+describe('utils module', () => {
+  describe('findGitmojiCommand', () => {
+    stubs.commands.map((command) => {
+      it(`it should match ${command} command`, () => {
+        utils.findGitmojiCommand(
+          stubs.cliMock({ [command]: true }),
+          stubs.optionsMock
+        )
+        expect(stubs.optionsMock[command]).toHaveBeenCalled()
+      })
     })
   })
 })
