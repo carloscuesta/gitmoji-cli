@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-'use strict'
-
 const meow = require('meow')
-const axios = require('axios')
 const updateNotifier = require('update-notifier')
 const GitmojiCli = require('./src/gitmoji.js')
 const pkg = require('./package.json')
+const utils = require('./src/utils.js')
 
 updateNotifier({ pkg }).notify()
 
@@ -38,14 +36,7 @@ const cli = meow(`
   }
 })
 
-const gitmojiApiClient = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-  timeout: 5000,
-  headers: {},
-  params: {}
-})
-
-const gitmojiCli = new GitmojiCli(gitmojiApiClient)
+const gitmojiCli = new GitmojiCli(utils.gitmojiApiClient)
 const options = {
   commit: () => gitmojiCli.ask('client'),
   config: () => gitmojiCli.config(),
@@ -57,7 +48,4 @@ const options = {
   update: () => gitmojiCli.updateCache()
 }
 
-const command = Object.keys(cli.flags)
-  .map((flag) => cli.flags[flag] && flag)
-  .filter((flag) => options[flag])
-options[command] ? options[command]() : cli.showHelp()
+utils.findGitmojiCommand(cli, options)
