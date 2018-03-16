@@ -32,7 +32,7 @@ Object {
 exec < /dev/tty
 gitmoji --hook $1",
   "HOOK_MODE": "hook",
-  "HOOK_PATH": "/.git/hooks/prepare-commit-msg",
+  "HOOK_PATH": "/hooks/prepare-commit-msg",
   "HOOK_PERMISSIONS": 509,
   "ISSUE_FORMAT": "issueFormat",
   "JIRA": "jira",

@@ -5,6 +5,7 @@ const inquirer = require('inquirer')
 const parentDirs = require('parent-dirs')
 const path = require('path')
 const pathExists = require('path-exists')
+const { exec } = require('child_process')
 
 const config = require('./config')
 const prompts = require('./prompts')
@@ -38,16 +39,20 @@ class GitmojiCli {
       return this._errorMessage('Not a git repository - @init')
     }
 
-    fs.writeFile(
-      process.cwd() + constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
-      { mode: constants.HOOK_PERMISSIONS },
-      (err) => {
-        if (err) this._errorMessage(err)
-        console.log(
-          `${chalk.yellow('gitmoji')} commit hook created successfully.`
-        )
-      }
-    )
+    exec('git rev-parse --absolute-git-dir', (err, stdout, stderr) => {
+      if (err) return this._errorMessage(err)
+
+      fs.writeFile(
+        stdout.trim() + constants.HOOK_PATH, constants.HOOK_FILE_CONTENTS,
+        { mode: constants.HOOK_PERMISSIONS },
+        (err) => {
+          if (err) this._errorMessage(err)
+          console.log(
+            `${chalk.yellow('gitmoji')} commit hook created successfully.`
+          )
+        }
+      )
+    })
   }
 
   remove () {
@@ -55,11 +60,15 @@ class GitmojiCli {
       return this._errorMessage('Couldn\'t remove hook, not a git repository')
     }
 
-    fs.unlink(process.cwd() + constants.HOOK_PATH, (err) => {
+    exec('git rev-parse --absolute-git-dir', (err, stdout, stderr) => {
       if (err) return this._errorMessage(err)
-      return console.log(
-        `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
-      )
+
+      fs.unlink(stdout.trim() + constants.HOOK_PATH, (err) => {
+        if (err) return this._errorMessage(err)
+        return console.log(
+          `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
+        )
+      })
     })
   }
 
