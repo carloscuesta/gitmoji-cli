@@ -1,12 +1,4 @@
 /* global jest */
-const axios = require('axios')
-
-const gitmojiApiClient = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-  timeout: 5000,
-  headers: {},
-  params: {}
-})
 
 const prompts = {
   gitmoji: ':zap:',
@@ -68,7 +60,6 @@ module.exports = {
   commands,
   cliMock,
   optionsMock,
-  gitmojiApiClient,
   prompts,
   promptsJira,
   gitmojis,

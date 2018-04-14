@@ -36,7 +36,7 @@ const cli = meow(`
   }
 })
 
-const gitmojiCli = new GitmojiCli(utils.gitmojiApiClient)
+const gitmojiCli = new GitmojiCli()
 const options = {
   commit: () => gitmojiCli.ask('client'),
   config: () => gitmojiCli.config(),

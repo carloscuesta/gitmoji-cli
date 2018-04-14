@@ -27,6 +27,11 @@ Object {
   "CODE": "code",
   "EMOJI_FORMAT": "emojiFormat",
   "GITHUB": "github",
+  "GITMOJI_HOST": "raw.githubusercontent.com",
+  "GITMOJI_PATH": "/carloscuesta/gitmoji/master/src/data/gitmojis.json",
+  "GITMOJI_PORT": 443,
+  "GITMOJI_SCHEME": "https",
+  "GITMOJI_URL": "https://raw.githubusercontent.com:443/carloscuesta/gitmoji/master/src/data/gitmojis.json",
   "HOOK_FILE_CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
@@ -46,7 +51,6 @@ exports[`gitmoji module commit should match for the commit snapshot with the giv
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
-  "_gitmojiApiClient": [Function],
   "_gitmojis": undefined,
 }
 `;

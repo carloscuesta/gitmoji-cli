@@ -10,6 +10,11 @@ const HOOK_PERMISSIONS = 0o775
 const ISSUE_FORMAT = 'issueFormat'
 const JIRA = 'jira'
 const SIGNED_COMMIT = 'signedCommit'
+const GITMOJI_SCHEME = 'https'
+const GITMOJI_HOST = 'raw.githubusercontent.com'
+const GITMOJI_PORT = 443
+const GITMOJI_PATH = '/carloscuesta/gitmoji/master/src/data/gitmojis.json'
+const GITMOJI_URL = GITMOJI_SCHEME + '://' + GITMOJI_HOST + ':' + GITMOJI_PORT.toString() + GITMOJI_PATH
 
 module.exports = {
   AUTO_ADD,
@@ -22,5 +27,10 @@ module.exports = {
   HOOK_PERMISSIONS,
   ISSUE_FORMAT,
   JIRA,
-  SIGNED_COMMIT
+  SIGNED_COMMIT,
+  GITMOJI_SCHEME,
+  GITMOJI_HOST,
+  GITMOJI_PORT,
+  GITMOJI_PATH,
+  GITMOJI_URL
 }

@@ -5,6 +5,8 @@ const inquirer = require('inquirer')
 const parentDirs = require('parent-dirs')
 const path = require('path')
 const pathExists = require('path-exists')
+const got = require('got')
+const caw = require('caw')
 
 const config = require('./config')
 const prompts = require('./prompts')
@@ -15,8 +17,7 @@ inquirer.registerPrompt(
 )
 
 class GitmojiCli {
-  constructor (gitmojiApiClient, gitmojis) {
-    this._gitmojiApiClient = gitmojiApiClient
+  constructor (gitmojis) {
     this._gitmojis = gitmojis
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
@@ -181,12 +182,16 @@ class GitmojiCli {
   }
 
   _fetchRemoteEmojis () {
-    return this._gitmojiApiClient.request({
-      method: 'GET',
-      url: '/src/data/gitmojis.json'
-    }).then((res) => {
+    let options = {
+      timeout: 5000,
+      json: true,
+      agent: caw({
+        protocol: constants.GITMOJI_SCHEME
+      })
+    }
+    return got(constants.GITMOJI_URL, options).then((res) => {
       console.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
-      return res.data.gitmojis
+      return res.body.gitmojis
     })
     .catch((error) =>
       this._errorMessage(`Network connection not found - ${error.code}`)

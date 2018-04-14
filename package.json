@@ -29,10 +29,11 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "caw": "^2.0.1",
     "chalk": "^2.3.0",
     "conf": "^1.3.1",
     "execa": "^0.9.0",
+    "got": "^8.3.0",
     "inquirer": "^5.1.0",
     "inquirer-autocomplete-prompt": "^0.12.0",
     "meow": "^4.0.0",
@@ -42,6 +43,7 @@
   },
   "devDependencies": {
     "codecov": "^3.0.0",
+    "get-port": "^3.2.0",
     "jest": "^21.2.1",
     "standard": "^10.0.3"
   },

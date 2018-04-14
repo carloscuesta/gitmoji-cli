@@ -1,12 +1,3 @@
-const axios = require('axios')
-
-const gitmojiApiClient = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-  timeout: 5000,
-  headers: {},
-  params: {}
-})
-
 /**
 * @param {Object} cli - The cli object that returns meow()
 * @param {Object} cli.flags - The cli flags matched against the input
@@ -25,6 +16,5 @@ const findGitmojiCommand = (cli, options) => {
 }
 
 module.exports = {
-  findGitmojiCommand,
-  gitmojiApiClient
+  findGitmojiCommand
 }

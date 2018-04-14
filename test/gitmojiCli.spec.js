@@ -6,8 +6,9 @@ const guard = require('../src/guard')
 const prompts = require('../src/prompts')
 const utils = require('../src/utils')
 const stubs = require('./stubs')
+const proxy = require('./proxy')
 
-const gitmojiCli = new GitmojiCli(stubs.gitmojiApiClient)
+const gitmojiCli = new GitmojiCli()
 
 describe('constants module', () => {
   it('should match for the exported constants', () => {
@@ -85,6 +86,36 @@ describe('gitmoji module', () => {
       config.setSignedCommit(false)
       expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
+  })
+
+  describe('fetch gitmojis', () => {
+    const origProxyEnv = proxy.exportProxyEnv()
+
+    it('should fetch the gitmojis', () => {
+      proxy.setProxyEnv('')
+      expect.assertions(1)
+      return expect(gitmojiCli._fetchRemoteEmojis()).resolves.toBeDefined()
+    })
+
+    it('should fetch the gitmojis through HTTP proxy', () => {
+      expect.assertions(2)
+      return proxy.createProxy(constants.GITMOJI_HOST, constants.GITMOJI_PORT).then((proxyServer) => {
+        return proxyServer.listen(proxyServer.port).then(() => {
+          proxy.setProxyEnv('http://localhost:' + proxyServer.port.toString())
+          const onProxyConnect = jest.fn()
+          proxyServer.on('connect', onProxyConnect)
+          return expect(gitmojiCli._fetchRemoteEmojis()).resolves.toBeDefined().then(() => {
+            expect(onProxyConnect).toHaveBeenCalled()
+          })
+        }).then(() => {
+          proxyServer.close()
+        });
+      });
+    })
+
+    afterAll(() => {
+      proxy.restoreProxyEnv(origProxyEnv)
+    });
   })
 
   describe('_isAGitRepo', () => {
