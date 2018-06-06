@@ -26,6 +26,12 @@ const config = [
     name: constants.SIGNED_COMMIT,
     message: 'Enable signed commits',
     type: 'confirm'
+  },
+  {
+    name: constants.SIGNED_OFF_COMMIT,
+    message: 'Enable signed-off commits',
+    type: 'confirm',
+    default: false
   }
 ]
 

@@ -30,6 +30,7 @@ class GitmojiCli {
       config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
+      config.setSignedOffCommit(answers[constants.SIGNED_OFF_COMMIT])
     })
   }
 
@@ -127,8 +128,9 @@ class GitmojiCli {
       ? `${prefixReference}${answers.reference}`
       : ''
     const signed = config.getSignedCommit() ? '-S' : ''
+    const signedOff = config.getSignedOffCommit() ? '-s' : ''
     const body = `${answers.message} ${reference}`
-    const commit = `git commit ${signed} -m "${title}" -m "${body}"`
+    const commit = `git commit ${signedOff} ${signed} -m "${title}" -m "${body}"`
 
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository')
