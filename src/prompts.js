@@ -1,6 +1,7 @@
 const constants = require('./constants')
 const configVault = require('./config')
 const guard = require('./guard')
+const utils = require('./utils')
 
 const config = [
   {
@@ -50,8 +51,12 @@ const gitmoji = (gitmojis) => {
     },
     {
       name: 'title',
-      message: 'Enter the commit title:',
-      validate: guard.title
+      message: 'Enter the commit title',
+      validate: guard.title,
+      transformer: (input) => utils.inputCountTransformer(
+        input,
+        constants.TITLE_MAX_LENGTH_COUNT
+      )
     },
     {
       name: 'message',
