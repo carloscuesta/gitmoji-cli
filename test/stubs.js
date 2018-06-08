@@ -64,13 +64,16 @@ const optionsMock = {
   update: jest.fn()
 }
 
+const titleMaxLength = 48
+
 module.exports = {
-  commands,
   cliMock,
-  optionsMock,
+  commands,
   gitmojiApiClient,
+  gitmojis,
+  invalidTitleMessageChar,
+  optionsMock,
   prompts,
   promptsJira,
-  gitmojis,
-  invalidTitleMessageChar
+  titleMaxLength
 }

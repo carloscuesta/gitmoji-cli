@@ -106,6 +106,14 @@ describe('utils module', () => {
       })
     })
   })
+
+  describe('inputCountTransformer', () => {
+    it('should match for an input with characters count string', () => {
+      expect(
+        utils.inputCountTransformer(stubs.prompts.title, stubs.titleMaxLength)
+      ).toMatchSnapshot()
+    })
+  })
 })
 
 describe('guard module', () => {
