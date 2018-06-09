@@ -57,11 +57,6 @@ describe('config module', () => {
     expect(config.getEmojiFormat()).toMatchSnapshot()
   })
 
-  it('should match for setIssueFormat and getIssueFormat', () => {
-    config.setIssueFormat('github')
-    expect(config.getIssueFormat()).toMatchSnapshot()
-  })
-
   it('should match for setSignedCommit and getSignedCommit', () => {
     config.setSignedCommit(false)
     expect(config.getSignedCommit()).toMatchSnapshot()
@@ -75,14 +70,10 @@ describe('gitmoji module', () => {
 
   describe('commit', () => {
     it('should match for the commit snapshot with the given prompts', () => {
-      config.setIssueFormat('github')
-      config.setSignedCommit(true)
       expect(gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
     })
 
     it('should match for the commit snapshot with the given prompts', () => {
-      config.setIssueFormat('jira')
-      config.setSignedCommit(false)
       expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
   })
@@ -138,60 +129,6 @@ describe('guard module', () => {
 
     it('should return error message when contains invalid characters', () => {
       expect(guard.message(stubs.invalidTitleMessageChar)).toMatchSnapshot()
-    })
-  })
-
-  describe('reference', () => {
-    describe('default', () => {
-      it('should return true if no reference is provided', () => {
-        expect(guard.reference(undefined)).toBe(true)
-      })
-
-      it('should match return true when is valid github reference', () => {
-        const assert = guard.reference(stubs.prompts.reference)
-        expect(assert).toBe(true)
-      })
-
-      it('should return error message when contains invalid characters', () => {
-        const assert = guard.reference(`#${stubs.prompts.reference}`)
-        expect(assert).toMatchSnapshot()
-      })
-    })
-
-    describe('github', () => {
-      it('should return true when is valid', () => {
-        const assert = guard.reference(
-          stubs.prompts.reference,
-          constants.GITHUB
-        )
-        expect(assert).toBe(true)
-      })
-
-      it('should return error message when contains invalid characters', () => {
-        const assert = guard.reference(
-          `#${stubs.prompts.reference}`,
-          constants.GITHUB
-        )
-        expect(assert).toMatchSnapshot()
-      })
-    })
-
-    describe('jira', () => {
-      it('should return true when is valid', () => {
-        const assert = guard.reference(
-          stubs.promptsJira.reference,
-          constants.JIRA
-        )
-        expect(assert).toBe(true)
-      })
-
-      it('should return error message when contains invalid characters', () => {
-        const assert = guard.reference(
-          `#${stubs.promptsJira.reference}`,
-          constants.JIRA
-        )
-        expect(assert).toMatchSnapshot()
-      })
     })
   })
 })

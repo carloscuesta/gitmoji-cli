@@ -1,7 +1,5 @@
 const chalk = require('chalk')
 
-const constants = require('./constants')
-
 const errors = {
   title: chalk.red('Enter a valid commit title'),
   message: chalk.red('Enter a valid commit message')
