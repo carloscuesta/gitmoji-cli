@@ -66,7 +66,7 @@ $ git add .
 $ git commit
 ```
 
-![gitmoji commit](https://cloud.githubusercontent.com/assets/7629661/20454513/5db2750a-ae43-11e6-99d7-4757108fe640.png)
+![gitmoji commit](https://user-images.githubusercontent.com/7629661/41189947-1de56124-6bd6-11e8-9567-e7f1a8e99500.png)
 
 ### Search
 
@@ -76,7 +76,7 @@ Search using specific keywords to find the right gitmoji.
 $ gitmoji bug linter -s
 ```
 
-![gitmoji list](https://cloud.githubusercontent.com/assets/7629661/20454469/1815550e-ae42-11e6-8c23-33ab7a3e48a3.png)
+![gitmoji list](https://user-images.githubusercontent.com/7629661/41189878-d24a3b78-6bd4-11e8-8d47-c8edf3b87e53.png)
 
 
 ### List
@@ -87,7 +87,7 @@ Pretty print all the available gitmojis.
 $ gitmoji -l
 ```
 
-![gitmoji list](https://cloud.githubusercontent.com/assets/7629661/20454472/1c351e6c-ae42-11e6-8f3c-da73429d8eff.png)
+![gitmoji list](https://user-images.githubusercontent.com/7629661/41189877-d22b145a-6bd4-11e8-97f8-a8e36bcab062.png)
 
 ### Update
 
@@ -101,4 +101,4 @@ $ gitmoji -u
 
 Run `gitmoji -g` to setup some gitmoji-cli preferences, such as the auto `git add .` feature.
 
-![gitmoji config](https://cloud.githubusercontent.com/assets/7629661/23577826/82e8745e-00c9-11e7-9d7e-623a0a51bff9.png)
+![gitmoji config](https://user-images.githubusercontent.com/7629661/41189876-d21167ee-6bd4-11e8-9008-4c987502f307.png)
