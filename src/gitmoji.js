@@ -150,7 +150,6 @@ class GitmojiCli {
     if (config.getAutoAdd()) {
       try {
         let res = await execa.stdout('git', ['add', '.'])
-        console.log('muwoo')
         console.log(chalk.blue(res))
       } catch (err) {
         this._errorMessage(err.stderr)
