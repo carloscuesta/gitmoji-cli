@@ -131,7 +131,7 @@ class GitmojiCli {
     })
   }
 
-  _commit (answers) {
+  async _commit (answers) {
     const title = `${answers.gitmoji} ${answers.title}`
     const prefixReference = config.getIssueFormat() === constants.GITHUB
       ? '#'
@@ -148,9 +148,13 @@ class GitmojiCli {
     }
 
     if (config.getAutoAdd()) {
-      execa.stdout('git', ['add', '.'])
-        .then((res) => console.log(chalk.blue(res)))
-        .catch((err) => this._errorMessage(err.stderr))
+      try {
+        let res = await execa.stdout('git', ['add', '.'])
+        console.log('muwoo')
+        console.log(chalk.blue(res))
+      } catch (err) {
+        this._errorMessage(err.stderr)
+      }
     }
     execa.shell(commit)
       .then((res) => console.log(chalk.blue(res.stdout)))
