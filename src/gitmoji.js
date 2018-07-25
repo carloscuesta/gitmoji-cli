@@ -149,10 +149,7 @@ class GitmojiCli {
 
     if (config.getAutoAdd()) {
       execa.stdout('git', ['add', '.'])
-        .then((res) => {
-          console.log(chalk.blue(res))
-          return execa.shell(commit)
-        })
+        .then((res) => execa.shell(commit))
         .then((res) => console.log(chalk.blue(res.stdout)))
         .catch((err) => this._errorMessage(err.stderr ? err.stderr : err.stdout))
     } else {
