@@ -38,6 +38,7 @@ gitmoji --hook $1
   "ISSUE_FORMAT": "issueFormat",
   "JIRA": "jira",
   "SIGNED_COMMIT": "signedCommit",
+  "TITLE_MAX_LENGTH_COUNT": 48,
 }
 `;
 
@@ -116,8 +117,9 @@ Array [
     "type": "autocomplete",
   },
   Object {
-    "message": "Enter the commit title:",
+    "message": "Enter the commit title",
     "name": "title",
+    "transformer": [Function],
     "validate": [Function],
   },
   Object {
@@ -132,3 +134,5 @@ Array [
   },
 ]
 `;
+
+exports[`utils module inputCountTransformer should match for an input with characters count string 1`] = `"[29/48]: Improving performance issues."`;

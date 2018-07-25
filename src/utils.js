@@ -24,7 +24,12 @@ const findGitmojiCommand = (cli, options) => {
     : cli.showHelp()
 }
 
+const inputCountTransformer = (input, maxLength) => {
+  return `[${input.length}/${maxLength}]: ${input}`
+}
+
 module.exports = {
   findGitmojiCommand,
-  gitmojiApiClient
+  gitmojiApiClient,
+  inputCountTransformer
 }
