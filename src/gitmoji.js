@@ -67,8 +67,8 @@ class GitmojiCli {
         fs.unlink(result.stdout.trim() + constants.HOOK_PATH, (err) => {
           if (err) return this._errorMessage(err)
           return console.log(
-              `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
-            )
+            `${chalk.yellow('gitmoji')} commit hook unlinked successfully.`
+          )
         })
       })
       .catch(err => {
@@ -200,9 +200,9 @@ class GitmojiCli {
       console.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
       return res.data.gitmojis
     })
-    .catch((error) =>
-      this._errorMessage(`Network connection not found - ${error.code}`)
-    )
+      .catch((error) =>
+        this._errorMessage(`Network connection not found - ${error.code}`)
+      )
   }
 
   _fetchCachedEmojis (cachePath) {
