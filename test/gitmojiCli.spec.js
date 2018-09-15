@@ -79,17 +79,23 @@ describe('gitmoji module', () => {
   })
 
   describe('commit', () => {
-    it('should match for the commit snapshot with the given prompts', async () => {
+    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve, reject) => {
       config.setIssueFormat('github')
       config.setSignedCommit(true)
-      expect(await gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
-    })
+      gitmojiCli._commit(stubs.prompts).then((res) => {
+        expect(res).toMatchSnapshot()
+        resolve()
+      })
+    }))
 
-    it('should match for the commit snapshot with the given prompts', async () => {
+    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve, reject) => {
       config.setIssueFormat('jira')
       config.setSignedCommit(false)
-      expect(await gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
-    })
+      gitmojiCli._commit(stubs.promptsJira).then((res) => {
+        expect(res).toMatchSnapshot()
+        resolve()
+      })
+    }))
   })
 
   describe('_isAGitRepo', () => {
