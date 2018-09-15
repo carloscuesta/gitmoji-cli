@@ -3576,7 +3576,7 @@ stack-utils@^1.0.1:
 
 staged-git-files@^1.1.1:
   version "1.1.1"
-  resolved "https://npm.apps.dgadteamdev.com/repository/dgad/staged-git-files/-/staged-git-files-1.1.1.tgz#37c2218ef0d6d26178b1310719309a16a59f8f7b"
+  resolved "https://registry.yarnpkg.com/staged-git-files/-/staged-git-files-1.1.1.tgz#37c2218ef0d6d26178b1310719309a16a59f8f7b"
 
 standard-engine@~9.0.0:
   version "9.0.0"
