@@ -10,6 +10,12 @@ const config = [
     type: 'confirm'
   },
   {
+    name: constants.AUTO_ADD_ON_EMPTY_STAGE,
+    message: 'Enable automatic "git add ." if no file has been added',
+    type: 'confirm',
+    when: (answers) => !answers[constants.AUTO_ADD]
+  },
+  {
     name: constants.ISSUE_FORMAT,
     message: 'Choose Issue Format',
     type: 'list',

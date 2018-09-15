@@ -38,6 +38,7 @@
     "meow": "^5.0.0",
     "parent-dirs": "^1.0.0",
     "path-exists": "^3.0.0",
+    "staged-git-files": "^1.1.1",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {

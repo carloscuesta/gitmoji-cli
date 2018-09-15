@@ -5,10 +5,14 @@ const inquirer = require('inquirer')
 const parentDirs = require('parent-dirs')
 const path = require('path')
 const pathExists = require('path-exists')
+const stagedGitFiles = require('staged-git-files')
+const { promisify } = require('util')
 
 const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
+
+const stagedGitFilesPromisified = promisify(stagedGitFiles)
 
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
@@ -19,6 +23,7 @@ class GitmojiCli {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
+    if (config.getAutoAddOnEmptyStage() === undefined) config.getAutoAddOnEmptyStage(false)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
@@ -130,7 +135,7 @@ class GitmojiCli {
     process.exit(0)
   }
 
-  _commit (answers) {
+  async _commit (answers) {
     const title = `${answers.gitmoji} ${answers.title}`
     const prefixReference = config.getIssueFormat() === constants.GITHUB
       ? '#'
@@ -142,18 +147,33 @@ class GitmojiCli {
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
 
+    const executeGitAdd = async () => {
+      const res = await execa.stdout('git', ['add', '.'])
+      console.log(chalk.blue(res))
+    }
+
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository')
     }
 
-    if (config.getAutoAdd()) {
-      execa.stdout('git', ['add', '.'])
-        .then((res) => console.log(chalk.blue(res)))
-        .catch((err) => this._errorMessage(err.stderr))
+    try {
+      if (config.getAutoAdd()) {
+        await executeGitAdd()
+      } else if (config.getAutoAddOnEmptyStage()) {
+        const stagedFiles = await stagedGitFilesPromisified()
+        if (!stagedFiles.length) {
+          await executeGitAdd()
+        }
+      }
+
+      const res = await execa.shell(commit)
+      console.log(chalk.blue(res.stdout))
+    } catch (err) {
+      const error = (err.stderr || err.stdout)
+        ? err.stderr || err.stdout
+        : err
+      this._errorMessage(error)
     }
-    execa.shell(commit)
-      .then((res) => console.log(chalk.blue(res.stdout)))
-      .catch((err) => this._errorMessage(err.stderr ? err.stderr : err.stdout))
 
     return commit
   }

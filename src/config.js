@@ -4,6 +4,7 @@ const constants = require('./constants')
 const config = new Conf()
 
 const getAutoAdd = () => config.get(constants.AUTO_ADD)
+const getAutoAddOnEmptyStage = () => config.get(constants.AUTO_ADD_ON_EMPTY_STAGE)
 const getEmojiFormat = () => config.get(constants.EMOJI_FORMAT)
 const getIssueFormat = () => config.get(constants.ISSUE_FORMAT)
 const getSignedCommit = () => config.get(constants.SIGNED_COMMIT)
@@ -20,6 +21,7 @@ const setSignedCommit = (signedCommit) => {
 
 module.exports = {
   getAutoAdd,
+  getAutoAddOnEmptyStage,
   getEmojiFormat,
   getIssueFormat,
   getSignedCommit,

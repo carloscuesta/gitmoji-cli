@@ -1,4 +1,5 @@
 const AUTO_ADD = 'autoAdd'
+const AUTO_ADD_ON_EMPTY_STAGE = 'autoAddOnEmptyStage'
 const CODE = 'code'
 const EMOJI_FORMAT = 'emojiFormat'
 const GITHUB = 'github'
@@ -14,6 +15,7 @@ const TITLE_MAX_LENGTH_COUNT = 48
 
 module.exports = {
   AUTO_ADD,
+  AUTO_ADD_ON_EMPTY_STAGE,
   CODE,
   EMOJI_FORMAT,
   GITHUB,
