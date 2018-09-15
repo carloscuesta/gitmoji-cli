@@ -52,6 +52,11 @@ describe('config module', () => {
     expect(config.getAutoAdd()).toMatchSnapshot()
   })
 
+  it('should match for setAutoAddOnEmptyStage and getAutoAddOnEmptyStage', () => {
+    config.setAutoAddOnEmptyStage(true)
+    expect(config.getAutoAddOnEmptyStage()).toMatchSnapshot()
+  })
+
   it('should match for setEmojiFormat and getEmojiFormat', () => {
     config.setEmojiFormat('code')
     expect(config.getEmojiFormat()).toMatchSnapshot()
@@ -74,16 +79,16 @@ describe('gitmoji module', () => {
   })
 
   describe('commit', () => {
-    it('should match for the commit snapshot with the given prompts', () => {
+    it('should match for the commit snapshot with the given prompts', async () => {
       config.setIssueFormat('github')
       config.setSignedCommit(true)
-      expect(gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
+      expect(await gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
     })
 
-    it('should match for the commit snapshot with the given prompts', () => {
+    it('should match for the commit snapshot with the given prompts', async () => {
       config.setIssueFormat('jira')
       config.setSignedCommit(false)
-      expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
+      expect(await gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
   })
 

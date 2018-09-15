@@ -2,6 +2,8 @@
 
 exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
+exports[`config module should match for setAutoAddOnEmptyStage and getAutoAddOnEmptyStage 1`] = `true`;
+
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
@@ -11,10 +13,12 @@ exports[`config module should match for setSignedCommit and getSignedCommit 1`] 
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
+  "getAutoAddOnEmptyStage": [Function],
   "getEmojiFormat": [Function],
   "getIssueFormat": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
+  "setAutoAddOnEmptyStage": [Function],
   "setEmojiFormat": [Function],
   "setIssueFormat": [Function],
   "setSignedCommit": [Function],
@@ -24,6 +28,7 @@ Object {
 exports[`constants module should match for the exported constants 1`] = `
 Object {
   "AUTO_ADD": "autoAdd",
+  "AUTO_ADD_ON_EMPTY_STAGE": "autoAddOnEmptyStage",
   "CODE": "code",
   "EMOJI_FORMAT": "emojiFormat",
   "GITHUB": "github",
@@ -75,6 +80,12 @@ Array [
     "message": "Enable automatic \\"git add .\\"",
     "name": "autoAdd",
     "type": "confirm",
+  },
+  Object {
+    "message": "Enable automatic \\"git add .\\" if no file has been added",
+    "name": "autoAddOnEmptyStage",
+    "type": "confirm",
+    "when": [Function],
   },
   Object {
     "choices": Array [

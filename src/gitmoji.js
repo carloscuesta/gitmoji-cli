@@ -23,7 +23,7 @@ class GitmojiCli {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
-    if (config.getAutoAddOnEmptyStage() === undefined) config.getAutoAddOnEmptyStage(false)
+    if (config.getAutoAddOnEmptyStage() === undefined) config.setAutoAddOnEmptyStage(false)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
@@ -32,6 +32,7 @@ class GitmojiCli {
   config () {
     inquirer.prompt(prompts.config).then(answers => {
       config.setAutoAdd(answers[constants.AUTO_ADD])
+      config.setAutoAddOnEmptyStage(answers[constants.AUTO_ADD_ON_EMPTY_STAGE])
       config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])

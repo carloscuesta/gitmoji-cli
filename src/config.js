@@ -9,6 +9,7 @@ const getEmojiFormat = () => config.get(constants.EMOJI_FORMAT)
 const getIssueFormat = () => config.get(constants.ISSUE_FORMAT)
 const getSignedCommit = () => config.get(constants.SIGNED_COMMIT)
 const setAutoAdd = (autoAdd) => config.set(constants.AUTO_ADD, autoAdd)
+const setAutoAddOnEmptyStage = (setAutoAddOnEmptyStage) => config.set(constants.AUTO_ADD_ON_EMPTY_STAGE, setAutoAddOnEmptyStage)
 const setEmojiFormat = (emojiFormat) => {
   config.set(constants.EMOJI_FORMAT, emojiFormat)
 }
@@ -26,6 +27,7 @@ module.exports = {
   getIssueFormat,
   getSignedCommit,
   setAutoAdd,
+  setAutoAddOnEmptyStage,
   setEmojiFormat,
   setIssueFormat,
   setSignedCommit
