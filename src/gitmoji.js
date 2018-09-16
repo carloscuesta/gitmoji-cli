@@ -144,11 +144,7 @@ class GitmojiCli {
     const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
-    const addPromises = []
-
-    const getCommit = () => Promise.resolve(commit)
-    const gitCommit = () => execa.shell(commit)
-    const gitAdd = () => execa.stdout('git', ['add', '.'])
+    const promises = []
 
     const isStageEmpty = () => new Promise((resolve, reject) => {
       stagedGitFiles((err, stagedFiles) => {
@@ -156,10 +152,14 @@ class GitmojiCli {
         resolve(!stagedFiles.length)
       })
     })
-    const gitAddOnEmptyStage = () => isStageEmpty()
+
+    const getCommit = () => Promise.resolve(commit)
+    const execGitCommit = () => execa.shell(commit)
+    const execGitAdd = () => execa.stdout('git', ['add', '.'])
+    const execGitAddOnEmptyStage = () => isStageEmpty()
       .then((res) => {
         if (res) {
-          return gitAdd()
+          return execGitAdd()
         }
       })
 
@@ -168,24 +168,24 @@ class GitmojiCli {
     }
 
     if (config.getAutoAdd()) {
-      addPromises.push(gitAdd)
+      promises.push(execGitAdd)
     } else if (config.getAutoAddOnEmptyStage()) {
-      addPromises.push(gitAddOnEmptyStage)
+      promises.push(execGitAddOnEmptyStage)
     }
 
-    return []
-      .concat(addPromises, [ gitCommit, getCommit ])
-      .reduce(
-        (promise, func) => promise
-          .then((res) => {
-            res && console.log(chalk.blue(res.stdout || res))
-            return func()
-          })
-          .catch((err) => {
-            err && this._errorMessage(err.stderr || err.stdout || err)
-          }),
-        Promise.resolve()
-      )
+    promises.push(execGitCommit, getCommit)
+
+    return promises.reduce(
+      (promise, func) => promise
+        .then((res) => {
+          res && console.log(chalk.blue(res.stdout || res))
+          return func()
+        })
+        .catch((err) => {
+          err && this._errorMessage(err.stderr || err.stdout || err)
+        }),
+      Promise.resolve()
+    )
   }
 
   _parseGitmojis (gitmojis) {
