@@ -144,7 +144,7 @@ class GitmojiCli {
     const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
-    const promises = []
+    const addPromises = []
 
     const getCommit = () => commit
     const gitCommit = () => execa.shellSync(commit)
@@ -168,13 +168,13 @@ class GitmojiCli {
     }
 
     if (config.getAutoAdd()) {
-      promises.push(gitAdd)
+      addPromises.push(gitAdd)
     } else if (config.getAutoAddOnEmptyStage()) {
-      promises.push(gitAddOnEmptyStage)
+      addPromises.push(gitAddOnEmptyStage)
     }
 
-    return promises
-      .concat(gitCommit, getCommit)
+    return []
+      .concat(addPromises, [ gitCommit, getCommit ])
       .reduce(
         (promise, func) => promise
           .then((res) => {
