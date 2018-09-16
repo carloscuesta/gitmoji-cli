@@ -11,7 +11,7 @@ const config = [
   },
   {
     name: constants.AUTO_ADD_ON_EMPTY_STAGE,
-    message: 'Enable automatic "git add ." if no file has been added',
+    message: 'Enable automatic "git add ." when there are no staged changes',
     type: 'confirm',
     when: (answers) => !answers[constants.AUTO_ADD]
   },

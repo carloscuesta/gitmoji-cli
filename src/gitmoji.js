@@ -6,13 +6,10 @@ const parentDirs = require('parent-dirs')
 const path = require('path')
 const pathExists = require('path-exists')
 const stagedGitFiles = require('staged-git-files')
-const { promisify } = require('util')
 
 const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
-
-const stagedGitFilesPromisified = promisify(stagedGitFiles)
 
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
@@ -32,7 +29,7 @@ class GitmojiCli {
   config () {
     inquirer.prompt(prompts.config).then(answers => {
       config.setAutoAdd(answers[constants.AUTO_ADD])
-      config.setAutoAddOnEmptyStage(answers[constants.AUTO_ADD_ON_EMPTY_STAGE])
+      config.setAutoAddOnEmptyStage(Boolean(answers[constants.AUTO_ADD_ON_EMPTY_STAGE]))
       config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
@@ -136,7 +133,7 @@ class GitmojiCli {
     process.exit(0)
   }
 
-  async _commit (answers) {
+  _commit (answers) {
     const title = `${answers.gitmoji} ${answers.title}`
     const prefixReference = config.getIssueFormat() === constants.GITHUB
       ? '#'
@@ -147,36 +144,48 @@ class GitmojiCli {
     const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message} ${reference}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
+    const promises = []
 
-    const executeGitAdd = async () => {
-      const res = await execa.stdout('git', ['add', '.'])
-      console.log(chalk.blue(res))
-    }
+    const getCommit = () => commit
+    const gitCommit = () => execa.shellSync(commit)
+    const gitAdd = () => execa.sync('git', ['add', '.'])
+
+    const isStageEmpty = () => new Promise((resolve, reject) => {
+      stagedGitFiles((err, stagedFiles) => {
+        if (err) return reject(err)
+        resolve(!stagedFiles.length)
+      })
+    })
+    const gitAddOnEmptyStage = () => isStageEmpty()
+      .then((res) => {
+        if (res) {
+          return gitAdd()
+        }
+      })
 
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository')
     }
 
-    try {
-      if (config.getAutoAdd()) {
-        await executeGitAdd()
-      } else if (config.getAutoAddOnEmptyStage()) {
-        const stagedFiles = await stagedGitFilesPromisified()
-        if (!stagedFiles.length) {
-          await executeGitAdd()
-        }
-      }
-
-      const res = await execa.shell(commit)
-      console.log(chalk.blue(res.stdout))
-    } catch (err) {
-      const error = (err.stderr || err.stdout)
-        ? err.stderr || err.stdout
-        : err
-      this._errorMessage(error)
+    if (config.getAutoAdd()) {
+      promises.push(gitAdd)
+    } else if (config.getAutoAddOnEmptyStage()) {
+      promises.push(gitAddOnEmptyStage)
     }
 
-    return commit
+    return promises
+      .concat(gitCommit, getCommit)
+      .reduce(
+        (promise, func) => promise
+          .then((res) => {
+            res && console.log(chalk.blue(res.stdout || res))
+            return func()
+          })
+          .catch((err) => {
+            err && this._errorMessage(err.stderr || err.stdout || err)
+          }),
+        Promise.resolve()
+      )
   }
 
   _parseGitmojis (gitmojis) {

@@ -82,7 +82,7 @@ Array [
     "type": "confirm",
   },
   Object {
-    "message": "Enable automatic \\"git add .\\" if no file has been added",
+    "message": "Enable automatic \\"git add .\\" when there are no staged changes",
     "name": "autoAddOnEmptyStage",
     "type": "confirm",
     "when": [Function],

@@ -79,7 +79,7 @@ describe('gitmoji module', () => {
   })
 
   describe('commit', () => {
-    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve, reject) => {
+    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve) => {
       config.setIssueFormat('github')
       config.setSignedCommit(true)
       gitmojiCli._commit(stubs.prompts).then((res) => {
@@ -88,7 +88,7 @@ describe('gitmoji module', () => {
       })
     }))
 
-    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve, reject) => {
+    it('should match for the commit snapshot with the given prompts', () => new Promise((resolve) => {
       config.setIssueFormat('jira')
       config.setSignedCommit(false)
       gitmojiCli._commit(stubs.promptsJira).then((res) => {
