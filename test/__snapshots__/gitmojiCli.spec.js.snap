@@ -27,6 +27,7 @@ Object {
   "CODE": "code",
   "EMOJI_FORMAT": "emojiFormat",
   "GITHUB": "github",
+  "GIT_VERSION_PATTERN": /\\^\\(\\?:\\^\\|\\\\s\\+\\)git version \\(\\[0-9\\]\\+\\)\\\\\\.\\(\\[0-9\\]\\+\\)\\\\\\.\\(\\[0-9\\]\\+\\)\\(\\?:\\\\s\\+\\|\\$\\)/i,
   "HOOK_FILE_CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
