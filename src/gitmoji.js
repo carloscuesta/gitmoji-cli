@@ -38,7 +38,7 @@ class GitmojiCli {
       return this._errorMessage('Not a git repository - @init')
     }
 
-    execa('git', ['rev-parse', '--absolute-git-dir'])
+    this._gitRevParse()
       .then(result => {
         fs.writeFile(
           result.stdout.trim() + constants.HOOK_PATH,
@@ -62,7 +62,7 @@ class GitmojiCli {
       return this._errorMessage('Couldn\'t remove hook, not a git repository')
     }
 
-    execa('git', ['rev-parse', '--absolute-git-dir'])
+    this._gitRevParse()
       .then(result => {
         fs.unlink(result.stdout.trim() + constants.HOOK_PATH, (err) => {
           if (err) return this._errorMessage(err)
@@ -218,6 +218,27 @@ class GitmojiCli {
       this._createCache(cachePath, emojis)
       return emojis
     })
+  }
+
+  _gitRevParse () {
+    return execa('git', ['--version'])
+      .then((result) => {
+        const matcher = result.stdout.match(constants.GIT_VERSION_PATTERN)
+        let version
+        if (!matcher) {
+          console.error(chalk.yellow('Warn: unable to determine your git version'))
+          version = undefined
+        } else {
+          version = { major: matcher[1], minor: matcher[2], patch: matcher[3] }
+        }
+        if (!version || version.major > 2 || (version.major === 2 && version.minor >= 13)) {
+          return execa('git', ['rev-parse', '--absolute-git-dir'])
+        }
+        return execa('git', ['rev-parse', '--git-dir']).then((result) => {
+          result.stdout = path.resolve(result.stdout.trim())
+          return result
+        })
+      })
   }
 }
 

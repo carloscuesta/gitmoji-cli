@@ -11,6 +11,7 @@ const ISSUE_FORMAT = 'issueFormat'
 const JIRA = 'jira'
 const SIGNED_COMMIT = 'signedCommit'
 const TITLE_MAX_LENGTH_COUNT = 48
+const GIT_VERSION_PATTERN = /^(?:^|\s+)git version ([0-9]+)\.([0-9]+)\.([0-9]+)(?:\s+|$)/i
 
 module.exports = {
   AUTO_ADD,
@@ -24,5 +25,6 @@ module.exports = {
   ISSUE_FORMAT,
   JIRA,
   SIGNED_COMMIT,
-  TITLE_MAX_LENGTH_COUNT
+  TITLE_MAX_LENGTH_COUNT,
+  GIT_VERSION_PATTERN
 }
