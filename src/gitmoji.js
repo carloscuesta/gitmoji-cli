@@ -146,9 +146,9 @@ class GitmojiCli {
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
     const addPromises = []
 
-    const getCommit = () => commit
-    const gitCommit = () => execa.shellSync(commit)
-    const gitAdd = () => execa.sync('git', ['add', '.'])
+    const getCommit = () => Promise.resolve(commit)
+    const gitCommit = () => execa.shell(commit)
+    const gitAdd = () => execa.stdout('git', ['add', '.'])
 
     const isStageEmpty = () => new Promise((resolve, reject) => {
       stagedGitFiles((err, stagedFiles) => {
