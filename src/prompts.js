@@ -42,10 +42,10 @@ const gitmoji = (gitmojis) => {
             const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
             return (!input || emoji.indexOf(input.toLowerCase()) !== -1)
           })
-          .map((gitmoji) => ({
-            name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-            value: gitmoji[configVault.getEmojiFormat() || constants.CODE]
-          }))
+            .map((gitmoji) => ({
+              name: `${gitmoji.emoji}  - ${gitmoji.description}`,
+              value: gitmoji[configVault.getEmojiFormat() || constants.CODE]
+            }))
         )
       }
     },
