@@ -42,9 +42,9 @@ gitmoji --hook $1
 }
 `;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\":zap: (undefined)-Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: (undefined)-Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
@@ -115,6 +115,11 @@ Array [
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
+  },
+  Object {
+    "message": "Enter the scope of current changes",
+    "name": "scope",
+    "validate": [Function],
   },
   Object {
     "message": "Enter the commit title",
