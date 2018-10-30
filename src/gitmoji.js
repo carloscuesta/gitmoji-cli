@@ -118,7 +118,7 @@ class GitmojiCli {
   }
 
   _hook (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    const title = `${answers.gitmoji} (${answers.scope})-${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
 
@@ -131,7 +131,7 @@ class GitmojiCli {
   }
 
   _commit (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    const title = `${answers.gitmoji} (${answers.scope})-${answers.title}`
     const prefixReference = config.getIssueFormat() === constants.GITHUB
       ? '#'
       : ''

@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const constants = require('./constants')
 
 const errors = {
+  scope: chalk.red('Enter a valid scope'),
   title: chalk.red('Enter a valid commit title'),
   message: chalk.red('Enter a valid commit message'),
   referenceGithub: chalk.red(
@@ -10,6 +11,8 @@ const errors = {
   ),
   referenceJira: chalk.red('Enter the JIRA reference key, such as ABC-123')
 }
+
+const scope = (scope) => scope.includes('`') ? errors.scope : true
 
 const title = (title) => (!title || title.includes('`')) ? errors.title : true
 
@@ -53,6 +56,7 @@ const reference = (reference, mode) => {
 }
 
 module.exports = {
+  scope,
   title,
   message,
   reference
