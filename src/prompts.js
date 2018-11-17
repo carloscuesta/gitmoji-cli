@@ -45,11 +45,16 @@ const gitmoji = (gitmojis) => {
         return Promise.resolve(
           gitmojis.filter((gitmoji) => {
             const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
+            // TBD: fuzzy search (other branch)
+            // https://github.com/mokkabonna/inquirer-autocomplete-prompt / fuzzy
             return (!input || emoji.indexOf(input.toLowerCase()) !== -1)
           })
             .map((gitmoji) => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-              value: gitmoji[configVault.getEmojiFormat() || constants.CODE]
+              value: {
+                name:   gitmoji.name,
+                emoji:  gitmoji[configVault.getEmojiFormat() || constants.CODE]
+              }
             }))
         )
       }

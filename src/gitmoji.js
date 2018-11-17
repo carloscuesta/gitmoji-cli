@@ -120,7 +120,7 @@ class GitmojiCli {
   }
 
   _hook (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    const title = `${answers.gitmoji.emoji} ${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
 
@@ -134,7 +134,7 @@ class GitmojiCli {
 
   _commit (answers) {
     // console.log(answers)
-    const title = `${answers.gitmoji.value} ${answers.title}`
+    const title = `${answers.gitmoji.value.emoji} ${answers.title}`
     // TBD: @stackr23/transformTitle(gitmoji, title) (also in _hook)
     // if config.get(constants.CONVENTIONAL_COMMITS.name)
     //  => transform(answers.gitmoji.value, answers.title)
