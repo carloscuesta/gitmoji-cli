@@ -10,6 +10,9 @@ const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
 
+const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').default.extendGitmoji
+const gitmojiToCC = require('@stackr23/gitmoji-conventional-commits').default.gitmojiToCC
+
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
 )
@@ -22,7 +25,12 @@ class GitmojiCli {
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
-    if (config.getConventionalCommits() === false) config.setConventionalCommits(false)
+    if (config.getConventionalCommits() === false) {
+      config.setConventionalCommits(false)
+    } else {
+      // extend on constructor, because performance of _commit
+      this._gitmojis = extendGitmoji(gitmojis)
+    }
   }
 
   config () {
@@ -120,7 +128,11 @@ class GitmojiCli {
   }
 
   _hook (answers) {
-    const title = `${answers.gitmoji.emoji} ${answers.title}`
+    let gitmoji = answers.gitmoji.value
+    let titlePrefix = config.getConventionalCommits()
+      ? gitmojiToCC(gitmoji.name)
+      : gitmoji.emoji
+    const title = `${titlePrefix} ${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
 
@@ -133,8 +145,12 @@ class GitmojiCli {
   }
 
   _commit (answers) {
-    // console.log(answers)
-    const title = `${answers.gitmoji.value.emoji} ${answers.title}`
+    let gitmoji = answers.gitmoji.value
+    let titlePrefix = config.getConventionalCommits()
+      ? gitmojiToCC(gitmoji.name)
+      : gitmoji.emoji
+
+    title = `${titlePrefix} ${answers.title}`
     // TBD: @stackr23/transformTitle(gitmoji, title) (also in _hook)
     // if config.get(constants.CONVENTIONAL_COMMITS.name)
     //  => transform(answers.gitmoji.value, answers.title)
