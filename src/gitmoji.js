@@ -109,7 +109,7 @@ class GitmojiCli {
     return this._fetchEmojis()
       .then(gitmojis => {
         gitmojis = conventionalCommits
-          ? extendGitmoji(gitmojis)
+          ? extendGitmoji(gitmojis, this._gitmojis)
           : gitmojis
 
         // used in _commit and _hook
