@@ -12,6 +12,12 @@ const JIRA = 'jira'
 const SIGNED_COMMIT = 'signedCommit'
 const TITLE_MAX_LENGTH_COUNT = 48
 
+const CONVENTIONAL_COMMITS = {
+  default: false,
+  message: 'Enable Conventional Commits',
+  name: 'conventionalCommits'
+}
+
 module.exports = {
   AUTO_ADD,
   CODE,
@@ -24,5 +30,6 @@ module.exports = {
   ISSUE_FORMAT,
   JIRA,
   SIGNED_COMMIT,
-  TITLE_MAX_LENGTH_COUNT
+  TITLE_MAX_LENGTH_COUNT,
+  CONVENTIONAL_COMMITS
 }

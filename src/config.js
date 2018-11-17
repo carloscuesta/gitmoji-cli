@@ -17,6 +17,8 @@ const setIssueFormat = (issueFormat) => {
 const setSignedCommit = (signedCommit) => {
   config.set(constants.SIGNED_COMMIT, signedCommit)
 }
+const getConventionalCommits = () => config.get(constants.CONVENTIONAL_COMMITS)
+const setConventionalCommits = () => config.set(constants.CONVENTIONAL_COMMITS)
 
 module.exports = {
   getAutoAdd,
@@ -26,5 +28,7 @@ module.exports = {
   setAutoAdd,
   setEmojiFormat,
   setIssueFormat,
-  setSignedCommit
+  setSignedCommit,
+  getConventionalCommits,
+  setConventionalCommits
 }

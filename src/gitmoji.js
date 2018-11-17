@@ -22,6 +22,7 @@ class GitmojiCli {
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
+    if (config.getConventionalCommits() === false) config.setConventionalCommits(false)
   }
 
   config () {
@@ -30,6 +31,7 @@ class GitmojiCli {
       config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
+      config.setConventionalCommits(answers[constants.CONVENTIONAL_COMMITS.name])
     })
   }
 
@@ -131,7 +133,12 @@ class GitmojiCli {
   }
 
   _commit (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    // console.log(answers)
+    const title = `${answers.gitmoji.value} ${answers.title}`
+    // TBD: @stackr23/transformTitle(gitmoji, title) (also in _hook)
+    // if config.get(constants.CONVENTIONAL_COMMITS.name)
+    //  => transform(answers.gitmoji.value, answers.title)
+    // throw Error('die')
     const prefixReference = config.getIssueFormat() === constants.GITHUB
       ? '#'
       : ''

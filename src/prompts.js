@@ -10,18 +10,23 @@ const config = [
     type: 'confirm'
   },
   {
-    name: constants.ISSUE_FORMAT,
-    message: 'Choose Issue Format',
-    type: 'list',
-    choices: ['github', 'jira']
-  },
-  {
     name: constants.EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
       { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
     ]
+  },
+  {
+    name: constants.CONVENTIONAL_COMMITS.name,
+    message: constants.CONVENTIONAL_COMMITS.message,
+    type: 'confirm'
+  },
+  {
+    name: constants.ISSUE_FORMAT,
+    message: 'Choose Issue Format',
+    type: 'list',
+    choices: ['github', 'jira']
   },
   {
     name: constants.SIGNED_COMMIT,
@@ -53,7 +58,7 @@ const gitmoji = (gitmojis) => {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
-      transformer: (input) => utils.inputCountTransformer(
+      transformer: (input) => utils.inputCountTransformer (
         input,
         constants.TITLE_MAX_LENGTH_COUNT
       )
