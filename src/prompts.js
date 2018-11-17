@@ -18,11 +18,6 @@ const config = [
     ]
   },
   {
-    name: constants.CONVENTIONAL_COMMITS.name,
-    message: constants.CONVENTIONAL_COMMITS.message,
-    type: 'confirm'
-  },
-  {
     name: constants.ISSUE_FORMAT,
     message: 'Choose Issue Format',
     type: 'list',
@@ -31,6 +26,11 @@ const config = [
   {
     name: constants.SIGNED_COMMIT,
     message: 'Enable signed commits',
+    type: 'confirm'
+  },
+  {
+    name: constants.CONVENTIONAL_COMMITS.name,
+    message: constants.CONVENTIONAL_COMMITS.message,
     type: 'confirm'
   }
 ]
