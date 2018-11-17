@@ -26,8 +26,8 @@ class GitmojiCli {
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
-    if (config.getConventionalCommits() === false) {
-      config.setConventionalCommits(false)
+    if (config.getConventionalCommits() === true) {
+      config.setConventionalCommits(true)
     }
   }
 

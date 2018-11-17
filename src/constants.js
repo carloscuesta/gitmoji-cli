@@ -13,7 +13,7 @@ const SIGNED_COMMIT = 'signedCommit'
 const TITLE_MAX_LENGTH_COUNT = 48
 
 const CONVENTIONAL_COMMITS = {
-  default: false,
+  default: true,
   message: 'Enable Conventional Commits',
   name: 'conventionalCommits'
 }
