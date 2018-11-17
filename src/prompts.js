@@ -52,8 +52,8 @@ const gitmoji = (gitmojis) => {
             .map(gitmoji => ({
               name: `${gitmoji.emoji} - ${gitmoji.description}`,
               value: {
-                name:   gitmoji.name,
-                emoji:  gitmoji[configVault.getEmojiFormat() || constants.CODE]
+                name: gitmoji.name,
+                emoji: gitmoji[configVault.getEmojiFormat() || constants.CODE]
               }
             }))
         )
@@ -63,7 +63,7 @@ const gitmoji = (gitmojis) => {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
-      transformer: (input) => utils.inputCountTransformer (
+      transformer: (input) => utils.inputCountTransformer(
         input,
         constants.TITLE_MAX_LENGTH_COUNT
       )
