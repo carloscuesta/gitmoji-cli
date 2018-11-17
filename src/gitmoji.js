@@ -10,8 +10,8 @@ const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
 
-const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').extendGitmoji
-const gitMojiToCC = require('@stackr23/gitmoji-conventional-commits').default.gitMojiToCC
+const extendGitmoji = require('../../gitmoji-conventional-commits/dist/index.js').extendGitmoji
+const gitMojiToCC = require('../../gitmoji-conventional-commits/dist/index.js').default.gitMojiToCC
 
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
