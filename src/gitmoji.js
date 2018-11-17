@@ -10,9 +10,8 @@ const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
 
-// const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').extendGitmoji
-const extendGitmoji = require('../../gitmoji-conventional-commits/dist/index.js').extendGitmoji
-const gitMojiToCC = require('../../gitmoji-conventional-commits/dist/index.js').default.gitMojiToCC
+const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').extendGitmoji
+const gitMojiToCC = require('@stackr23/gitmoji-conventional-commits').default.gitMojiToCC
 
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
@@ -140,7 +139,7 @@ class GitmojiCli {
   _hook (answers) {
     let gitmoji = answers.gitmoji.value
     let titlePrefix = config.getConventionalCommits()
-      ? addCCPrefix(gitmoji.name, this._gitmojis)
+      ? gitMojiToCC(gitmoji.name, this._gitmojis)
       : gitmoji.emoji
 
     const title = `${titlePrefix} ${answers.title}`
