@@ -63,8 +63,8 @@ describe('config module', () => {
   })
 
   it('should match for setConventionalCommits and getConventionalCommits', () => {
-    config.setConventionalCommits(false)
-    expect(config.getConventionalCommits()).toMatchSnapshot()
+    config.setConventionalCommits(true)
+    expect(config.getConventionalCommits()).toBe(true)
   })
 
   it('should match for setSignedCommit and getSignedCommit', () => {

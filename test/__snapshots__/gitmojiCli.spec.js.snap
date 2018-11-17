@@ -2,18 +2,6 @@
 
 exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
-exports[`config module should match for setConventionalCommits and getConventionalCommits 1`] = `
-Object {
-  "autoAdd": false,
-  "default": true,
-  "emojiFormat": "code",
-  "issueFormat": "github",
-  "message": "Enable Conventional Commits",
-  "name": "conventionalCommits",
-  "signedCommit": false,
-}
-`;
-
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
@@ -135,6 +123,7 @@ Array [
     "type": "confirm",
   },
   Object {
+    "default": true,
     "message": "Enable Conventional Commits",
     "name": "conventionalCommits",
     "type": "confirm",

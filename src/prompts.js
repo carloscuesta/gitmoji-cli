@@ -31,7 +31,8 @@ const config = [
   {
     name: constants.CONVENTIONAL_COMMITS.name,
     message: constants.CONVENTIONAL_COMMITS.message,
-    type: 'confirm'
+    type: 'confirm',
+    default: constants.CONVENTIONAL_COMMITS.default
   }
 ]
 
