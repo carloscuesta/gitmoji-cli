@@ -62,6 +62,11 @@ describe('config module', () => {
     expect(config.getIssueFormat()).toMatchSnapshot()
   })
 
+  it('should match for setConventionalCommits and getConventionalCommits', () => {
+    config.setConventionalCommits(false)
+    expect(config.getConventionalCommits()).toMatchSnapshot()
+  })
+
   it('should match for setSignedCommit and getSignedCommit', () => {
     config.setSignedCommit(false)
     expect(config.getSignedCommit()).toMatchSnapshot()

@@ -2,6 +2,18 @@
 
 exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
+exports[`config module should match for setConventionalCommits and getConventionalCommits 1`] = `
+Object {
+  "autoAdd": false,
+  "default": true,
+  "emojiFormat": "code",
+  "issueFormat": "github",
+  "message": "Enable Conventional Commits",
+  "name": "conventionalCommits",
+  "signedCommit": false,
+}
+`;
+
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
@@ -11,10 +23,12 @@ exports[`config module should match for setSignedCommit and getSignedCommit 1`] 
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
+  "getConventionalCommits": [Function],
   "getEmojiFormat": [Function],
   "getIssueFormat": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
+  "setConventionalCommits": [Function],
   "setEmojiFormat": [Function],
   "setIssueFormat": [Function],
   "setSignedCommit": [Function],
@@ -25,6 +39,11 @@ exports[`constants module should match for the exported constants 1`] = `
 Object {
   "AUTO_ADD": "autoAdd",
   "CODE": "code",
+  "CONVENTIONAL_COMMITS": Object {
+    "default": true,
+    "message": "Enable Conventional Commits",
+    "name": "conventionalCommits",
+  },
   "EMOJI_FORMAT": "emojiFormat",
   "GITHUB": "github",
   "HOOK_FILE_CONTENTS": "#!/bin/sh
@@ -42,9 +61,9 @@ gitmoji --hook $1
 }
 `;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\"undefined Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\"undefined Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
@@ -53,21 +72,31 @@ GitmojiCli {
 }
 `;
 
-exports[`guard module message should return error message when contains invalid characters 1`] = `"[31mEnter a valid commit message[39m"`;
+exports[`guard module message should return error message when contains invalid characters 1`] = `"Enter a valid commit message"`;
 
-exports[`guard module reference default should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
+exports[`guard module reference default should return error message when contains invalid characters 1`] = `"Enter the number of the reference without the #. Eg: 12"`;
 
-exports[`guard module reference github should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
+exports[`guard module reference github should return error message when contains invalid characters 1`] = `"Enter the number of the reference without the #. Eg: 12"`;
 
-exports[`guard module reference jira should return error message when contains invalid characters 1`] = `"[31mEnter the JIRA reference key, such as ABC-123[39m"`;
+exports[`guard module reference jira should return error message when contains invalid characters 1`] = `"Enter the JIRA reference key, such as ABC-123"`;
 
-exports[`guard module title should return an error message when its empty 1`] = `"[31mEnter a valid commit title[39m"`;
+exports[`guard module title should return an error message when its empty 1`] = `"Enter a valid commit title"`;
 
-exports[`guard module title should return error message when contains invalid characters 1`] = `"[31mEnter a valid commit title[39m"`;
+exports[`guard module title should return error message when contains invalid characters 1`] = `"Enter a valid commit title"`;
 
-exports[`prompts module should commit using the text emoji 1`] = `":zap:"`;
+exports[`prompts module should commit using the text emoji 1`] = `
+Object {
+  "emoji": ":zap:",
+  "name": "zap",
+}
+`;
 
-exports[`prompts module should commit using the unicode emoji 1`] = `"⚡️"`;
+exports[`prompts module should commit using the unicode emoji 1`] = `
+Object {
+  "emoji": "⚡️",
+  "name": "zap",
+}
+`;
 
 exports[`prompts module should match for the config prompts 1`] = `
 Array [
@@ -75,15 +104,6 @@ Array [
     "message": "Enable automatic \\"git add .\\"",
     "name": "autoAdd",
     "type": "confirm",
-  },
-  Object {
-    "choices": Array [
-      "github",
-      "jira",
-    ],
-    "message": "Choose Issue Format",
-    "name": "issueFormat",
-    "type": "list",
   },
   Object {
     "choices": Array [
@@ -101,8 +121,22 @@ Array [
     "type": "list",
   },
   Object {
+    "choices": Array [
+      "github",
+      "jira",
+    ],
+    "message": "Choose Issue Format",
+    "name": "issueFormat",
+    "type": "list",
+  },
+  Object {
     "message": "Enable signed commits",
     "name": "signedCommit",
+    "type": "confirm",
+  },
+  Object {
+    "message": "Enable Conventional Commits",
+    "name": "conventionalCommits",
     "type": "confirm",
   },
 ]
