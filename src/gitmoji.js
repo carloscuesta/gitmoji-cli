@@ -10,8 +10,9 @@ const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
 
-const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').default.extendGitmoji
-const gitmojiToCC = require('@stackr23/gitmoji-conventional-commits').default.gitmojiToCC
+// const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').extendGitmoji
+const extendGitmoji = require('../../gitmoji-conventional-commits/dist/index.js').extendGitmoji
+const gitMojiToCC = require('../../gitmoji-conventional-commits/dist/index.js').default.gitMojiToCC
 
 inquirer.registerPrompt(
   'autocomplete', require('inquirer-autocomplete-prompt')
@@ -21,15 +22,13 @@ class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
+
     if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
     if (config.getConventionalCommits() === false) {
       config.setConventionalCommits(false)
-    } else {
-      // extend on constructor, because performance of _commit
-      this._gitmojis = extendGitmoji(gitmojis)
     }
   }
 
@@ -107,8 +106,19 @@ class GitmojiCli {
       return this._errorMessage('This directory is not a git repository.')
     }
 
+    const conventionalCommits = config.getConventionalCommits()
     return this._fetchEmojis()
-      .then((gitmojis) => prompts.gitmoji(gitmojis))
+      .then(gitmojis => {
+        gitmojis = conventionalCommits
+          ? extendGitmoji(gitmojis)
+          : gitmojis
+
+        // used in _commit and _hook
+        this._gitmojis = gitmojis
+
+        return gitmojis
+      })
+      .then(gitmojis => prompts.gitmoji(gitmojis))
       .then((questions) => {
         inquirer.prompt(questions).then((answers) => {
           if (mode === constants.HOOK_MODE) this._hook(answers)
@@ -130,8 +140,9 @@ class GitmojiCli {
   _hook (answers) {
     let gitmoji = answers.gitmoji.value
     let titlePrefix = config.getConventionalCommits()
-      ? gitmojiToCC(gitmoji.name, this._gitmojis)
+      ? addCCPrefix(gitmoji.name, this._gitmojis)
       : gitmoji.emoji
+
     const title = `${titlePrefix} ${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
@@ -145,12 +156,13 @@ class GitmojiCli {
   }
 
   _commit (answers) {
-    let gitmoji = answers.gitmoji.value
+    let gitmoji = answers.gitmoji
+
     let titlePrefix = config.getConventionalCommits()
-      ? gitmojiToCC(gitmoji.name)
+      ? gitMojiToCC(gitmoji)
       : gitmoji.emoji
 
-    title = `${titlePrefix} ${answers.title}`
+    const title = `${titlePrefix} ${answers.title}`
     // TBD: @stackr23/transformTitle(gitmoji, title) (also in _hook)
     // if config.get(constants.CONVENTIONAL_COMMITS.name)
     //  => transform(answers.gitmoji.value, answers.title)

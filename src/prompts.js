@@ -49,8 +49,8 @@ const gitmoji = (gitmojis) => {
             // https://github.com/mokkabonna/inquirer-autocomplete-prompt / fuzzy
             return (!input || emoji.indexOf(input.toLowerCase()) !== -1)
           })
-            .map((gitmoji) => ({
-              name: `${gitmoji.emoji}  - ${gitmoji.description}`,
+            .map(gitmoji => ({
+              name: `${gitmoji.emoji} - ${gitmoji.description}`,
               value: {
                 name:   gitmoji.name,
                 emoji:  gitmoji[configVault.getEmojiFormat() || constants.CODE]
