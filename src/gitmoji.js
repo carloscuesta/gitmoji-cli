@@ -130,7 +130,7 @@ class GitmojiCli {
   _hook (answers) {
     let gitmoji = answers.gitmoji.value
     let titlePrefix = config.getConventionalCommits()
-      ? gitmojiToCC(gitmoji.name)
+      ? gitmojiToCC(gitmoji.name, this._gitmojis)
       : gitmoji.emoji
     const title = `${titlePrefix} ${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
