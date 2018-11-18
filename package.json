@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
+    "@stackr23/gitmoji-conventional-commits": "^3.2.9",
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "conf": "^2.0.0",

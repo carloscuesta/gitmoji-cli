@@ -16,6 +16,10 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@stackr23/gitmoji-conventional-commits@^3.2.9":
+  version "3.2.9"
+  resolved "https://registry.yarnpkg.com/@stackr23/gitmoji-conventional-commits/-/gitmoji-conventional-commits-3.2.9.tgz#fcc16529f7ee38ed8c8265c4b68c86533fc5bb5f"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
