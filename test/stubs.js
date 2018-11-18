@@ -23,7 +23,7 @@ const promptsJira = {
 }
 
 const gitmojis = [
-  { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
+  { emoji: '⚡️', code: ':zap:', description: '', name: 'zap'}
 ]
 
 const invalidTitleMessageChar = '`'
