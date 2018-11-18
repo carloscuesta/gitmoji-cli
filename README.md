@@ -108,3 +108,5 @@ Run `gitmoji -g` to setup some gitmoji-cli preferences, such as the auto `git ad
 
 `🐛` =>  `fix(🐛): `
 
+
+

@@ -118,7 +118,7 @@
     read-pkg "^4.0.0"
     registry-auth-token "^3.3.1"
 
-"@semantic-release/release-notes-generator@^7.1.2":
+"@semantic-release/release-notes-generator@^7.1.2", "@semantic-release/release-notes-generator@^7.1.4":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@semantic-release/release-notes-generator/-/release-notes-generator-7.1.4.tgz#8f4f752c5a8385abdaac1256127cef05988bc2ad"
   dependencies:
@@ -132,15 +132,16 @@
     into-stream "^4.0.0"
     lodash "^4.17.4"
 
-"@stackr23/gitmoji-conventional-commits@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@stackr23/gitmoji-conventional-commits/-/gitmoji-conventional-commits-3.1.3.tgz#31964a313a7934b55de9bd86802d2bad87e23b93"
+"@stackr23/gitmoji-conventional-commits@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@stackr23/gitmoji-conventional-commits/-/gitmoji-conventional-commits-3.2.0.tgz#b94eb0b26f5a6e0ef0f417d7f0c2e707b2d9341d"
   dependencies:
     "@semantic-release/changelog" "^3.0.1"
     "@semantic-release/commit-analyzer" "^6.1.0"
     "@semantic-release/git" "^7.0.5"
     "@semantic-release/github" "^5.2.1"
     "@semantic-release/npm" "^5.1.1"
+    "@semantic-release/release-notes-generator" "^7.1.4"
     semantic-release "^15.12.0"
 
 JSONStream@^1.0.4, JSONStream@^1.3.4:
