@@ -2,6 +2,8 @@
 
 exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
+exports[`config module should match for setConventionalCommits and getConventionalCommits 1`] = `true`;
+
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
 exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
@@ -49,9 +51,459 @@ gitmoji --hook $1
 }
 `;
 
+exports[`gitmoji module cache module should match snapshot for _cacheAvailable 1`] = `false`;
+
+exports[`gitmoji module cache module should match snapshot for cache path 1`] = `undefined`;
+
+exports[`gitmoji module cache module should match snapshot for cached emojis 1`] = `undefined`;
+
 exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\"undefined Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
 
 exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\"undefined Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
+
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 3`] = `"git commit  -m \\"undefined Improving performance issues.\\" -m \\"Refactored code. 5\\""`;
+
+exports[`gitmoji module commit should match snapshot for fetched emojis 1`] = `
+Array [
+  Object {
+    "code": ":art:",
+    "description": "Improving structure / format of the code.",
+    "emoji": "🎨",
+    "entity": "&#x1f3a8;",
+    "name": "art",
+  },
+  Object {
+    "code": ":zap:",
+    "description": "Improving performance.",
+    "emoji": "⚡️",
+    "entity": "&#x26a1;",
+    "name": "zap",
+  },
+  Object {
+    "code": ":fire:",
+    "description": "Removing code or files.",
+    "emoji": "🔥",
+    "entity": "&#x1f525;",
+    "name": "fire",
+  },
+  Object {
+    "code": ":bug:",
+    "description": "Fixing a bug.",
+    "emoji": "🐛",
+    "entity": "&#x1f41b;",
+    "name": "bug",
+  },
+  Object {
+    "code": ":ambulance:",
+    "description": "Critical hotfix.",
+    "emoji": "🚑",
+    "entity": "&#128657;",
+    "name": "ambulance",
+  },
+  Object {
+    "code": ":sparkles:",
+    "description": "Introducing new features.",
+    "emoji": "✨",
+    "entity": "&#x2728;",
+    "name": "sparkles",
+  },
+  Object {
+    "code": ":memo:",
+    "description": "Writing docs.",
+    "emoji": "📝",
+    "entity": "&#x1f4dd;",
+    "name": "memo",
+  },
+  Object {
+    "code": ":rocket:",
+    "description": "Deploying stuff.",
+    "emoji": "🚀",
+    "entity": "&#x1f680;",
+    "name": "rocket",
+  },
+  Object {
+    "code": ":lipstick:",
+    "description": "Updating the UI and style files.",
+    "emoji": "💄",
+    "entity": "&#ff99cc;",
+    "name": "lipstick",
+  },
+  Object {
+    "code": ":tada:",
+    "description": "Initial commit.",
+    "emoji": "🎉",
+    "entity": "&#127881;",
+    "name": "tada",
+  },
+  Object {
+    "code": ":white_check_mark:",
+    "description": "Adding tests.",
+    "emoji": "✅",
+    "entity": "&#x2705;",
+    "name": "white-check-mark",
+  },
+  Object {
+    "code": ":lock:",
+    "description": "Fixing security issues.",
+    "emoji": "🔒",
+    "entity": "&#x1f512;",
+    "name": "lock",
+  },
+  Object {
+    "code": ":apple:",
+    "description": "Fixing something on macOS.",
+    "emoji": "🍎",
+    "entity": "&#x1f34e;",
+    "name": "apple",
+  },
+  Object {
+    "code": ":penguin:",
+    "description": "Fixing something on Linux.",
+    "emoji": "🐧",
+    "entity": "&#x1f427;",
+    "name": "penguin",
+  },
+  Object {
+    "code": ":checkered_flag:",
+    "description": "Fixing something on Windows.",
+    "emoji": "🏁",
+    "entity": "&#x1f3c1;",
+    "name": "checkered-flag",
+  },
+  Object {
+    "code": ":robot:",
+    "description": "Fixing something on Android.",
+    "emoji": "🤖",
+    "entity": "&#129302;",
+    "name": "robot",
+  },
+  Object {
+    "code": ":green_apple:",
+    "description": "Fixing something on iOS.",
+    "emoji": "🍏",
+    "entity": "&#127823;",
+    "name": "green-apple",
+  },
+  Object {
+    "code": ":bookmark:",
+    "description": "Releasing / Version tags.",
+    "emoji": "🔖",
+    "entity": "&#x1f516;",
+    "name": "bookmark",
+  },
+  Object {
+    "code": ":rotating_light:",
+    "description": "Removing linter warnings.",
+    "emoji": "🚨",
+    "entity": "&#x1f6a8;",
+    "name": "rotating-light",
+  },
+  Object {
+    "code": ":construction:",
+    "description": "Work in progress.",
+    "emoji": "🚧",
+    "entity": "&#x1f6a7;",
+    "name": "construction",
+  },
+  Object {
+    "code": ":green_heart:",
+    "description": "Fixing CI Build.",
+    "emoji": "💚",
+    "entity": "&#x1f49a;",
+    "name": "green-heart",
+  },
+  Object {
+    "code": ":arrow_down:",
+    "description": "Downgrading dependencies.",
+    "emoji": "⬇️",
+    "entity": "⬇️",
+    "name": "arrow-down",
+  },
+  Object {
+    "code": ":arrow_up:",
+    "description": "Upgrading dependencies.",
+    "emoji": "⬆️",
+    "entity": "⬆️",
+    "name": "arrow-up",
+  },
+  Object {
+    "code": ":pushpin:",
+    "description": "Pinning dependencies to specific versions.",
+    "emoji": "📌",
+    "entity": "&#x1F4CC;",
+    "name": "pushpin",
+  },
+  Object {
+    "code": ":construction_worker:",
+    "description": "Adding CI build system.",
+    "emoji": "👷",
+    "entity": "&#x1f477;",
+    "name": "construction-worker",
+  },
+  Object {
+    "code": ":chart_with_upwards_trend:",
+    "description": "Adding analytics or tracking code.",
+    "emoji": "📈",
+    "name": "chart-with-upwards-trend",
+  },
+  Object {
+    "code": ":recycle:",
+    "description": "Refactoring code.",
+    "emoji": "♻️",
+    "entity": "&#x2672;",
+    "name": "recycle",
+  },
+  Object {
+    "code": ":whale:",
+    "description": "Work about Docker.",
+    "emoji": "🐳",
+    "entity": "&#x1f433;",
+    "name": "whale",
+  },
+  Object {
+    "code": ":heavy_plus_sign:",
+    "description": "Adding a dependency.",
+    "emoji": "➕",
+    "entity": "&#10133;",
+    "name": "heavy-plus-sign",
+  },
+  Object {
+    "code": ":heavy_minus_sign:",
+    "description": "Removing a dependency.",
+    "emoji": "➖",
+    "entity": "&#10134;",
+    "name": "heavy-minus-sign",
+  },
+  Object {
+    "code": ":wrench:",
+    "description": "Changing configuration files.",
+    "emoji": "🔧",
+    "entity": "&#x1f527;",
+    "name": "wrench",
+  },
+  Object {
+    "code": ":globe_with_meridians:",
+    "description": "Internationalization and localization.",
+    "emoji": "🌐",
+    "entity": "&#127760;",
+    "name": "globe-with-meridians",
+  },
+  Object {
+    "code": ":pencil2:",
+    "description": "Fixing typos.",
+    "emoji": "✏️",
+    "entity": "&#59161;",
+    "name": "pencil",
+  },
+  Object {
+    "code": ":hankey:",
+    "description": "Writing bad code that needs to be improved.",
+    "emoji": "💩",
+    "entity": "&#58613;",
+    "name": "hankey",
+  },
+  Object {
+    "code": ":rewind:",
+    "description": "Reverting changes.",
+    "emoji": "⏪",
+    "entity": "&#9194;",
+    "name": "rewind",
+  },
+  Object {
+    "code": ":twisted_rightwards_arrows:",
+    "description": "Merging branches.",
+    "emoji": "🔀",
+    "entity": "&#128256;",
+    "name": "twisted-rightwards-arrows",
+  },
+  Object {
+    "code": ":package:",
+    "description": "Updating compiled files or packages.",
+    "emoji": "📦",
+    "entity": "&#1F4E6;",
+    "name": "package",
+  },
+  Object {
+    "code": ":alien:",
+    "description": "Updating code due to external API changes.",
+    "emoji": "👽",
+    "entity": "&#1F47D;",
+    "name": "alien",
+  },
+  Object {
+    "code": ":truck:",
+    "description": "Moving or renaming files.",
+    "emoji": "🚚",
+    "entity": "&#1F69A;",
+    "name": "truck",
+  },
+  Object {
+    "code": ":page_facing_up:",
+    "description": "Adding or updating license.",
+    "emoji": "📄",
+    "entity": "&#1F4C4;",
+    "name": "page-facing-up",
+  },
+  Object {
+    "code": ":boom:",
+    "description": "Introducing breaking changes.",
+    "emoji": "💥",
+    "entity": "&#x1f4a5;",
+    "name": "boom",
+  },
+  Object {
+    "code": ":bento:",
+    "description": "Adding or updating assets.",
+    "emoji": "🍱",
+    "entity": "&#1F371",
+    "name": "bento",
+  },
+  Object {
+    "code": ":ok_hand:",
+    "description": "Updating code due to code review changes.",
+    "emoji": "👌",
+    "entity": "&#x1f44c;",
+    "name": "ok-hand",
+  },
+  Object {
+    "code": ":wheelchair:",
+    "description": "Improving accessibility.",
+    "emoji": "♿️",
+    "entity": "&#9855;",
+    "name": "wheelchair",
+  },
+  Object {
+    "code": ":bulb:",
+    "description": "Documenting source code.",
+    "emoji": "💡",
+    "entity": "&#128161;",
+    "name": "bulb",
+  },
+  Object {
+    "code": ":beers:",
+    "description": "Writing code drunkenly.",
+    "emoji": "🍻",
+    "entity": "&#x1f37b;",
+    "name": "beers",
+  },
+  Object {
+    "code": ":speech_balloon:",
+    "description": "Updating text and literals.",
+    "emoji": "💬",
+    "entity": "&#128172;",
+    "name": "speech-balloon",
+  },
+  Object {
+    "code": ":card_file_box:",
+    "description": "Performing database related changes.",
+    "emoji": "🗃",
+    "entity": "&#128451;",
+    "name": "card-file-box",
+  },
+  Object {
+    "code": ":loud_sound:",
+    "description": "Adding logs.",
+    "emoji": "🔊",
+    "entity": "&#128266;",
+    "name": "loud-sound",
+  },
+  Object {
+    "code": ":mute:",
+    "description": "Removing logs.",
+    "emoji": "🔇",
+    "entity": "&#128263;",
+    "name": "mute",
+  },
+  Object {
+    "code": ":busts_in_silhouette:",
+    "description": "Adding contributor(s).",
+    "emoji": "👥",
+    "entity": "&#128101;",
+    "name": "busts-in-silhouette",
+  },
+  Object {
+    "code": ":children_crossing:",
+    "description": "Improving user experience / usability.",
+    "emoji": "🚸",
+    "entity": "&#128696;",
+    "name": "children-crossing",
+  },
+  Object {
+    "code": ":building_construction:",
+    "description": "Making architectural changes.",
+    "emoji": "🏗",
+    "entity": "&#1f3d7;",
+    "name": "building-construction",
+  },
+  Object {
+    "code": ":iphone:",
+    "description": "Working on responsive design.",
+    "emoji": "📱",
+    "entity": "&#128241;",
+    "name": "iphone",
+  },
+  Object {
+    "code": ":clown_face:",
+    "description": "Mocking things.",
+    "emoji": "🤡",
+    "entity": "&#129313;",
+    "name": "clown-face",
+  },
+  Object {
+    "code": ":egg:",
+    "description": "Adding an easter egg.",
+    "emoji": "🥚",
+    "entity": "&#129370;",
+    "name": "egg",
+  },
+  Object {
+    "code": ":see_no_evil:",
+    "description": "Adding or updating a .gitignore file",
+    "emoji": "🙈",
+    "entity": "&#8bdfe7;",
+    "name": "see-no-evil",
+  },
+  Object {
+    "code": ":camera_flash:",
+    "description": "Adding or updating snapshots",
+    "emoji": "📸",
+    "entity": "&#128248;",
+    "name": "camera-flash",
+  },
+  Object {
+    "code": ":alembic:",
+    "description": "Experimenting new things",
+    "emoji": "⚗",
+    "entity": "&#128248;",
+    "name": "alembic",
+  },
+  Object {
+    "code": ":mag:",
+    "description": "Improving SEO",
+    "emoji": "🔍",
+    "entity": "&#128269;",
+    "name": "mag",
+  },
+  Object {
+    "code": ":wheel_of_dharma:",
+    "description": "Work about Kubernetes",
+    "emoji": "☸️",
+    "entity": "&#9784;",
+    "name": "wheel-of-dharma",
+  },
+  Object {
+    "code": ":label:",
+    "description": "Adding or updating types (Flow, TypesScript)",
+    "emoji": "🏷️",
+    "entity": "&#127991;",
+    "name": "label",
+  },
+]
+`;
+
+exports[`gitmoji module commit should match snapshot for search result 1`] = `Promise {}`;
+
+exports[`gitmoji module commit should match snapshot of emoji list 1`] = `Promise {}`;
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
@@ -156,6 +608,13 @@ Array [
     "validate": [Function],
   },
 ]
+`;
+
+exports[`prompts module should prefix emoji with Conventional Commit Prefix 1`] = `
+Object {
+  "emoji": "⚡️",
+  "name": "zap",
+}
 `;
 
 exports[`utils module inputCountTransformer should match for an input with characters count string 1`] = `"[29/48]: Improving performance issues."`;

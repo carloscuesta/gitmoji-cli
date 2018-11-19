@@ -32,7 +32,7 @@ class GitmojiCli {
   }
 
   config () {
-    inquirer.prompt(prompts.config).then(answers => {
+    return inquirer.prompt(prompts.config).then(answers => {
       config.setAutoAdd(answers[constants.AUTO_ADD])
       config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
@@ -128,7 +128,7 @@ class GitmojiCli {
   }
 
   updateCache () {
-    this._fetchRemoteEmojis()
+    return this._fetchRemoteEmojis()
       .then(emojis => this._createCache(this._getCachePath(), emojis))
   }
 

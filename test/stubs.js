@@ -22,6 +22,14 @@ const promptsJira = {
   reference: 'ABC-123'
 }
 
+const promptsConfig = {
+  autoAdd: true,
+  emojiFormat: { name: '😄', value: 'emoji' },
+  issueFormat: 'github',
+  signedCommit: false,
+  conventionalCommits: true
+}
+
 const gitmojis = [
   { emoji: '⚡️', code: ':zap:', description: '', name: 'zap'}
 ]

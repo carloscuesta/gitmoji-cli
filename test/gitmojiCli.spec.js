@@ -40,6 +40,14 @@ describe('prompts module', () => {
       expect(emojis[0].value).toMatchSnapshot()
     })
   })
+
+  it('should prefix emoji with Conventional Commit Prefix', () => {
+    config.setConventionalCommits(true)
+    const question = prompts.gitmoji(stubs.gitmojis, 'emoji', 'github')[0]
+    return question.source(null, 'zap').then((emojis) => {
+      expect(emojis[0].value).toMatchSnapshot()
+    })
+  })
 })
 
 describe('config module', () => {
@@ -64,7 +72,7 @@ describe('config module', () => {
 
   it('should match for setConventionalCommits and getConventionalCommits', () => {
     config.setConventionalCommits(true)
-    expect(config.getConventionalCommits()).toBe(true)
+    expect(config.getConventionalCommits()).toMatchSnapshot()
   })
 
   it('should match for setSignedCommit and getSignedCommit', () => {
@@ -90,7 +98,83 @@ describe('gitmoji module', () => {
       config.setSignedCommit(false)
       expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
+
+    it('should match for the commit snapshot with the given prompts', () => {
+      config.setConventionalCommits(true)
+      expect(gitmojiCli._commit(stubs.prompts)).toMatchSnapshot()
+    })
+
+    it('should match snapshot of emoji list', () => {
+      console.log = () => {}
+      expect(gitmojiCli.list()).toMatchSnapshot()
+    })
+
+    it('should match snapshot for search result', () => {
+      expect(gitmojiCli.search('fix')).toMatchSnapshot()
+    })
+
+    it('should match snapshot for fetched emojis', done => {
+      let error
+      gitmojiCli._fetchEmojis()
+        .catch(err => {
+          error = err
+          return err
+        })
+        .then(result => {
+          expect(error).toBe(undefined)
+          expect(result).toMatchSnapshot()
+          done()
+        })
+    })
   })
+
+describe('hook', () => {
+  it('should add and remove hook without errors', () => {
+    let error
+    try {
+      gitmojiCli.init()
+      gitmojiCli.remove()
+    }
+    catch (err) {
+      error = err
+    }
+    expect(error).toBe(undefined)
+  })
+})
+
+
+  describe('cache module', () => {
+    const cacheAvailable = gitmojiCli._cacheAvailable()
+    let cachePath, fetchedEmojis
+
+    it('should match snapshot for _cacheAvailable', () => {
+      expect(cacheAvailable).toMatchSnapshot()
+    })
+
+    it('should match snapshot for cache path', () => {
+      if (cacheAvailable) {
+        cachePath = gitmojiCli._getCachePath()
+      }
+      expect(cachePath).toMatchSnapshot()
+    })
+
+    it('should update cache', () => {
+      (gitmojiCli.updateCache())
+        .catch(err => err)
+        .then(err => {
+          expect(err).toBe(undefined)
+          done(err)
+        })
+    })
+
+    it('should match snapshot for cached emojis', () => {
+      if (cachePath) {
+        fetchedEmojis = gitmojiCli._fetchCachedEmojis()
+      }
+      expect(fetchedEmojis).toMatchSnapshot()
+    })
+  })
+
 
   describe('_isAGitRepo', () => {
     it('should return true if a git repo is found', () => {
