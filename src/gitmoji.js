@@ -4,7 +4,6 @@ const fs = require('fs')
 const inquirer = require('inquirer')
 const parentDirs = require('parent-dirs')
 const path = require('path')
-const pathExists = require('path-exists')
 
 const config = require('./config')
 const prompts = require('./prompts')
@@ -12,10 +11,6 @@ const constants = require('./constants')
 
 const extendGitmoji = require('@stackr23/gitmoji-conventional-commits').extendGitmoji
 const gitMojiToCC = require('@stackr23/gitmoji-conventional-commits').default.gitMojiToCC
-
-inquirer.registerPrompt(
-  'autocomplete', require('inquirer-autocomplete-prompt')
-)
 
 class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
@@ -204,7 +199,7 @@ class GitmojiCli {
 
   _isAGitRepo () {
     return parentDirs(process.cwd())
-      .some((directory) => pathExists.sync(path.resolve(directory, '.git')))
+      .some((directory) => fs.existsSync(path.resolve(directory, '.git')))
   }
 
   _getCachePath () {
@@ -213,14 +208,14 @@ class GitmojiCli {
   }
 
   _cacheAvailable (cachePath) {
-    return pathExists.sync(cachePath)
+    return fs.existsSync(cachePath)
   }
 
   _createCache (cachePath, emojis) {
     const cacheDir = path.dirname(cachePath)
 
     if (emojis !== undefined) {
-      if (!pathExists.sync(cacheDir)) {
+      if (!fs.existsSync(cacheDir)) {
         fs.mkdirSync(cacheDir)
       }
       fs.writeFileSync(cachePath, JSON.stringify(emojis))
