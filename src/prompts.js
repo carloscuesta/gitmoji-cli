@@ -53,8 +53,8 @@ const gitmoji = (gitmojis) => {
       name: 'type',
       message: 'Choose a commit type message:',
       type: 'autocomplete',
-      source: (answersSoFor, input) => {
-        return Promise.resolve(['feature', 'fix', 'refacto', 'dependencies'])
+      source: () => {
+        return Promise.resolve(['feature', 'add', 'update', 'fix', 'refacto', 'dependencies'])
       }
     },
     {
