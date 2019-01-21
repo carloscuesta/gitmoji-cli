@@ -54,7 +54,7 @@ const gitmoji = (gitmojis) => {
       message: 'Choose a commit type message:',
       type: 'autocomplete',
       source: () => {
-        return Promise.resolve(['feature', 'add', 'update', 'fix', 'refacto', 'dependencies'])
+        return Promise.resolve(constants.MESSAGE_TYPE)
       }
     },
     {

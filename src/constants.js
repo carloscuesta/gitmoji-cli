@@ -11,6 +11,7 @@ const ISSUE_FORMAT = 'issueFormat'
 const JIRA = 'jira'
 const SIGNED_COMMIT = 'signedCommit'
 const TITLE_MAX_LENGTH_COUNT = 48
+const MESSAGE_TYPE = ['feature', 'add', 'update', 'chore', 'fix', 'refactor', 'dependencies']
 
 module.exports = {
   AUTO_ADD,
@@ -24,5 +25,6 @@ module.exports = {
   ISSUE_FORMAT,
   JIRA,
   SIGNED_COMMIT,
-  TITLE_MAX_LENGTH_COUNT
+  TITLE_MAX_LENGTH_COUNT,
+  MESSAGE_TYPE
 }

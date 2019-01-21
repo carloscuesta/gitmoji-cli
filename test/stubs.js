@@ -67,6 +67,7 @@ const optionsMock = {
 }
 
 const titleMaxLength = 48
+const messageType = ['feature', 'add', 'update', 'chore', 'fix', 'refactor', 'dependencies']
 
 module.exports = {
   cliMock,
@@ -77,5 +78,6 @@ module.exports = {
   optionsMock,
   prompts,
   promptsJira,
-  titleMaxLength
+  titleMaxLength,
+  messageType
 }

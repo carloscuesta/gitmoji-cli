@@ -40,6 +40,12 @@ describe('prompts module', () => {
       expect(emojis[0].value).toMatchSnapshot()
     })
   })
+  it('should mathch for the type prompts', () => {
+    const question = prompts.gitmoji(stubs.gitmojis, 'emoji', 'github')[1]
+    return question.source().then((type) => {
+      expect(type[0]).toMatchSnapshot()
+    })
+  })
 })
 
 describe('config module', () => {

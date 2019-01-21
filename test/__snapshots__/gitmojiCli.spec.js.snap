@@ -37,6 +37,15 @@ gitmoji --hook $1
   "HOOK_PERMISSIONS": 509,
   "ISSUE_FORMAT": "issueFormat",
   "JIRA": "jira",
+  "MESSAGE_TYPE": Array [
+    "feature",
+    "add",
+    "update",
+    "chore",
+    "fix",
+    "refactor",
+    "dependencies",
+  ],
   "SIGNED_COMMIT": "signedCommit",
   "TITLE_MAX_LENGTH_COUNT": 48,
 }
@@ -140,5 +149,7 @@ Array [
   },
 ]
 `;
+
+exports[`prompts module should mathch for the type prompts 1`] = `"feature"`;
 
 exports[`utils module inputCountTransformer should match for an input with characters count string 1`] = `"[29/48]: Improving performance issues."`;
