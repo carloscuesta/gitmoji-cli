@@ -50,6 +50,14 @@ const gitmoji = (gitmojis) => {
       }
     },
     {
+      name: 'type',
+      message: 'Choose a commit type message:',
+      type: 'autocomplete',
+      source: (answersSoFor, input) => {
+        return Promise.resolve(['feature', 'fix', 'refacto', 'dependencies'])
+      }
+    },
+    {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,

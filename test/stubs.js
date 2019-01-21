@@ -10,6 +10,7 @@ const gitmojiApiClient = axios.create({
 
 const prompts = {
   gitmoji: ':zap:',
+  type: 'feature',
   title: 'Improving performance issues.',
   message: 'Refactored code.',
   reference: '5'
@@ -17,6 +18,7 @@ const prompts = {
 
 const promptsJira = {
   gitmoji: ':zap:',
+  type: 'feature',
   title: 'Improving performance issues.',
   message: 'Refactored code.',
   reference: 'ABC-123'
