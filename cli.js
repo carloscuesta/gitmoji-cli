@@ -24,6 +24,7 @@ const cli = meow(`
     $ gitmoji bug linter -s
 `, {
   flags: {
+    ammend: { type: 'boolean', alias: 'a' },
     commit: { type: 'boolean', alias: 'c' },
     config: { type: 'boolean', alias: 'g' },
     help: { type: 'boolean', alias: 'h' },
