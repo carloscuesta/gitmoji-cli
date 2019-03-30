@@ -11,7 +11,7 @@ const cli = meow(`
   Usage
     $ gitmoji
   Options
-    --amend, -a     Add a gitmmoji to tha last commit
+    --amend, -a     Add a gitmmoji to the last commit
     --commit, -c    Interactively commit using the prompts
     --config, -g    Setup gitmoji-cli preferences.
     --init, -i      Initialize gitmoji as a commit hook
