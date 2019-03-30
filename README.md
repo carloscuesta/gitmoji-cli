@@ -34,6 +34,7 @@ A gitmoji interactive client for using gitmojis on commit messages.
   Usage
     $ gitmoji
   Options
+    --amend, -a     Add a gitmmoji to the last commit
     --init, -i      Initialize gitmoji as a commit hook
     --remove, -r    Remove a previously initialized commit hook
     --config, -g    Setup gitmoji-cli preferences.
@@ -67,6 +68,17 @@ $ git commit
 ```
 
 ![gitmoji commit](https://cloud.githubusercontent.com/assets/7629661/20454513/5db2750a-ae43-11e6-99d7-4757108fe640.png)
+
+### Amend
+
+You can amend an icon to the last commit message using the `amend` option. This wil show a prompt to select an emoji and will prepend it to the last commit message.
+
+```bash
+$ git commit -m 'Add awesome new feature'
+$ gitmoji -a
+? Choose a gitmoji: ✨  - Introducing new features.
+[master a1b2c3d] :sparkles: Add awesome new feature
+```
 
 ### Search
 
