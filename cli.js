@@ -11,6 +11,7 @@ const cli = meow(`
   Usage
     $ gitmoji
   Options
+    --amend, -a     Add a gitmmoji to tha last commit
     --commit, -c    Interactively commit using the prompts
     --config, -g    Setup gitmoji-cli preferences.
     --init, -i      Initialize gitmoji as a commit hook
@@ -24,7 +25,7 @@ const cli = meow(`
     $ gitmoji bug linter -s
 `, {
   flags: {
-    ammend: { type: 'boolean', alias: 'a' },
+    amend: { type: 'boolean', alias: 'a' },
     commit: { type: 'boolean', alias: 'c' },
     config: { type: 'boolean', alias: 'g' },
     help: { type: 'boolean', alias: 'h' },
@@ -39,6 +40,7 @@ const cli = meow(`
 
 const gitmojiCli = new GitmojiCli(utils.gitmojiApiClient)
 const options = {
+  amend: () => gitmojiCli.amend(),
   commit: () => gitmojiCli.ask('client'),
   config: () => gitmojiCli.config(),
   hook: () => gitmojiCli.ask('hook'),

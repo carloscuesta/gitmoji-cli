@@ -92,6 +92,21 @@ class GitmojiCli {
       .catch((err) => this._errorMessage(err.code))
   }
 
+  amend() {
+    if (!this._isAGitRepo()) {
+      return this._errorMessage('This directory is not a git repository.')
+    }
+
+    return this._fetchEmojis()
+      .then((gitmojis) => [prompts.gitmoji(gitmojis)[0]])
+      .then((questions) => {
+        inquirer.prompt(questions).then((answers) => {
+          return this._amend(answers.gitmoji);
+        })
+      })
+      .catch(err => this._errorMessage(err.code))
+  }
+
   ask (mode) {
     if (!this._isAGitRepo()) {
       return this._errorMessage('This directory is not a git repository.')
@@ -128,6 +143,18 @@ class GitmojiCli {
       return this._errorMessage(error)
     }
     process.exit(0)
+  }
+
+  _amend (icon) {
+      const commit = `git commit --amend -m"${icon} $(git log --format=%B -n1)"`;
+
+      if (!this._isAGitRepo()) {
+        return this._errorMessage('Not a git repository')
+      }
+
+      execa.shell(commit)
+        .then((res) => console.log(chalk.blue(res.stdout)))
+        .catch((err) => this._errorMessage(err.stderr ? err.stderr : err.stdout))
   }
 
   _commit (answers) {
