@@ -37,7 +37,7 @@
     "inquirer-autocomplete-prompt": "^1.0.1",
     "meow": "^5.0.0",
     "parent-dirs": "^1.0.0",
-    "path-exists": "^3.0.0",
+    "path-exists": "^4.0.0",
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
