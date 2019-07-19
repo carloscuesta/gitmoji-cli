@@ -32,6 +32,10 @@ Array [
     "name": "message",
     "validate": [Function],
   },
+  Object {
+    "message": "Extra commit args (e.g. --fixup HEAD):",
+    "name": "extraArgs",
+  },
 ]
 `;
 
@@ -53,6 +57,10 @@ Array [
     "message": "Enter the commit message:",
     "name": "message",
     "validate": [Function],
+  },
+  Object {
+    "message": "Extra commit args (e.g. --fixup HEAD):",
+    "name": "extraArgs",
   },
 ]
 `;
@@ -78,6 +86,10 @@ Array [
         "name": "message",
         "validate": [Function],
       },
+      Object {
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
+      },
     ],
   ],
   Array [
@@ -98,6 +110,10 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
+      },
+      Object {
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
       },
     ],
   ],
@@ -125,6 +141,10 @@ Array [
         "name": "message",
         "validate": [Function],
       },
+      Object {
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
+      },
     ],
   ],
 ]
@@ -151,26 +171,9 @@ Array [
         "name": "message",
         "validate": [Function],
       },
-    ],
-  ],
-  Array [
-    Array [
       Object {
-        "message": "Choose a gitmoji:",
-        "name": "gitmoji",
-        "source": [Function],
-        "type": "autocomplete",
-      },
-      Object {
-        "message": "Enter the commit title",
-        "name": "title",
-        "transformer": [Function],
-        "validate": [Function],
-      },
-      Object {
-        "message": "Enter the commit message:",
-        "name": "message",
-        "validate": [Function],
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
       },
     ],
   ],
@@ -192,6 +195,35 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
+      },
+      Object {
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      Object {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      Object {
+        "message": "Enter the commit message:",
+        "name": "message",
+        "validate": [Function],
+      },
+      Object {
+        "message": "Extra commit args (e.g. --fixup HEAD):",
+        "name": "extraArgs",
       },
     ],
   ],

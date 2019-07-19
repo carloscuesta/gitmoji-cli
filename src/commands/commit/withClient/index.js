@@ -12,6 +12,7 @@ const withClient = async (answers: Answers) => {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const isSigned = configurationVault.getSignedCommit() ? ['-S'] : []
+    const extraArgs = (answers.extraArgs && answers.extraArgs.split(' ')) || []
 
     if (await isHookCreated()) {
       return console.log(
@@ -26,14 +27,12 @@ const withClient = async (answers: Answers) => {
 
     if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
 
-    const { stdout } = await execa('git', [
-      'commit',
-      ...isSigned,
-      '-m',
-      title,
-      '-m',
-      answers.message
-    ])
+    const { stdout } = await execa(
+      'git',
+      ['commit', ...isSigned, '-m', title, '-m', answers.message].concat(
+        extraArgs
+      )
+    )
 
     console.log(stdout)
   } catch (error) {

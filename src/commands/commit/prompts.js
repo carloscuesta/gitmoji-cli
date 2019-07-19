@@ -19,7 +19,8 @@ export type Answers = {
   gitmoji: string,
   scope?: string,
   title: string,
-  message: string
+  message: string,
+  extraArgs: string
 }
 
 export default (gitmojis: Array<Gitmoji>): Array<Object> => [
@@ -62,5 +63,9 @@ export default (gitmojis: Array<Gitmoji>): Array<Object> => [
     name: 'message',
     message: 'Enter the commit message:',
     validate: guard.message
+  },
+  {
+    name: 'extraArgs',
+    message: 'Extra commit args (e.g. --fixup HEAD):'
   }
 ]
