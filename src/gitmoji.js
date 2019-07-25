@@ -18,7 +18,7 @@ class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
-    if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
+    if (config.getAutoAdd() === undefined) config.setAutoAdd(false)
     if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
