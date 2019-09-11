@@ -4,19 +4,15 @@ exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
-exports[`config module should match for setIssueFormat and getIssueFormat 1`] = `"github"`;
-
 exports[`config module should match for setSignedCommit and getSignedCommit 1`] = `false`;
 
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
-  "getIssueFormat": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
-  "setIssueFormat": [Function],
   "setSignedCommit": [Function],
 }
 `;
@@ -26,7 +22,6 @@ Object {
   "AUTO_ADD": "autoAdd",
   "CODE": "code",
   "EMOJI_FORMAT": "emojiFormat",
-  "GITHUB": "github",
   "HOOK_FILE_CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
@@ -35,16 +30,14 @@ gitmoji --hook $1
   "HOOK_MODE": "hook",
   "HOOK_PATH": "/hooks/prepare-commit-msg",
   "HOOK_PERMISSIONS": 509,
-  "ISSUE_FORMAT": "issueFormat",
-  "JIRA": "jira",
   "SIGNED_COMMIT": "signedCommit",
   "TITLE_MAX_LENGTH_COUNT": 48,
 }
 `;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit -S -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. #5\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 1`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. Fixes #5\\""`;
 
-exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. ABC-123\\""`;
+exports[`gitmoji module commit should match for the commit snapshot with the given prompts 2`] = `"git commit  -m \\":zap: Improving performance issues.\\" -m \\"Refactored code. Fixes ABC-123\\""`;
 
 exports[`gitmoji module should match for gitmoji class 1`] = `
 GitmojiCli {
@@ -54,12 +47,6 @@ GitmojiCli {
 `;
 
 exports[`guard module message should return error message when contains invalid characters 1`] = `"[31mEnter a valid commit message[39m"`;
-
-exports[`guard module reference default should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
-
-exports[`guard module reference github should return error message when contains invalid characters 1`] = `"[31mEnter the number of the reference without the #. Eg: 12[39m"`;
-
-exports[`guard module reference jira should return error message when contains invalid characters 1`] = `"[31mEnter the JIRA reference key, such as ABC-123[39m"`;
 
 exports[`guard module title should return an error message when its empty 1`] = `"[31mEnter a valid commit title[39m"`;
 
@@ -75,15 +62,6 @@ Array [
     "message": "Enable automatic \\"git add .\\"",
     "name": "autoAdd",
     "type": "confirm",
-  },
-  Object {
-    "choices": Array [
-      "github",
-      "jira",
-    ],
-    "message": "Choose Issue Format",
-    "name": "issueFormat",
-    "type": "list",
   },
   Object {
     "choices": Array [
@@ -125,11 +103,6 @@ Array [
   Object {
     "message": "Enter the commit message:",
     "name": "message",
-    "validate": [Function],
-  },
-  Object {
-    "message": "Issue / PR reference:",
-    "name": "reference",
     "validate": [Function],
   },
 ]
