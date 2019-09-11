@@ -10,12 +10,6 @@ const config = [
     type: 'confirm'
   },
   {
-    name: constants.ISSUE_FORMAT,
-    message: 'Choose Issue Format',
-    type: 'list',
-    choices: ['github', 'jira']
-  },
-  {
     name: constants.EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
@@ -67,11 +61,6 @@ const gitmoji = (gitmojis) => {
       name: 'message',
       message: 'Enter the commit message:',
       validate: guard.message
-    },
-    {
-      name: 'reference',
-      message: 'Issue / PR reference:',
-      validate: (value) => guard.reference(value, configVault.getIssueFormat())
     }
   ]
 }

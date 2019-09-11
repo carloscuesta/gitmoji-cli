@@ -18,16 +18,14 @@ class GitmojiCli {
   constructor (gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
-    if (config.getAutoAdd() === undefined) config.setAutoAdd(true)
-    if (!config.getIssueFormat()) config.setIssueFormat(constants.GITHUB)
+    if (config.getAutoAdd() === undefined) config.setAutoAdd(false)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
-    if (config.getSignedCommit() === undefined) config.setSignedCommit(true)
+    if (config.getSignedCommit() === undefined) config.setSignedCommit(false)
   }
 
   config () {
     inquirer.prompt(prompts.config).then(answers => {
       config.setAutoAdd(answers[constants.AUTO_ADD])
-      config.setIssueFormat(answers[constants.ISSUE_FORMAT])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
     })
@@ -132,14 +130,8 @@ class GitmojiCli {
 
   _commit (answers) {
     const title = `${answers.gitmoji} ${answers.scope ? `(${answers.scope}): ` : ''}${answers.title}`
-    const prefixReference = config.getIssueFormat() === constants.GITHUB
-      ? '#'
-      : ''
-    const reference = (answers.reference)
-      ? `${prefixReference}${answers.reference}`
-      : ''
     const signed = config.getSignedCommit() ? '-S' : ''
-    const body = `${answers.message} ${reference}`
+    const body = `${answers.message}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
 
     if (!this._isAGitRepo()) {
