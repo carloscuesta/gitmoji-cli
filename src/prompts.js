@@ -44,6 +44,11 @@ const gitmoji = (gitmojis) => {
       }
     },
     {
+      name: 'scope',
+      message: 'Enter the scope of current changes',
+      validate: guard.scope
+    },
+    {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,

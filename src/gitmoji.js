@@ -116,7 +116,7 @@ class GitmojiCli {
   }
 
   _hook (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    const title = `${answers.gitmoji} ${answers.scope ? `(${answers.scope}): ` : ''}${answers.title}`
     const reference = (answers.reference) ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
 
@@ -129,7 +129,7 @@ class GitmojiCli {
   }
 
   _commit (answers) {
-    const title = `${answers.gitmoji} ${answers.title}`
+    const title = `${answers.gitmoji} ${answers.scope ? `(${answers.scope}): ` : ''}${answers.title}`
     const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`

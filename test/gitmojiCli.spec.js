@@ -76,6 +76,11 @@ describe('gitmoji module', () => {
     it('should match for the commit snapshot with the given prompts', () => {
       expect(gitmojiCli._commit(stubs.promptsJira)).toMatchSnapshot()
     })
+
+    it('should match for the commit snapshot with the given prompts', () => {
+      config.setSignedCommit(false)
+      expect(gitmojiCli._commit(stubs.promptsScope)).toMatchSnapshot()
+    })
   })
 
   describe('_isAGitRepo', () => {
