@@ -22,6 +22,14 @@ const promptsJira = {
   reference: 'ABC-123'
 }
 
+const promptsScope = {
+  gitmoji: ':zap:',
+  scope: 'Scope',
+  title: 'Improving performance issues.',
+  message: 'Refactored code.',
+  reference: '5'
+}
+
 const gitmojis = [
   { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
 ]
@@ -75,5 +83,6 @@ module.exports = {
   optionsMock,
   prompts,
   promptsJira,
+  promptsScope,
   titleMaxLength
 }
