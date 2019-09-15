@@ -59,6 +59,7 @@ const gitmoji = (gitmojis) => {
     },
     {
       name: 'message',
+      type: 'editor',
       message: 'Enter the commit message:',
       validate: guard.message
     }
