@@ -186,6 +186,8 @@ class GitmojiCli {
   }
 
   _fetchRemoteEmojis () {
+    console.log(`👋 Hey! We're fetching the emoji list...`)
+
     return this._gitmojiApiClient.request({
       method: 'GET',
       url: '/src/data/gitmojis.json'
@@ -194,7 +196,7 @@ class GitmojiCli {
       return res.data.gitmojis
     })
       .catch((error) =>
-        this._errorMessage(`Network connection not found - ${error.code}`)
+        this._errorMessage(`Network connection not found - ${error.message}`)
       )
   }
 
