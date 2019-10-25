@@ -21,6 +21,11 @@ const config = [
     name: constants.SIGNED_COMMIT,
     message: 'Enable signed commits',
     type: 'confirm'
+  },
+  {
+    name: constants.SCOPE_PROMPT,
+    message: 'Enable scope prompt',
+    type: 'confirm'
   }
 ]
 
@@ -43,11 +48,11 @@ const gitmoji = (gitmojis) => {
         )
       }
     },
-    {
+    ...(configVault.getScopePrompt() !== true ? [] : [{
       name: 'scope',
       message: 'Enter the scope of current changes',
       validate: guard.scope
-    },
+    }]),
     {
       name: 'title',
       message: 'Enter the commit title',

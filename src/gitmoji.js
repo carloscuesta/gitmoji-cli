@@ -21,6 +21,7 @@ class GitmojiCli {
     if (config.getAutoAdd() === undefined) config.setAutoAdd(false)
     if (!config.getEmojiFormat()) config.setEmojiFormat(constants.CODE)
     if (config.getSignedCommit() === undefined) config.setSignedCommit(false)
+    if (config.getScopePrompt() === undefined) config.setScopePrompt(false)
   }
 
   config () {
@@ -28,6 +29,7 @@ class GitmojiCli {
       config.setAutoAdd(answers[constants.AUTO_ADD])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
+      config.setScopePrompt(answers[constants.SCOPE_PROMPT])
     })
   }
 
