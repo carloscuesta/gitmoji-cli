@@ -61,6 +61,11 @@ describe('config module', () => {
     config.setSignedCommit(false)
     expect(config.getSignedCommit()).toMatchSnapshot()
   })
+
+  it('should match for setScopePrompt and getScopePrompt', () => {
+    config.setScopePrompt(false)
+    expect(config.getScopePrompt()).toMatchSnapshot()
+  })
 })
 
 describe('gitmoji module', () => {

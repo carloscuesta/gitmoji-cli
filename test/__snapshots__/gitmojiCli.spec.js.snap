@@ -4,15 +4,19 @@ exports[`config module should match for setAutoAdd and getAutoAdd 1`] = `false`;
 
 exports[`config module should match for setEmojiFormat and getEmojiFormat 1`] = `"code"`;
 
+exports[`config module should match for setScopePrompt and getScopePrompt 1`] = `false`;
+
 exports[`config module should match for setSignedCommit and getSignedCommit 1`] = `false`;
 
 exports[`config module should match the exported methods 1`] = `
 Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
+  "getScopePrompt": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
+  "setScopePrompt": [Function],
   "setSignedCommit": [Function],
 }
 `;
@@ -30,6 +34,7 @@ gitmoji --hook $1
   "HOOK_MODE": "hook",
   "HOOK_PATH": "/hooks/prepare-commit-msg",
   "HOOK_PERMISSIONS": 509,
+  "SCOPE_PROMPT": "scopePrompt",
   "SIGNED_COMMIT": "signedCommit",
   "TITLE_MAX_LENGTH_COUNT": 48,
 }
@@ -85,6 +90,11 @@ Array [
     "name": "signedCommit",
     "type": "confirm",
   },
+  Object {
+    "message": "Enable scope prompt",
+    "name": "scopePrompt",
+    "type": "confirm",
+  },
 ]
 `;
 
@@ -95,11 +105,6 @@ Array [
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
-  },
-  Object {
-    "message": "Enter the scope of current changes",
-    "name": "scope",
-    "validate": [Function],
   },
   Object {
     "message": "Enter the commit title",

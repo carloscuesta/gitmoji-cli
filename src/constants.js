@@ -8,6 +8,7 @@ const HOOK_PATH = '/hooks/prepare-commit-msg'
 const HOOK_PERMISSIONS = 0o775
 const SIGNED_COMMIT = 'signedCommit'
 const TITLE_MAX_LENGTH_COUNT = 48
+const SCOPE_PROMPT = 'scopePrompt'
 
 module.exports = {
   AUTO_ADD,
@@ -18,5 +19,6 @@ module.exports = {
   HOOK_PATH,
   HOOK_PERMISSIONS,
   SIGNED_COMMIT,
-  TITLE_MAX_LENGTH_COUNT
+  TITLE_MAX_LENGTH_COUNT,
+  SCOPE_PROMPT
 }
