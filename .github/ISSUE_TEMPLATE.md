@@ -2,7 +2,7 @@ Hello @carloscuesta!
 
 <!-- Describe your issue here -->
 
-Issue: 
+Issue:
 <!-- What were you doing when the error/issue/bug appeared? Describe the steps to reproduce yor issue -->
 
 **OS**:
@@ -11,6 +11,6 @@ Issue:
 
 <!-- If there's an error message copy the error here -->
 
-**Error Message**: 
+**Error Message**:
 
 <!-- Screenshots -->
