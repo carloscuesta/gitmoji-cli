@@ -47,7 +47,7 @@ const options = {
   config: () => gitmojiCli.config(),
   hook: () => gitmojiCli.ask('hook'),
   init: () => gitmojiCli.init(),
-  list: () => gitmojiCli.list(),
+  list: () => commands.list(),
   remove: () => gitmojiCli.remove(),
   search: () => cli.input.map((input) => commands.search(input)),
   update: () => gitmojiCli.updateCache()
