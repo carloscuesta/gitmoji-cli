@@ -5,6 +5,7 @@ const updateNotifier = require('update-notifier')
 const pkg = require('../package.json')
 const GitmojiCli = require('./gitmoji.js')
 const utils = require('./utils.js')
+const commands = require('./commands').default
 
 updateNotifier({ pkg }).notify()
 
@@ -48,7 +49,7 @@ const options = {
   init: () => gitmojiCli.init(),
   list: () => gitmojiCli.list(),
   remove: () => gitmojiCli.remove(),
-  search: () => cli.input.map((element) => gitmojiCli.search(element)),
+  search: () => cli.input.map((input) => commands.search(input)),
   update: () => gitmojiCli.updateCache()
 }
 
