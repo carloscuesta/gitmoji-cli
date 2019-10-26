@@ -40,7 +40,7 @@
     "chalk": "^2.4.1",
     "conf": "^2.0.0",
     "execa": "^1.0.0",
-    "inquirer": "^6.0.0",
+    "inquirer": "^7.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "meow": "^5.0.0",
     "parent-dirs": "^1.0.0",
