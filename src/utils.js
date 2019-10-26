@@ -8,11 +8,11 @@ const gitmojiApiClient = axios.create({
 })
 
 /**
-* @param {Object} cli - The cli object that returns meow()
-* @param {Object} cli.flags - The cli flags matched against the input
-* @param {Object} options - The mapping for a command to the gitmoji-cli method
-* @return {Function}
-**/
+ * @param {Object} cli - The cli object that returns meow()
+ * @param {Object} cli.flags - The cli flags matched against the input
+ * @param {Object} options - The mapping for a command to the gitmoji-cli method
+ * @return {Function}
+ **/
 const findGitmojiCommand = (cli, options) => {
   const flags = cli.flags
   const matchedFlagsWithInput = Object.keys(flags)

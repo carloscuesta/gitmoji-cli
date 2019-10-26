@@ -6,11 +6,18 @@
     "node": ">=10"
   },
   "bin": {
-    "gitmoji": "cli.js"
+    "gitmoji": "lib/cli.js"
   },
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "lint": "standard \"src/**/*.js\"",
-    "test": "npm run lint && jest && codecov"
+    "build": "babel src -d lib",
+    "clean": "rm -rf lib",
+    "flow": "flow",
+    "lint": "prettier --check src/**/*.js",
+    "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run build",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -41,12 +48,49 @@
     "update-notifier": "^2.3.0"
   },
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "jest": "^24.0.0",
-    "standard": "^12.0.1"
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-flow": "^7.0.0",
+    "codecov": "^3.6.1",
+    "flow-bin": "^0.110.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2"
+  },
+  "babel": {
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": { "node": "10" }
+      }],
+      "@babel/preset-flow"
+    ]
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js}"
+    ],
+    "testMatch": [
+      "**/*.(spec).(js)"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "prettier --write src/**/*.js",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

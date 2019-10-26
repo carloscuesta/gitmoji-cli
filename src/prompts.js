@@ -14,7 +14,8 @@ const config = [
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
-      { name: ':smile:', value: 'code' }, { name: '😄', value: 'emoji' }
+      { name: ':smile:', value: 'code' },
+      { name: '😄', value: 'emoji' }
     ]
   },
   {
@@ -37,10 +38,13 @@ const gitmoji = (gitmojis) => {
       type: 'autocomplete',
       source: (answersSoFor, input) => {
         return Promise.resolve(
-          gitmojis.filter((gitmoji) => {
-            const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
-            return (!input || emoji.indexOf(input.toLowerCase()) !== -1)
-          })
+          gitmojis
+            .filter((gitmoji) => {
+              const emoji = gitmoji.name
+                .concat(gitmoji.description)
+                .toLowerCase()
+              return !input || emoji.indexOf(input.toLowerCase()) !== -1
+            })
             .map((gitmoji) => ({
               name: `${gitmoji.emoji}  - ${gitmoji.description}`,
               value: gitmoji[configVault.getEmojiFormat() || constants.CODE]
@@ -48,19 +52,21 @@ const gitmoji = (gitmojis) => {
         )
       }
     },
-    ...(configVault.getScopePrompt() !== true ? [] : [{
-      name: 'scope',
-      message: 'Enter the scope of current changes',
-      validate: guard.scope
-    }]),
+    ...(configVault.getScopePrompt() !== true
+      ? []
+      : [
+          {
+            name: 'scope',
+            message: 'Enter the scope of current changes',
+            validate: guard.scope
+          }
+        ]),
     {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
-      transformer: (input) => utils.inputCountTransformer(
-        input,
-        constants.TITLE_MAX_LENGTH_COUNT
-      )
+      transformer: (input) =>
+        utils.inputCountTransformer(input, constants.TITLE_MAX_LENGTH_COUNT)
     },
     {
       name: 'message',

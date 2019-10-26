@@ -10,12 +10,10 @@ const config = require('./config')
 const prompts = require('./prompts')
 const constants = require('./constants')
 
-inquirer.registerPrompt(
-  'autocomplete', require('inquirer-autocomplete-prompt')
-)
+inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
 class GitmojiCli {
-  constructor (gitmojiApiClient, gitmojis) {
+  constructor(gitmojiApiClient, gitmojis) {
     this._gitmojiApiClient = gitmojiApiClient
     this._gitmojis = gitmojis
     if (config.getAutoAdd() === undefined) config.setAutoAdd(false)
@@ -24,8 +22,8 @@ class GitmojiCli {
     if (config.getScopePrompt() === undefined) config.setScopePrompt(false)
   }
 
-  config () {
-    inquirer.prompt(prompts.config).then(answers => {
+  config() {
+    inquirer.prompt(prompts.config).then((answers) => {
       config.setAutoAdd(answers[constants.AUTO_ADD])
       config.setEmojiFormat(answers[constants.EMOJI_FORMAT])
       config.setSignedCommit(answers[constants.SIGNED_COMMIT])
@@ -33,13 +31,13 @@ class GitmojiCli {
     })
   }
 
-  init () {
+  init() {
     if (!this._isAGitRepo()) {
       return this._errorMessage('Not a git repository - @init')
     }
 
     execa('git', ['rev-parse', '--absolute-git-dir'])
-      .then(result => {
+      .then((result) => {
         fs.writeFile(
           result.stdout.trim() + constants.HOOK_PATH,
           constants.HOOK_FILE_CONTENTS,
@@ -52,18 +50,18 @@ class GitmojiCli {
           }
         )
       })
-      .catch(err => {
+      .catch((err) => {
         return this._errorMessage(err)
       })
   }
 
-  remove () {
+  remove() {
     if (!this._isAGitRepo()) {
-      return this._errorMessage('Couldn\'t remove hook, not a git repository')
+      return this._errorMessage("Couldn't remove hook, not a git repository")
     }
 
     execa('git', ['rev-parse', '--absolute-git-dir'])
-      .then(result => {
+      .then((result) => {
         fs.unlink(result.stdout.trim() + constants.HOOK_PATH, (err) => {
           if (err) return this._errorMessage(err)
           return console.log(
@@ -71,28 +69,32 @@ class GitmojiCli {
           )
         })
       })
-      .catch(err => {
+      .catch((err) => {
         return this._errorMessage(err)
       })
   }
 
-  list () {
+  list() {
     return this._fetchEmojis()
-      .then(gitmojis => this._parseGitmojis(gitmojis))
-      .catch(err => this._errorMessage(`gitmoji list not found - ${err.code}`))
+      .then((gitmojis) => this._parseGitmojis(gitmojis))
+      .catch((err) =>
+        this._errorMessage(`gitmoji list not found - ${err.code}`)
+      )
   }
 
-  search (query) {
+  search(query) {
     return this._fetchEmojis()
-      .then((gitmojis) => gitmojis.filter((gitmoji) => {
-        const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
-        return (emoji.indexOf(query.toLowerCase()) !== -1)
-      }))
+      .then((gitmojis) =>
+        gitmojis.filter((gitmoji) => {
+          const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
+          return emoji.indexOf(query.toLowerCase()) !== -1
+        })
+      )
       .then((gitmojisFiltered) => this._parseGitmojis(gitmojisFiltered))
       .catch((err) => this._errorMessage(err.code))
   }
 
-  ask (mode) {
+  ask(mode) {
     if (!this._isAGitRepo()) {
       return this._errorMessage('This directory is not a git repository.')
     }
@@ -105,21 +107,24 @@ class GitmojiCli {
           return this._commit(answers)
         })
       })
-      .catch(err => this._errorMessage(err.code))
+      .catch((err) => this._errorMessage(err.code))
   }
 
-  updateCache () {
-    this._fetchRemoteEmojis()
-      .then(emojis => this._createCache(this._getCachePath(), emojis))
+  updateCache() {
+    this._fetchRemoteEmojis().then((emojis) =>
+      this._createCache(this._getCachePath(), emojis)
+    )
   }
 
-  _errorMessage (message) {
+  _errorMessage(message) {
     console.error(chalk.red(`ERROR: ${message}`))
   }
 
-  _hook (answers) {
-    const title = `${answers.gitmoji} ${answers.scope ? `(${answers.scope}): ` : ''}${answers.title}`
-    const reference = (answers.reference) ? `#${answers.reference}` : ''
+  _hook(answers) {
+    const title = `${answers.gitmoji} ${
+      answers.scope ? `(${answers.scope}): ` : ''
+    }${answers.title}`
+    const reference = answers.reference ? `#${answers.reference}` : ''
     const body = `${answers.message} ${reference}`
 
     try {
@@ -130,8 +135,10 @@ class GitmojiCli {
     process.exit(0)
   }
 
-  _commit (answers) {
-    const title = `${answers.gitmoji} ${answers.scope ? `(${answers.scope}): ` : ''}${answers.title}`
+  _commit(answers) {
+    const title = `${answers.gitmoji} ${
+      answers.scope ? `(${answers.scope}): ` : ''
+    }${answers.title}`
     const signed = config.getSignedCommit() ? '-S' : ''
     const body = `${answers.message}`
     const commit = `git commit ${signed} -m "${title}" -m "${body}"`
@@ -141,20 +148,26 @@ class GitmojiCli {
     }
 
     if (config.getAutoAdd()) {
-      execa.stdout('git', ['add', '.'])
+      execa
+        .stdout('git', ['add', '.'])
         .then((res) => execa.shell(commit))
         .then((res) => console.log(chalk.blue(res.stdout)))
-        .catch((err) => this._errorMessage(err.stderr ? err.stderr : err.stdout))
+        .catch((err) =>
+          this._errorMessage(err.stderr ? err.stderr : err.stdout)
+        )
     } else {
-      execa.shell(commit)
+      execa
+        .shell(commit)
         .then((res) => console.log(chalk.blue(res.stdout)))
-        .catch((err) => this._errorMessage(err.stderr ? err.stderr : err.stdout))
+        .catch((err) =>
+          this._errorMessage(err.stderr ? err.stderr : err.stdout)
+        )
     }
     return commit
   }
 
-  _parseGitmojis (gitmojis) {
-    return gitmojis.map(gitmoji => {
+  _parseGitmojis(gitmojis) {
+    return gitmojis.map((gitmoji) => {
       const emoji = gitmoji.emoji
       const code = gitmoji.code
       const description = gitmoji.description
@@ -162,21 +175,22 @@ class GitmojiCli {
     })
   }
 
-  _isAGitRepo () {
-    return parentDirs(process.cwd())
-      .some((directory) => pathExists.sync(path.resolve(directory, '.git')))
+  _isAGitRepo() {
+    return parentDirs(process.cwd()).some((directory) =>
+      pathExists.sync(path.resolve(directory, '.git'))
+    )
   }
 
-  _getCachePath () {
+  _getCachePath() {
     const home = process.env.HOME || process.env.USERPROFILE
     return path.join(home, '.gitmoji', 'gitmojis.json')
   }
 
-  _cacheAvailable (cachePath) {
+  _cacheAvailable(cachePath) {
     return pathExists.sync(cachePath)
   }
 
-  _createCache (cachePath, emojis) {
+  _createCache(cachePath, emojis) {
     const cacheDir = path.dirname(cachePath)
 
     if (emojis !== undefined) {
@@ -187,26 +201,28 @@ class GitmojiCli {
     }
   }
 
-  _fetchRemoteEmojis () {
+  _fetchRemoteEmojis() {
     console.log(`👋 Hey! We're fetching the emoji list...`)
 
-    return this._gitmojiApiClient.request({
-      method: 'GET',
-      url: '/src/data/gitmojis.json'
-    }).then((res) => {
-      console.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
-      return res.data.gitmojis
-    })
+    return this._gitmojiApiClient
+      .request({
+        method: 'GET',
+        url: '/src/data/gitmojis.json'
+      })
+      .then((res) => {
+        console.log(`${chalk.yellow('Gitmojis')} updated successfully!`)
+        return res.data.gitmojis
+      })
       .catch((error) =>
         this._errorMessage(`Network connection not found - ${error.message}`)
       )
   }
 
-  _fetchCachedEmojis (cachePath) {
+  _fetchCachedEmojis(cachePath) {
     return Promise.resolve(JSON.parse(fs.readFileSync(cachePath)))
   }
 
-  _fetchEmojis () {
+  _fetchEmojis() {
     const cachePath = this._getCachePath()
     if (this._cacheAvailable(cachePath)) {
       return this._fetchCachedEmojis(cachePath)
