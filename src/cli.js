@@ -50,7 +50,7 @@ const options = {
   list: () => commands.list(),
   remove: () => gitmojiCli.remove(),
   search: () => cli.input.map((input) => commands.search(input)),
-  update: () => gitmojiCli.updateCache()
+  update: () => commands.update()
 }
 
 utils.findGitmojiCommand(cli, options)

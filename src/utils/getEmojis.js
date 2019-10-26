@@ -8,8 +8,8 @@ import cache from './emojisCache'
 export const GITMOJIS_URL =
   'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
 
-const getEmojis = () => {
-  if (cache.isAvailable()) return cache.getEmojis()
+const getEmojis = (skipCache: boolean = false) => {
+  if (cache.isAvailable() && !skipCache) return cache.getEmojis()
 
   const spinner = ora('Fetching the emoji list').start()
 
