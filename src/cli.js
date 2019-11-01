@@ -46,9 +46,9 @@ const options = {
   commit: () => gitmojiCli.ask('client'),
   config: () => commands.config(),
   hook: () => gitmojiCli.ask('hook'),
-  init: () => gitmojiCli.init(),
+  init: () => commands.createHook(),
   list: () => commands.list(),
-  remove: () => gitmojiCli.remove(),
+  remove: () => commands.removeHook(),
   search: () => cli.input.map((input) => commands.search(input)),
   update: () => commands.update()
 }
