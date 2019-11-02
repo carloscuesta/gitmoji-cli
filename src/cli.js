@@ -43,9 +43,9 @@ const cli = meow(
 
 const gitmojiCli = new GitmojiCli(utils.gitmojiApiClient)
 const options = {
-  commit: () => gitmojiCli.ask('client'),
+  commit: () => commands.commit('client'),
   config: () => commands.config(),
-  hook: () => gitmojiCli.ask('hook'),
+  hook: () => commands.commit('hook'),
   init: () => commands.createHook(),
   list: () => commands.list(),
   remove: () => commands.removeHook(),
