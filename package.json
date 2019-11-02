@@ -80,7 +80,8 @@
     ],
     "testMatch": [
       "**/*.(spec).(js)"
-    ]
+    ],
+    "setupFiles": ["./test/setupTests.js"]
   },
   "prettier": {
     "semi": false,
