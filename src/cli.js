@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-const meow = require('meow')
-const updateNotifier = require('update-notifier')
+import meow from 'meow'
+import updateNotifier from 'update-notifier'
 
-const pkg = require('../package.json')
-const GitmojiCli = require('./gitmoji.js')
-const utils = require('./utils.js')
-const commands = require('./commands').default
+import pkg from '../package.json'
+import commands from './commands'
+import findGitmojiCommand from './utils/findGitmojiCommand'
 
 updateNotifier({ pkg }).notify()
 
@@ -41,7 +40,6 @@ const cli = meow(
   }
 )
 
-const gitmojiCli = new GitmojiCli(utils.gitmojiApiClient)
 const options = {
   commit: () => commands.commit('client'),
   config: () => commands.config(),
@@ -53,4 +51,4 @@ const options = {
   update: () => commands.update()
 }
 
-utils.findGitmojiCommand(cli, options)
+findGitmojiCommand(cli, options)
