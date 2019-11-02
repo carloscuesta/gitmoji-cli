@@ -1,13 +1,14 @@
-const search = require('./search').default
-const list = require('./list').default
-const update = require('./update').default
-const config = require('./config').default
-const hook = require('./hook').default
-const commit = require('./commit').default
+// @flow
+import commit from './commit'
+import config from './config'
+import hook from './hook'
+import list from './list'
+import search from './search'
+import update from './update'
 
 export default {
-  config,
   commit,
+  config,
   createHook: hook.create,
   list,
   removeHook: hook.remove,
