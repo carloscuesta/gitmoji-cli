@@ -4341,10 +4341,6 @@ package-json@^6.3.0:
     registry-url "^5.0.0"
     semver "^6.2.0"
 
-parent-dirs@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/parent-dirs/-/parent-dirs-1.0.0.tgz#b88851d1534013db421ce1695766906d0fbfb392"
-
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
