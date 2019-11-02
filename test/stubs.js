@@ -1,13 +1,3 @@
-/* global jest */
-const axios = require('axios')
-
-const gitmojiApiClient = axios.create({
-  baseURL: 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master',
-  timeout: 5000,
-  headers: {},
-  params: {}
-})
-
 const prompts = {
   gitmoji: ':zap:',
   title: 'Improving performance issues.',
@@ -28,9 +18,7 @@ const promptsScope = {
   reference: '5'
 }
 
-const gitmojis = [
-  { emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }
-]
+const gitmojis = [{ emoji: '⚡️', code: ':zap:', description: '', name: 'zap' }]
 
 const invalidTitleMessageChar = '`'
 
