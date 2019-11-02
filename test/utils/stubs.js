@@ -33,3 +33,11 @@ export const optionsMock = {
   search: jest.fn(),
   update: jest.fn()
 }
+
+export const gitmojis = [
+  {
+    emoji: '😍',
+    code: ':heart_eyes:',
+    description: 'Heart eyes'
+  }
+]
