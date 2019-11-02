@@ -1,7 +1,10 @@
 // @flow
 import Conf from 'conf'
 
-import { CONFIGURATION_PROMPT_NAMES } from '../commands/config/prompts'
+import {
+  CONFIGURATION_PROMPT_NAMES,
+  EMOJI_COMMIT_FORMATS
+} from '../commands/config/prompts'
 
 export const config = new Conf({ projectName: 'gitmoji' })
 
@@ -21,20 +24,23 @@ const setScopePrompt = (scopePrompt: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
-const getAutoAdd = () => {
-  config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD)
+const getAutoAdd = (): boolean => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
 }
 
-const getEmojiFormat = () => {
-  config.get(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT)
+const getEmojiFormat = (): string => {
+  return (
+    config.get(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT) ||
+    EMOJI_COMMIT_FORMATS.CODE
+  )
 }
 
-const getSignedCommit = () => {
-  config.get(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT)
+const getSignedCommit = (): boolean => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT) || false
 }
 
-const getScopePrompt = () => {
-  config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT)
+const getScopePrompt = (): boolean => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
 }
 
 export default {

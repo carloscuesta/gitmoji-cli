@@ -6,6 +6,11 @@ export const CONFIGURATION_PROMPT_NAMES = {
   SIGNED_COMMIT: 'signedCommit'
 }
 
+export const EMOJI_COMMIT_FORMATS = {
+  CODE: 'code',
+  EMOJI: 'emoji'
+}
+
 export default [
   {
     name: CONFIGURATION_PROMPT_NAMES.AUTO_ADD,
@@ -17,8 +22,8 @@ export default [
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
-      { name: ':smile:', value: 'code' },
-      { name: '😄', value: 'emoji' }
+      { name: ':smile:', value: EMOJI_COMMIT_FORMATS.CODE },
+      { name: '😄', value: EMOJI_COMMIT_FORMATS.EMOJI }
     ]
   },
   {
