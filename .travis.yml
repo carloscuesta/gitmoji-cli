@@ -3,8 +3,12 @@ node_js:
   - 'lts/*'
   - 10
 before_script:
-- git config user.name "Travis CI"
-- git config user.email "mail@mail.com"
+  - git config user.name "Travis CI"
+  - git config user.email "mail@mail.com"
+script:
+  - yarn run lint
+  - yarn run flow
+  - yarn run test
 cache:
   yarn: true
   directories:
