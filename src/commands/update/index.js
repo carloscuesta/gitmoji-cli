@@ -2,10 +2,6 @@
 import getEmojis from '../../utils/getEmojis'
 import printEmojis from '../../utils/printEmojis'
 
-const update = () => {
-  return getEmojis(true)
-    .then((gitmojis) => printEmojis(gitmojis))
-    .catch((err) => console.error(err))
-}
+const update = () => getEmojis(true).then((gitmojis) => printEmojis(gitmojis))
 
 export default update
