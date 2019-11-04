@@ -56,6 +56,7 @@
     "flow-bin": "^0.110.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
+    "jest-fetch-mock": "^2.1.2",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2"
   },
@@ -76,12 +77,14 @@
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js}"
+      "src/**/*.js"
     ],
     "testMatch": [
       "**/*.(spec).(js)"
     ],
-    "setupFiles": ["./test/setupTests.js"]
+    "setupFiles": [
+      "./test/setupTests.js"
+    ]
   },
   "prettier": {
     "semi": false,
