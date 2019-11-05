@@ -14,3 +14,10 @@ export const gitmojis = [
 ]
 
 export const searchQuery = 'LoVe'
+
+export const configAnswers = {
+  autoAdd: true,
+  emojiFormat: 'emoji',
+  signedCommit: true,
+  scopePrompt: false
+}
