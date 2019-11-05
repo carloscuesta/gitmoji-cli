@@ -12,3 +12,4 @@ jest.mock('ora', () =>
 )
 jest.mock('conf')
 jest.mock('inquirer')
+jest.mock('execa')

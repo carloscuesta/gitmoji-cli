@@ -21,3 +21,5 @@ export const configAnswers = {
   signedCommit: true,
   scopePrompt: false
 }
+
+export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
