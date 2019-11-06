@@ -16,7 +16,6 @@ const commit = (mode: 'client' | 'hook') => {
         return withClient(answers)
       })
     })
-    .catch((err) => console.error(err))
 }
 
 export default commit

@@ -23,3 +23,22 @@ export const configAnswers = {
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
+
+export const commitTitle = 'Fix security issue'
+
+export const commitTitleInvalid = 'Invalid commit `title'
+
+export const clientCommitAnswers = {
+  gitmoji: ':zap:',
+  title: 'Improving performance issues.',
+  message: 'Refactored code. Fixes #5'
+}
+
+export const clientCommitAnswersWithScope = {
+  ...clientCommitAnswers,
+  scope: 'cli'
+}
+
+export const commitResult = 'Commit result'
+
+export const argv = 'commit'

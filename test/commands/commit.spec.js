@@ -1,0 +1,214 @@
+import inquirer from 'inquirer'
+import execa from 'execa'
+import fs from 'fs'
+const mockProcess = require('jest-mock-process')
+
+import configurationVault from '../../src/utils/configurationVault'
+import getEmojis from '../../src/utils/getEmojis'
+import commit from '../../src/commands/commit'
+import guard from '../../src/commands/commit/guard'
+import prompts from '../../src/commands/commit/prompts'
+import * as stubs from './stubs'
+
+jest.mock('../../src/utils/getEmojis')
+jest.mock('../../src/utils/configurationVault')
+
+describe('commit command', () => {
+  describe('withClient', () => {
+    describe('with no autoAdd and no signed commits and no scope', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswers)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        commit('client')
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenCalledWith('git', [
+          'commit',
+          '-m',
+          `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
+          '-m',
+          stubs.clientCommitAnswers.message
+        ])
+      })
+
+      it('should print the result to the console', () => {
+        expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+      })
+    })
+
+    describe('with autoAdd, signed commits and scope', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        configurationVault.getAutoAdd.mockReturnValue(true)
+        configurationVault.getSignedCommit.mockReturnValue(true)
+        commit('client')
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the add command', () => {
+        expect(execa).toHaveBeenCalledWith('git', ['add', '.'])
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenLastCalledWith('git', [
+          'commit',
+          '-S',
+          '-m',
+          `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+          '-m',
+          stubs.clientCommitAnswersWithScope.message
+        ])
+      })
+
+      it('should print the result to the console', () => {
+        expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+      })
+    })
+  })
+
+  describe('withHook', () => {
+    describe('without scope', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswers)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        mockProcess.mockProcessExit()
+        process.argv[3] = stubs.argv
+        commit('hook')
+      })
+
+      it('should commit using the hook', () => {
+        expect(fs.writeFileSync).toHaveBeenCalledWith(
+          stubs.argv,
+          `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}\n\n${stubs.clientCommitAnswers.message}`
+        )
+      })
+
+      it('should call process.exit', () => {
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+
+    describe('with scope', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        mockProcess.mockProcessExit()
+        process.argv[3] = stubs.argv
+        commit('hook')
+      })
+
+      it('should commit using the hook', () => {
+        expect(fs.writeFileSync).toHaveBeenCalledWith(
+          stubs.argv,
+          `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}\n\n${stubs.clientCommitAnswersWithScope.message}`
+        )
+      })
+
+      it('should call process.exit', () => {
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+  })
+
+  describe('guard', () => {
+    it('should match guard', () => {
+      expect(guard).toMatchSnapshot()
+    })
+
+    describe('title', () => {
+      it('should return true when valid', () => {
+        expect(guard.title(stubs.commitTitle)).toBe(true)
+      })
+
+      it('should return error message when empty', () => {
+        expect(guard.title('')).toEqual(expect.any(String))
+      })
+
+      it('should return error message with invalid characters', () => {
+        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
+          expect.any(String)
+        )
+      })
+    })
+
+    describe('message', () => {
+      it('should return true when valid', () => {
+        expect(guard.title(stubs.commitTitle)).toBe(true)
+      })
+
+      it('should return error message when empty', () => {
+        expect(guard.title('')).toEqual(expect.any(String))
+      })
+
+      it('should return error message with invalid characters', () => {
+        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
+          expect.any(String)
+        )
+      })
+    })
+
+    describe('scope', () => {
+      it('should return true when valid', () => {
+        expect(guard.title(stubs.commitTitle)).toBe(true)
+      })
+
+      it('should return error message when empty', () => {
+        expect(guard.title('')).toEqual(expect.any(String))
+      })
+
+      it('should return error message with invalid characters', () => {
+        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
+          expect.any(String)
+        )
+      })
+    })
+  })
+
+  describe('prompts', () => {
+    it('should register the autoComplete inquirer prompt', () => {
+      expect(inquirer.registerPrompt).toHaveBeenCalledWith(
+        'autocomplete',
+        expect.any(Function)
+      )
+    })
+
+    describe('without scope prompt', () => {
+      it('should match the array of questions', () => {
+        expect(prompts(stubs.gitmojis)).toMatchSnapshot()
+      })
+    })
+
+    describe('with scope prompt', () => {
+      beforeAll(() => {
+        configurationVault.getScopePrompt.mockReturnValue(true)
+      })
+
+      it('should match the array of questions', () => {
+        expect(prompts(stubs.gitmojis)).toMatchSnapshot()
+      })
+    })
+  })
+})

@@ -57,6 +57,7 @@
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
+    "jest-mock-process": "^1.2.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2"
   },
