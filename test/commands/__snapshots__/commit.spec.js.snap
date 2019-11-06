@@ -129,3 +129,71 @@ Array [
   ],
 ]
 `;
+
+exports[`commit command withClient with the commit hook created should call inquirer with prompts 1`] = `
+Array [
+  Array [
+    Array [
+      Object {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      Object {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      Object {
+        "message": "Enter the commit message:",
+        "name": "message",
+        "validate": [Function],
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      Object {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      Object {
+        "message": "Enter the commit message:",
+        "name": "message",
+        "validate": [Function],
+      },
+    ],
+  ],
+  Array [
+    Array [
+      Object {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      Object {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      Object {
+        "message": "Enter the commit message:",
+        "name": "message",
+        "validate": [Function],
+      },
+    ],
+  ],
+]
+`;

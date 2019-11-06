@@ -60,3 +60,5 @@ export const gitmojisResponse = {
     }
   ]
 }
+
+export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'

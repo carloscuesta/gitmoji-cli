@@ -5,12 +5,14 @@ const mockProcess = require('jest-mock-process')
 
 import configurationVault from '../../src/utils/configurationVault'
 import getEmojis from '../../src/utils/getEmojis'
+import isHookCreated from '../../src/utils/isHookCreated'
 import commit from '../../src/commands/commit'
 import guard from '../../src/commands/commit/guard'
 import prompts from '../../src/commands/commit/prompts'
 import * as stubs from './stubs'
 
 jest.mock('../../src/utils/getEmojis')
+jest.mock('../../src/utils/isHookCreated')
 jest.mock('../../src/utils/configurationVault')
 
 describe('commit command', () => {
@@ -23,6 +25,7 @@ describe('commit command', () => {
           Promise.resolve(stubs.clientCommitAnswers)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
         commit('client')
       })
 
@@ -53,6 +56,7 @@ describe('commit command', () => {
           Promise.resolve(stubs.clientCommitAnswersWithScope)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
         configurationVault.getSignedCommit.mockReturnValue(true)
         commit('client')
@@ -79,6 +83,27 @@ describe('commit command', () => {
 
       it('should print the result to the console', () => {
         expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+      })
+    })
+
+    describe('with the commit hook created', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswers)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(true)
+        commit('client')
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should stop the commit because the hook is created and log the explanation to the user', () => {
+        expect(console.log).toHaveBeenCalledWith(expect.any(String))
+        expect(execa).not.toHaveBeenCalledWith()
       })
     })
   })
