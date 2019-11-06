@@ -9,3 +9,6 @@
 [options]
 
 [strict]
+
+[version]
+^0.110.1
