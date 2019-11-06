@@ -13,3 +13,15 @@ jest.mock('ora', () =>
 jest.mock('conf')
 jest.mock('inquirer')
 jest.mock('execa')
+jest.mock('meow', () =>
+  jest.fn().mockReturnValue({
+    flags: {},
+    showHelp: jest.fn(),
+    input: ['testSearchQuery']
+  })
+)
+jest.mock('update-notifier', () =>
+  jest.fn().mockReturnValue({
+    notify: jest.fn()
+  })
+)

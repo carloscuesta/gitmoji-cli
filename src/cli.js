@@ -40,7 +40,7 @@ const cli = meow(
   }
 )
 
-const options = {
+export const options = {
   commit: () => commands.commit('client'),
   config: () => commands.config(),
   hook: () => commands.commit('hook'),
