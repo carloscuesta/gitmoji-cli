@@ -24,6 +24,7 @@ const createEmojis = (emojis: Array<Object>) => {
 }
 
 const getEmojis = () => {
+  // $FlowFixMe
   return Promise.resolve(JSON.parse(fs.readFileSync(CACHE_PATH)))
 }
 

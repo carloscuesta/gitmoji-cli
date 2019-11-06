@@ -22,7 +22,7 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>) => [
+export default (gitmojis: Array<Gitmoji>): Array<Object> => [
   {
     name: 'gitmoji',
     message: 'Choose a gitmoji:',
