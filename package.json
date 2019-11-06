@@ -1,16 +1,24 @@
 {
   "name": "gitmoji-cli",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "bin": {
-    "gitmoji": "cli.js"
+    "gitmoji": "lib/cli.js"
   },
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "lint": "standard \"src/**/*.js\"",
-    "test": "npm run lint && jest && codecov"
+    "build": "babel src -d lib",
+    "clean": "rm -rf lib",
+    "flow": "flow",
+    "lint": "prettier --check src/**/*.js",
+    "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
+    "coverage": "codecov",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,24 +37,72 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "chalk": "^2.4.1",
-    "conf": "^2.0.0",
-    "execa": "^1.0.0",
-    "inquirer": "^6.0.0",
+    "chalk": "^2.4.2",
+    "conf": "^6.1.0",
+    "execa": "^3.2.0",
+    "inquirer": "^7.0.0",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "meow": "^5.0.0",
-    "parent-dirs": "^1.0.0",
+    "node-fetch": "^2.6.0",
+    "ora": "^4.0.2",
     "path-exists": "^3.0.0",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^3.0.1"
   },
   "devDependencies": {
-    "codecov": "^3.0.0",
-    "jest": "^24.0.0",
-    "standard": "^12.0.1"
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-flow": "^7.0.0",
+    "codecov": "^3.6.1",
+    "flow-bin": "^0.110.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "jest-fetch-mock": "^2.1.2",
+    "jest-mock-process": "^1.2.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ],
+      "@babel/preset-flow"
+    ]
   },
   "jest": {
     "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "testMatch": [
+      "**/*.(spec).(js)"
+    ],
+    "setupFiles": [
+      "./test/setupTests.js"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "prettier --write src/**/*.js",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn run flow && yarn run test"
+    }
   }
 }

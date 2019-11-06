@@ -61,10 +61,12 @@ $ gitmoji -c
 Run the init option, add your changes and commit them, after that the prompts will begin and your commit message will be built.
 
 ```bash
-$ gitmoji -i # this will create the .git/hooks/prepare-commit-msg
+$ gitmoji -i
 $ git add .
 $ git commit
 ```
+
+⚠️ The hook **should not be used** with the `gitmoji -c` command.
 
 ![gitmoji commit](https://user-images.githubusercontent.com/7629661/41189947-1de56124-6bd6-11e8-9567-e7f1a8e99500.png)
 
