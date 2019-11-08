@@ -1,4 +1,6 @@
 // @flow
+import configurationVault from '../../utils/configurationVault'
+
 export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
   EMOJI_FORMAT: 'emojiFormat',
@@ -11,11 +13,12 @@ export const EMOJI_COMMIT_FORMATS = {
   EMOJI: 'emoji'
 }
 
-export default [
+export default () => [
   {
     name: CONFIGURATION_PROMPT_NAMES.AUTO_ADD,
     message: 'Enable automatic "git add ."',
-    type: 'confirm'
+    type: 'confirm',
+    default: configurationVault.getAutoAdd()
   },
   {
     name: CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT,
@@ -24,16 +27,19 @@ export default [
     choices: [
       { name: ':smile:', value: EMOJI_COMMIT_FORMATS.CODE },
       { name: '😄', value: EMOJI_COMMIT_FORMATS.EMOJI }
-    ]
+    ],
+    default: configurationVault.getEmojiFormat()
   },
   {
     name: CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT,
     message: 'Enable signed commits',
-    type: 'confirm'
+    type: 'confirm',
+    default: configurationVault.getSignedCommit()
   },
   {
     name: CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT,
     message: 'Enable scope prompt',
-    type: 'confirm'
+    type: 'confirm',
+    default: configurationVault.getScopePrompt()
   }
 ]
