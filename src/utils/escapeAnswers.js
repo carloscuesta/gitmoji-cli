@@ -4,10 +4,10 @@ import { type Answers } from '../commands/commit/prompts'
 export const escapeAnswers = (answers: Answers) => {
   const escape = (str: string) =>
     str.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
-  return {
-    ...answers,
-    title: escape(answers.title),
-    message: escape(answers.message)
+  answers.title = escape(answers.title)
+  answers.message = escape(answers.message)
+  if (answers.scope !== undefined) {
+    answers.scope = escape(answers.scope)
   }
 }
 

@@ -3,6 +3,7 @@ import * as stubs from './stubs'
 
 describe('escapeAnswers', () => {
   it(`it should escape the answers`, () => {
-    expect(escapeAnswers(stubs.answers)).toMatchSnapshot()
+    escapeAnswers(stubs.answers)
+    expect(stubs.answers).toMatchSnapshot()
   })
 })

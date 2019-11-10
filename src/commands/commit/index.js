@@ -12,7 +12,7 @@ const commit = (mode: 'client' | 'hook') => {
     .then((gitmojis) => prompts(gitmojis))
     .then((questions) => {
       inquirer.prompt(questions).then((answers) => {
-        answers = escapeAnswers(answers)
+        escapeAnswers(answers)
         if (mode === 'hook') return withHook(answers)
 
         return withClient(answers)
