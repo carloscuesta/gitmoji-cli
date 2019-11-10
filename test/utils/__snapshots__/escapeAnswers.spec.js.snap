@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`escapeAnswers it should escape the answers 1`] = `
+Object {
+  "gitmoji": ":zap:",
+  "message": "I am a \\\\\\"crazy\\\\\\" message :\\\\\\\\",
+  "title": "I am a \\\\\\"crazy\\\\\\" title :\\\\\\\\",
+}
+`;

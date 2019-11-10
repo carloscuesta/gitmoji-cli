@@ -62,3 +62,9 @@ export const gitmojisResponse = {
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
+
+export const answers = {
+  gitmoji: ':zap:',
+  title: 'I am a "crazy" title :\\',
+  message: 'I am a "crazy" message :\\'
+}
