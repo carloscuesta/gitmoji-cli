@@ -14,7 +14,7 @@ describe('config command', () => {
   })
 
   it('should call inquirer.prompt with configuration prompts', () => {
-    expect(inquirer.prompt).toHaveBeenCalledWith(configurationPrompts)
+    expect(inquirer.prompt).toHaveBeenCalledWith(configurationPrompts())
   })
 
   it('should save the answers into the configuration vault', () => {

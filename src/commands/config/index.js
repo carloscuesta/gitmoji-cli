@@ -5,7 +5,7 @@ import configurationPrompts, { CONFIGURATION_PROMPT_NAMES } from './prompts'
 import configurationVault from '../../utils/configurationVault'
 
 const config = () => {
-  inquirer.prompt(configurationPrompts).then((answers) => {
+  inquirer.prompt(configurationPrompts()).then((answers) => {
     configurationVault.setAutoAdd(answers[CONFIGURATION_PROMPT_NAMES.AUTO_ADD])
     configurationVault.setEmojiFormat(
       answers[CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]
