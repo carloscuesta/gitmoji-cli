@@ -5,10 +5,12 @@ Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
   "getScopePrompt": [Function],
+  "getScopeTemplate": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setScopePrompt": [Function],
+  "setScopeTemplate": [Function],
   "setSignedCommit": [Function],
 }
 `;

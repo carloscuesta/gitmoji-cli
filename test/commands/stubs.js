@@ -19,7 +19,8 @@ export const configAnswers = {
   autoAdd: true,
   emojiFormat: 'emoji',
   signedCommit: true,
-  scopePrompt: false
+  scopePrompt: false,
+  scopeTemplate: '(%s): '
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'

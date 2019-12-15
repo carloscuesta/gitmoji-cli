@@ -29,6 +29,10 @@ describe('configurationVault', () => {
     it('should return the default value for scopePrompt', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
     })
+
+    it('should return the default value for scopeTemplate', () => {
+      expect(configurationVault.getScopeTemplate()).toEqual('(%s): ')
+    })
   })
 
   describe('setter and getters', () => {
@@ -80,16 +84,16 @@ describe('configurationVault', () => {
       )
     })
 
-    it('should set and return value for signedCommit', () => {
-      configurationVault.setScopePrompt(true)
-      configurationVault.getScopePrompt()
+    it('should set and return value for scopeTemplate', () => {
+      configurationVault.setScopeTemplate('[%s] ')
+      configurationVault.getScopeTemplate()
 
       expect(config.set).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT,
-        true
+        CONFIGURATION_PROMPT_NAMES.SCOPE_TEMPLATE,
+        '[%s] '
       )
       expect(config.get).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT
+        CONFIGURATION_PROMPT_NAMES.SCOPE_TEMPLATE
       )
     })
   })

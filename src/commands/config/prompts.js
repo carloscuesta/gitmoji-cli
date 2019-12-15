@@ -5,6 +5,7 @@ export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
+  SCOPE_TEMPLATE: 'scopeTemplate',
   SIGNED_COMMIT: 'signedCommit'
 }
 
@@ -41,5 +42,12 @@ export default () => [
     message: 'Enable scope prompt',
     type: 'confirm',
     default: configurationVault.getScopePrompt()
+  },
+  {
+    name: CONFIGURATION_PROMPT_NAMES.SCOPE_TEMPLATE,
+    message:
+      'Type a template for the scope (any "%s" will be replaced by the scope)',
+    type: 'input',
+    default: configurationVault.getScopeTemplate()
   }
 ]

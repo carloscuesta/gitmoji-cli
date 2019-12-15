@@ -30,5 +30,8 @@ describe('config command', () => {
     expect(configurationVault.setScopePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.scopePrompt
     )
+    expect(configurationVault.setScopeTemplate).toHaveBeenCalledWith(
+      stubs.configAnswers.scopeTemplate
+    )
   })
 })

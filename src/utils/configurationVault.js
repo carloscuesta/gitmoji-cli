@@ -24,6 +24,10 @@ const setScopePrompt = (scopePrompt: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
+const setScopeTemplate = (scopeTemplate: string) => {
+  config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_TEMPLATE, scopeTemplate)
+}
+
 const getAutoAdd = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
 }
@@ -43,13 +47,19 @@ const getScopePrompt = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
 }
 
+const getScopeTemplate = (): string => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_TEMPLATE) || '(%s): '
+}
+
 export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
+  getScopeTemplate,
   getSignedCommit,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
+  setScopeTemplate,
   setSignedCommit
 }
