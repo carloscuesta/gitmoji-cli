@@ -59,6 +59,7 @@ describe('commit command', () => {
         isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
         configurationVault.getSignedCommit.mockReturnValue(true)
+        configurationVault.getScopeTemplate.mockReturnValue('(%s): ')
         commit('client')
       })
 
@@ -76,6 +77,40 @@ describe('commit command', () => {
           '-S',
           '-m',
           `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+          '-m',
+          stubs.clientCommitAnswersWithScope.message
+        ])
+      })
+
+      it('should print the result to the console', () => {
+        expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+      })
+    })
+
+    describe('with custom scope', () => {
+      beforeAll(() => {
+        console.log = jest.fn()
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getAutoAdd.mockReturnValue(false)
+        configurationVault.getSignedCommit.mockReturnValue(false)
+        configurationVault.getScopeTemplate.mockReturnValue('[%s] ')
+        commit('client')
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenLastCalledWith('git', [
+          'commit',
+          '-m',
+          `${stubs.clientCommitAnswersWithScope.gitmoji} [${stubs.clientCommitAnswersWithScope.scope}] ${stubs.clientCommitAnswersWithScope.title}`,
           '-m',
           stubs.clientCommitAnswersWithScope.message
         ])
