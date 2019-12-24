@@ -2,10 +2,22 @@
 
 exports[`hook command should match hook configuration 1`] = `
 Object {
-  "CONTENTS": "#!/bin/sh
+  "CONTENTS": "#! /bin/bash
 # gitmoji as a commit hook
-exec < /dev/tty
-gitmoji --hook $1
+
+# strict mode for bash
+set -eo pipefail
+IFS=$'\\\\n\\\\t'
+
+readonly COMMIT_MSG_FILE=$1
+# no undefined variables
+set -u
+
+BRANCH_NAME=\\"$(git branch | sed -e 's/* //')\\"
+if [[ ! \\"$BRANCH_NAME\\" =~ 'no branch' ]]; then
+  exec < /dev/tty
+  gitmoji --hook \\"$COMMIT_MSG_FILE\\"
+fi
 ",
   "PATH": "/hooks/prepare-commit-msg",
   "PERMISSIONS": 509,
