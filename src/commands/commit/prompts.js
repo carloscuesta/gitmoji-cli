@@ -2,6 +2,7 @@
 import inquirer from 'inquirer'
 
 import configurationVault from '../../utils/configurationVault'
+import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
@@ -22,45 +23,52 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>): Array<Object> => [
-  {
-    name: 'gitmoji',
-    message: 'Choose a gitmoji:',
-    type: 'autocomplete',
-    source: (answersSoFor: any, input: string) => {
-      return Promise.resolve(
-        gitmojis
-          .filter((gitmoji) => {
-            const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
-            return !input || emoji.indexOf(input.toLowerCase()) !== -1
-          })
-          .map((gitmoji) => ({
-            name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-            value: gitmoji[configurationVault.getEmojiFormat()]
-          }))
-      )
+export default (gitmojis: Array<Gitmoji>): Array<Object> => {
+  const { title, message } = getDefaultCommitContent()
+  return [
+    {
+      name: 'gitmoji',
+      message: 'Choose a gitmoji:',
+      type: 'autocomplete',
+      source: (answersSoFor: any, input: string) => {
+        return Promise.resolve(
+          gitmojis
+            .filter((gitmoji) => {
+              const emoji = gitmoji.name
+                .concat(gitmoji.description)
+                .toLowerCase()
+              return !input || emoji.indexOf(input.toLowerCase()) !== -1
+            })
+            .map((gitmoji) => ({
+              name: `${gitmoji.emoji}  - ${gitmoji.description}`,
+              value: gitmoji[configurationVault.getEmojiFormat()]
+            }))
+        )
+      }
+    },
+    ...(configurationVault.getScopePrompt()
+      ? [
+          {
+            name: 'scope',
+            message: 'Enter the scope of current changes:',
+            validate: guard.scope
+          }
+        ]
+      : []),
+    {
+      name: 'title',
+      message: 'Enter the commit title',
+      validate: guard.title,
+      transformer: (input: string) => {
+        return `[${input.length}/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
+      },
+      ...(title ? { default: title } : {})
+    },
+    {
+      name: 'message',
+      message: 'Enter the commit message:',
+      validate: guard.message,
+      ...(title && message ? { default: message } : {})
     }
-  },
-  ...(configurationVault.getScopePrompt()
-    ? [
-        {
-          name: 'scope',
-          message: 'Enter the scope of current changes:',
-          validate: guard.scope
-        }
-      ]
-    : []),
-  {
-    name: 'title',
-    message: 'Enter the commit title',
-    validate: guard.title,
-    transformer: (input: string) => {
-      return `[${input.length}/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
-    }
-  },
-  {
-    name: 'message',
-    message: 'Enter the commit message:',
-    validate: guard.message
-  }
-]
+  ]
+}
