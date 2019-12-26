@@ -39,6 +39,11 @@ export const gitmojis = [
     emoji: '😍',
     code: ':heart_eyes:',
     description: 'Heart eyes'
+  },
+  {
+    emoji: '⚡️',
+    code: ':zap:',
+    description: 'Improving performance.'
   }
 ]
 
