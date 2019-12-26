@@ -8,7 +8,7 @@ const TITLE_MAX_LENGTH_COUNT: number = 48
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
-type Gitmoji = {
+export type Gitmoji = {
   code: string,
   description: string,
   emoji: string,
