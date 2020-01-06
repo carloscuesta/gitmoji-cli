@@ -8,7 +8,10 @@ const isHookCreated = async () => {
   try {
     const { stdout } = await execa('git', ['rev-parse', '--absolute-git-dir'])
 
-    return fs.existsSync(stdout + HOOK.PATH)
+    if (!fs.existsSync(stdout + HOOK.PATH)) {
+      return false
+    }
+    return fs.readFileSync(stdout + HOOK.PATH) === HOOK.CONTENTS
   } catch (error) {
     console.error(error)
   }
