@@ -55,7 +55,7 @@
     "@babel/preset-flow": "^7.0.0",
     "codecov": "^3.6.1",
     "flow-bin": "^0.110.1",
-    "husky": "^3.0.9",
+    "husky": "^4.0.7",
     "jest": "^24.9.0",
     "jest-fetch-mock": "^3.0.0",
     "jest-mock-process": "^1.2.0",
