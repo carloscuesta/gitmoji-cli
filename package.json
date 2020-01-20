@@ -59,7 +59,7 @@
     "jest": "^24.9.0",
     "jest-fetch-mock": "^3.0.0",
     "jest-mock-process": "^1.2.0",
-    "lint-staged": "^9.4.2",
+    "lint-staged": "^10.0.0",
     "prettier": "^1.18.2"
   },
   "babel": {
