@@ -2,13 +2,14 @@
 import inquirer from 'inquirer'
 
 import configurationVault from '../../utils/configurationVault'
+import filterGitmojis from '../../utils/filterGitmojis'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
-type Gitmoji = {
+export type Gitmoji = {
   code: string,
   description: string,
   emoji: string,
@@ -29,15 +30,10 @@ export default (gitmojis: Array<Gitmoji>): Array<Object> => [
     type: 'autocomplete',
     source: (answersSoFor: any, input: string) => {
       return Promise.resolve(
-        gitmojis
-          .filter((gitmoji) => {
-            const emoji = gitmoji.name.concat(gitmoji.description).toLowerCase()
-            return !input || emoji.indexOf(input.toLowerCase()) !== -1
-          })
-          .map((gitmoji) => ({
-            name: `${gitmoji.emoji}  - ${gitmoji.description}`,
-            value: gitmoji[configurationVault.getEmojiFormat()]
-          }))
+        filterGitmojis(input, gitmojis).map((gitmoji) => ({
+          name: `${gitmoji.emoji}  - ${gitmoji.description}`,
+          value: gitmoji[configurationVault.getEmojiFormat()]
+        }))
       )
     }
   },

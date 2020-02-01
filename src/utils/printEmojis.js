@@ -4,6 +4,7 @@ import chalk from 'chalk'
 type Gitmoji = {
   emoji: string,
   code: string,
+  name: string,
   description: string
 }
 
