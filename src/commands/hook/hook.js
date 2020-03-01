@@ -4,12 +4,22 @@ const HOOK: Object = {
   PATH: '/hooks/prepare-commit-msg',
   CONTENTS: `#!/bin/sh
 # gitmoji as a commit hook
-if test -t 1 && ! grep -q -m 1 '^[^#]' $1; then
+commit_message_empty=true
+while read line
+do
+  if [[ $line == "# ------------------------ >8 ------------------------"* ]]; then
+    break
+  elif [[ $line != "#"* && $line != "" ]]; then
+    commit_message_empty=false
+    break
+  fi
+done < $1
+
+if test -t 1 && $commit_message_empty; then
   # it has been invoked from a tty and no commit message is already set
   exec < /dev/tty
   gitmoji --hook $1
-fi
-`
+fi`
 }
 
 export default HOOK
