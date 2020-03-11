@@ -3,7 +3,7 @@ import Fuse from 'fuse.js'
 
 import { type Gitmoji } from '../commands/commit/prompts'
 
-const options = {
+export const options = {
   threshold: 0.5,
   keys: [
     {

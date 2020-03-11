@@ -1,4 +1,4 @@
-import filterGitmojis from '../../src/utils/filterGitmojis'
+import filterGitmojis, { options } from '../../src/utils/filterGitmojis'
 import * as stubs from './stubs'
 
 describe('filterGirmojis', () => {
@@ -38,5 +38,11 @@ describe('filterGirmojis', () => {
 
     const gitmoji = stubs.gitmojis.find((gitmoji) => gitmoji.name === 'alien')
     expect(filteredGitmojis[0]).toStrictEqual(gitmoji)
+  })
+
+  it('should not have a total weight of greater than 1', () => {
+    const weightSum = options.keys.reduce((carry, key) => carry += key.weight, 0)
+
+    expect(weightSum).toBeLessThanOrEqual(1)
   })
 })
