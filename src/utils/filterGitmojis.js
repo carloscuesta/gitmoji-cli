@@ -8,11 +8,11 @@ const options = {
   keys: [
     {
       name: 'name',
-      weight: 0.5
+      weight: 0.33
     },
     {
       name: 'description',
-      weight: 1
+      weight: 0.67
     }
   ]
 }
