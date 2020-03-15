@@ -3,7 +3,7 @@ Hello @carloscuesta!
 <!-- Describe your issue here -->
 
 Issue:
-<!-- What were you doing when the error/issue/bug appeared? Describe the steps to reproduce yor issue -->
+<!-- What were you doing when the error/issue/bug appeared? Describe the steps to reproduce your issue -->
 
 **OS**:
 **gitmoji-cli -v**:
