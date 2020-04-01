@@ -26,18 +26,27 @@ const withClient = async (answers: Answers) => {
 
     if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
 
-    const { stdout } = await execa('git', [
+    const extraMessageArgs = answers.message
+      ? ['-m', `'${answers.message}'`]
+      : []
+
+    const args = [
       'commit',
       ...isSigned,
       '-m',
-      title,
-      '-m',
-      answers.message
-    ])
+      `'${title}'`,
+      ...extraMessageArgs
+    ]
 
-    console.log(stdout)
+    await execa('git', args, { stdio: 'inherit', shell: true })
   } catch (error) {
-    console.error(error)
+    const { exitCode, command } = error
+    console.log('')
+    console.log(
+      chalk.bold('Commit failed with code'),
+      chalk.bold(chalk.red(exitCode))
+    )
+    console.log(chalk.bold('Command:'), chalk.cyan(command))
   }
 }
 
