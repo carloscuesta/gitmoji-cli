@@ -3,10 +3,12 @@ import inquirer from 'inquirer'
 
 import getEmojis from '../../utils/getEmojis'
 import prompts from './prompts'
-import withHook from './withHook'
+import withHook, { registerHookInterruptionHandler } from './withHook'
 import withClient from './withClient'
 
 const commit = (mode: 'client' | 'hook') => {
+  if (mode === 'hook') registerHookInterruptionHandler()
+
   return getEmojis()
     .then((gitmojis) => prompts(gitmojis))
     .then((questions) => {

@@ -156,6 +156,40 @@ describe('commit command', () => {
         expect(process.exit).toHaveBeenCalledWith(0)
       })
     })
+    describe('when receiving a signal interrupt', () => {
+      it('should call process.exit(0)', async () => {
+        const warnConsoleSpy = jest.spyOn(console, 'warn').mockImplementation()
+
+        // mock process.on and process.kill to test registerHookInterruptionHandler
+        const processEvents = {}
+        jest.spyOn(process, 'on').mockImplementation((signal, cb) => {
+          processEvents[signal] = cb
+        })
+        jest.spyOn(process, 'kill').mockImplementation((pid, signal) => {
+          processEvents[signal]()
+        })
+
+        inquirer.prompt.mockImplementation(() => {
+          process.kill(process.pid, 'SIGINT')
+        })
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+
+        // Use an exception to suspend code execution to simulate process.exit
+        mockProcess.mockProcessExit(new Error('SIGINT'))
+        process.argv[3] = stubs.argv
+
+        try {
+          await commit('hook')
+        } catch (e) {
+          expect(e.message).toMatch('SIGINT')
+        }
+
+        expect(warnConsoleSpy).toHaveBeenCalledWith(
+          'gitmoji-cli was interrupted'
+        )
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
   })
 
   describe('guard', () => {

@@ -18,4 +18,12 @@ const withHook = (answers: Answers) => {
   }
 }
 
+export const registerHookInterruptionHandler = () => {
+  // Allow to interrupt the hook without cancelling the commit
+  process.on('SIGINT', () => {
+    console.warn('gitmoji-cli was interrupted')
+    process.exit(0)
+  })
+}
+
 export default withHook
