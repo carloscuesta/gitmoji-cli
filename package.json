@@ -50,10 +50,10 @@
     "update-notifier": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-flow": "^7.0.0",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-flow": "^7.10.1",
     "codecov": "^3.6.1",
     "flow-bin": "^0.110.1",
     "husky": "^4.2.1",
