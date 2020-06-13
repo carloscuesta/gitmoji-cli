@@ -37,7 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/gitmoji-linux
+          asset_path: ./bin/gitmoji-linux
           asset_name: gitmoji-linux
           asset_content_type: application/x-executable
       - name: Upload macOS Release Asset
@@ -47,7 +47,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/gitmoji-macos
+          asset_path: ./bin/gitmoji-macos
           asset_name: gitmoji-macos
           asset_content_type: application/x-mach-binary
       - name: Upload Windows Release Asset
@@ -57,6 +57,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/gitmoji-win.exe
+          asset_path: ./bin/gitmoji-win.exe
           asset_name: gitmoji-win.exe
           asset_content_type: application/x-dosexec
