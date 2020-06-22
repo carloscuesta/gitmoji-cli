@@ -1,6 +1,6 @@
 # gitmoji-cli
 
-[![Travis Build Status](https://img.shields.io/travis/carloscuesta/gitmoji-cli/master?style=flat-square)](https://travis-ci.org/carloscuesta/gitmoji-cli)
+[![Travis Build Status](https://img.shields.io/travis/com/carloscuesta/gitmoji-cli?style=flat-square)](https://travis-ci.com/carloscuesta/gitmoji-cli)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://codeclimate.com/github/carloscuesta/gitmoji-cli)
 [![Codecov](https://img.shields.io/codecov/c/github/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://github.com/carloscuesta/gitmoji-cli)
 [![David Dependencies](https://img.shields.io/david/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://david-dm.org/carloscuesta/gitmoji-cli)
