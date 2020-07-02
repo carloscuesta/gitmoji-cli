@@ -6,7 +6,7 @@ Issue:
 <!-- What were you doing when the error/issue/bug appeared? Describe the steps to reproduce your issue -->
 
 **OS**:
-**gitmoji-cli -v**:
+**gitmoji -v**:
 **Node version**:
 
 <!-- If there's an error message copy the error here -->
