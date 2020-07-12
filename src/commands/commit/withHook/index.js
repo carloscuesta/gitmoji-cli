@@ -26,4 +26,16 @@ export const registerHookInterruptionHandler = () => {
   })
 }
 
+export const cancelIfMessageIsAlreadySet = () => {
+  const commitMessageFilePath = process.argv[3]
+  if (
+    fs.existsSync(commitMessageFilePath) &&
+    fs.lstatSync(commitMessageFilePath).isFile() &&
+    !!fs.readFileSync(commitMessageFilePath, 'utf8')
+  ) {
+    console.warn('A commit message is already set, cancelling gitmoji\n')
+    process.exit(0)
+  }
+}
+
 export default withHook
