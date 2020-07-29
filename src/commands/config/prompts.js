@@ -5,7 +5,8 @@ export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
-  SIGNED_COMMIT: 'signedCommit'
+  SIGNED_COMMIT: 'signedCommit',
+  ADD_CONTACTS: 'addContacts'
 }
 
 export const EMOJI_COMMIT_FORMATS = {
@@ -14,6 +15,13 @@ export const EMOJI_COMMIT_FORMATS = {
 }
 
 export default () => [
+  {
+    name: CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS,
+    message:
+      'List of contacts with the following definitions: @ContactId: Name <email@domain.com>',
+    type: 'editor',
+    default: configurationVault.getContacts()
+  },
   {
     name: CONFIGURATION_PROMPT_NAMES.AUTO_ADD,
     message: 'Enable automatic "git add ."',

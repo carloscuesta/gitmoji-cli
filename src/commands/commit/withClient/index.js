@@ -7,6 +7,31 @@ import isHookCreated from '../../../utils/isHookCreated'
 import configurationVault from '../../../utils/configurationVault'
 import { type Answers } from '../prompts'
 
+const getCoAuthor = (coAuthor: string) => {
+  if (!coAuthor.trim().startsWith('@')) {
+    return coAuthor.trim()
+  }
+
+  const contactsText = configurationVault.getContacts().trim()
+  let contacts = []
+  if (contactsText.length > 0) {
+    contacts = contactsText.split('\n')
+  }
+
+  const contact = contacts.find((contact) =>
+    contact.trim().startsWith(coAuthor.trim())
+  )
+  if (typeof contact !== 'string') {
+    throw new Error(
+      `Contact ${coAuthor} not found! Please set the contacts using the option "-g"`
+    )
+  }
+
+  const [, coAuthoredBy] = contact.split(': ')
+
+  return coAuthoredBy
+}
+
 const withClient = async (answers: Answers) => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
@@ -26,14 +51,35 @@ const withClient = async (answers: Answers) => {
 
     if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
 
-    const { stdout } = await execa('git', [
-      'commit',
-      ...isSigned,
-      '-m',
-      title,
-      '-m',
-      answers.message
-    ])
+    let cmdArgs = ['commit', ...isSigned, '-m', title]
+
+    if (answers.message) {
+      cmdArgs = [...cmdArgs, '-m', answers.message]
+    }
+
+    if (answers.refs) {
+      const refs = answers.refs.replace(/[^0-9#! ]/g, '').trim()
+
+      cmdArgs = [...cmdArgs, '-m', `Refs ${refs}`]
+    }
+
+    if (answers.coAuthors) {
+      let coAuthors = ''
+      answers.coAuthors
+        .replace(/ +(?= )/g, '')
+        .split(' ')
+        .forEach((coAuthor) => {
+          const coAuthoredBy = getCoAuthor(coAuthor)
+
+          coAuthors += `Co-authored-by: ${coAuthoredBy}\n`
+        })
+
+      if (coAuthors.trim().length) {
+        cmdArgs = [...cmdArgs, '-m', coAuthors]
+      }
+    }
+
+    const { stdout } = await execa('git', cmdArgs)
 
     console.log(stdout)
   } catch (error) {

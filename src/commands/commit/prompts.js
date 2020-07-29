@@ -20,7 +20,9 @@ export type Answers = {
   gitmoji: string,
   scope?: string,
   title: string,
-  message: string
+  message: string,
+  refs: string,
+  coAuthors: string
 }
 
 export default (gitmojis: Array<Gitmoji>): Array<Object> => [
@@ -58,5 +60,13 @@ export default (gitmojis: Array<Gitmoji>): Array<Object> => [
     name: 'message',
     message: 'Enter the commit message:',
     validate: guard.message
+  },
+  {
+    name: 'refs',
+    message: 'Issue / PR reference'
+  },
+  {
+    name: 'coAuthors',
+    message: 'Co-authored-by (Separated by comma)'
   }
 ]
