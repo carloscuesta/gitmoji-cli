@@ -3,6 +3,7 @@ import inquirer from 'inquirer'
 
 import configurationVault from '../../utils/configurationVault'
 import filterGitmojis from '../../utils/filterGitmojis'
+import filter from './filter'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
@@ -71,7 +72,7 @@ export default (gitmojis: Array<Gitmoji>, options: Options): Array<Object> => [
         {
           name: 'refs',
           message: 'Issue / PR reference:',
-          filter: (input) => input.replace(/[^0-9#! ]/g, '').trim()
+          filter: filter.refs
         }
       ]
     : []),
@@ -81,19 +82,7 @@ export default (gitmojis: Array<Gitmoji>, options: Options): Array<Object> => [
           name: 'coAuthors',
           message: 'Co-authors (Separated by comma):',
           validate: guard.coAuthors,
-          filter: (input) => {
-            // Clean input
-            const coAuthors = input
-              .trim()
-              .split(',')
-              .map((coAuthor) => coAuthor.trim())
-              .filter((coAuthor) => !!coAuthor)
-
-            // TODO: Replace contacts with complete contact data. E.g.: @A -> A <a@b.c>
-
-            // Remove duplications
-            return [...new Set(coAuthors)].join(', ')
-          }
+          filter: filter.coAuthors
         }
       ]
     : [])

@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`commit command filter should match filter 1`] = `
+Object {
+  "coAuthors": [Function],
+  "refs": [Function],
+}
+`;
+
 exports[`commit command guard should match guard 1`] = `
 Object {
   "coAuthors": [Function],

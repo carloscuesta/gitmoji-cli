@@ -1,20 +1,11 @@
 // @flow
 import execa from 'execa'
-import fs from 'fs'
 import chalk from 'chalk'
 
 import isHookCreated from '../../../utils/isHookCreated'
+import getContacts from '../../../utils/getContacts'
 import configurationVault from '../../../utils/configurationVault'
 import { type Answers } from '../prompts'
-
-const getContacts = (): string[] => {
-  const contactsText = configurationVault.getContacts().trim()
-  let contacts = []
-  if (contactsText.length > 0) {
-    contacts = contactsText.split('\n')
-  }
-  return contacts
-}
 
 const getCoAuthor = (coAuthor: string): string | null => {
   coAuthor = coAuthor.trim()

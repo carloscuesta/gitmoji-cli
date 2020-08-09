@@ -411,3 +411,6 @@ export const gitmojisResponse = {
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
+
+export const configContacts = '@A: A B <a@b.com>\n@B: B C <b@c.com>'
+export const parsedContacts = ['@A: A B <a@b.com>', '@B: B C <b@c.com>']
