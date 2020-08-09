@@ -14,6 +14,8 @@ const cli = meow(
     $ gitmoji
   Options
     --commit, -c    Interactively commit using the prompts
+    --coAuthors,    Show option to add Co-Authors on commit. Works only with --commmit option
+    --refs,         Show option to add Issue/PR reference on commit. Works only with --commmit option
     --config, -g     Setup gitmoji-cli preferences.
     --init, -i      Initialize gitmoji as a commit hook
     --list, -l      List all the available gitmojis
@@ -21,8 +23,6 @@ const cli = meow(
     --search, -s    Search gitmojis
     --update, -u    Sync emoji list with the repo
     --version, -v   Print gitmoji-cli installed version
-    --coAuthors,    Show option to add Co-Authors on commit. Works only with --commmit option
-    --refs,         Show option to add Issue/PR reference on commit. Works only with --commmit option
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
@@ -45,10 +45,7 @@ const cli = meow(
 )
 
 export const options = {
-  commit: {
-    cmd: (opts) => commands.commit('client', opts),
-    opts: ['coAuthors', 'refs']
-  },
+  commit: () => commands.commit('client', cli.flags),
   config: () => commands.config(),
   hook: () => commands.commit('hook'),
   init: () => commands.createHook(),

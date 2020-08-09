@@ -15,7 +15,10 @@ jest.mock('inquirer')
 jest.mock('execa')
 jest.mock('meow', () =>
   jest.fn().mockReturnValue({
-    flags: {},
+    flags: {
+      coAuthors: false,
+      refs: false
+    },
     showHelp: jest.fn(),
     input: ['testSearchQuery']
   })

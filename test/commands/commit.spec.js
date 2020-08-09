@@ -17,7 +17,7 @@ jest.mock('../../src/utils/configurationVault')
 
 describe('commit command', () => {
   describe('withClient', () => {
-    describe('with no autoAdd and no signed commits and no scope', () => {
+    describe('with no autoAdd and no signed commits and no scope and no refs and no co-authors', () => {
       beforeAll(() => {
         console.log = jest.fn()
         execa.mockReturnValue({ stdout: stubs.commitResult })
@@ -48,18 +48,22 @@ describe('commit command', () => {
       })
     })
 
-    describe('with autoAdd, signed commits and scope', () => {
+    describe('with autoAdd, signed commits, scope, refs and co-authors', () => {
       beforeAll(() => {
         console.log = jest.fn()
+        console.warn = jest.fn()
         execa.mockReturnValue({ stdout: stubs.commitResult })
         inquirer.prompt.mockReturnValue(
-          Promise.resolve(stubs.clientCommitAnswersWithScope)
+          Promise.resolve(stubs.clientCommitAnswersWithScopeAndOptions)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
         isHookCreated.mockResolvedValue(false)
+        configurationVault.getContacts.mockReturnValue(
+          stubs.clientCommitContactsConfig
+        )
         configurationVault.getAutoAdd.mockReturnValue(true)
         configurationVault.getSignedCommit.mockReturnValue(true)
-        commit('client')
+        commit('client', { coAuthors: true, refs: true })
       })
 
       it('should call inquirer with prompts', () => {
@@ -75,9 +79,13 @@ describe('commit command', () => {
           'commit',
           '-S',
           '-m',
-          `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+          `${stubs.clientCommitAnswersWithScopeAndOptions.gitmoji} (${stubs.clientCommitAnswersWithScopeAndOptions.scope}): ${stubs.clientCommitAnswersWithScopeAndOptions.title}`,
           '-m',
-          stubs.clientCommitAnswersWithScope.message
+          stubs.clientCommitAnswersWithScopeAndOptions.message,
+          '-m',
+          stubs.clientCommitRefsMounted,
+          '-m',
+          stubs.clientCommitCoAuthorsMounted
         ])
       })
 
@@ -137,7 +145,7 @@ describe('commit command', () => {
       beforeAll(() => {
         console.log = jest.fn()
         inquirer.prompt.mockReturnValue(
-          Promise.resolve(stubs.clientCommitAnswersWithScope)
+          Promise.resolve(stubs.clientCommitAnswersWithScopeAndOptions)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
         mockProcess.mockProcessExit()
@@ -148,7 +156,7 @@ describe('commit command', () => {
       it('should commit using the hook', () => {
         expect(fs.writeFileSync).toHaveBeenCalledWith(
           stubs.argv,
-          `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}\n\n${stubs.clientCommitAnswersWithScope.message}`
+          `${stubs.clientCommitAnswersWithScopeAndOptions.gitmoji} (${stubs.clientCommitAnswersWithScopeAndOptions.scope}): ${stubs.clientCommitAnswersWithScopeAndOptions.title}\n\n${stubs.clientCommitAnswersWithScopeAndOptions.message}`
         )
       })
 

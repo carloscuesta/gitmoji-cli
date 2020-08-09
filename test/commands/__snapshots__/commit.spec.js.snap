@@ -2,6 +2,7 @@
 
 exports[`commit command guard should match guard 1`] = `
 Object {
+  "coAuthors": [Function],
   "message": [Function],
   "scope": [Function],
   "title": [Function],
@@ -22,7 +23,7 @@ Array [
     "validate": [Function],
   },
   Object {
-    "message": "Enter the commit title",
+    "message": "Enter the commit title:",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
@@ -31,14 +32,6 @@ Array [
     "message": "Enter the commit message:",
     "name": "message",
     "validate": [Function],
-  },
-  Object {
-    "message": "Issue / PR reference",
-    "name": "refs",
-  },
-  Object {
-    "message": "Co-authored-by (Separated by comma)",
-    "name": "coAuthors",
   },
 ]
 `;
@@ -52,7 +45,7 @@ Array [
     "type": "autocomplete",
   },
   Object {
-    "message": "Enter the commit title",
+    "message": "Enter the commit title:",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
@@ -62,18 +55,10 @@ Array [
     "name": "message",
     "validate": [Function],
   },
-  Object {
-    "message": "Issue / PR reference",
-    "name": "refs",
-  },
-  Object {
-    "message": "Co-authored-by (Separated by comma)",
-    "name": "coAuthors",
-  },
 ]
 `;
 
-exports[`commit command withClient with autoAdd, signed commits and scope should call inquirer with prompts 1`] = `
+exports[`commit command withClient with autoAdd, signed commits, scope, refs and co-authors should call inquirer with prompts 1`] = `
 Array [
   Array [
     Array [
@@ -84,7 +69,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -93,14 +78,6 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
-      },
-      Object {
-        "message": "Issue / PR reference",
-        "name": "refs",
-      },
-      Object {
-        "message": "Co-authored-by (Separated by comma)",
-        "name": "coAuthors",
       },
     ],
   ],
@@ -113,7 +90,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -124,19 +101,22 @@ Array [
         "validate": [Function],
       },
       Object {
-        "message": "Issue / PR reference",
+        "filter": [Function],
+        "message": "Issue / PR reference:",
         "name": "refs",
       },
       Object {
-        "message": "Co-authored-by (Separated by comma)",
+        "filter": [Function],
+        "message": "Co-authors (Separated by comma):",
         "name": "coAuthors",
+        "validate": [Function],
       },
     ],
   ],
 ]
 `;
 
-exports[`commit command withClient with no autoAdd and no signed commits and no scope should call inquirer with prompts 1`] = `
+exports[`commit command withClient with no autoAdd and no signed commits and no scope and no refs and no co-authors should call inquirer with prompts 1`] = `
 Array [
   Array [
     Array [
@@ -147,7 +127,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -156,14 +136,6 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
-      },
-      Object {
-        "message": "Issue / PR reference",
-        "name": "refs",
-      },
-      Object {
-        "message": "Co-authored-by (Separated by comma)",
-        "name": "coAuthors",
       },
     ],
   ],
@@ -181,7 +153,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -190,14 +162,6 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
-      },
-      Object {
-        "message": "Issue / PR reference",
-        "name": "refs",
-      },
-      Object {
-        "message": "Co-authored-by (Separated by comma)",
-        "name": "coAuthors",
       },
     ],
   ],
@@ -210,7 +174,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -221,12 +185,15 @@ Array [
         "validate": [Function],
       },
       Object {
-        "message": "Issue / PR reference",
+        "filter": [Function],
+        "message": "Issue / PR reference:",
         "name": "refs",
       },
       Object {
-        "message": "Co-authored-by (Separated by comma)",
+        "filter": [Function],
+        "message": "Co-authors (Separated by comma):",
         "name": "coAuthors",
+        "validate": [Function],
       },
     ],
   ],
@@ -239,7 +206,7 @@ Array [
         "type": "autocomplete",
       },
       Object {
-        "message": "Enter the commit title",
+        "message": "Enter the commit title:",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
@@ -248,14 +215,6 @@ Array [
         "message": "Enter the commit message:",
         "name": "message",
         "validate": [Function],
-      },
-      Object {
-        "message": "Issue / PR reference",
-        "name": "refs",
-      },
-      Object {
-        "message": "Co-authored-by (Separated by comma)",
-        "name": "coAuthors",
       },
     ],
   ],

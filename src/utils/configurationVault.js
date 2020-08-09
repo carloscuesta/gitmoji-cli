@@ -12,6 +12,10 @@ const setAutoAdd = (autoAdd: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.AUTO_ADD, autoAdd)
 }
 
+const setContacts = (contacts: string) => {
+  config.set(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS, contacts)
+}
+
 const setEmojiFormat = (emojiFormat: string) => {
   config.set(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT, emojiFormat)
 }
@@ -24,12 +28,12 @@ const setScopePrompt = (scopePrompt: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
-const setContacts = (contacts: string) => {
-  config.set(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS, contacts)
-}
-
 const getAutoAdd = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
+}
+
+const getContacts = (): string => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS) || ''
 }
 
 const getEmojiFormat = (): string => {
@@ -47,19 +51,15 @@ const getScopePrompt = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
 }
 
-const getContacts = (): string => {
-  return config.get(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS) || ''
-}
-
 export default {
   getAutoAdd,
+  getContacts,
   getEmojiFormat,
   getScopePrompt,
   getSignedCommit,
-  getContacts,
   setAutoAdd,
+  setContacts,
   setEmojiFormat,
   setScopePrompt,
-  setSignedCommit,
-  setContacts
+  setSignedCommit
 }

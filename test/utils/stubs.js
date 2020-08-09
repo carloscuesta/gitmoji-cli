@@ -12,6 +12,8 @@ export const commands = [
 export const cliMock = (options) => ({
   flags: {
     commit: options.commit || false,
+    coAuthors: options.coAuthors || false,
+    refs: options.refs || false,
     config: options.config || false,
     hook: options.hook || false,
     init: options.init || false,

@@ -19,7 +19,10 @@ describe('cli', () => {
 
   it('should call commit command on commit', () => {
     options.commit('client')
-    expect(commands.commit).toHaveBeenCalledWith('client')
+    expect(commands.commit).toHaveBeenCalledWith('client', {
+      coAuthors: false,
+      refs: false
+    })
   })
 
   it('should call config command on config', () => {

@@ -25,7 +25,12 @@ export type Answers = {
   coAuthors: string
 }
 
-export default (gitmojis: Array<Gitmoji>, options: string[]): Array<Object> => [
+export type Options = {
+  refs: boolean,
+  coAuthors: boolean
+}
+
+export default (gitmojis: Array<Gitmoji>, options: Options): Array<Object> => [
   {
     name: 'gitmoji',
     message: 'Choose a gitmoji:',
@@ -61,14 +66,35 @@ export default (gitmojis: Array<Gitmoji>, options: string[]): Array<Object> => [
     message: 'Enter the commit message:',
     validate: guard.message
   },
-  {
-    when: options && options.includes('refs'),
-    name: 'refs',
-    message: 'Issue / PR reference:'
-  },
-  {
-    when: options && options.includes('coAuthors'),
-    name: 'coAuthors',
-    message: 'Co-authors (Separated by comma):'
-  }
+  ...((options && options.refs) || false
+    ? [
+        {
+          name: 'refs',
+          message: 'Issue / PR reference:',
+          filter: (input) => input.replace(/[^0-9#! ]/g, '').trim()
+        }
+      ]
+    : []),
+  ...((options && options.coAuthors) || false
+    ? [
+        {
+          name: 'coAuthors',
+          message: 'Co-authors (Separated by comma):',
+          validate: guard.coAuthors,
+          filter: (input) => {
+            // Clean input
+            const coAuthors = input
+              .trim()
+              .split(',')
+              .map((coAuthor) => coAuthor.trim())
+              .filter((coAuthor) => !!coAuthor)
+
+            // TODO: Replace contacts with complete contact data. E.g.: @A -> A <a@b.c>
+
+            // Remove duplications
+            return [...new Set(coAuthors)].join(', ')
+          }
+        }
+      ]
+    : [])
 ]

@@ -5,8 +5,9 @@ import getEmojis from '../../utils/getEmojis'
 import prompts from './prompts'
 import withHook, { registerHookInterruptionHandler } from './withHook'
 import withClient from './withClient'
+import { type Options } from './prompts'
 
-const commit = (mode: 'client' | 'hook', options: string[]) => {
+const commit = (mode: 'client' | 'hook', options: Options) => {
   if (mode === 'hook') registerHookInterruptionHandler()
 
   return getEmojis()

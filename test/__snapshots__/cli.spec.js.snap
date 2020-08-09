@@ -8,7 +8,9 @@ Array [
     $ gitmoji
   Options
     --commit, -c    Interactively commit using the prompts
-    --config, -g    Setup gitmoji-cli preferences.
+    --coAuthors,    Show option to add Co-Authors on commit. Works only with --commmit option
+    --refs,         Show option to add Issue/PR reference on commit. Works only with --commmit option
+    --config, -g     Setup gitmoji-cli preferences.
     --init, -i      Initialize gitmoji as a commit hook
     --list, -l      List all the available gitmojis
     --remove, -r    Remove a previously initialized commit hook
@@ -21,6 +23,9 @@ Array [
 ",
     Object {
       "flags": Object {
+        "coAuthors": Object {
+          "type": "boolean",
+        },
         "commit": Object {
           "alias": "c",
           "type": "boolean",
@@ -39,6 +44,9 @@ Array [
         },
         "list": Object {
           "alias": "l",
+          "type": "boolean",
+        },
+        "refs": Object {
           "type": "boolean",
         },
         "remove": Object {

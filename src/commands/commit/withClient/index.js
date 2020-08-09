@@ -7,25 +7,27 @@ import isHookCreated from '../../../utils/isHookCreated'
 import configurationVault from '../../../utils/configurationVault'
 import { type Answers } from '../prompts'
 
-const getCoAuthor = (coAuthor: string) => {
-  coAuthor = coAuthor.trim()
-  if (!coAuthor.startsWith('@')) {
-    return coAuthor
-  }
-
+const getContacts = (): string[] => {
   const contactsText = configurationVault.getContacts().trim()
   let contacts = []
   if (contactsText.length > 0) {
     contacts = contactsText.split('\n')
   }
+  return contacts
+}
 
-  const contact = contacts.find((contact) =>
+const getCoAuthor = (coAuthor: string): string | null => {
+  coAuthor = coAuthor.trim()
+  if (!coAuthor.startsWith('@')) {
+    return coAuthor
+  }
+
+  const contact = getContacts().find((contact) =>
     contact.trim().startsWith(coAuthor)
   )
+  // Contact not found
   if (typeof contact !== 'string') {
-    throw new Error(
-      `Contact ${coAuthor} not found! Please set the contacts using the option "-g"`
-    )
+    return null
   }
 
   const [, coAuthoredBy] = contact.split(': ')
@@ -59,25 +61,21 @@ const withClient = async (answers: Answers) => {
     }
 
     if (answers.refs) {
-      const refs = answers.refs.replace(/[^0-9#! ]/g, '').trim()
-
-      cmdArgs = [...cmdArgs, '-m', `Refs ${refs}`]
+      cmdArgs = [...cmdArgs, '-m', `Refs ${answers.refs}`]
     }
 
     if (answers.coAuthors) {
       let coAuthors = ''
-      answers.coAuthors
-        // Remove duplicated whitespaces
-        .replace(/ +(?= )/g, '')
-        .split(',')
-        .forEach((coAuthor) => {
-          const coAuthoredBy = getCoAuthor(coAuthor)
+      answers.coAuthors.split(',').forEach((coAuthor) => {
+        const coAuthoredBy = getCoAuthor(coAuthor)
 
+        if (coAuthoredBy !== null) {
           coAuthors += `Co-authored-by: ${coAuthoredBy}\n`
-        })
+        }
+      })
 
       if (coAuthors.trim().length) {
-        cmdArgs = [...cmdArgs, '-m', coAuthors]
+        cmdArgs = [...cmdArgs, '-m', coAuthors.slice(0, -1)]
       }
     }
 
