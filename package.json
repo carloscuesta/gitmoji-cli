@@ -17,7 +17,7 @@
     "clean": "rm -rf lib",
     "flow": "flow",
     "lint": "prettier --check src/**/*.js",
-    "prepublishOnly": "yarn run lint && yarn run flow && yarn run clean && yarn run build",
+    "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
     "coverage": "codecov",
     "test": "jest"
   },
