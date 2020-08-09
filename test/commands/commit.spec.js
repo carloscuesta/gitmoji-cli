@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import inquirer from 'inquirer'
 import execa from 'execa'
 import fs from 'fs'
@@ -10,6 +11,7 @@ import commit from '../../src/commands/commit'
 import guard from '../../src/commands/commit/guard'
 import prompts from '../../src/commands/commit/prompts'
 import * as stubs from './stubs'
+import filter from '../../src/commands/commit/filter'
 
 jest.mock('../../src/utils/getEmojis')
 jest.mock('../../src/utils/isHookCreated')
@@ -51,7 +53,6 @@ describe('commit command', () => {
     describe('with autoAdd, signed commits, scope, refs and co-authors', () => {
       beforeAll(() => {
         console.log = jest.fn()
-        console.warn = jest.fn()
         execa.mockReturnValue({ stdout: stubs.commitResult })
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswersWithScopeAndOptions)
@@ -252,6 +253,43 @@ describe('commit command', () => {
         )
       })
     })
+
+    describe('coAuthors', () => {
+      beforeAll(() => {
+        configurationVault.getContacts.mockReturnValue(
+          stubs.clientCommitContactsConfig
+        )
+      })
+
+      it('should return true when has no contacts to validate', () => {
+        expect(guard.coAuthors(stubs.commitCoAuthorsNoContact)).toBe(true)
+      })
+
+      describe.each(stubs.invalidCoAuthorsEntries)(
+        'with invalid entry: %s',
+        (invalidCoAuthor) => {
+          it('should return error message when pass invalid co-author', () => {
+            expect(guard.coAuthors(invalidCoAuthor)).toBe(
+              chalk.red(stubs.commitInvalidCoAuthorError)
+            )
+          })
+        }
+      )
+
+      it('should return true when all contacts exists', () => {
+        expect(guard.coAuthors(stubs.commitCoAuthorsWithValidContacts)).toBe(
+          true
+        )
+      })
+
+      it('should return error message when not found contacts', () => {
+        expect(
+          guard.coAuthors(
+            stubs.clientCommitAnswersWithScopeAndOptions.coAuthors
+          )
+        ).toBe(chalk.red(stubs.commitContactsNotFoundError))
+      })
+    })
   })
 
   describe('prompts', () => {
@@ -275,6 +313,29 @@ describe('commit command', () => {
 
       it('should match the array of questions', () => {
         expect(prompts(stubs.gitmojis)).toMatchSnapshot()
+      })
+    })
+  })
+
+  describe('filter', () => {
+    it('should match filter', () => {
+      expect(filter).toMatchSnapshot()
+    })
+
+    describe.each(stubs.coAuthorsInputFiltered)(
+      'coAuthors: %s',
+      (input, expected) => {
+        it(`should return filtered value: ${expected}`, () => {
+          expect(filter.coAuthors(input)).toBe(expected)
+        })
+      }
+    )
+
+    describe('refs', () => {
+      it('should remove non-numbers, #, ! and multiple spaces', () => {
+        expect(filter.refs(stubs.refsFilterInput)).toBe(
+          stubs.refsFilterInputFiltered
+        )
       })
     })
   })

@@ -1,10 +1,13 @@
 import chalk from 'chalk'
-import configurationVault from '../../utils/configurationVault'
+import getContacts from '../../utils/getContacts'
 
 const errors = {
   scope: chalk.red('Enter a valid scope'),
   title: chalk.red('Enter a valid commit title'),
-  message: chalk.red('Enter a valid commit message')
+  message: chalk.red('Enter a valid commit message'),
+  coAuthors: chalk.red(
+    'Enter valid co-authors. E.g: @A, name <name@example.com>'
+  )
 }
 
 const title = (title: string) =>
@@ -15,35 +18,39 @@ const message = (message: string) =>
 
 const scope = (scope: string) => (scope.includes('`') ? errors.scope : true)
 
-const coAuthors = (coAuthors: string) => {
-  // TODO: Validate not contact co authors format to be like: Name <email@domain.com>
+function isValidContact(input: string) {
+  return input.startsWith('@') && !/ /.test(input)
+}
 
-  const possibleContacts = coAuthors
-    .split(',')
-    .map((coAuthor) => coAuthor.trim())
-    .filter((coAuthor) => coAuthor.startsWith('@'))
+function isValidCoAuthor(input: string) {
+  // Pattern extracted from https://stackoverflow.com/a/46181/7491725
+  const validCoAuthorPattern = /.* <(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))>$/g
+  return validCoAuthorPattern.test(input)
+}
 
-  if (!possibleContacts.length) {
-    return true
-  }
+const coAuthors = (input: string) => {
+  const coAuthors = input.split(',').map((coAuthor) => coAuthor.trim())
 
-  const contactsText = configurationVault.getContacts().trim()
-  let contacts = []
-  if (contactsText.length > 0) {
-    contacts = contactsText.split('\n')
-  }
+  const invalidCoAuthors = coAuthors.filter(
+    (coAuthor) => !isValidContact(coAuthor) && !isValidCoAuthor(coAuthor)
+  )
 
-  const notFoundContacts = possibleContacts.filter((possibleContact) => {
-    const exists = contacts.some((contact) =>
-      contact.trim().startsWith(possibleContact)
-    )
+  if (invalidCoAuthors.length) return errors.coAuthors
 
-    return !exists
-  })
+  const possibleContacts = coAuthors.filter((coAuthor) =>
+    coAuthor.startsWith('@')
+  )
 
-  if (!notFoundContacts.length) {
-    return true
-  }
+  if (!possibleContacts.length) return true
+
+  const contacts = getContacts()
+
+  const notFoundContacts = possibleContacts.filter(
+    (possibleContact) =>
+      !contacts.some((contact) => contact.trim().startsWith(possibleContact))
+  )
+
+  if (!notFoundContacts.length) return true
 
   return chalk.red(
     `Contact${notFoundContacts.length > 1 ? 's' : ''} ${notFoundContacts.join(
