@@ -9,17 +9,13 @@ import { type Answers } from '../prompts'
 
 const getCoAuthor = (coAuthor: string): string | null => {
   coAuthor = coAuthor.trim()
-  if (!coAuthor.startsWith('@')) {
-    return coAuthor
-  }
+  if (!coAuthor.startsWith('@')) return coAuthor
 
   const contact = getContacts().find((contact) =>
     contact.trim().startsWith(coAuthor)
   )
   // Contact not found
-  if (typeof contact !== 'string') {
-    return null
-  }
+  if (typeof contact !== 'string') return null
 
   const [, coAuthoredBy] = contact.split(': ')
 

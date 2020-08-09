@@ -18,7 +18,7 @@ export default () => [
   {
     name: CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS,
     message:
-      'List of contacts with the following definitions: @ContactId: Name <email@domain.com>',
+      'Co-authors contacts definitions. E.g.: @ContactId: Name <email@domain.com>',
     type: 'editor',
     default: configurationVault.getContacts()
   },

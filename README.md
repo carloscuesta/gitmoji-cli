@@ -36,8 +36,10 @@ A gitmoji interactive client for using gitmojis on commit messages.
   Options
     --init, -i      Initialize gitmoji as a commit hook
     --remove, -r    Remove a previously initialized commit hook
-    --config, -g    Setup gitmoji-cli preferences.
+    --config, -g     Setup gitmoji-cli preferences.
     --commit, -c    Interactively commit using the prompts
+    --coAuthors,    Show option to add Co-Authors on commit. Works only with --commmit option
+    --refs,         Show option to add Issue/PR reference on commit. Works only with --commmit option
     --list, -l      List all the available gitmojis
     --search, -s    Search gitmojis
     --version, -v   Print gitmoji-cli installed version
@@ -54,6 +56,39 @@ Start the interactive commit client, to auto generate your commit based on your 
 
 ```bash
 $ gitmoji -c
+```
+
+The client has the options `--coAuthors` and `--refs`.
+
+##### Co-authors
+
+Allow to add commit co-authors:
+
+```
+? Co-authors (Separated by comma): Foo Bar <foo.bar@example.com>, Name <name@example.com>
+```
+
+You can still create **contacts** with some pre-defined co-authors. To manage your contacts execute the command `gitmoji -g` on option `Co-authors contacts definitions.`. Add a list of contacts with following definitions: `@ContactId: Name <email@domain.com>`. E.g.:
+
+```
+@Carlos: Carlos Cuesta <hi@carloscuesta.me>
+@John: John Doe <john.doe@example.com>
+```
+
+**IMPORTANT:** Add each contact in one line.
+
+Now you can use the contacts on `Co-authors` option.
+
+```
+? Co-authors (Separated by comma): @Carlos, @John, Name <name@example.com>
+```
+
+##### Refs
+
+Allow to add commit Issue/PR reference:
+
+```
+? Issue / PR reference: #123 !321
 ```
 
 #### Hook
@@ -79,7 +114,6 @@ $ gitmoji bug linter -s
 ```
 
 ![gitmoji list](https://user-images.githubusercontent.com/7629661/41189878-d24a3b78-6bd4-11e8-8d47-c8edf3b87e53.png)
-
 
 ### List
 
