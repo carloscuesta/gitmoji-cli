@@ -8,8 +8,9 @@ import configurationVault from '../../../utils/configurationVault'
 import { type Answers } from '../prompts'
 
 const getCoAuthor = (coAuthor: string) => {
-  if (!coAuthor.trim().startsWith('@')) {
-    return coAuthor.trim()
+  coAuthor = coAuthor.trim()
+  if (!coAuthor.startsWith('@')) {
+    return coAuthor
   }
 
   const contactsText = configurationVault.getContacts().trim()
@@ -19,7 +20,7 @@ const getCoAuthor = (coAuthor: string) => {
   }
 
   const contact = contacts.find((contact) =>
-    contact.trim().startsWith(coAuthor.trim())
+    contact.trim().startsWith(coAuthor)
   )
   if (typeof contact !== 'string') {
     throw new Error(
@@ -66,8 +67,9 @@ const withClient = async (answers: Answers) => {
     if (answers.coAuthors) {
       let coAuthors = ''
       answers.coAuthors
+        // Remove duplicated whitespaces
         .replace(/ +(?= )/g, '')
-        .split(' ')
+        .split(',')
         .forEach((coAuthor) => {
           const coAuthoredBy = getCoAuthor(coAuthor)
 

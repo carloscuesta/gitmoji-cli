@@ -25,7 +25,7 @@ export type Answers = {
   coAuthors: string
 }
 
-export default (gitmojis: Array<Gitmoji>): Array<Object> => [
+export default (gitmojis: Array<Gitmoji>, options: string[]): Array<Object> => [
   {
     name: 'gitmoji',
     message: 'Choose a gitmoji:',
@@ -50,7 +50,7 @@ export default (gitmojis: Array<Gitmoji>): Array<Object> => [
     : []),
   {
     name: 'title',
-    message: 'Enter the commit title',
+    message: 'Enter the commit title:',
     validate: guard.title,
     transformer: (input: string) => {
       return `[${input.length}/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
@@ -62,11 +62,13 @@ export default (gitmojis: Array<Gitmoji>): Array<Object> => [
     validate: guard.message
   },
   {
+    when: options && options.includes('refs'),
     name: 'refs',
-    message: 'Issue / PR reference'
+    message: 'Issue / PR reference:'
   },
   {
+    when: options && options.includes('coAuthors'),
     name: 'coAuthors',
-    message: 'Co-authored-by (Separated by comma)'
+    message: 'Co-authors (Separated by comma):'
   }
 ]

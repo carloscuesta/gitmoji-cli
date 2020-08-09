@@ -6,11 +6,11 @@ import prompts from './prompts'
 import withHook, { registerHookInterruptionHandler } from './withHook'
 import withClient from './withClient'
 
-const commit = (mode: 'client' | 'hook') => {
+const commit = (mode: 'client' | 'hook', options: string[]) => {
   if (mode === 'hook') registerHookInterruptionHandler()
 
   return getEmojis()
-    .then((gitmojis) => prompts(gitmojis))
+    .then((gitmojis) => prompts(gitmojis, options))
     .then((questions) => {
       inquirer.prompt(questions).then((answers) => {
         if (mode === 'hook') return withHook(answers)
