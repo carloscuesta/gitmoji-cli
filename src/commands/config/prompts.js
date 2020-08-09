@@ -3,10 +3,10 @@ import configurationVault from '../../utils/configurationVault'
 
 export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
+  CONTACTS: 'addContacts',
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
-  SIGNED_COMMIT: 'signedCommit',
-  ADD_CONTACTS: 'addContacts'
+  SIGNED_COMMIT: 'signedCommit'
 }
 
 export const EMOJI_COMMIT_FORMATS = {
@@ -16,7 +16,7 @@ export const EMOJI_COMMIT_FORMATS = {
 
 export default () => [
   {
-    name: CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS,
+    name: CONFIGURATION_PROMPT_NAMES.CONTACTS,
     message:
       'Co-authors contacts definitions. E.g.: @ContactId: Name <email@domain.com>',
     type: 'editor',

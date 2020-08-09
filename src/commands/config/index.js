@@ -17,7 +17,7 @@ const config = () => {
       answers[CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]
     ),
       configurationVault.setContacts(
-        answers[CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS]
+        answers[CONFIGURATION_PROMPT_NAMES.CONTACTS]
       )
   })
 }

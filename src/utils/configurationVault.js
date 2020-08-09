@@ -13,7 +13,7 @@ const setAutoAdd = (autoAdd: boolean) => {
 }
 
 const setContacts = (contacts: string) => {
-  config.set(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS, contacts)
+  config.set(CONFIGURATION_PROMPT_NAMES.CONTACTS, contacts)
 }
 
 const setEmojiFormat = (emojiFormat: string) => {
@@ -33,7 +33,7 @@ const getAutoAdd = (): boolean => {
 }
 
 const getContacts = (): string => {
-  return config.get(CONFIGURATION_PROMPT_NAMES.ADD_CONTACTS) || ''
+  return config.get(CONFIGURATION_PROMPT_NAMES.CONTACTS) || ''
 }
 
 const getEmojiFormat = (): string => {

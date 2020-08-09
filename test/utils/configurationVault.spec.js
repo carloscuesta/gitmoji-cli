@@ -18,6 +18,10 @@ describe('configurationVault', () => {
       expect(configurationVault.getAutoAdd()).toEqual(false)
     })
 
+    it('should return the default value for contacts', () => {
+      expect(configurationVault.getContacts()).toEqual('')
+    })
+
     it('should return the default value for emojiFormat', () => {
       expect(configurationVault.getEmojiFormat()).toEqual('code')
     })
@@ -51,6 +55,20 @@ describe('configurationVault', () => {
       )
       expect(config.get).toHaveBeenCalledWith(
         CONFIGURATION_PROMPT_NAMES.AUTO_ADD
+      )
+    })
+
+    it('should set and return value for contacts', () => {
+      const newContacts = '@A: A B <a@b.c>'
+      configurationVault.setContacts(newContacts)
+      configurationVault.getContacts()
+
+      expect(config.set).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.CONTACTS,
+        newContacts
+      )
+      expect(config.get).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.CONTACTS
       )
     })
 
