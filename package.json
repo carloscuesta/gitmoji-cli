@@ -111,5 +111,16 @@
       "pre-commit": "lint-staged",
       "pre-push": "yarn run flow && yarn run test"
     }
-  }
+  },
+
+"funding": [
+    {
+      "type" : "Github Sponsors",
+      "url" : "https://github.com/sponsors/carloscuesta"
+    },
+    {
+      "type" : "Paypal",
+      "url" : "https://paypal.me/carloscuesta"
+    }
+  ]
 }
