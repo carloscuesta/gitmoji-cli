@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - 'lts/*'
   - 10
+install:
+  - yarn --frozen-lockfile --ignore-scripts
 before_script:
   - git config user.name "Travis CI"
   - git config user.email "mail@mail.com"

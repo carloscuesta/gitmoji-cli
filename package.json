@@ -19,7 +19,8 @@
     "lint": "prettier --check src/**/*.js",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
     "coverage": "codecov",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node lib/utils/installMessage.js"
   },
   "repository": {
     "type": "git",
@@ -84,6 +85,9 @@
     "collectCoverageFrom": [
       "src/**/*.js"
     ],
+    "coveragePathIgnorePatterns": [
+      "src/utils/installMessage.js"
+    ],
     "testMatch": [
       "**/*.(spec).(js)"
     ],
@@ -107,5 +111,15 @@
       "pre-commit": "lint-staged",
       "pre-push": "yarn run flow && yarn run test"
     }
-  }
+  },
+  "funding": [
+    {
+      "type" : "Github Sponsors",
+      "url" : "https://github.com/sponsors/carloscuesta"
+    },
+    {
+      "type" : "Paypal",
+      "url" : "https://paypal.me/carloscuesta"
+    }
+  ]
 }
