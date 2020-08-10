@@ -19,7 +19,8 @@
     "lint": "prettier --check src/**/*.js",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
     "coverage": "codecov",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node lib/utils/installMessage.js"
   },
   "repository": {
     "type": "git",
@@ -83,6 +84,9 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "src/utils/installMessage.js"
     ],
     "testMatch": [
       "**/*.(spec).(js)"
