@@ -17,7 +17,7 @@ jobs:
           node-version: '14.x'
       - name: Build
         run: |
-          yarn
+          yarn install --ignore-scripts
           yarn build
           yarn package
       - name: Create Release
