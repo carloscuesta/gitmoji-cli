@@ -159,9 +159,7 @@ describe('commit command', () => {
 
     describe('when the commit message is already defined', () => {
       it('should cancel the hook', async () => {
-        const warnConsoleSpy = jest
-          .spyOn(console, 'warn')
-          .mockImplementationOnce()
+        console.warn  = jest.fn()
 
         // Use an exception to suspend code execution to simulate process.exit
         mockProcess.mockProcessExit(new Error('ProcessExit0'))
@@ -176,7 +174,7 @@ describe('commit command', () => {
           expect(e.message).toMatch('ProcessExit0')
         }
 
-        expect(warnConsoleSpy).toHaveBeenCalledWith(
+        expect(console.warn).toHaveBeenCalledWith(
           'A commit message is already set, cancelling gitmoji\n'
         )
         expect(process.exit).toHaveBeenCalledWith(0)
@@ -185,7 +183,7 @@ describe('commit command', () => {
 
     describe('when receiving a signal interrupt', () => {
       it('should call process.exit(0)', async () => {
-        const warnConsoleSpy = jest.spyOn(console, 'warn').mockImplementation()
+        console.warn  = jest.fn()
 
         // mock process.on and process.kill to test registerHookInterruptionHandler
         const processEvents = {}
@@ -211,7 +209,7 @@ describe('commit command', () => {
           expect(e.message).toMatch('SIGINT')
         }
 
-        expect(warnConsoleSpy).toHaveBeenCalledWith(
+        expect(console.warn).toHaveBeenCalledWith(
           'gitmoji-cli was interrupted'
         )
         expect(process.exit).toHaveBeenCalledWith(0)
