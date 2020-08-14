@@ -22,6 +22,12 @@ This project provides an easy solution for using [**gitmoji**](https://github.co
 $ npm i -g gitmoji-cli
 ```
 
+or, on macOS, using brew
+
+```bash
+$ brew install gitmoji
+```
+
 ## Usage
 
 ```bash
