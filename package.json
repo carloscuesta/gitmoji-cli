@@ -48,7 +48,7 @@
     "meow": "^6.0.0",
     "node-fetch": "^2.6.0",
     "ora": "^5.0.0",
-    "path-exists": "^3.0.0",
+    "path-exists": "4.0.0",
     "update-notifier": "^4.0.0"
   },
   "devDependencies": {
@@ -114,12 +114,12 @@
   },
   "funding": [
     {
-      "type" : "Github Sponsors",
-      "url" : "https://github.com/sponsors/carloscuesta"
+      "type": "Github Sponsors",
+      "url": "https://github.com/sponsors/carloscuesta"
     },
     {
-      "type" : "Paypal",
-      "url" : "https://paypal.me/carloscuesta"
+      "type": "Paypal",
+      "url": "https://paypal.me/carloscuesta"
     }
   ]
 }
