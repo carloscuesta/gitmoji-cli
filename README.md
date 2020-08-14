@@ -18,8 +18,16 @@ This project provides an easy solution for using [**gitmoji**](https://github.co
 
 ## Install
 
+### npm
+
 ```bash
 $ npm i -g gitmoji-cli
+```
+
+### brew
+
+```bash
+$ brew install gitmoji
 ```
 
 ## Usage
