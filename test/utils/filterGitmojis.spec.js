@@ -1,7 +1,7 @@
 import filterGitmojis, { options } from '../../src/utils/filterGitmojis'
 import * as stubs from './stubs'
 
-describe('filterGirmojis', () => {
+describe('filterGitmojis', () => {
   it('should find all gitmojis with empty input', () => {
     const filteredGitmojis = filterGitmojis(undefined, stubs.gitmojis)
 
@@ -26,13 +26,6 @@ describe('filterGirmojis', () => {
     expect(filteredGitmojis[0]).toStrictEqual(gitmoji)
   })
 
-  it('should should find the `Moving or renaming files.` gitmoji first', () => {
-    const filteredGitmojis = filterGitmojis('move', stubs.gitmojis)
-
-    const gitmoji = stubs.gitmojis.find((gitmoji) => gitmoji.name === 'truck')
-    expect(filteredGitmojis[0]).toStrictEqual(gitmoji)
-  })
-
   it('should should find the `Updating code due to external API changes.` gitmoji first', () => {
     const filteredGitmojis = filterGitmojis('alian', stubs.gitmojis)
 
@@ -40,8 +33,17 @@ describe('filterGirmojis', () => {
     expect(filteredGitmojis[0]).toStrictEqual(gitmoji)
   })
 
+  it('should match a list of filteredGitmojis', () => {
+    const filteredGitmojis = filterGitmojis('bug', stubs.gitmojis)
+
+    expect(filteredGitmojis).toMatchSnapshot()
+  })
+
   it('should not have a total weight of greater than 1', () => {
-    const weightSum = options.keys.reduce((carry, key) => carry += key.weight, 0)
+    const weightSum = options.keys.reduce(
+      (carry, key) => (carry += key.weight),
+      0
+    )
 
     expect(weightSum).toBeLessThanOrEqual(1)
   })
