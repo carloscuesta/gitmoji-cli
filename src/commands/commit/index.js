@@ -3,11 +3,17 @@ import inquirer from 'inquirer'
 
 import getEmojis from '../../utils/getEmojis'
 import prompts from './prompts'
-import withHook, { registerHookInterruptionHandler } from './withHook'
+import withHook, {
+  registerHookInterruptionHandler,
+  cancelIfMessageIsAlreadySet
+} from './withHook'
 import withClient from './withClient'
 
 const commit = (mode: 'client' | 'hook') => {
-  if (mode === 'hook') registerHookInterruptionHandler()
+  if (mode === 'hook') {
+    cancelIfMessageIsAlreadySet()
+    registerHookInterruptionHandler()
+  }
 
   return getEmojis()
     .then((gitmojis) => prompts(gitmojis))
