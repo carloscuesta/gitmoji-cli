@@ -157,30 +157,6 @@ describe('commit command', () => {
       })
     })
 
-    describe('when the commit message is already defined', () => {
-      it('should cancel the hook', async () => {
-        console.warn  = jest.fn()
-
-        // Use an exception to suspend code execution to simulate process.exit
-        mockProcess.mockProcessExit(new Error('ProcessExit0'))
-        fs.existsSync.mockReturnValueOnce(true)
-        fs.lstatSync.mockReturnValueOnce({ isFile: () => true })
-        fs.readFileSync.mockReturnValueOnce('message')
-        process.argv[3] = stubs.argv
-
-        try {
-          await commit('hook')
-        } catch (e) {
-          expect(e.message).toMatch('ProcessExit0')
-        }
-
-        expect(console.warn).toHaveBeenCalledWith(
-          'A commit message is already set, cancelling gitmoji\n'
-        )
-        expect(process.exit).toHaveBeenCalledWith(0)
-      })
-    })
-
     describe('when receiving a signal interrupt', () => {
       it('should call process.exit(0)', async () => {
         console.warn  = jest.fn()
