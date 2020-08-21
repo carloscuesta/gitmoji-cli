@@ -1,4 +1,5 @@
 // @flow
+import execa from 'execa'
 import fs from 'fs'
 
 import { type Answers } from '../prompts'
@@ -25,5 +26,19 @@ export const registerHookInterruptionHandler = () => {
     process.exit(0)
   })
 }
+
+export const cancelIfRebasing = () =>
+  execa('git', ['rev-parse', '--absolute-git-dir']).then(
+    ({ stdout: gitDirectory }) => {
+      // see https://stackoverflow.com/questions/3921409/how-to-know-if-there-is-a-git-rebase-in-progress
+      // to understand how a rebase is detected
+      if (
+        fs.existsSync(gitDirectory + '/rebase-merge') ||
+        fs.existsSync(gitDirectory + '/rebase-apply')
+      ) {
+        process.exit(0)
+      }
+    }
+  )
 
 export default withHook

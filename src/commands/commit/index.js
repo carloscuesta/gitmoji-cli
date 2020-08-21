@@ -3,15 +3,25 @@ import inquirer from 'inquirer'
 
 import getEmojis from '../../utils/getEmojis'
 import prompts from './prompts'
-import withHook, { registerHookInterruptionHandler } from './withHook'
+import withHook, {
+  registerHookInterruptionHandler,
+  cancelIfRebasing
+} from './withHook'
 import withClient from './withClient'
 
 export type CommitMode = 'client' | 'hook'
 
 const commit = (mode: CommitMode) => {
-  if (mode === 'hook') registerHookInterruptionHandler()
+  if (mode === 'hook') {
+    registerHookInterruptionHandler()
+    return cancelIfRebasing().then(() => promptAndCommit(mode))
+  }
 
-  return getEmojis()
+  return promptAndCommit(mode)
+}
+
+const promptAndCommit = (mode: 'client' | 'hook') =>
+  getEmojis()
     .then((gitmojis) => prompts(gitmojis, mode))
     .then((questions) => {
       inquirer.prompt(questions).then((answers) => {
@@ -20,6 +30,5 @@ const commit = (mode: CommitMode) => {
         return withClient(answers)
       })
     })
-}
 
 export default commit
