@@ -5,3 +5,6 @@ coverage/
 lib/
 bin/
 package-lock.json
+
+# VS Code settings
+.vscode
