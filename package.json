@@ -64,7 +64,7 @@
     "jest-mock-process": "^1.2.0",
     "lint-staged": "^10.0.7",
     "pkg": "^4.4.8",
-    "prettier": "^1.18.2"
+    "prettier": "^2.1.1"
   },
   "babel": {
     "presets": [
@@ -96,9 +96,10 @@
     ]
   },
   "prettier": {
+    "arrowParens": "always",
     "semi": false,
     "singleQuote": true,
-    "arrowParens": "always"
+    "trailingComma": "none"
   },
   "lint-staged": {
     "*.{js}": [
