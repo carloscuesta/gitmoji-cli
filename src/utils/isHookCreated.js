@@ -7,11 +7,13 @@ import HOOK from '../commands/hook/hook'
 const isHookCreated = async () => {
   try {
     const { stdout } = await execa('git', ['rev-parse', '--absolute-git-dir'])
+    const hookFile = stdout + HOOK.PATH
 
-    if (!fs.existsSync(stdout + HOOK.PATH)) {
-      return false
+    if (fs.existsSync(hookFile)) {
+      return fs.readFileSync(hookFile, { encoding: 'utf-8' }) === HOOK.CONTENTS
     }
-    return fs.readFileSync(stdout + HOOK.PATH) === HOOK.CONTENTS
+
+    return false
   } catch (error) {
     console.error(error)
   }
