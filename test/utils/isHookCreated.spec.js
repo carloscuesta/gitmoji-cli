@@ -10,24 +10,41 @@ describe('isHookCreated', () => {
     execa.mockReturnValue({ stdout: stubs.gitAbsoluteDir })
   })
 
-  it('should obtain the absolute git dir with execa', () => {
-    isHookCreated()
-    expect(execa).toHaveBeenCalledWith('git', [
-      'rev-parse',
-      '--absolute-git-dir'
-    ])
+  describe('when the hook does not exists', () => {
+    beforeAll(() => {
+      fs.existsSync.mockReturnValue(false)
+      fs.readFileSync.mockReturnValue(HOOK.CONTENTS)
+    })
+
+    it('should return false', async () => {
+      const hookExists = await isHookCreated()
+
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
+      expect(fs.existsSync).toHaveBeenCalledWith(stubs.gitAbsoluteDir + HOOK.PATH)
+      expect(fs.readFileSync).not.toHaveBeenCalled()
+      expect(hookExists).toBe(false)
+    })
   })
 
-  it('should check if hook file exists', async () => {
-    expect(await isHookCreated()).toEqual(false)
-    expect(fs.existsSync).toHaveBeenCalledWith(stubs.gitAbsoluteDir + HOOK.PATH)
-  })
+  describe('when the hook exists', () => {
+    beforeAll(() => {
+      fs.existsSync.mockReturnValue(true)
+      fs.readFileSync.mockReturnValue(HOOK.CONTENTS)
+    })
 
-  it('should check if hook file matches', async () => {
-    fs.existsSync.mockReturnValue(true)
-    expect(await isHookCreated()).toEqual(false)
-    expect(fs.readFileSync).toHaveBeenCalledWith(
-      stubs.gitAbsoluteDir + HOOK.PATH
-    )
+    it('should return true', async () => {
+      const hookExists = await isHookCreated()
+
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
+      expect(fs.existsSync).toHaveBeenCalledWith(stubs.gitAbsoluteDir + HOOK.PATH)
+      expect(fs.readFileSync).toHaveBeenCalledWith(stubs.gitAbsoluteDir + HOOK.PATH, { encoding: 'utf-8' })
+      expect(hookExists).toBe(true)
+    })
   })
 })
