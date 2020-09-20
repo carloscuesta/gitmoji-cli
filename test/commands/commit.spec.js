@@ -132,6 +132,8 @@ describe('commit command', () => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
         commit('hook')
       })
 
@@ -159,6 +161,8 @@ describe('commit command', () => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
         commit('hook')
       })
 
@@ -170,6 +174,28 @@ describe('commit command', () => {
       })
 
       it('should call process.exit', () => {
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+
+    describe('when rebasing', () => {
+      it('should cancel the hook', async () => {
+        /*
+        Use an exception to suspend code execution to simulate the process.exit triggered
+        when the hook mode detect that the user is rebasing. (Simulated to not kill the tests)
+        Simulation needed because if we just mock process exit, then the code execution resume in the test.
+        */
+        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        // mock that we found one of the rebase trigger (file existence in .git)
+        fs.existsSync.mockReturnValueOnce(true)
+
+        try {
+          await commit('hook')
+        } catch (e) {
+          expect(e.message).toMatch('ProcessExit0')
+        }
+
         expect(process.exit).toHaveBeenCalledWith(0)
       })
     })
@@ -186,6 +212,9 @@ describe('commit command', () => {
         jest.spyOn(process, 'kill').mockImplementation((pid, signal) => {
           processEvents[signal]()
         })
+
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
 
         inquirer.prompt.mockImplementation(() => {
           process.kill(process.pid, 'SIGINT')
