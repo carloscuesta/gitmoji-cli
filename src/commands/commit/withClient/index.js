@@ -30,9 +30,9 @@ const withClient = async (answers: Answers) => {
       'commit',
       ...isSigned,
       '-m',
-      title,
+      `"${title}"`,
       '-m',
-      answers.message
+      `"${answers.message}"`
     ])
 
     console.log(stdout)
