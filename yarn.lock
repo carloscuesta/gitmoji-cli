@@ -2858,9 +2858,9 @@ ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.4.tgz#0537cb79daf59b59a1a517dff706c86ec039162e"
 
 inquirer-autocomplete-prompt@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/inquirer-autocomplete-prompt/-/inquirer-autocomplete-prompt-1.1.0.tgz#e7745b49122e56b483659c91328a2c3fca33ffd6"
-  integrity sha512-mrSeUSFGnTSid/DCKG+E+IcN4MaOnT2bW7NuSagZAguD4k3hZ0UladdYNP4EstZOwgeqv0C3M1zYa1QIIf0Oyg==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/inquirer-autocomplete-prompt/-/inquirer-autocomplete-prompt-1.2.0.tgz#da13d80cb0758ff5d58703e17afc533b5b61cc6d"
+  integrity sha512-t8A0gFq0mOKGz8wmGBPh+M/AC8KSMMcn7dnHXzLWyKvLiRYWswQ6rg7d938hoR5tVP1GpHVmHOR6YP8G5dYhhQ==
   dependencies:
     ansi-escapes "^4.3.1"
     chalk "^4.0.0"
