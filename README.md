@@ -109,6 +109,13 @@ $ gitmoji -u
 
 ### Config
 
-Run `gitmoji -g` to setup some gitmoji-cli preferences, such as the auto `git add .` feature.
+Run `gitmoji -g` to setup some gitmoji-cli preferences.
 
 ![gitmoji config](https://user-images.githubusercontent.com/7629661/41189876-d21167ee-6bd4-11e8-9008-4c987502f307.png)
+
+#### Options
+
+- **Automatic git add**: Enable or disable the automatic `git add .` everytime you use the commit command.
+- **Emoji format**: Switch between the emoji format.
+- **Scope prompt**: Enable or disable [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary).
+- **Signed commits**: Enable or disable [signed commits with GPG](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/signing-commits).
