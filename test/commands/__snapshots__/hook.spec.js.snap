@@ -5,7 +5,7 @@ Object {
   "CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
-gitmoji --hook $1
+gitmoji --hook $1 $2
 ",
   "PATH": "/hooks/prepare-commit-msg",
   "PERMISSIONS": 509,
