@@ -1,7 +1,6 @@
 on:
-  push:
-    tags:
-      - 'v*'
+  release:
+    types: [published]
 
 name: Create Release
 
