@@ -11,6 +11,7 @@ import commit from '../../src/commands/commit'
 import guard from '../../src/commands/commit/guard'
 import prompts from '../../src/commands/commit/prompts'
 import * as stubs from './stubs'
+import { COMMIT_MESSAGE_SOURCE } from '../../src/commands/commit/withHook/index'
 
 jest.mock('../../src/utils/getDefaultCommitContent')
 jest.mock('../../src/utils/getEmojis')
@@ -129,6 +130,7 @@ describe('commit command', () => {
         getEmojis.mockResolvedValue(stubs.gitmojis)
         mockProcess.mockProcessExit()
         process.argv[3] = stubs.argv
+        process.argv[COMMIT_MESSAGE_SOURCE] = undefined
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -158,6 +160,7 @@ describe('commit command', () => {
         getEmojis.mockResolvedValue(stubs.gitmojis)
         mockProcess.mockProcessExit()
         process.argv[3] = stubs.argv
+        process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -185,10 +188,33 @@ describe('commit command', () => {
         when the hook mode detect that the user is rebasing. (Simulated to not kill the tests)
         Simulation needed because if we just mock process exit, then the code execution resume in the test.
         */
+        process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
         mockProcess.mockProcessExit(new Error('ProcessExit0'))
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         // mock that we found one of the rebase trigger (file existence in .git)
         fs.existsSync.mockReturnValueOnce(true)
+
+        try {
+          await commit('hook')
+        } catch (e) {
+          expect(e.message).toMatch('ProcessExit0')
+        }
+
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+
+    describe('when amending', () => {
+      it('should cancel the hook', async () => {
+        /*
+        Use an exception to suspend code execution to simulate the process.exit triggered
+        when the hook mode detect that the user is rebasing. (Simulated to not kill the tests)
+        Simulation needed because if we just mock process exit, then the code execution resume in the test.
+        */
+        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        // mock that we are amending
+        process.argv[COMMIT_MESSAGE_SOURCE] = 'commit sha123'
 
         try {
           await commit('hook')
@@ -224,6 +250,7 @@ describe('commit command', () => {
         // Use an exception to suspend code execution to simulate process.exit
         mockProcess.mockProcessExit(new Error('SIGINT'))
         process.argv[3] = stubs.argv
+        process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
 
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
