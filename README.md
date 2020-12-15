@@ -83,10 +83,10 @@ $ git commit
 Search using specific keywords to find the right gitmoji.
 
 ```bash
-$ gitmoji bug linter -s
+$ gitmoji -s "criteria"
 ```
 
-![gitmoji list](https://user-images.githubusercontent.com/7629661/41189878-d24a3b78-6bd4-11e8-8d47-c8edf3b87e53.png)
+![gitmoji search](https://user-images.githubusercontent.com/7629661/41189878-d24a3b78-6bd4-11e8-8d47-c8edf3b87e53.png)
 
 
 ### List
