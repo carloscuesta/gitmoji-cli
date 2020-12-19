@@ -5,7 +5,7 @@ import getEmojis from '../../utils/getEmojis'
 import prompts from './prompts'
 import withHook, {
   registerHookInterruptionHandler,
-  cancelIfRebasing
+  cancelIfNeeded
 } from './withHook'
 import withClient from './withClient'
 
@@ -14,7 +14,7 @@ export type CommitMode = 'client' | 'hook'
 const commit = (mode: CommitMode) => {
   if (mode === 'hook') {
     registerHookInterruptionHandler()
-    return cancelIfRebasing().then(() => promptAndCommit(mode))
+    return cancelIfNeeded().then(() => promptAndCommit(mode))
   }
 
   return promptAndCommit(mode)

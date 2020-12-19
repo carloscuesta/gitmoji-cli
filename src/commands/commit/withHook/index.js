@@ -41,4 +41,23 @@ export const cancelIfRebasing = () =>
     }
   )
 
+export const COMMIT_MESSAGE_SOURCE = 4
+
+export const cancelIfAmending = () =>
+  new Promise<void>((resolve) => {
+    /*
+      from https://git-scm.com/docs/githooks#_prepare_commit_msg
+      the commit message source is passed as second argument and corresponding 4 for gitmoji-cli
+      `gitmoji --hook $1 $2`
+    */
+    const commitMessageSource: ?string = process.argv[COMMIT_MESSAGE_SOURCE]
+    if (commitMessageSource && commitMessageSource.startsWith('commit')) {
+      process.exit(0)
+    }
+    resolve()
+  })
+
+// I avoid Promise.all to avoid race condition in future cancel callbacks
+export const cancelIfNeeded = () => cancelIfAmending().then(cancelIfRebasing)
+
 export default withHook
