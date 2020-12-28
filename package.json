@@ -31,7 +31,11 @@
     "carloscuesta",
     "commit"
   ],
-  "author": "Carlos Cuesta",
+  "author": {
+    "name": "Carlos Cuesta",
+    "email": "hi@carloscuesta.me",
+    "url": "https://carloscuesta.me"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/carloscuesta/gitmoji-cli/issues"
