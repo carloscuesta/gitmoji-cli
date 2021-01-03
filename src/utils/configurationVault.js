@@ -37,7 +37,7 @@ const getEmojiFormat = (): string => {
 
 const getSignedCommit = (): boolean => {
   return (
-    process.env.SIGNED_COMMIT ||
+    !!process.env.SIGNED_COMMIT ||
     config.get(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT) ||
     false
   )
@@ -45,7 +45,7 @@ const getSignedCommit = (): boolean => {
 
 const getScopePrompt = (): boolean => {
   return (
-    process.env.SCOPE_PROMPT ||
+    !!process.env.SCOPE_PROMPT ||
     config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) ||
     false
   )
