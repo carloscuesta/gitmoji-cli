@@ -36,11 +36,19 @@ const getEmojiFormat = (): string => {
 }
 
 const getSignedCommit = (): boolean => {
-  return config.get(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT) || false
+  return (
+    process.env.SIGNED_COMMIT ||
+    config.get(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT) ||
+    false
+  )
 }
 
 const getScopePrompt = (): boolean => {
-  return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
+  return (
+    process.env.SCOPE_PROMPT ||
+    config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) ||
+    false
+  )
 }
 
 export default {
