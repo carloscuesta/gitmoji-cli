@@ -1946,10 +1946,10 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-conf@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-8.0.0.tgz#cf99eb9e56b1bf287c2e8a90f7cf7d73704950e5"
-  integrity sha512-2dGJNRnHMR62CMCbevzBac1VNcEyxG0SEymKAzD2av5FZTzoPOhps+28E7nsJocNDJWHvBK16FfGiqJ2wqUBqA==
+conf@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-9.0.0.tgz#86fd1a8e58da81a8fae2a8a9feeb3a45ef68d303"
+  integrity sha512-TGrWTD/tviifvdeoOZIYBmlceYJ0wq2lCzqbv7bT4KgostaCyyYe9uYWZdzPdhl4mROQXwMcc/iuAUsMTzf7pQ==
   dependencies:
     ajv "^7.0.3"
     atomically "^1.7.0"
