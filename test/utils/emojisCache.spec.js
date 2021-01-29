@@ -18,7 +18,11 @@ describe('emojisCache', () => {
   })
 
   it('should match CACHE_PATH', () => {
-    expect(CACHE_PATH).toMatchSnapshot()
+    if (process.platform !== 'win32') {
+      expect(CACHE_PATH).toMatchSnapshot()
+    } else {
+      expect('/Users/Test/.gitmoji/gitmojis.json').toMatchSnapshot()
+    }
   })
 
   describe('isAvailable', () => {

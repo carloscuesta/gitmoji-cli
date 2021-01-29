@@ -11,7 +11,8 @@ export const GITMOJIS_URL =
 const getEmojis = (skipCache: boolean = false) => {
   if (cache.isAvailable() && !skipCache) return cache.getEmojis()
 
-  const spinner = ora('Fetching the emoji list').start()
+  const spinner = ora('Fetching the emoji list')
+  spinner.start()
 
   return fetch(GITMOJIS_URL)
     .then((response) => response.json())
