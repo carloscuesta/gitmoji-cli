@@ -124,7 +124,7 @@ describe('commit command', () => {
 
   describe('withHook', () => {
     describe('without scope', () => {
-      beforeAll(() => {
+      beforeAll(async () => {
         console.log = jest.fn()
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswers)
@@ -138,7 +138,7 @@ describe('commit command', () => {
         )
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
-        commit('hook')
+        await commit('hook')
       })
 
       it('should commit using the hook', () => {
@@ -154,7 +154,7 @@ describe('commit command', () => {
     })
 
     describe('with scope', () => {
-      beforeAll(() => {
+      beforeAll(async () => {
         console.log = jest.fn()
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswersWithScope)
@@ -168,7 +168,7 @@ describe('commit command', () => {
         )
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
-        commit('hook')
+        await commit('hook')
       })
 
       it('should commit using the hook', () => {
