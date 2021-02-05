@@ -16,6 +16,9 @@ const config = () => {
     configurationVault.setScopePrompt(
       answers[CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]
     )
+    configurationVault.setSkipPromptingFilledInfo(
+      answers[CONFIGURATION_PROMPT_NAMES.SKIP_PROMPTING_FILLED_INFO]
+    )
   })
 }
 

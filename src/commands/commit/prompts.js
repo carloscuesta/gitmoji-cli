@@ -3,9 +3,8 @@ import inquirer from 'inquirer'
 
 import configurationVault from '../../utils/configurationVault'
 import filterGitmojis from '../../utils/filterGitmojis'
-import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
-import { type CommitMode } from './index'
 import guard from './guard'
+import type { CommitContent } from '../../utils/getDefaultCommitContent'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
 
@@ -25,11 +24,15 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>, mode: CommitMode): Array<Object> => {
-  const { title, message } = getDefaultCommitContent(mode)
+export default (
+  gitmojis: Array<Gitmoji>,
+  { title, message }: CommitContent,
+  defaultAnswers: $Shape<Answers>
+): Array<Object> => {
+  const questions = []
 
-  return [
-    {
+  if (!defaultAnswers.gitmoji) {
+    questions.push({
       name: 'gitmoji',
       message: 'Choose a gitmoji:',
       type: 'autocomplete',
@@ -41,17 +44,17 @@ export default (gitmojis: Array<Gitmoji>, mode: CommitMode): Array<Object> => {
           }))
         )
       }
-    },
-    ...(configurationVault.getScopePrompt()
-      ? [
-          {
-            name: 'scope',
-            message: 'Enter the scope of current changes:',
-            validate: guard.scope
-          }
-        ]
-      : []),
-    {
+    })
+  }
+  if (configurationVault.getScopePrompt()) {
+    questions.push({
+      name: 'scope',
+      message: 'Enter the scope of current changes:',
+      validate: guard.scope
+    })
+  }
+  if (!defaultAnswers.title) {
+    questions.push({
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
@@ -61,12 +64,17 @@ export default (gitmojis: Array<Gitmoji>, mode: CommitMode): Array<Object> => {
         }/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
       },
       ...(title ? { default: title } : {})
-    },
-    {
+    })
+  }
+
+  if (!defaultAnswers.message) {
+    questions.push({
       name: 'message',
       message: 'Enter the commit message:',
       validate: guard.message,
       ...(message ? { default: message } : {})
-    }
-  ]
+    })
+  }
+
+  return questions
 }

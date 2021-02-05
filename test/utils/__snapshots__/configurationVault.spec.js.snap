@@ -6,9 +6,11 @@ Object {
   "getEmojiFormat": [Function],
   "getScopePrompt": [Function],
   "getSignedCommit": [Function],
+  "getSkipPromptingFilledInfo": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setScopePrompt": [Function],
   "setSignedCommit": [Function],
+  "setSkipPromptingFilledInfo": [Function],
 }
 `;

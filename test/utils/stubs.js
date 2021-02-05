@@ -409,3 +409,9 @@ export const gitmojisResponse = {
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
+
+export const commitContent = Object.freeze({
+  gitmoji: ':sparkles:',
+  title: 'commit title',
+  message: 'commit message'
+})

@@ -50,3 +50,5 @@ export const defaultCommitContent = {
   title: 'commit title',
   message: 'commit message'
 }
+
+export const emptyDefaultAnswers = {}

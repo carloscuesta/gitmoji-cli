@@ -29,6 +29,10 @@ describe('configurationVault', () => {
     it('should return the default value for scopePrompt', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
     })
+
+    it('should return the default value for skipPromptingFilledInfo', () => {
+      expect(configurationVault.getSkipPromptingFilledInfo()).toEqual(false)
+    })
   })
 
   describe('setter and getters', () => {
@@ -90,6 +94,19 @@ describe('configurationVault', () => {
       )
       expect(config.get).toHaveBeenCalledWith(
         CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT
+      )
+    })
+
+    it('should set and return value for skipPromptingFilledInfo', () => {
+      configurationVault.setSkipPromptingFilledInfo(true)
+      configurationVault.getSkipPromptingFilledInfo()
+
+      expect(config.set).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.SKIP_PROMPTING_FILLED_INFO,
+        true
+      )
+      expect(config.get).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.SKIP_PROMPTING_FILLED_INFO
       )
     })
   })

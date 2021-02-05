@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
 import execa from 'execa'
 import fs from 'fs'
+
 const mockProcess = require('jest-mock-process')
 
 import configurationVault from '../../src/utils/configurationVault'
@@ -12,6 +13,7 @@ import guard from '../../src/commands/commit/guard'
 import prompts from '../../src/commands/commit/prompts'
 import * as stubs from './stubs'
 import { COMMIT_MESSAGE_SOURCE } from '../../src/commands/commit/withHook/index'
+import type { Answers } from '../../src/commands/commit/prompts'
 
 jest.mock('../../src/utils/getDefaultCommitContent')
 jest.mock('../../src/utils/getEmojis')
@@ -332,48 +334,73 @@ describe('commit command', () => {
 
     describe('without scope prompt', () => {
       beforeAll(() => {
-        getDefaultCommitContent.mockReturnValueOnce(
-          stubs.emptyDefaultCommitContent
-        )
+        configurationVault.getScopePrompt.mockReturnValue(false)
       })
 
       it('should match the array of questions', () => {
-        expect(prompts(stubs.gitmojis, 'client')).toMatchSnapshot()
+        expect(
+          prompts(
+            stubs.gitmojis,
+            stubs.emptyDefaultCommitContent,
+            stubs.emptyDefaultAnswers
+          )
+        ).toMatchSnapshot()
+      })
+
+      it('should match the default title and message', () => {
+        expect(
+          prompts(
+            stubs.gitmojis,
+            stubs.defaultCommitContent,
+            stubs.emptyDefaultAnswers
+          )
+        ).toMatchSnapshot()
+      })
+
+      it('should ask unanswered questions', () => {
+        const defaultAnswers: $Shape<Answers> = {
+          gitmoji: ':sparkles:',
+          ...stubs.defaultCommitContent
+        }
+        expect(
+          prompts(stubs.gitmojis, stubs.defaultCommitContent, defaultAnswers)
+        ).toEqual([])
       })
     })
 
     describe('with scope prompt', () => {
       beforeAll(() => {
-        getDefaultCommitContent.mockReturnValueOnce(
-          stubs.emptyDefaultCommitContent
-        )
         configurationVault.getScopePrompt.mockReturnValue(true)
       })
 
       it('should match the array of questions', () => {
-        expect(prompts(stubs.gitmojis, 'client')).toMatchSnapshot()
-      })
-    })
-
-    describe('with default commit content in hook mode', () => {
-      beforeAll(() => {
-        getDefaultCommitContent.mockReturnValueOnce(stubs.defaultCommitContent)
-      })
-
-      it('should match the default title and message', () => {
-        expect(prompts(stubs.gitmojis, 'hook')).toMatchSnapshot()
-      })
-    })
-
-    describe('with default commit content in commit mode', () => {
-      beforeAll(() => {
-        getDefaultCommitContent.mockReturnValueOnce(
-          stubs.emptyDefaultCommitContent
-        )
+        expect(
+          prompts(
+            stubs.gitmojis,
+            stubs.emptyDefaultCommitContent,
+            stubs.emptyDefaultAnswers
+          )
+        ).toMatchSnapshot()
       })
 
       it('should not fill default title and message', () => {
-        expect(prompts(stubs.gitmojis, 'commit')).toMatchSnapshot()
+        expect(
+          prompts(
+            stubs.gitmojis,
+            stubs.emptyDefaultCommitContent,
+            stubs.emptyDefaultAnswers
+          )
+        ).toMatchSnapshot()
+      })
+
+      it('should ask unanswered questions', () => {
+        const defaultAnswers: $Shape<Answers> = {
+          gitmoji: ':sparkles:',
+          ...stubs.defaultCommitContent
+        }
+        expect(
+          prompts(stubs.gitmojis, stubs.defaultCommitContent, defaultAnswers)
+        ).toMatchSnapshot()
       })
     })
   })

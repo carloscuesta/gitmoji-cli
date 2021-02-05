@@ -8,63 +8,44 @@ Object {
 }
 `;
 
-exports[`commit command prompts with default commit content in commit mode should not fill default title and message 1`] = `
+exports[`commit command prompts with scope prompt should ask unanswered questions 1`] = `
 Array [
-  Object {
-    "message": "Choose a gitmoji:",
-    "name": "gitmoji",
-    "source": [Function],
-    "type": "autocomplete",
-  },
   Object {
     "message": "Enter the scope of current changes:",
     "name": "scope",
-    "validate": [Function],
-  },
-  Object {
-    "message": "Enter the commit title",
-    "name": "title",
-    "transformer": [Function],
-    "validate": [Function],
-  },
-  Object {
-    "message": "Enter the commit message:",
-    "name": "message",
-    "validate": [Function],
-  },
-]
-`;
-
-exports[`commit command prompts with default commit content in hook mode should match the default title and message 1`] = `
-Array [
-  Object {
-    "message": "Choose a gitmoji:",
-    "name": "gitmoji",
-    "source": [Function],
-    "type": "autocomplete",
-  },
-  Object {
-    "message": "Enter the scope of current changes:",
-    "name": "scope",
-    "validate": [Function],
-  },
-  Object {
-    "default": "commit title",
-    "message": "Enter the commit title",
-    "name": "title",
-    "transformer": [Function],
-    "validate": [Function],
-  },
-  Object {
-    "default": "commit message",
-    "message": "Enter the commit message:",
-    "name": "message",
     "validate": [Function],
   },
 ]
 `;
 
 exports[`commit command prompts with scope prompt should match the array of questions 1`] = `
+Array [
+  Object {
+    "message": "Choose a gitmoji:",
+    "name": "gitmoji",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  Object {
+    "message": "Enter the scope of current changes:",
+    "name": "scope",
+    "validate": [Function],
+  },
+  Object {
+    "message": "Enter the commit title",
+    "name": "title",
+    "transformer": [Function],
+    "validate": [Function],
+  },
+  Object {
+    "message": "Enter the commit message:",
+    "name": "message",
+    "validate": [Function],
+  },
+]
+`;
+
+exports[`commit command prompts with scope prompt should not fill default title and message 1`] = `
 Array [
   Object {
     "message": "Choose a gitmoji:",
@@ -106,6 +87,30 @@ Array [
     "validate": [Function],
   },
   Object {
+    "message": "Enter the commit message:",
+    "name": "message",
+    "validate": [Function],
+  },
+]
+`;
+
+exports[`commit command prompts without scope prompt should match the default title and message 1`] = `
+Array [
+  Object {
+    "message": "Choose a gitmoji:",
+    "name": "gitmoji",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  Object {
+    "default": "commit title",
+    "message": "Enter the commit title",
+    "name": "title",
+    "transformer": [Function],
+    "validate": [Function],
+  },
+  Object {
+    "default": "commit message",
     "message": "Enter the commit message:",
     "name": "message",
     "validate": [Function],

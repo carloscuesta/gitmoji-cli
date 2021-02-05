@@ -8,6 +8,8 @@ import withHook, {
   cancelIfNeeded
 } from './withHook'
 import withClient from './withClient'
+import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
+import getDefaultAnswers from '../../utils/getDefaultAnswers'
 
 export type CommitMode = 'client' | 'hook'
 
@@ -20,15 +22,19 @@ const commit = (mode: CommitMode) => {
   return promptAndCommit(mode)
 }
 
-const promptAndCommit = (mode: 'client' | 'hook') =>
-  getEmojis()
-    .then((gitmojis) => prompts(gitmojis, mode))
-    .then((questions) => {
-      inquirer.prompt(questions).then((answers) => {
-        if (mode === 'hook') return withHook(answers)
+const promptAndCommit = async (mode: CommitMode) => {
+  const gitmojis = await getEmojis()
+  const commitContent = getDefaultCommitContent(mode)
+  const defaultAnswers = getDefaultAnswers(commitContent)
+  const questions = prompts(gitmojis, commitContent, defaultAnswers)
+  const answers = {
+    ...defaultAnswers,
+    ...(await inquirer.prompt(questions))
+  }
 
-        return withClient(answers)
-      })
-    })
+  if (mode === 'hook') return withHook(answers)
+
+  return withClient(answers)
+}
 
 export default commit

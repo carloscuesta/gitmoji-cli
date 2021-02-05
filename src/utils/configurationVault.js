@@ -24,6 +24,13 @@ const setScopePrompt = (scopePrompt: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
+const setSkipPromptingFilledInfo = (skipPromptingFilledInfo: boolean) => {
+  config.set(
+    CONFIGURATION_PROMPT_NAMES.SKIP_PROMPTING_FILLED_INFO,
+    skipPromptingFilledInfo
+  )
+}
+
 const getAutoAdd = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
 }
@@ -43,13 +50,21 @@ const getScopePrompt = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
 }
 
+const getSkipPromptingFilledInfo = (): boolean => {
+  return (
+    config.get(CONFIGURATION_PROMPT_NAMES.SKIP_PROMPTING_FILLED_INFO) || false
+  )
+}
+
 export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
   getSignedCommit,
+  getSkipPromptingFilledInfo,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
-  setSignedCommit
+  setSignedCommit,
+  setSkipPromptingFilledInfo
 }
