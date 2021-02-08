@@ -1921,9 +1921,9 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
 conf@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-9.0.0.tgz#86fd1a8e58da81a8fae2a8a9feeb3a45ef68d303"
-  integrity sha512-TGrWTD/tviifvdeoOZIYBmlceYJ0wq2lCzqbv7bT4KgostaCyyYe9uYWZdzPdhl4mROQXwMcc/iuAUsMTzf7pQ==
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-9.0.1.tgz#ac4808521490b791136e2a771e2b53caf7c49df8"
+  integrity sha512-Ef+z0hdK0ZqcUdmijaVA1kYW0OXJDBfBWPzBWsPYQn/72PQyiq04jcuRbs7l8R/4v3MKGBIcYVxsIllCEFlXrw==
   dependencies:
     ajv "^7.0.3"
     atomically "^1.7.0"
