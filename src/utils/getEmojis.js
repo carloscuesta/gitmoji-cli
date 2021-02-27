@@ -5,8 +5,7 @@ import ora from 'ora'
 
 import cache from './emojisCache'
 
-export const GITMOJIS_URL =
-  'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
+export const GITMOJIS_URL = 'https://gitmoji.dev/api/gitmojis'
 
 const getEmojis = (skipCache: boolean = false) => {
   if (cache.isAvailable() && !skipCache) return cache.getEmojis()
