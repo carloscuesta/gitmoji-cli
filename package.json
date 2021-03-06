@@ -17,9 +17,9 @@
     "clean": "rm -rf lib",
     "flow": "flow",
     "lint": "prettier --check src/**/*.js",
-    "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
     "coverage": "codecov",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -106,12 +106,6 @@
       "prettier --write src/**/*.js",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn run flow && yarn run test"
-    }
   },
   "funding": [
     {
