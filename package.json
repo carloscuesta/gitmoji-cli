@@ -19,7 +19,10 @@
     "lint": "prettier --check src/**/*.js",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test && yarn run clean && yarn run build",
     "coverage": "codecov",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "repository": {
     "type": "git",
@@ -66,6 +69,7 @@
     "jest-fetch-mock": "^3.0.0",
     "jest-mock-process": "^1.2.0",
     "lint-staged": "^10.0.7",
+    "pinst": "^2.1.6",
     "pkg": "^4.4.8",
     "prettier": "^2.1.1"
   },
@@ -106,12 +110,6 @@
       "prettier --write src/**/*.js",
       "git add"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "yarn run flow && yarn run test"
-    }
   },
   "funding": [
     {
