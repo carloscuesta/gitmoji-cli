@@ -6,7 +6,7 @@ import pkg from '../package.json'
 import commands from './commands'
 import findGitmojiCommand from './utils/findGitmojiCommand'
 
-updateNotifier({ pkg }).notify()
+updateNotifier({ pkg }).notify({ isGlobal: true })
 
 const cli = meow(
   `

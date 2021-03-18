@@ -10,7 +10,9 @@ jest.mock('../src/commands')
 describe('cli', () => {
   it('should call updateNotifier', () => {
     expect(updateNotifier).toHaveBeenCalledWith({ pkg })
-    expect(updateNotifier({ pkg }).notify).toHaveBeenCalled()
+    expect(updateNotifier({ pkg }).notify).toHaveBeenCalledWith({
+      isGlobal: true
+    })
   })
 
   it('should match meow with cli information', () => {
