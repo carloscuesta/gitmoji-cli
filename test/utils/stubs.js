@@ -408,4 +408,4 @@ export const gitmojisResponse = {
   ]
 }
 
-export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
+export const coreHooksPath = '.git/hooks'
