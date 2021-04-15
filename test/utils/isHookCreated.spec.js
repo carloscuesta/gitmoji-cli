@@ -7,8 +7,9 @@ import HOOK from '../../src/commands/hook/hook'
 import * as stubs from './stubs'
 
 describe('isHookCreated', () => {
-  beforeAll(() => {
-    execa.mockReturnValue({ stdout: stubs.coreHooksPath })
+  beforeEach(() => {
+    execa.mockReturnValueOnce({ stdout: stubs.relativeCoreHooksPath })
+    execa.mockReturnValueOnce({ stdout: stubs.gitAbsoluteDir })
   })
 
   describe('when the hook does not exists', () => {
@@ -25,10 +26,14 @@ describe('isHookCreated', () => {
         '--get',
         'core.hooksPath'
       ])
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
 
       const hookFile = path.resolve(
-        process.cwd(),
-        stubs.coreHooksPath,
+        path.dirname(stubs.gitAbsoluteDir),
+        stubs.relativeCoreHooksPath,
         HOOK.FILENAME
       )
       expect(fs.existsSync).toHaveBeenCalledWith(hookFile)
@@ -51,10 +56,14 @@ describe('isHookCreated', () => {
         '--get',
         'core.hooksPath'
       ])
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
 
       const hookFile = path.resolve(
-        process.cwd(),
-        stubs.coreHooksPath,
+        path.dirname(stubs.gitAbsoluteDir),
+        stubs.relativeCoreHooksPath,
         HOOK.FILENAME
       )
       expect(fs.existsSync).toHaveBeenCalledWith(hookFile)

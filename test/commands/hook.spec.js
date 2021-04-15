@@ -16,23 +16,27 @@ describe('hook command', () => {
   })
 
   describe('create hook', () => {
-    beforeAll(() => {
-      execa.mockReturnValue({ stdout: stubs.coreHooksPath })
-      hook.create()
+    beforeEach(() => {
+      execa.mockReturnValueOnce({ stdout: stubs.relativeCoreHooksPath })
+      execa.mockReturnValueOnce({ stdout: stubs.gitAbsoluteDir })
     })
 
-    it('should obtain the hooks dir path with execa', () => {
+    it('should create the hook file', async () => {
+      await hook.create()
+
       expect(execa).toHaveBeenCalledWith('git', [
         'config',
         '--get',
         'core.hooksPath'
       ])
-    })
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
 
-    it('should create the hook file', () => {
       const hookFile = path.resolve(
-        process.cwd(),
-        stubs.coreHooksPath,
+        path.dirname(stubs.gitAbsoluteDir),
+        stubs.relativeCoreHooksPath,
         hookConfig.FILENAME
       )
       expect(fs.writeFile).toHaveBeenCalledWith(
@@ -45,23 +49,27 @@ describe('hook command', () => {
   })
 
   describe('remove hook', () => {
-    beforeAll(() => {
-      execa.mockReturnValue({ stdout: stubs.coreHooksPath })
-      hook.remove()
+    beforeEach(() => {
+      execa.mockReturnValueOnce({ stdout: stubs.relativeCoreHooksPath })
+      execa.mockReturnValueOnce({ stdout: stubs.gitAbsoluteDir })
     })
 
-    it('should obtain the hooks dir path with execa', () => {
+    it('should remove the hook file', async () => {
+      await hook.remove()
+
       expect(execa).toHaveBeenCalledWith('git', [
         'config',
         '--get',
         'core.hooksPath'
       ])
-    })
+      expect(execa).toHaveBeenCalledWith('git', [
+        'rev-parse',
+        '--absolute-git-dir'
+      ])
 
-    it('should remove the hook file', () => {
       const hookFile = path.resolve(
-        process.cwd(),
-        stubs.coreHooksPath,
+        path.dirname(stubs.gitAbsoluteDir),
+        stubs.relativeCoreHooksPath,
         hookConfig.FILENAME
       )
       expect(fs.unlink).toHaveBeenCalledWith(hookFile, expect.any(Function))
