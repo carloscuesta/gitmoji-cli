@@ -11,13 +11,10 @@ const removeHook = async () => {
   try {
     const hookFile = await getAbsoluteHooksPath(HOOK.FILENAME)
 
-    fs.unlink(hookFile, (error) => {
-      if (error)
-        return spinner.fail('Error: Gitmoji commit hook is not created')
-      spinner.succeed('Gitmoji commit hook removed successfully')
-    })
+    fs.unlinkSync(hookFile)
+    spinner.succeed('Gitmoji commit hook removed successfully')
   } catch (error) {
-    spinner.fail(`Error: ${error}`)
+    spinner.fail('Error: Gitmoji commit hook is not created')
   }
 }
 

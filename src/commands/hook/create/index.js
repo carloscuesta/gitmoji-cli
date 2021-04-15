@@ -11,15 +11,8 @@ const createHook = async () => {
   try {
     const hookFile = await getAbsoluteHooksPath(HOOK.FILENAME)
 
-    fs.writeFile(
-      hookFile,
-      HOOK.CONTENTS,
-      { mode: HOOK.PERMISSIONS },
-      (error) => {
-        if (error) return spinner.fail(error)
-        spinner.succeed('Gitmoji commit hook created successfully')
-      }
-    )
+    fs.writeFileSync(hookFile, HOOK.CONTENTS, { mode: HOOK.PERMISSIONS })
+    spinner.succeed('Gitmoji commit hook created successfully')
   } catch (error) {
     spinner.fail(`Error: ${error}`)
   }

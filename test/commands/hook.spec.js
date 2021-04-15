@@ -39,11 +39,10 @@ describe('hook command', () => {
         stubs.relativeCoreHooksPath,
         hookConfig.FILENAME
       )
-      expect(fs.writeFile).toHaveBeenCalledWith(
+      expect(fs.writeFileSync).toHaveBeenCalledWith(
         hookFile,
         hookConfig.CONTENTS,
-        { mode: hookConfig.PERMISSIONS },
-        expect.any(Function)
+        { mode: hookConfig.PERMISSIONS }
       )
     })
   })
@@ -72,7 +71,7 @@ describe('hook command', () => {
         stubs.relativeCoreHooksPath,
         hookConfig.FILENAME
       )
-      expect(fs.unlink).toHaveBeenCalledWith(hookFile, expect.any(Function))
+      expect(fs.unlinkSync).toHaveBeenCalledWith(hookFile)
     })
   })
 })

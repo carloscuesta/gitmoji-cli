@@ -5,7 +5,9 @@ jest.mock('path-exists')
 jest.mock('fs')
 jest.mock('ora', () =>
   jest.fn().mockReturnValue({
-    start: jest.fn(),
+    start: jest.fn(function () {
+      return this
+    }),
     succeed: jest.fn(),
     fail: jest.fn()
   })
