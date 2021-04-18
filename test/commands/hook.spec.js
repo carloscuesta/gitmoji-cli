@@ -1,11 +1,17 @@
-import execa from 'execa'
 import fs from 'fs'
 
 import hook from '../../src/commands/hook'
 import hookConfig from '../../src/commands/hook/hook'
+import getAbsoluteHooksPath from '../../src/utils/getAbsoluteHooksPath'
 import * as stubs from './stubs'
 
+jest.mock('../../src/utils/getAbsoluteHooksPath')
+
 describe('hook command', () => {
+  beforeAll(() => {
+    getAbsoluteHooksPath.mockResolvedValue(stubs.hooksPath)
+  })
+
   it('should match hook module export', () => {
     expect(hook).toMatchSnapshot()
   })
@@ -15,46 +21,24 @@ describe('hook command', () => {
   })
 
   describe('create hook', () => {
-    beforeAll(() => {
-      execa.mockReturnValue({ stdout: stubs.gitAbsoluteDir })
-      hook.create()
-    })
+    it('should create the hook file', async () => {
+      await hook.create()
 
-    it('should obtain the absolute git dir with execa', () => {
-      expect(execa).toHaveBeenCalledWith('git', [
-        'rev-parse',
-        '--absolute-git-dir'
-      ])
-    })
-
-    it('should create the hook file', () => {
-      expect(fs.writeFile).toHaveBeenCalledWith(
-        stubs.gitAbsoluteDir + hookConfig.PATH,
+      expect(getAbsoluteHooksPath).toHaveBeenCalledWith(hookConfig.FILENAME)
+      expect(fs.writeFileSync).toHaveBeenCalledWith(
+        stubs.hooksPath,
         hookConfig.CONTENTS,
-        { mode: hookConfig.PERMISSIONS },
-        expect.any(Function)
+        { mode: hookConfig.PERMISSIONS }
       )
     })
   })
 
   describe('remove hook', () => {
-    beforeAll(() => {
-      execa.mockReturnValue({ stdout: stubs.gitAbsoluteDir })
-      hook.remove()
-    })
+    it('should remove the hook file', async () => {
+      await hook.remove()
 
-    it('should obtain the absolute git dir with execa', () => {
-      expect(execa).toHaveBeenCalledWith('git', [
-        'rev-parse',
-        '--absolute-git-dir'
-      ])
-    })
-
-    it('should remove the hook file', () => {
-      expect(fs.unlink).toHaveBeenCalledWith(
-        stubs.gitAbsoluteDir + hookConfig.PATH,
-        expect.any(Function)
-      )
+      expect(getAbsoluteHooksPath).toHaveBeenCalledWith(hookConfig.FILENAME)
+      expect(fs.unlinkSync).toHaveBeenCalledWith(stubs.hooksPath)
     })
   })
 })

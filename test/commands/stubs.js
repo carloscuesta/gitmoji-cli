@@ -24,6 +24,13 @@ export const configAnswers = {
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
 
+export const absoluteCoreHooksPath = '/etc/git/hooks'
+
+export const relativeCoreHooksPath = '.git/hooks'
+
+export const hooksPath =
+  '/Users/carloscuesta/GitHub/gitmoji-cli/.git/hooks/prepare-commit-msg'
+
 export const commitTitle = 'Fix security issue'
 
 export const commitTitleInvalid = 'Invalid commit `title'

@@ -1,25 +1,18 @@
 // @flow
 import fs from 'fs'
-import execa from 'execa'
 import ora from 'ora'
 
 import HOOK from '../hook'
+import getAbsoluteHooksPath from '../../../utils/getAbsoluteHooksPath'
 
 const createHook = async () => {
   const spinner = ora('Creating the gitmoji commit hook').start()
 
   try {
-    const { stdout } = await execa('git', ['rev-parse', '--absolute-git-dir'])
+    const hookFile = await getAbsoluteHooksPath(HOOK.FILENAME)
 
-    fs.writeFile(
-      stdout + HOOK.PATH,
-      HOOK.CONTENTS,
-      { mode: HOOK.PERMISSIONS },
-      (error) => {
-        if (error) return spinner.fail(error)
-        spinner.succeed('Gitmoji commit hook created successfully')
-      }
-    )
+    fs.writeFileSync(hookFile, HOOK.CONTENTS, { mode: HOOK.PERMISSIONS })
+    spinner.succeed('Gitmoji commit hook created successfully')
   } catch (error) {
     spinner.fail(`Error: ${error}`)
   }

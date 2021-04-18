@@ -1,23 +1,20 @@
 // @flow
 import fs from 'fs'
-import execa from 'execa'
 import ora from 'ora'
 
 import HOOK from '../hook'
+import getAbsoluteHooksPath from '../../../utils/getAbsoluteHooksPath'
 
 const removeHook = async () => {
   const spinner = ora('Creating the gitmoji commit hook').start()
 
   try {
-    const { stdout } = await execa('git', ['rev-parse', '--absolute-git-dir'])
+    const hookFile = await getAbsoluteHooksPath(HOOK.FILENAME)
 
-    fs.unlink(stdout + HOOK.PATH, (error) => {
-      if (error)
-        return spinner.fail('Error: Gitmoji commit hook is not created')
-      spinner.succeed('Gitmoji commit hook removed successfully')
-    })
+    fs.unlinkSync(hookFile)
+    spinner.succeed('Gitmoji commit hook removed successfully')
   } catch (error) {
-    spinner.fail(`Error: ${error}`)
+    spinner.fail('Error: Gitmoji commit hook is not created')
   }
 }
 
