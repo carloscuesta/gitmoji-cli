@@ -52,6 +52,7 @@
     "node-fetch": "^2.6.0",
     "ora": "^5.0.0",
     "path-exists": "4.0.0",
+    "proxy-agent": "^4.0.1",
     "update-notifier": "^5.0.0"
   },
   "devDependencies": {
