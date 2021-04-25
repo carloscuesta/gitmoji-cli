@@ -13,13 +13,14 @@
   ],
   "scripts": {
     "build": "babel src -d lib",
-    "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "clean": "rm -rf lib",
+    "coverage": "codecov",
     "flow": "flow",
     "lint": "prettier --check src/**/*.js",
-    "coverage": "codecov",
-    "test": "jest",
-    "prepare": "husky install"
+    "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
+    "prepare": "husky install",
+    "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
