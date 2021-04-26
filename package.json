@@ -67,7 +67,7 @@
     "jest-fetch-mock": "^3.0.0",
     "jest-mock-process": "^1.2.0",
     "lint-staged": "^10.0.7",
-    "pkg": "^4.4.8",
+    "pkg": "^5.0.0",
     "prettier": "^2.1.1"
   },
   "babel": {
