@@ -36,7 +36,8 @@ const cli = meow(
       search: { type: 'boolean', alias: 's' },
       update: { type: 'boolean', alias: 'u' },
       version: { type: 'boolean', alias: 'v' }
-    }
+    },
+    importMeta: import.meta
   }
 )
 
