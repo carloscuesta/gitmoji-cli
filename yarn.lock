@@ -4885,9 +4885,9 @@ pkg-up@^3.1.0:
     find-up "^3.0.0"
 
 pkg@^5.0.0:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.2.1.tgz#929294d2dedbcd4427cfc00121a80c151a2a1d4c"
-  integrity sha512-kQ5Fla+76rdmFJNrEOgoklxAURl3uvhvX+m4LCQCRrI+q2lOgsx9pS02NhNuDVnyXsthluAuXCh5SKcMyw+cWw==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.3.0.tgz#27b5a0afd7cd2b85199cc1ab95e6d19ac5ae3fcd"
+  integrity sha512-/DGG+QcSPraMAIxaoGCNqb2A6Xkm2jBQMsj2mjb4ag236ByTY9Xhpikvj5ixwlSQV0euuJw4fphKCd5YHRPS8w==
   dependencies:
     "@babel/parser" "7.13.13"
     "@babel/types" "7.13.12"
