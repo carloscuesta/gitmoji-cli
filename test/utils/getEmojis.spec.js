@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 
+import configurationVault from '../../src/utils/configurationVault'
 import getEmojis, { GITMOJIS_URL } from '../../src/utils/getEmojis'
 import buildFetchOptions from '../../src/utils/buildFetchOptions'
 import emojisCache from '../../src/utils/emojisCache'
@@ -32,7 +33,7 @@ describe('getEmojis', () => {
     })
 
     it('should fetch the emojis', async () => {
-      expect(fetch).toHaveBeenCalledWith(GITMOJIS_URL, buildFetchOptions())
+      expect(fetch).toHaveBeenCalledWith(configurationVault.getGitmojisUrl(), buildFetchOptions())
     })
 
     it('should create the cache with the fetched emojis', () => {
@@ -55,7 +56,7 @@ describe('getEmojis', () => {
     })
 
     it('should fetch the emojis', async () => {
-      expect(fetch).toHaveBeenCalledWith(GITMOJIS_URL, buildFetchOptions())
+      expect(fetch).toHaveBeenCalledWith(configurationVault.getGitmojisUrl(), buildFetchOptions())
     })
 
     it('should create the cache with the fetched emojis', () => {
