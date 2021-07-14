@@ -24,6 +24,10 @@ const setScopePrompt = (scopePrompt: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
+const setGitmojisUrl = (gitmojisUrl: string) => {
+  config.set(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL, gitmojisUrl)
+}
+
 const getAutoAdd = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
 }
@@ -43,13 +47,21 @@ const getScopePrompt = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT) || false
 }
 
+export const GITMOJIS_URL = 'https://gitmoji.dev/api/gitmojis'
+
+const getGitmojisUrl = (): string => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL) || GITMOJIS_URL
+}
+
 export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
   getSignedCommit,
+  getGitmojisUrl,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
-  setSignedCommit
+  setSignedCommit,
+  setGitmojisUrl
 }

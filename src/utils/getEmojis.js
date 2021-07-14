@@ -5,15 +5,14 @@ import ora from 'ora'
 
 import cache from './emojisCache'
 import buildFetchOptions from './buildFetchOptions'
-
-export const GITMOJIS_URL = 'https://gitmoji.dev/api/gitmojis'
+import configurationVault from './configurationVault'
 
 const getEmojis = (skipCache: boolean = false) => {
   if (cache.isAvailable() && !skipCache) return cache.getEmojis()
 
   const spinner = ora('Fetching the emoji list').start()
 
-  return fetch(GITMOJIS_URL, buildFetchOptions())
+  return fetch(configurationVault.getGitmojisUrl(), buildFetchOptions())
     .then((response) => response.json())
     .then((data) => {
       const emojis = data.gitmojis

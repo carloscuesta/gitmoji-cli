@@ -1,4 +1,4 @@
-import configurationVault, { config } from '../../src/utils/configurationVault'
+import configurationVault, { config, GITMOJIS_URL } from '../../src/utils/configurationVault'
 import {
   CONFIGURATION_PROMPT_NAMES,
   EMOJI_COMMIT_FORMATS
@@ -28,6 +28,10 @@ describe('configurationVault', () => {
 
     it('should return the default value for scopePrompt', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
+    })
+
+    it('should return the default value for gitmojisUrl', () => {
+      expect(configurationVault.getGitmojisUrl()).toEqual(GITMOJIS_URL)
     })
   })
 
@@ -90,6 +94,20 @@ describe('configurationVault', () => {
       )
       expect(config.get).toHaveBeenCalledWith(
         CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT
+      )
+    })
+
+    it('should set and return value for gitmojisUrl', () => {
+      const testGitmojisUrl = 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
+      configurationVault.setGitmojisUrl(testGitmojisUrl)
+      configurationVault.getGitmojisUrl()
+
+      expect(config.set).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL,
+        testGitmojisUrl
+      )
+      expect(config.get).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL
       )
     })
   })
