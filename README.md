@@ -119,3 +119,4 @@ Run `gitmoji -g` to setup some gitmoji-cli preferences.
 - **Emoji format**: Switch between the emoji format.
 - **Scope prompt**: Enable or disable [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 - **Signed commits**: Enable or disable [signed commits with GPG](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/signing-commits).
+- **Gitmojis api URL**: Set a custom URL to use it as the library of gitmojis.
