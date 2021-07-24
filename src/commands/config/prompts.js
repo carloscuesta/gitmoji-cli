@@ -5,7 +5,8 @@ export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
-  SIGNED_COMMIT: 'signedCommit'
+  SIGNED_COMMIT: 'signedCommit',
+  GITMOJIS_URL: 'gitmojisUrl'
 }
 
 export const EMOJI_COMMIT_FORMATS = {
@@ -41,5 +42,11 @@ export default () => [
     message: 'Enable scope prompt',
     type: 'confirm',
     default: configurationVault.getScopePrompt()
+  },
+  {
+    name: CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL,
+    message: 'Set gitmojis api url',
+    type: 'input',
+    default: configurationVault.getGitmojisUrl()
   }
 ]
