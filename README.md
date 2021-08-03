@@ -64,6 +64,20 @@ Start the interactive commit client, to auto generate your commit based on your 
 $ gitmoji -c
 ```
 
+##### Options
+
+You can pass default values to the prompts using the following flags:
+
+- `title`: For setting the commit title.
+- `message`: For setting the commit message.
+- `scope`: For setting the commit scope.
+
+Those flags should be used like this:
+
+```bash
+$ gitmoji -c --title="Commit" --message="Message" --scope="Scope"
+```
+
 #### Hook
 
 Run the init option, add your changes and commit them, after that the prompts will begin and your commit message will be built.
