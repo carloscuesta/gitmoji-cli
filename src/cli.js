@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+// @flow
 import meow from 'meow'
 import updateNotifier from 'update-notifier'
 
 import pkg from '../package.json'
 import commands from './commands'
+import FLAGS from './constants/flags'
 import findGitmojiCommand from './utils/findGitmojiCommand'
 
 updateNotifier({ pkg }).notify({ isGlobal: true })
@@ -13,42 +15,42 @@ const cli = meow(
   Usage
     $ gitmoji
   Options
-    --commit, -c    Interactively commit using the prompts
-    --config, -g    Setup gitmoji-cli preferences.
-    --init, -i      Initialize gitmoji as a commit hook
-    --list, -l      List all the available gitmojis
-    --remove, -r    Remove a previously initialized commit hook
-    --search, -s    Search gitmojis
-    --update, -u    Sync emoji list with the repo
-    --version, -v   Print gitmoji-cli installed version
+    --${FLAGS.COMMIT}, -c    Interactively commit using the prompts
+    --${FLAGS.CONFIG}, -g    Setup gitmoji-cli preferences.
+    --${FLAGS.INIT}, -i      Initialize gitmoji as a commit hook
+    --${FLAGS.LIST}, -l      List all the available gitmojis
+    --${FLAGS.REMOVE}, -r    Remove a previously initialized commit hook
+    --${FLAGS.SEARCH}, -s    Search gitmojis
+    --${FLAGS.UPDATE}, -u    Sync emoji list with the repo
+    --${FLAGS.VERSION}, -v   Print gitmoji-cli installed version
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
 `,
   {
     flags: {
-      commit: { type: 'boolean', alias: 'c' },
-      config: { type: 'boolean', alias: 'g' },
-      help: { type: 'boolean', alias: 'h' },
-      init: { type: 'boolean', alias: 'i' },
-      list: { type: 'boolean', alias: 'l' },
-      remove: { type: 'boolean', alias: 'r' },
-      search: { type: 'boolean', alias: 's' },
-      update: { type: 'boolean', alias: 'u' },
-      version: { type: 'boolean', alias: 'v' }
+      [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
+      [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },
+      [FLAGS.HELP]: { type: 'boolean', alias: 'h' },
+      [FLAGS.INIT]: { type: 'boolean', alias: 'i' },
+      [FLAGS.LIST]: { type: 'boolean', alias: 'l' },
+      [FLAGS.REMOVE]: { type: 'boolean', alias: 'r' },
+      [FLAGS.SEARCH]: { type: 'boolean', alias: 's' },
+      [FLAGS.UPDATE]: { type: 'boolean', alias: 'u' },
+      [FLAGS.VERSION]: { type: 'boolean', alias: 'v' }
     }
   }
 )
 
 export const options = {
-  commit: () => commands.commit('client'),
-  config: () => commands.config(),
-  hook: () => commands.commit('hook'),
-  init: () => commands.createHook(),
-  list: () => commands.list(),
-  remove: () => commands.removeHook(),
-  search: () => cli.input.map((input) => commands.search(input)),
-  update: () => commands.update()
+  [FLAGS.COMMIT]: (options: Object) => commands.commit(options),
+  [FLAGS.CONFIG]: () => commands.config(),
+  [FLAGS.HOOK]: (options: Object) => commands.commit(options),
+  [FLAGS.INIT]: () => commands.createHook(),
+  [FLAGS.LIST]: () => commands.list(),
+  [FLAGS.REMOVE]: () => commands.removeHook(),
+  [FLAGS.SEARCH]: () => cli.input.map((input) => commands.search(input)),
+  [FLAGS.UPDATE]: () => commands.update()
 }
 
 findGitmojiCommand(cli, options)

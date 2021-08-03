@@ -11,14 +11,14 @@ describe('getDefaultCommitContent', () => {
     })
 
     it('should retrieve title and message in hook mode', () => {
-      const { title, message } = getDefaultCommitContent('hook')
+      const { title, message } = getDefaultCommitContent({ mode: 'hook' })
 
       expect(title).toBe('commit title')
       expect(message).toBe('commit message')
     })
 
     it('should retrieve null title and message in client mode', () => {
-      const { title, message } = getDefaultCommitContent('client')
+      const { title, message } = getDefaultCommitContent({ mode: 'client' })
 
       expect(title).toBe(null)
       expect(message).toBe(null)
@@ -31,7 +31,7 @@ describe('getDefaultCommitContent', () => {
     })
 
     it('should retrieve null title and message', () => {
-      const { title, message } = getDefaultCommitContent('hook')
+      const { title, message } = getDefaultCommitContent({ mode: 'hook' })
 
       expect(title).toBe(null)
       expect(message).toBe(null)
