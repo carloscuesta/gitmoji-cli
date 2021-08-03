@@ -32,7 +32,7 @@ describe('commit command', () => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
-        commit('client')
+        commit({ mode: 'client' })
       })
 
       it('should call inquirer with prompts', () => {
@@ -68,7 +68,7 @@ describe('commit command', () => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
-        commit('client')
+        commit({ mode: 'client' })
       })
 
       it('should call inquirer with prompts', () => {
@@ -106,7 +106,7 @@ describe('commit command', () => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
-        commit('client')
+        commit({ mode: 'client' })
       })
 
       it('should call inquirer with prompts', () => {
@@ -136,7 +136,7 @@ describe('commit command', () => {
         )
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
-        commit('hook')
+        commit({ mode: 'hook' })
       })
 
       it('should commit using the hook', () => {
@@ -166,7 +166,7 @@ describe('commit command', () => {
         )
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         fs.existsSync.mockReturnValueOnce(false).mockReturnValueOnce(false)
-        commit('hook')
+        commit({ mode: 'hook' })
       })
 
       it('should commit using the hook', () => {
@@ -195,7 +195,7 @@ describe('commit command', () => {
         fs.existsSync.mockReturnValueOnce(true)
 
         try {
-          await commit('hook')
+          await commit({ mode: 'hook' })
         } catch (e) {
           expect(e.message).toMatch('ProcessExit0')
         }
@@ -217,7 +217,7 @@ describe('commit command', () => {
         process.argv[COMMIT_MESSAGE_SOURCE] = 'commit sha123'
 
         try {
-          await commit('hook')
+          await commit({ mode: 'hook' })
         } catch (e) {
           expect(e.message).toMatch('ProcessExit0')
         }
@@ -257,7 +257,7 @@ describe('commit command', () => {
         )
 
         try {
-          await commit('hook')
+          await commit({ mode: 'hook' })
         } catch (e) {
           expect(e.message).toMatch('SIGINT')
         }

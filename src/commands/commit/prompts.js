@@ -4,7 +4,7 @@ import inquirer from 'inquirer'
 import configurationVault from '../../utils/configurationVault'
 import filterGitmojis from '../../utils/filterGitmojis'
 import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
-import { type CommitMode } from './index'
+import { type CommitOptions } from './index'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
@@ -25,8 +25,8 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>, mode: CommitMode): Array<Object> => {
-  const { title, message } = getDefaultCommitContent(mode)
+export default (gitmojis: Array<Gitmoji>, options: CommitOptions): Array<Object> => {
+  const { title, message, scope } = getDefaultCommitContent(options)
 
   return [
     {
@@ -47,7 +47,8 @@ export default (gitmojis: Array<Gitmoji>, mode: CommitMode): Array<Object> => {
           {
             name: 'scope',
             message: 'Enter the scope of current changes:',
-            validate: guard.scope
+            validate: guard.scope,
+            ...(scope ? { default: scope } : {})
           }
         ]
       : []),
