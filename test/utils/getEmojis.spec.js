@@ -65,4 +65,29 @@ describe('getEmojis', () => {
       )
     })
   })
+
+  describe('when cache and fechted data contains the same information', () => {
+    let emojis
+
+    beforeAll(async () => {
+      emojisCache.isAvailable.mockReturnValue(true)
+      fetch.mockResponse(JSON.stringify(stubs.gitmojisResponse))
+      emojis = await getEmojis(true)
+      emojisCache.getEmojis.mockReturnValue(JSON.stringify(stubs.gitmojisResponse))
+    })
+
+    it('should fetch the emojis', async () => {
+      expect(fetch).toHaveBeenCalledWith(configurationVault.getGitmojisUrl(), buildFetchOptions())
+    })
+
+    it('should create the cache with the fetched emojis', () => {
+      expect(emojisCache.createEmojis).toHaveBeenCalledWith(
+        stubs.gitmojisResponse.gitmojis
+      )
+    })
+
+    it('should return an empty array', () => {
+      expect(emojis).toEqual([])
+    })
+  })
 })

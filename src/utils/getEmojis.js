@@ -7,24 +7,39 @@ import cache from './emojisCache'
 import buildFetchOptions from './buildFetchOptions'
 import configurationVault from './configurationVault'
 
-const getEmojis = (skipCache: boolean = false) => {
-  if (cache.isAvailable() && !skipCache) return cache.getEmojis()
+const getEmojis = async (
+  skipCache: boolean = false
+): Promise<Array<Object>> => {
+  const emojisFromCache = await cache.getEmojis()
 
-  const spinner = ora('Fetching the emoji list').start()
+  if (cache.isAvailable() && !skipCache) return emojisFromCache
 
-  return fetch(configurationVault.getGitmojisUrl(), buildFetchOptions())
-    .then((response) => response.json())
-    .then((data) => {
-      const emojis = data.gitmojis
+  const spinner = ora('Fetching gitmojis').start()
 
-      cache.createEmojis(emojis)
-      spinner.succeed('Gitmojis fetched successfully')
+  try {
+    const response = await fetch(
+      configurationVault.getGitmojisUrl(),
+      buildFetchOptions()
+    )
+    const data = await response.json()
+    const emojis = data.gitmojis
 
-      return emojis
-    })
-    .catch((error) => {
-      spinner.fail(`Error: ${error}`)
-    })
+    cache.createEmojis(emojis)
+
+    if (emojis.length === emojisFromCache.length) {
+      spinner.info('Gitmojis already up to date')
+
+      return []
+    }
+
+    spinner.succeed('Gitmojis fetched successfully, these are the new emojis:')
+
+    return emojis.filter((emoji) => !emojisFromCache.includes(emoji))
+  } catch (error) {
+    spinner.fail(`Error: ${error}`)
+
+    return []
+  }
 }
 
 export default getEmojis

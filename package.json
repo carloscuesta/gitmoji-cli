@@ -104,7 +104,7 @@
     "trailingComma": "none"
   },
   "lint-staged": {
-    "*.{js}": [
+    "src/**/*.js": [
       "prettier --write",
       "git add"
     ]
