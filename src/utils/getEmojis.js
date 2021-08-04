@@ -10,7 +10,7 @@ import configurationVault from './configurationVault'
 const getEmojis = async (
   skipCache: boolean = false
 ): Promise<Array<Object>> => {
-  const emojisFromCache = await cache.getEmojis()
+  const emojisFromCache = cache.getEmojis()
 
   if (cache.isAvailable() && !skipCache) return emojisFromCache
 
