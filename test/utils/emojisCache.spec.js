@@ -70,13 +70,32 @@ describe('emojisCache', () => {
   })
 
   describe('getEmojis', () => {
-    beforeAll(() => {
-      fs.readFileSync.mockReturnValue(JSON.stringify(stubs.gitmojis))
-      emojisCache.getEmojis()
+    describe('when cache exists', () => {
+      beforeAll(() => {
+        fs.readFileSync.mockReturnValue(JSON.stringify(stubs.gitmojis))
+      })
+
+      it('should read and return the emojis from the cache', () => {
+        const emojis = emojisCache.getEmojis()
+
+        expect(fs.readFileSync).toHaveBeenCalledWith(CACHE_PATH)
+        expect(emojis).toEqual(stubs.gitmojis)
+      })
     })
 
-    it('should read the emojis from the cache', () => {
-      expect(fs.readFileSync).toHaveBeenCalled()
+    describe('when cache doesn\'t exists', () => {
+      beforeAll(() => {
+        fs.readFileSync.mockImplementation(() => {
+          throw new Error('ERROR: Cache doesn\'t exist')
+        })
+      })
+
+      it('should return an empty array', () => {
+        const emojis = emojisCache.getEmojis()
+
+        expect(fs.readFileSync).toHaveBeenCalled()
+        expect(emojis).toEqual([])
+      })
     })
   })
 })

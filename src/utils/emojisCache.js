@@ -15,7 +15,7 @@ export const CACHE_PATH = path.join(
   GITMOJI_CACHE.FILE
 )
 
-const createEmojis = (emojis: Array<Object>) => {
+const createEmojis = (emojis: Array<Object>): void => {
   if (!pathExists.sync(path.dirname(CACHE_PATH))) {
     fs.mkdirSync(path.dirname(CACHE_PATH))
   }
@@ -23,12 +23,15 @@ const createEmojis = (emojis: Array<Object>) => {
   fs.writeFileSync(CACHE_PATH, JSON.stringify(emojis))
 }
 
-const getEmojis = () => {
-  // $FlowFixMe
-  return Promise.resolve(JSON.parse(fs.readFileSync(CACHE_PATH)))
+const getEmojis = (): Array<Object> => {
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_PATH).toString())
+  } catch (error) {
+    return []
+  }
 }
 
-const isAvailable = () => pathExists.sync(CACHE_PATH)
+const isAvailable = (): boolean => pathExists.sync(CACHE_PATH)
 
 export default {
   createEmojis,
