@@ -37,7 +37,7 @@ const withClient = async (answers: Answers) => {
 
     console.log(stdout)
   } catch (error) {
-    console.error(error)
+    console.error(chalk.red('\nOops! An error ocurred:\n') + error.stdout)
   }
 }
 

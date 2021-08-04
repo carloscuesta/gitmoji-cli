@@ -118,6 +118,32 @@ describe('commit command', () => {
         expect(execa).not.toHaveBeenCalledWith()
       })
     })
+
+    describe('when an error happens', () => {
+      const consoleError = jest.spyOn(console, 'error')
+
+      beforeAll(() => {
+        consoleError.mockImplementation((msg) => msg)
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getAutoAdd.mockReturnValue(true)
+        configurationVault.getSignedCommit.mockReturnValue(true)
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        execa.mockImplementation(() => {
+          throw new Error({ stdout: 'Hey' })
+        })
+        commit({ mode: 'client' })
+      })
+
+      it('should print the error to the console', () => {
+        expect(consoleError).toHaveBeenCalledWith(expect.any(String))
+      })
+    })
   })
 
   describe('withHook', () => {
