@@ -1,3 +1,5 @@
+import { GITMOJIS_URL } from "../../src/utils/configurationVault"
+
 export const gitmojis = [
   {
     emoji: '❤️',
@@ -19,7 +21,8 @@ export const configAnswers = {
   autoAdd: true,
   emojiFormat: 'emoji',
   signedCommit: true,
-  scopePrompt: false
+  scopePrompt: false,
+  gitmojisUrl: GITMOJIS_URL
 }
 
 export const gitAbsoluteDir = '/Users/carloscuesta/GitHub/gitmoji-cli/.git'
