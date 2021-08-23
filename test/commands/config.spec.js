@@ -30,5 +30,8 @@ describe('config command', () => {
     expect(configurationVault.setScopePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.scopePrompt
     )
+    expect(configurationVault.setGitmojisUrl).toHaveBeenCalledWith(
+      stubs.configAnswers.gitmojisUrl
+    )
   })
 })

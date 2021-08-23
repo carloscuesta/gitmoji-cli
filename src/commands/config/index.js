@@ -16,6 +16,9 @@ const config = () => {
     configurationVault.setScopePrompt(
       answers[CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]
     )
+    configurationVault.setGitmojisUrl(
+      answers[CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]
+    )
   })
 }
 
