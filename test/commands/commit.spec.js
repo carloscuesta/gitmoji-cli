@@ -22,7 +22,6 @@ describe('commit command', () => {
   describe('withClient', () => {
     describe('with no autoAdd and no signed commits and no scope', () => {
       beforeAll(() => {
-        console.log = jest.fn()
         execa.mockReturnValue({ stdout: stubs.commitResult })
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswers)
@@ -40,23 +39,25 @@ describe('commit command', () => {
       })
 
       it('should call execa with the commit command based on answers', () => {
-        expect(execa).toHaveBeenCalledWith('git', [
-          'commit',
-          '-m',
-          `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
-          '-m',
-          stubs.clientCommitAnswers.message
-        ])
-      })
-
-      it('should print the result to the console', () => {
-        expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+        expect(execa).toHaveBeenCalledWith(
+          'git',
+          [
+            'commit',
+            '-m',
+            `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
+            '-m',
+            stubs.clientCommitAnswers.message
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
+        )
       })
     })
 
     describe('with autoAdd, signed commits and scope', () => {
       beforeAll(() => {
-        console.log = jest.fn()
         execa.mockReturnValue({ stdout: stubs.commitResult })
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswersWithScope)
@@ -80,24 +81,26 @@ describe('commit command', () => {
       })
 
       it('should call execa with the commit command based on answers', () => {
-        expect(execa).toHaveBeenLastCalledWith('git', [
-          'commit',
-          '-S',
-          '-m',
-          `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
-          '-m',
-          stubs.clientCommitAnswersWithScope.message
-        ])
-      })
-
-      it('should print the result to the console', () => {
-        expect(console.log).toHaveBeenCalledWith(stubs.commitResult)
+        expect(execa).toHaveBeenLastCalledWith(
+          'git',
+          [
+            'commit',
+            '-S',
+            '-m',
+            `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+            '-m',
+            stubs.clientCommitAnswersWithScope.message
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
+        )
       })
     })
 
     describe('with the commit hook created', () => {
       beforeAll(() => {
-        console.log = jest.fn()
         inquirer.prompt.mockReturnValue(
           Promise.resolve(stubs.clientCommitAnswers)
         )
@@ -114,7 +117,6 @@ describe('commit command', () => {
       })
 
       it('should stop the commit because the hook is created and log the explanation to the user', () => {
-        expect(console.log).toHaveBeenCalledWith(expect.any(String))
         expect(execa).not.toHaveBeenCalledWith()
       })
     })

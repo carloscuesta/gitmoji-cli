@@ -26,18 +26,20 @@ const withClient = async (answers: Answers) => {
 
     if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
 
-    const { stdout } = await execa('git', [
-      'commit',
-      ...isSigned,
-      '-m',
-      title,
-      '-m',
-      answers.message
-    ])
-
-    console.log(stdout)
+    await execa(
+      'git',
+      ['commit', ...isSigned, '-m', title, '-m', answers.message],
+      {
+        buffer: false,
+        stdio: 'inherit'
+      }
+    )
   } catch (error) {
-    console.error(chalk.red('\nOops! An error ocurred:\n') + error.stdout)
+    console.error(
+      chalk.red(
+        '\nOops! An error ocurred. There is likely additional logging output above.\n'
+      )
+    )
   }
 }
 
