@@ -1,6 +1,6 @@
 {
   "name": "gitmoji-cli",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
     "node": ">=12"
@@ -51,7 +51,7 @@
     "inquirer-autocomplete-prompt": "^1.0.1",
     "meow": "^9.0.0",
     "node-fetch": "^2.6.0",
-    "ora": "^6.0.0",
+    "ora": "5.4.1",
     "path-exists": "4.0.0",
     "proxy-agent": "^5.0.0",
     "update-notifier": "^5.0.0"
