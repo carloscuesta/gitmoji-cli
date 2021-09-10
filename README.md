@@ -137,9 +137,9 @@ Run `gitmoji -g` to setup some gitmoji-cli preferences.
 
 #### Configuration file
 
-A local `.prettierrc` file written in JSON can be added to your project to share your configuration
+A local `.gitmojirc` file written in JSON can be added to your project to share your configuration
 
-Just add a `.prettierrc` with empty object
+Just add a `.gitmojirc` with empty object
 ```json
 {}
 ```
