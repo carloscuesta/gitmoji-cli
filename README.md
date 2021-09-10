@@ -134,3 +134,14 @@ Run `gitmoji -g` to setup some gitmoji-cli preferences.
 - **Scope prompt**: Enable or disable [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 - **Signed commits**: Enable or disable [signed commits with GPG](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/signing-commits).
 - **Gitmojis api URL**: Set a custom URL to use it as the library of gitmojis.
+
+#### Configuration file
+
+A local `.prettierrc` file written in JSON can be added to your project to share your configuration
+
+Just add a `.prettierrc` with empty object
+```json
+{}
+```
+
+Then run `gitmoji --config`

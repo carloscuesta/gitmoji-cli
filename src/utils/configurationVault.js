@@ -1,4 +1,5 @@
 // @flow
+import fs from 'fs'
 import Conf from 'conf'
 
 import {
@@ -6,7 +7,25 @@ import {
   EMOJI_COMMIT_FORMATS
 } from '../commands/config/prompts'
 
-export const config = new Conf({ projectName: 'gitmoji' })
+const localConfigFile = '.gitmojirc';
+let hasLocalConfig = false;
+try {
+  fs.accessSync(localConfigFile, fs.constants.F_OK)
+  hasLocalConfig = true;
+} catch (err) {
+  //local config file does not exist
+}
+const confOptions = hasLocalConfig 
+  ? {
+    cwd: process.cwd(),
+    configName: localConfigFile,
+    fileExtension: undefined
+  }
+  : {
+    projectName: 'gitmoji'
+  };
+
+export const config = new Conf(confOptions)
 
 const setAutoAdd = (autoAdd: boolean) => {
   config.set(CONFIGURATION_PROMPT_NAMES.AUTO_ADD, autoAdd)
