@@ -7,7 +7,7 @@ import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
 import { type CommitOptions } from './index'
 import guard from './guard'
 
-const TITLE_MAX_LENGTH_COUNT: number = 48
+const TITLE_MAX_LENGTH_COUNT: number = 50
 
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
 
@@ -25,7 +25,10 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>, options: CommitOptions): Array<Object> => {
+export default (
+  gitmojis: Array<Gitmoji>,
+  options: CommitOptions
+): Array<Object> => {
   const { title, message, scope } = getDefaultCommitContent(options)
 
   return [
@@ -56,10 +59,10 @@ export default (gitmojis: Array<Gitmoji>, options: CommitOptions): Array<Object>
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
-      transformer: (input: string) => {
-        return `[${
-          (title || input).length
-        }/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
+      transformer: (input: string, { gitmoji }: { gitmoji: string }) => {
+        return `[${(title || input).length}/${
+          TITLE_MAX_LENGTH_COUNT - gitmoji.length
+        }]: ${input}`
       },
       ...(title ? { default: title } : {})
     },
