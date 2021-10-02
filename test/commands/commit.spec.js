@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
 import execa from 'execa'
 import fs from 'fs'
+import chalk from 'chalk'
 const mockProcess = require('jest-mock-process')
 
 import configurationVault from '../../src/utils/configurationVault'
@@ -143,7 +144,15 @@ describe('commit command', () => {
       })
 
       it('should print the error to the console', () => {
-        expect(consoleError).toHaveBeenCalledWith(expect.any(String))
+        expect(consoleError).toHaveBeenCalledWith(
+          chalk.red(
+            '\n',
+            'Oops! An error ocurred. There is likely additional logging output above.\n',
+            'You can run the same commit with this command:\n'
+          ),
+          '\t',
+          undefined
+        )
       })
     })
   })

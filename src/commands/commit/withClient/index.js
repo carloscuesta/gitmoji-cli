@@ -37,8 +37,12 @@ const withClient = async (answers: Answers) => {
   } catch (error) {
     console.error(
       chalk.red(
-        '\nOops! An error ocurred. There is likely additional logging output above.\n'
-      )
+        '\n',
+        'Oops! An error ocurred. There is likely additional logging output above.\n',
+        'You can run the same commit with this command:\n'
+      ),
+      '\t',
+      error.escapedCommand
     )
   }
 }
