@@ -55,6 +55,8 @@ A gitmoji interactive client for using gitmojis on commit messages.
 
 You can use the commit functionality in two ways, directly or via a commit-hook.
 
+If you want to integrate `gitmoji-cli` in your project I would recommend going for the **hook mode** as it support more use cases, it's more flexible and has a better integration with other tools, whereas the **client mode** is more quick and easy to use.
+
 #### Client
 
 Start the interactive commit client, to auto generate your commit based on your prompts.
