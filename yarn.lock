@@ -1970,9 +1970,9 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
 conf@^10.0.1:
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-10.0.3.tgz#af266186cc754daefd2749398861ec538c50da17"
-  integrity sha512-4gtQ/Q36qVxBzMe6B7gWOAfni1VdhuHkIzxydHkclnwGmgN+eW4bb6jj73vigCfr7d3WlmqawvhZrpCUCTPYxQ==
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-10.1.0.tgz#d1c161f7e956aaa1a001051f9430b50869eaec68"
+  integrity sha512-qZ+642TRK8uQq7IFL/c0iw9UsgowK0jkNpDeQMY2znki6Rvlm6ks+YljmaIayIRaTrLk0eJvyFgY0hOByxvmmw==
   dependencies:
     ajv "^8.6.3"
     ajv-formats "^2.1.1"
