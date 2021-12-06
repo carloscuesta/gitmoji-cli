@@ -1955,9 +1955,9 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
 conf@^10.0.1:
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-10.1.0.tgz#d1c161f7e956aaa1a001051f9430b50869eaec68"
-  integrity sha512-qZ+642TRK8uQq7IFL/c0iw9UsgowK0jkNpDeQMY2znki6Rvlm6ks+YljmaIayIRaTrLk0eJvyFgY0hOByxvmmw==
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-10.1.1.tgz#ff08046d5aeeee0eaff55d57f5b4319193c3dfda"
+  integrity sha512-z2civwq/k8TMYtcn3SVP0Peso4otIWnHtcTuHhQ0zDZDdP4NTxqEc8owfkz4zBsdMYdn/LFcE+ZhbCeqkhtq3Q==
   dependencies:
     ajv "^8.6.3"
     ajv-formats "^2.1.1"
