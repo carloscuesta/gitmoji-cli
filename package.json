@@ -45,7 +45,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "conf": "^10.0.1",
-    "execa": "^5.0.0",
+    "execa": "^6.1.0",
     "fuse.js": "^6.4.1",
     "inquirer": "^8.1.1",
     "inquirer-autocomplete-prompt": "^1.0.1",
