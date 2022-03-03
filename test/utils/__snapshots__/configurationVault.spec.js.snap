@@ -3,11 +3,13 @@
 exports[`configurationVault should match the module 1`] = `
 Object {
   "getAutoAdd": [Function],
+  "getCommitExtraArgs": [Function],
   "getEmojiFormat": [Function],
   "getGitmojisUrl": [Function],
   "getScopePrompt": [Function],
   "getSignedCommit": [Function],
   "setAutoAdd": [Function],
+  "setCommitExtraArgs": [Function],
   "setEmojiFormat": [Function],
   "setGitmojisUrl": [Function],
   "setScopePrompt": [Function],

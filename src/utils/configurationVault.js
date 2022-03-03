@@ -28,6 +28,10 @@ const setGitmojisUrl = (gitmojisUrl: string): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL, gitmojisUrl)
 }
 
+const setCommitExtraArgs = (extraArgs: string) => {
+  config.set(CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS, extraArgs)
+}
+
 const getAutoAdd = (): boolean => {
   return config.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD) || false
 }
@@ -53,15 +57,21 @@ const getGitmojisUrl = (): string => {
   return config.get(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL) || GITMOJIS_URL
 }
 
+const getCommitExtraArgs = (): string => {
+  return config.get(CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS) || ''
+}
+
 export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
   getSignedCommit,
   getGitmojisUrl,
+  getCommitExtraArgs,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
   setSignedCommit,
-  setGitmojisUrl
+  setGitmojisUrl,
+  setCommitExtraArgs
 }

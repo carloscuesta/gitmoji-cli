@@ -20,6 +20,7 @@ export const searchQuery = 'LoVe'
 export const configAnswers = {
   autoAdd: true,
   emojiFormat: 'emoji',
+  commitExtraArgs: '-v',
   signedCommit: true,
   scopePrompt: false,
   gitmojisUrl: GITMOJIS_URL

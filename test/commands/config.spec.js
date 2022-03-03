@@ -33,5 +33,8 @@ describe('config command', () => {
     expect(configurationVault.setGitmojisUrl).toHaveBeenCalledWith(
       stubs.configAnswers.gitmojisUrl
     )
+    expect(configurationVault.setCommitExtraArgs).toHaveBeenCalledWith(
+      stubs.configAnswers.commitExtraArgs
+    )
   })
 })

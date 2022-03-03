@@ -19,6 +19,9 @@ const config = () => {
     configurationVault.setGitmojisUrl(
       answers[CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]
     )
+    configurationVault.setCommitExtraArgs(
+      answers[CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS]
+    )
   })
 }
 

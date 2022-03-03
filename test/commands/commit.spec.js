@@ -29,6 +29,7 @@ describe('commit command', () => {
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
         isHookCreated.mockResolvedValue(false)
+        configurationVault.getCommitExtraArgs.mockReturnValue('')
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -67,6 +68,7 @@ describe('commit command', () => {
         isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
         configurationVault.getSignedCommit.mockReturnValue(true)
+        configurationVault.getCommitExtraArgs.mockReturnValue('')
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -134,6 +136,7 @@ describe('commit command', () => {
         isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
         configurationVault.getSignedCommit.mockReturnValue(true)
+        configurationVault.getCommitExtraArgs.mockReturnValue('')
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -152,6 +155,128 @@ describe('commit command', () => {
           ),
           '\t',
           undefined
+        )
+      })
+    })
+
+    describe('with extra args and no signed', () => {
+      beforeAll(() => {
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswers)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getSignedCommit.mockReturnValue(false)
+        configurationVault.getCommitExtraArgs.mockReturnValue('-s -v')
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        commit({ mode: 'client' })
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenCalledWith(
+          'git',
+          [
+            'commit',
+            '-s',
+            '-v',
+            '-m',
+            `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
+            '-m',
+            stubs.clientCommitAnswers.message
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
+        )
+      })
+    })
+
+    describe('with extra args and signed commits', () => {
+      beforeAll(() => {
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswers)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getSignedCommit.mockReturnValue(true)
+        configurationVault.getCommitExtraArgs.mockReturnValue('-s')
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        commit({ mode: 'client' })
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenCalledWith(
+          'git',
+          [
+            'commit',
+            '-S',
+            '-s',
+            '-m',
+            `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
+            '-m',
+            stubs.clientCommitAnswers.message
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
+        )
+      })
+    })
+
+    describe('with extra args, signed commits and scoped', () => {
+      beforeAll(() => {
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getAutoAdd.mockReturnValue(false)
+        configurationVault.getSignedCommit.mockReturnValue(true)
+        configurationVault.getCommitExtraArgs.mockReturnValue('-q -v')
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        commit({ mode: 'client' })
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenCalledWith(
+          'git',
+          [
+            'commit',
+            '-S',
+            '-q',
+            '-v',
+            '-m',
+            `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+            '-m',
+            stubs.clientCommitAnswers.message
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
         )
       })
     })

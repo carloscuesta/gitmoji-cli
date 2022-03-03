@@ -6,7 +6,8 @@ export const CONFIGURATION_PROMPT_NAMES = {
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
   SIGNED_COMMIT: 'signedCommit',
-  GITMOJIS_URL: 'gitmojisUrl'
+  GITMOJIS_URL: 'gitmojisUrl',
+  COMMIT_EXTRA_ARGS: 'commitExtraArgs'
 }
 
 export const EMOJI_COMMIT_FORMATS = {
@@ -42,6 +43,12 @@ export default (): Array<Object> => [
     message: 'Enable scope prompt',
     type: 'confirm',
     default: configurationVault.getScopePrompt()
+  },
+  {
+    name: CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS,
+    message: 'Set commit extra args',
+    type: 'input',
+    default: configurationVault.getCommitExtraArgs()
   },
   {
     name: CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL,

@@ -9,9 +9,19 @@ import { type Answers } from '../prompts'
 
 const withClient = async (answers: Answers): Promise<void> => {
   try {
+    const args = []
+
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
-    const isSigned = configurationVault.getSignedCommit() ? ['-S'] : []
+    const extraArgs = configurationVault.getCommitExtraArgs()
+
+    if (configurationVault.getSignedCommit()) {
+      args.push('-S')
+    }
+
+    if (extraArgs.length > 0) {
+      args.push(...extraArgs.split(' '))
+    }
 
     if (await isHookCreated()) {
       return console.log(
@@ -28,7 +38,7 @@ const withClient = async (answers: Answers): Promise<void> => {
 
     await execa(
       'git',
-      ['commit', ...isSigned, '-m', title, '-m', answers.message],
+      ['commit', ...args, '-m', title, '-m', answers.message],
       {
         buffer: false,
         stdio: 'inherit'

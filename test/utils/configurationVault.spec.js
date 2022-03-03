@@ -33,6 +33,9 @@ describe('configurationVault', () => {
     it('should return the default value for gitmojisUrl', () => {
       expect(configurationVault.getGitmojisUrl()).toEqual(GITMOJIS_URL)
     })
+    it('should return the default value for gitmojisUrl', () => {
+      expect(configurationVault.getCommitExtraArgs()).toEqual('')
+    })
   })
 
   describe('setter and getters', () => {
@@ -81,6 +84,19 @@ describe('configurationVault', () => {
       )
       expect(config.get).toHaveBeenCalledWith(
         CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT
+      )
+    })
+
+    it('should set and return value for signedCommit', () => {
+      configurationVault.setCommitExtraArgs('-s -v')
+      configurationVault.getCommitExtraArgs()
+
+      expect(config.set).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS,
+        '-s -v'
+      )
+      expect(config.get).toHaveBeenCalledWith(
+        CONFIGURATION_PROMPT_NAMES.COMMIT_EXTRA_ARGS
       )
     })
 
