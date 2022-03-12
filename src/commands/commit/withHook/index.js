@@ -51,7 +51,11 @@ export const cancelIfAmending = () =>
       `gitmoji --hook $1 $2`
     */
     const commitMessageSource: ?string = process.argv[COMMIT_MESSAGE_SOURCE]
-    if (commitMessageSource && commitMessageSource.startsWith('commit')) {
+    if (
+      commitMessageSource &&
+      (commitMessageSource.startsWith('commit') ||
+        commitMessageSource.startsWith('merge'))
+    ) {
       process.exit(0)
     }
     resolve()
