@@ -303,6 +303,25 @@ describe('commit command', () => {
         expect(process.exit).toHaveBeenCalledWith(0)
       })
     })
+
+    describe('with git auto merge trigger by git pull', () => {
+      it('should cancel the hook', async () => {
+        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        // mock that we are merging
+        process.argv[3] = '.git/MERGE_MSG'
+        process.argv[COMMIT_MESSAGE_SOURCE] = 'merge'
+
+        try {
+          await commit({ mode: 'hook' })
+        } catch (e) {
+          expect(e.message).toMatch('ProcessExit0')
+        }
+
+        expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+
   })
 
   describe('guard', () => {
