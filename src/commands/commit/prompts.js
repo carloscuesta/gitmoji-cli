@@ -57,7 +57,7 @@ export default (gitmojis: Array<Gitmoji>, options: CommitOptions): Array<Object>
       message: 'Enter the commit title',
       validate: guard.title,
       transformer: (input: string) => {
-        return `[${
+        return `[${(title || input).length < 10 ? ' ' : ''}${
           (title || input).length
         }/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
       },
