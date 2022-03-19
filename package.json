@@ -43,18 +43,18 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "conf": "^10.0.1",
-    "execa": "^5.0.0",
-    "fuse.js": "^6.4.1",
-    "inquirer": "^8.1.1",
-    "inquirer-autocomplete-prompt": "^1.0.1",
-    "meow": "^9.0.0",
-    "node-fetch": "^2.6.0",
+    "chalk": "4.1.0",
+    "conf": "10.0.1",
+    "execa": "5.0.0",
+    "fuse.js": "6.4.1",
+    "inquirer": "8.1.1",
+    "inquirer-autocomplete-prompt": "1.0.1",
+    "meow": "9.0.0",
+    "node-fetch": "2.6.0",
     "ora": "5.4.1",
     "path-exists": "4.0.0",
-    "proxy-agent": "^5.0.0",
-    "update-notifier": "^5.0.0"
+    "proxy-agent": "5.0.0",
+    "update-notifier": "5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
