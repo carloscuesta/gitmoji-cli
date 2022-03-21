@@ -3803,10 +3803,10 @@ jest-message-util@^27.5.1:
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
-jest-mock-process@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/jest-mock-process/-/jest-mock-process-1.2.0.tgz#8ac1818cb8aad05164b1f955036849369ee580d4"
-  integrity sha512-pfC9mUReieMVCBYNd9xM+4wsKxKQtHNRukXwV02v+cDI9BLkA5hbbBAQZis232hCJQHvL/Dd2oWbBaLrDlR9Kg==
+jest-mock-process@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jest-mock-process/-/jest-mock-process-1.4.1.tgz#0aa1df70f4e3b4799b4f81e82fdc1c383a7b6cdf"
+  integrity sha512-ZZUKRlEBizutngoO4KngzN30YoeAYP3nnwimk4cpi9WqLxQUf6SlAPK5p1D9usEpxDS3Uif2MIez3Bq0vGYR+g==
 
 jest-mock@^27.5.1:
   version "27.5.1"
