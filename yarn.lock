@@ -1401,24 +1401,14 @@ aggregate-error@^3.0.0:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
 
-ajv-formats@^2.0.2:
+ajv-formats@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-formats/-/ajv-formats-2.1.1.tgz#6e669400659eb74973bbf2e33327180a0996b520"
   integrity sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==
   dependencies:
     ajv "^8.0.0"
 
-ajv@^8.0.0:
-  version "8.6.3"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.6.3.tgz#11a66527761dc3e9a3845ea775d2d3c0414e8764"
-  integrity sha512-SMJOdDP6LqTkD0Uq8qLi+gMwSt0imXLSV080qFVwJCpH9U6Mb+SUGHAXM0KNbcBPguytWyvFxcHgMLe2D2XSpw==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    json-schema-traverse "^1.0.0"
-    require-from-string "^2.0.2"
-    uri-js "^4.2.2"
-
-ajv@^8.1.0:
+ajv@^8.0.0, ajv@^8.6.3:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.10.0.tgz#e573f719bd3af069017e3b66538ab968d040e54d"
   integrity sha512-bzqAEZOjkrUMl2afH8dknrq5KEk2SrwdBROR+vH1EKVQTqaUbJVPdc/gEdggTMM0Se+s+Ja4ju4TlNcStKl2Hw==
@@ -2137,13 +2127,13 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-conf@10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-10.0.1.tgz#038093e5cbddc0e59bc14f63382c4ce732a4781d"
-  integrity sha512-QClEoNcruwBL84QgMEPHibL3ERxWIrRKhbjJKG1VsFBadm5QpS0jsu4QjY/maxUvhyAKXeyrs+ws+lC6PajnEg==
+conf@10.1.1:
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-10.1.1.tgz#ff08046d5aeeee0eaff55d57f5b4319193c3dfda"
+  integrity sha512-z2civwq/k8TMYtcn3SVP0Peso4otIWnHtcTuHhQ0zDZDdP4NTxqEc8owfkz4zBsdMYdn/LFcE+ZhbCeqkhtq3Q==
   dependencies:
-    ajv "^8.1.0"
-    ajv-formats "^2.0.2"
+    ajv "^8.6.3"
+    ajv-formats "^2.1.1"
     atomically "^1.7.0"
     debounce-fn "^4.0.0"
     dot-prop "^6.0.1"
