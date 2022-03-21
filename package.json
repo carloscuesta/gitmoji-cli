@@ -61,7 +61,7 @@
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
     "@babel/preset-flow": "7.10.1",
-    "codecov": "3.7.1",
+    "codecov": "3.8.3",
     "flow-bin": "0.110.1",
     "husky": "7.0.0",
     "jest": "27.0.6",
