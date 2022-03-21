@@ -69,7 +69,7 @@
     "jest-mock-process": "1.2.0",
     "lint-staged": "12.0.2",
     "pkg": "5.0.0",
-    "prettier": "2.1.1"
+    "prettier": "2.6.0"
   },
   "babel": {
     "presets": [
