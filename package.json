@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.10.1",
-    "@babel/core": "7.10.2",
+    "@babel/core": "7.17.8",
     "@babel/preset-env": "7.10.2",
     "@babel/preset-flow": "7.10.1",
     "codecov": "3.7.1",
