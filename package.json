@@ -65,7 +65,7 @@
     "flow-bin": "0.110.1",
     "husky": "7.0.0",
     "jest": "27.0.6",
-    "jest-fetch-mock": "3.0.0",
+    "jest-fetch-mock": "3.0.3",
     "jest-mock-process": "1.4.1",
     "lint-staged": "12.0.2",
     "pkg": "5.0.0",
