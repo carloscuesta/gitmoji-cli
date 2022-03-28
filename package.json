@@ -64,7 +64,7 @@
     "codecov": "3.8.3",
     "flow-bin": "0.110.1",
     "husky": "7.0.4",
-    "jest": "27.0.6",
+    "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
     "jest-mock-process": "1.4.1",
     "lint-staged": "12.3.7",
