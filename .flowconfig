@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/@babel/core/node_modules/resolve/test/resolver/malformed_package_json
 <PROJECT_ROOT>/node_modules/@babel/helper-define-polyfill-provider/node_modules/resolve/test/resolver/malformed_package_json
+<PROJECT_ROOT>/node_modules/resolve/test/resolver/malformed_package_json
 
 [include]
 
