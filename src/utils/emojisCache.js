@@ -9,7 +9,7 @@ export const GITMOJI_CACHE: Object = {
   FILE: 'gitmojis.json'
 }
 
-export const CACHE_PATH = path.join(
+export const CACHE_PATH: string = path.join(
   os.homedir(),
   GITMOJI_CACHE.FOLDER,
   GITMOJI_CACHE.FILE

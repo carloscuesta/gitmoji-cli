@@ -42,7 +42,7 @@ const cli = meow(
   }
 )
 
-export const options = {
+export const options = ({
   [FLAGS.COMMIT]: (options: Object) => commands.commit(options),
   [FLAGS.CONFIG]: () => commands.config(),
   [FLAGS.HOOK]: (options: Object) => commands.commit(options),
@@ -51,6 +51,6 @@ export const options = {
   [FLAGS.REMOVE]: () => commands.removeHook(),
   [FLAGS.SEARCH]: () => cli.input.map((input) => commands.search(input)),
   [FLAGS.UPDATE]: () => commands.update()
-}
+}: { [$Values<typeof FLAGS>]: Function })
 
 findGitmojiCommand(cli, options)

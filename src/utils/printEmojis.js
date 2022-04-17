@@ -8,7 +8,7 @@ type Gitmoji = {
   description: string
 }
 
-const printEmojis = (gitmojis: Array<Gitmoji>) => {
+const printEmojis = (gitmojis: Array<Gitmoji>): void => {
   return gitmojis.forEach((gitmoji) => {
     console.log(
       `${gitmoji.emoji} - ${chalk.blue(gitmoji.code)} - ${gitmoji.description}`

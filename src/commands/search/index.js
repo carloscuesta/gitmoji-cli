@@ -3,7 +3,7 @@ import filterGitmojis from '../../utils/filterGitmojis'
 import getEmojis from '../../utils/getEmojis'
 import printEmojis from '../../utils/printEmojis'
 
-const search = (query: string) => {
+const search = (query: string): Promise<void> => {
   return getEmojis()
     .then((gitmojis) => filterGitmojis(query, gitmojis))
     .then((gitmojisFiltered) => printEmojis(gitmojisFiltered))

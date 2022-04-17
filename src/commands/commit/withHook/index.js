@@ -27,7 +27,7 @@ export const registerHookInterruptionHandler = () => {
   })
 }
 
-export const cancelIfRebasing = () =>
+export const cancelIfRebasing = (): Promise<void> =>
   execa('git', ['rev-parse', '--absolute-git-dir']).then(
     ({ stdout: gitDirectory }) => {
       // see https://stackoverflow.com/questions/3921409/how-to-know-if-there-is-a-git-rebase-in-progress
@@ -43,7 +43,7 @@ export const cancelIfRebasing = () =>
 
 export const COMMIT_MESSAGE_SOURCE = 4
 
-export const cancelIfAmending = () =>
+export const cancelIfAmending = (): Promise<void> =>
   new Promise<void>((resolve) => {
     /*
       from https://git-scm.com/docs/githooks#_prepare_commit_msg
@@ -62,6 +62,7 @@ export const cancelIfAmending = () =>
   })
 
 // I avoid Promise.all to avoid race condition in future cancel callbacks
-export const cancelIfNeeded = () => cancelIfAmending().then(cancelIfRebasing)
+export const cancelIfNeeded = (): Promise<void> =>
+  cancelIfAmending().then(cancelIfRebasing)
 
 export default withHook

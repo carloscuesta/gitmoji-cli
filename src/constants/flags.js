@@ -1,5 +1,5 @@
 // @flow
-const FLAGS = {
+const FLAGS = Object.freeze({
   COMMIT: 'commit',
   CONFIG: 'config',
   HELP: 'help',
@@ -10,6 +10,6 @@ const FLAGS = {
   SEARCH: 'search',
   UPDATE: 'update',
   VERSION: 'version'
-}
+})
 
 export default FLAGS

@@ -2,7 +2,7 @@
 import COMMIT_MODES from '../constants/commit'
 import FLAGS from '../constants/flags'
 
-const getOptionsForCommand = (command: ?string, flags: Object) => {
+const getOptionsForCommand = (command: ?string, flags: Object): ?Object => {
   const commandsWithOptions = [FLAGS.COMMIT, FLAGS.HOOK]
 
   if (commandsWithOptions.includes(command)) {
@@ -17,7 +17,7 @@ const getOptionsForCommand = (command: ?string, flags: Object) => {
   return null
 }
 
-const findGitmojiCommand = (cli: any, options: Object) => {
+const findGitmojiCommand = (cli: any, options: Object): void => {
   const flags = cli.flags
   const commandFlag = Object.keys(flags)
     .map((flag) => flags[flag] && flag)

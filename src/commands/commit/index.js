@@ -14,10 +14,10 @@ export type CommitOptions = {
   message?: string,
   mode: typeof COMMIT_MODES.CLIENT | typeof COMMIT_MODES.HOOK,
   scope?: string,
-  title?: string,
+  title?: string
 }
 
-const promptAndCommit = (options: CommitOptions) =>
+const promptAndCommit = (options: CommitOptions): Function =>
   getEmojis()
     .then((gitmojis) => prompts(gitmojis, options))
     .then((questions) => {
@@ -28,7 +28,7 @@ const promptAndCommit = (options: CommitOptions) =>
       })
     })
 
-const commit = (options: CommitOptions) => {
+const commit = (options: CommitOptions): Function => {
   if (options.mode === COMMIT_MODES.HOOK) {
     registerHookInterruptionHandler()
     return cancelIfNeeded().then(() => promptAndCommit(options))

@@ -14,7 +14,7 @@ export const EMOJI_COMMIT_FORMATS = {
   EMOJI: 'emoji'
 }
 
-export default () => [
+export default (): Array<Object> => [
   {
     name: CONFIGURATION_PROMPT_NAMES.AUTO_ADD,
     message: 'Enable automatic "git add ."',

@@ -17,7 +17,10 @@ export const options = {
   ]
 }
 
-const filterGitmojis = (input: ?string, gitmojis: Array<Gitmoji>) => {
+const filterGitmojis = (
+  input: ?string,
+  gitmojis: Array<Gitmoji>
+): Function | Array<Object> => {
   const fuse = new Fuse(gitmojis, options)
 
   return input ? fuse.search(input).map((gitmoji) => gitmoji.item) : gitmojis

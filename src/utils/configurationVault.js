@@ -6,25 +6,25 @@ import {
   EMOJI_COMMIT_FORMATS
 } from '../commands/config/prompts'
 
-export const config = new Conf({ projectName: 'gitmoji' })
+export const config: typeof Conf = new Conf({ projectName: 'gitmoji' })
 
-const setAutoAdd = (autoAdd: boolean) => {
+const setAutoAdd = (autoAdd: boolean): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.AUTO_ADD, autoAdd)
 }
 
-const setEmojiFormat = (emojiFormat: string) => {
+const setEmojiFormat = (emojiFormat: string): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT, emojiFormat)
 }
 
-const setSignedCommit = (signedCommit: boolean) => {
+const setSignedCommit = (signedCommit: boolean): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT, signedCommit)
 }
 
-const setScopePrompt = (scopePrompt: boolean) => {
+const setScopePrompt = (scopePrompt: boolean): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
 }
 
-const setGitmojisUrl = (gitmojisUrl: string) => {
+const setGitmojisUrl = (gitmojisUrl: string): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL, gitmojisUrl)
 }
 
