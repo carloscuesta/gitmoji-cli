@@ -6,8 +6,3 @@ updates:
     interval: weekly
     time: "04:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: flow-bin
-    versions:
-    - "> 0.110.1"
-    - "< 1"
