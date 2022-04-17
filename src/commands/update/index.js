@@ -2,6 +2,7 @@
 import getEmojis from '../../utils/getEmojis'
 import printEmojis from '../../utils/printEmojis'
 
-const update = () => getEmojis(true).then((gitmojis) => printEmojis(gitmojis))
+const update = (): Promise<void> =>
+  getEmojis(true).then((gitmojis) => printEmojis(gitmojis))
 
 export default update

@@ -4,7 +4,7 @@ import fs from 'fs'
 import HOOK from '../commands/hook/hook'
 import getAbsoluteHooksPath from './getAbsoluteHooksPath'
 
-const isHookCreated = async () => {
+const isHookCreated = async (): Promise<?boolean> => {
   try {
     const hookFile = await getAbsoluteHooksPath(HOOK.FILENAME)
 
