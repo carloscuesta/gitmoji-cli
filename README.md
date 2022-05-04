@@ -20,19 +20,19 @@ This project provides an easy solution for using [**gitmoji**](https://github.co
 ### npm
 
 ```bash
-$ npm i -g gitmoji-cli
+npm i -g gitmoji-cli
 ```
 
 ### brew
 
 ```bash
-$ brew install gitmoji
+brew install gitmoji
 ```
 
 ## Usage
 
 ```bash
-$ gitmoji --help
+gitmoji --help
 ```
 
 ```
@@ -62,7 +62,7 @@ If you want to integrate `gitmoji-cli` in your project I would recommend going f
 Start the interactive commit client, to auto generate your commit based on your prompts.
 
 ```bash
-$ gitmoji -c
+gitmoji -c
 ```
 
 ##### Options
@@ -76,7 +76,7 @@ You can pass default values to the prompts using the following flags:
 Those flags should be used like this:
 
 ```bash
-$ gitmoji -c --title="Commit" --message="Message" --scope="Scope"
+gitmoji -c --title="Commit" --message="Message" --scope="Scope"
 ```
 
 #### Hook
@@ -84,9 +84,9 @@ $ gitmoji -c --title="Commit" --message="Message" --scope="Scope"
 Run the init option, add your changes and commit them, after that the prompts will begin and your commit message will be built.
 
 ```bash
-$ gitmoji -i
-$ git add .
-$ git commit
+gitmoji -i
+git add .
+git commit
 ```
 
 ⚠️ The hook **should not be used** with the `gitmoji -c` command.
@@ -98,7 +98,7 @@ $ git commit
 Search using specific keywords to find the right gitmoji.
 
 ```bash
-$ gitmoji -s "criteria"
+gitmoji -s "criteria"
 ```
 
 ![gitmoji search](https://user-images.githubusercontent.com/7629661/41189878-d24a3b78-6bd4-11e8-8d47-c8edf3b87e53.png)
@@ -109,7 +109,7 @@ $ gitmoji -s "criteria"
 Pretty print all the available gitmojis.
 
 ```bash
-$ gitmoji -l
+gitmoji -l
 ```
 
 ![gitmoji list](https://user-images.githubusercontent.com/7629661/41189877-d22b145a-6bd4-11e8-97f8-a8e36bcab062.png)
@@ -119,7 +119,7 @@ $ gitmoji -l
 Update the gitmojis list, by default the first time you run gitmoji, the cli creates a cache to allow using this tool without internet connection.
 
 ```bash
-$ gitmoji -u
+gitmoji -u
 ```
 
 ### Config
