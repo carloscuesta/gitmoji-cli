@@ -4,6 +4,7 @@ import fetch from 'node-fetch'
 import ora from 'ora'
 
 import cache from './emojisCache'
+import local from './emojisLocal'
 import buildFetchOptions from './buildFetchOptions'
 import configurationVault from './configurationVault'
 
@@ -11,6 +12,8 @@ const getEmojis = async (
   skipCache: boolean = false
 ): Promise<Array<Object>> => {
   const emojisFromCache = cache.getEmojis()
+
+  if (await local.isAvailable()) return local.getEmojisLocal()
 
   if (cache.isAvailable() && !skipCache) return emojisFromCache
 

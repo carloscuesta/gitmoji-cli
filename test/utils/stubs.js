@@ -414,5 +414,7 @@ export const absoluteCoreHooksPath = '/etc/git/hooks'
 
 export const relativeCoreHooksPath = '.git/hooks'
 
+export const localProjectPath = 'project'
+
 export const hooksPath =
   '/Users/carloscuesta/GitHub/gitmoji-cli/.git/hooks/prepare-commit-msg'
