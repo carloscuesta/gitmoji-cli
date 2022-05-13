@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 import configurationVault from '../../src/utils/configurationVault'
-import getEmojis, { GITMOJIS_URL } from '../../src/utils/getEmojis'
+import getEmojis from '../../src/utils/getEmojis'
 import buildFetchOptions from '../../src/utils/buildFetchOptions'
 import emojisCache from '../../src/utils/emojisCache'
 import * as stubs from './stubs'
@@ -11,9 +11,6 @@ jest.mock('../../src/utils/emojisCache')
 jest.mock('../../src/utils/emojisLocal')
 
 describe('getEmojis', () => {
-    afterEach(() => {
-       jest.clearAllMocks();
-    });
   describe('when cache is available', () => {
     beforeAll(() => {
       emojisCache.isAvailable.mockReturnValue(true)
@@ -26,7 +23,7 @@ describe('getEmojis', () => {
   })
 
   describe('when cache is not available', () => {
-    beforeEach(() => {
+    beforeAll(() => {
       emojisCache.isAvailable.mockReturnValue(false)
       fetch.mockResponse(JSON.stringify(stubs.gitmojisResponse))
       getEmojis()
@@ -49,7 +46,7 @@ describe('getEmojis', () => {
   })
 
   describe('when cache is available but is skipped', () => {
-    beforeEach(() => {
+    beforeAll(() => {
       emojisCache.isAvailable.mockReturnValue(true)
       fetch.mockResponse(JSON.stringify(stubs.gitmojisResponse))
       getEmojis(true)
@@ -74,7 +71,7 @@ describe('getEmojis', () => {
   describe('when cache and fechted data contains the same information', () => {
     let emojis
 
-    beforeEach(async () => {
+    beforeAll(async () => {
       emojisCache.isAvailable.mockReturnValue(true)
       fetch.mockResponse(JSON.stringify(stubs.gitmojisResponse))
       emojis = await getEmojis(true)
@@ -97,6 +94,9 @@ describe('getEmojis', () => {
   })
 
     describe('when local gitmojis.json is present', () => {
+      afterEach(() => {
+        jest.clearAllMocks();
+      });
         it('should return gitmojis from local file', async () => {
             emojisLocal.isAvailable.mockResolvedValueOnce(true);
 
@@ -107,6 +107,9 @@ describe('getEmojis', () => {
     })
 
     describe('when local gitmojis.json is not present', () => {
+      afterEach(() => {
+        jest.clearAllMocks();
+      });
         it('should not return gitmojis from local file', async () => {
             emojisLocal.isAvailable.mockResolvedValueOnce(false);
 
