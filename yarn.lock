@@ -2522,10 +2522,10 @@ find-up@^4.0.0, find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-flow-bin@^0.177.0:
-  version "0.177.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.177.0.tgz#dd537424dcbdd56f3cc85fd72330840a590e4711"
-  integrity sha512-hEm9VDf07iGcfjiCaxZAbpp/bRcgPf/Q3f7UucWpMotrM0MmyZ2hCBvhw53XCd3M7+fP8eyZKRvUWtrMqEC/Sg==
+flow-bin@^0.178.0:
+  version "0.178.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.178.0.tgz#893f32bbb2bea09a5cf53446d99d4c791b2220b2"
+  integrity sha512-D1S8c/oaiHAeKaxNxdJJ6SxjxwetNRgPWc9PI1wCSNfB3o0gAJKE5ic2B84c2QmRcs6dMYw6b9GDelYpWsArfg==
 
 foreach@^2.0.5:
   version "2.0.5"
@@ -2598,10 +2598,10 @@ function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-fuse.js@6.6.1:
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.6.1.tgz#6b94cb80eb064f1b9c31bbe651f6e5857702c0a8"
-  integrity sha512-3PXxXYsdKm68JHY6o2I9gIY+z9LcPs/ROITSzwFZyo0McjShwPFJU2i81Iu4h4si5X7JrrgXtOLDkeiTjdnWFQ==
+fuse.js@6.6.2:
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.6.2.tgz#fe463fed4b98c0226ac3da2856a415576dc9a111"
+  integrity sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==
 
 gauge@~2.7.3:
   version "2.7.4"
@@ -2833,10 +2833,10 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-husky@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.0.tgz#65b2d94765199d651615716a42ea52f3c2d997a0"
-  integrity sha512-4qbE/5dzNDNxFEkX9MNRPKl5+omTXQzdILCUWiqG/lWIAioiM5vln265/l6I2Zx8gpW8l1ukZwGQeCFbBZ6+6w==
+husky@8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.1.tgz#511cb3e57de3e3190514ae49ed50f6bc3f50b3e9"
+  integrity sha512-xs7/chUH/CKdOCs7Zy0Aev9e/dKOMZf3K1Az1nar3tzlv0jfqnYtu235bstsWTmXOR0EfINrPa97yy4Lz6RiKw==
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
