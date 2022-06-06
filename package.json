@@ -50,7 +50,7 @@
     "inquirer": "8.2.4",
     "inquirer-autocomplete-prompt": "2.0.0",
     "meow": "9.0.0",
-    "node-fetch": "2.6.7",
+    "node-fetch": "3.2.5",
     "ora": "5.4.1",
     "path-exists": "4.0.0",
     "proxy-agent": "5.0.0",
