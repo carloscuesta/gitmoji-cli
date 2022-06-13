@@ -62,7 +62,7 @@
     "@babel/preset-env": "7.18.2",
     "@babel/preset-flow": "7.17.12",
     "codecov": "3.8.3",
-    "flow-bin": "^0.179.0",
+    "flow-bin": "^0.180.0",
     "husky": "8.0.1",
     "jest": "27.5.1",
     "jest-fetch-mock": "3.0.3",
