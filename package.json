@@ -54,7 +54,7 @@
     "ora": "5.4.1",
     "path-exists": "4.0.0",
     "proxy-agent": "5.0.0",
-    "update-notifier": "5.1.0"
+    "update-notifier": "6.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.17.10",
