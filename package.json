@@ -51,7 +51,7 @@
     "inquirer-autocomplete-prompt": "2.0.0",
     "meow": "9.0.0",
     "node-fetch": "2.6.7",
-    "ora": "5.4.1",
+    "ora": "6.1.2",
     "path-exists": "4.0.0",
     "proxy-agent": "5.0.0",
     "update-notifier": "5.1.0"
