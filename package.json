@@ -1,6 +1,7 @@
 {
   "name": "gitmoji-cli",
   "version": "6.2.0",
+  "type": "module",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
     "node": ">=14.16"
