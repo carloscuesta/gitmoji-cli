@@ -130,7 +130,7 @@ Run `gitmoji -g` to setup some gitmoji-cli preferences.
 
 #### Options
 
-- **Automatic git add**: Enable or disable the automatic `git add .` everytime you use the commit command.
+- **Automatic git add**: Enable or disable the automatic `git add .` every time you use the commit command.
 - **Emoji format**: Switch between the emoji format.
 - **Scope prompt**: Enable or disable [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 - **Signed commits**: Enable or disable [signed commits with GPG](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/signing-commits).

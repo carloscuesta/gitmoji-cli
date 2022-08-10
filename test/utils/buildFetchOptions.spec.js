@@ -87,7 +87,7 @@ describe('buildFetchOptions', () => {
     })
   })
 
-  describe('when proxy is detected from the enviroment', () => {
+  describe('when proxy is detected from the environment', () => {
     const OLD_ENV = process.env
 
     beforeEach(() => {
