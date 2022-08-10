@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`emojisCache should match CACHE_PATH 1`] = `"/Users/Test/.gitmoji/gitmojis.json"`;
+exports[`emojisCache should match CACHE_PATH 1`] = `"/Users/Test/.cache/gitmoji/gitmojis.json"`;
 
 exports[`emojisCache should match GITMOJI_CACHE 1`] = `
 Object {
   "FILE": "gitmojis.json",
-  "FOLDER": ".gitmoji",
+  "FOLDER": ".cache/gitmoji",
 }
 `;

@@ -5,7 +5,7 @@ import path from 'path'
 import pathExists from 'path-exists'
 
 export const GITMOJI_CACHE: Object = {
-  FOLDER: '.gitmoji',
+  FOLDER: '.cache/gitmoji',
   FILE: 'gitmojis.json'
 }
 
