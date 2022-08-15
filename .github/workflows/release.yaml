@@ -25,45 +25,14 @@ jobs:
         run: |
          npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
          npm publish
-      - name: Package
+      - name: Package 📦
         run: yarn package
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Release ✨
+        uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: gitmoji-cli ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload Linux Release Asset
-        id: upload-linux-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/gitmoji-linux
-          asset_name: gitmoji-linux
-          asset_content_type: application/x-executable
-      - name: Upload macOS Release Asset
-        id: upload-macos-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/gitmoji-macos
-          asset_name: gitmoji-macos
-          asset_content_type: application/x-mach-binary
-      - name: Upload Windows Release Asset
-        id: upload-windows-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./bin/gitmoji-win.exe
-          asset_name: gitmoji-win.exe
-          asset_content_type: application/x-dosexec
+          name: gitmoji-cli ${{github.ref_name}}
+          generate_release_notes: true
+          files: |
+            ./bin/gitmoji-linux
+            ./bin/gitmoji-macos
+            ./bin/gitmoji-win.exe
