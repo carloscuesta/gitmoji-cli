@@ -108,7 +108,12 @@
     ],
     "setupFiles": [
       "./test/setupTests.js"
-    ]
+    ],
+    "moduleNameMapper": {
+      "@utils/(.*)$": "<rootDir>/src/utils/$1",
+      "@commands/(.*)$": "<rootDir>/src/commands/$1",
+      "@constants/(.*)$": "<rootDir>/src/constants/$1"
+    }
   },
   "prettier": {
     "arrowParens": "always",
