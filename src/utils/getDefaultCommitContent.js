@@ -1,8 +1,8 @@
 // @flow
 import fs from 'fs'
 
-import { type CommitOptions } from '../commands/commit/index'
-import COMMIT_MODES from '../constants/commit'
+import { type CommitOptions } from '@commands/commit/index'
+import COMMIT_MODES from '@constants/commit'
 
 const COMMIT_FILE_PATH_INDEX = 3
 const COMMIT_TITLE_LINE_INDEX = 0

@@ -1,11 +1,11 @@
 import fs from 'fs'
 
-import hook from '../../src/commands/hook'
-import hookConfig from '../../src/commands/hook/hook'
-import getAbsoluteHooksPath from '../../src/utils/getAbsoluteHooksPath'
+import hook from '@commands/hook'
+import hookConfig from '@commands/hook/hook'
+import getAbsoluteHooksPath from '@utils/getAbsoluteHooksPath'
 import * as stubs from './stubs'
 
-jest.mock('../../src/utils/getAbsoluteHooksPath')
+jest.mock('@utils/getAbsoluteHooksPath')
 
 describe('hook command', () => {
   beforeAll(() => {

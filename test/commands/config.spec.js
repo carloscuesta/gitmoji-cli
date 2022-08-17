@@ -1,11 +1,11 @@
 import inquirer from 'inquirer'
 
-import config from '../../src/commands/config'
-import configurationPrompts from '../../src/commands/config/prompts'
-import configurationVault from '../../src/utils/configurationVault'
+import config from '@commands/config'
+import configurationPrompts from '@commands/config/prompts'
+import configurationVault from '@utils/configurationVault'
 import * as stubs from './stubs'
 
-jest.mock('../../src/utils/configurationVault')
+jest.mock('@utils/configurationVault')
 
 describe('config command', () => {
   beforeAll(() => {

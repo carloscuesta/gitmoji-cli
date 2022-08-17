@@ -1,11 +1,11 @@
-import getEmojis from '../../src/utils/getEmojis'
-import printEmojis from '../../src/utils/printEmojis'
-import search from '../../src/commands/search'
+import getEmojis from '@utils/getEmojis'
+import printEmojis from '@utils/printEmojis'
+import search from '@commands/search'
 
 import * as stubs from './stubs'
 
-jest.mock('../../src/utils/getEmojis')
-jest.mock('../../src/utils/printEmojis')
+jest.mock('@utils/getEmojis')
+jest.mock('@utils/printEmojis')
 
 describe('search command', () => {
   beforeAll(() => {

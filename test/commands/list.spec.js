@@ -1,11 +1,11 @@
-import getEmojis from '../../src/utils/getEmojis'
-import printEmojis from '../../src/utils/printEmojis'
-import list from '../../src/commands/list'
+import getEmojis from '@utils/getEmojis'
+import printEmojis from '@utils/printEmojis'
+import list from '@commands/list'
 
 import * as stubs from './stubs'
 
-jest.mock('../../src/utils/getEmojis')
-jest.mock('../../src/utils/printEmojis')
+jest.mock('@utils/getEmojis')
+jest.mock('@utils/printEmojis')
 
 describe('list command', () => {
   beforeAll(() => {

@@ -3,8 +3,8 @@ import execa from 'execa'
 import fs from 'fs'
 import chalk from 'chalk'
 
-import isHookCreated from '../../../utils/isHookCreated'
-import configurationVault from '../../../utils/configurationVault'
+import isHookCreated from '@utils/isHookCreated'
+import configurationVault from '@utils/configurationVault'
 import { type Answers } from '../prompts'
 
 const withClient = async (answers: Answers): Promise<void> => {

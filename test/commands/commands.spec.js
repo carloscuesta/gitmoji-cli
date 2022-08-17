@@ -1,4 +1,4 @@
-import commands from '../../src/commands'
+import commands from '@commands'
 
 describe('commands', () => {
   it('should match commands', () => {
