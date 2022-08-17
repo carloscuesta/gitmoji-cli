@@ -1,11 +1,11 @@
-import getEmojis from '../../src/utils/getEmojis'
-import printEmojis from '../../src/utils/printEmojis'
-import update from '../../src/commands/update'
+import getEmojis from '@utils/getEmojis'
+import printEmojis from '@utils/printEmojis'
+import update from '@commands/update'
 
 import * as stubs from './stubs'
 
-jest.mock('../../src/utils/getEmojis')
-jest.mock('../../src/utils/printEmojis')
+jest.mock('@utils/getEmojis')
+jest.mock('@utils/printEmojis')
 
 describe('update command', () => {
   beforeAll(() => {

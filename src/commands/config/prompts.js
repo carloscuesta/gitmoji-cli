@@ -1,5 +1,5 @@
 // @flow
-import configurationVault from '../../utils/configurationVault'
+import configurationVault from '@utils/configurationVault'
 
 export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',

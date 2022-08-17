@@ -5,8 +5,8 @@ import updateNotifier from 'update-notifier'
 
 import pkg from '../package.json'
 import commands from './commands'
-import FLAGS from './constants/flags'
-import findGitmojiCommand from './utils/findGitmojiCommand'
+import FLAGS from '@constants/flags'
+import findGitmojiCommand from '@utils/findGitmojiCommand'
 
 updateNotifier({ pkg }).notify({ isGlobal: true })
 

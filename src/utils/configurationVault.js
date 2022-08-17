@@ -4,7 +4,7 @@ import Conf from 'conf'
 import {
   CONFIGURATION_PROMPT_NAMES,
   EMOJI_COMMIT_FORMATS
-} from '../commands/config/prompts'
+} from '@commands/config/prompts'
 
 export const config: typeof Conf = new Conf({ projectName: 'gitmoji' })
 

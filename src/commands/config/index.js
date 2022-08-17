@@ -2,7 +2,7 @@
 import inquirer from 'inquirer'
 
 import configurationPrompts, { CONFIGURATION_PROMPT_NAMES } from './prompts'
-import configurationVault from '../../utils/configurationVault'
+import configurationVault from '@utils/configurationVault'
 
 const config = () => {
   inquirer.prompt(configurationPrompts()).then((answers) => {

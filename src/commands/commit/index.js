@@ -1,14 +1,14 @@
 // @flow
 import inquirer from 'inquirer'
 
-import getEmojis from '../../utils/getEmojis'
-import prompts from './prompts'
-import COMMIT_MODES from '../../constants/commit'
+import getEmojis from '@utils/getEmojis'
+import COMMIT_MODES from '@constants/commit'
 import withHook, {
   registerHookInterruptionHandler,
   cancelIfNeeded
 } from './withHook'
 import withClient from './withClient'
+import prompts from './prompts'
 
 export type CommitOptions = {
   message?: string,

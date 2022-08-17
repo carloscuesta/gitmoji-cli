@@ -1,7 +1,7 @@
 // @flow
 import Fuse from 'fuse.js'
 
-import { type Gitmoji } from '../commands/commit/prompts'
+import { type Gitmoji } from '@commands/commit/prompts'
 
 export const options = {
   threshold: 0.5,

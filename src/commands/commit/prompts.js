@@ -1,9 +1,9 @@
 // @flow
 import inquirer from 'inquirer'
 
-import configurationVault from '../../utils/configurationVault'
-import filterGitmojis from '../../utils/filterGitmojis'
-import getDefaultCommitContent from '../../utils/getDefaultCommitContent'
+import configurationVault from '@utils/configurationVault'
+import filterGitmojis from '@utils/filterGitmojis'
+import getDefaultCommitContent from '@utils/getDefaultCommitContent'
 import { type CommitOptions } from './index'
 import guard from './guard'
 
@@ -25,7 +25,10 @@ export type Answers = {
   message: string
 }
 
-export default (gitmojis: Array<Gitmoji>, options: CommitOptions): Array<Object> => {
+export default (
+  gitmojis: Array<Gitmoji>,
+  options: CommitOptions
+): Array<Object> => {
   const { title, message, scope } = getDefaultCommitContent(options)
 
   return [

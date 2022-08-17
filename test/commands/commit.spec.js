@@ -4,20 +4,20 @@ import fs from 'fs'
 import chalk from 'chalk'
 const mockProcess = require('jest-mock-process')
 
-import configurationVault from '../../src/utils/configurationVault'
-import getDefaultCommitContent from '../../src/utils/getDefaultCommitContent'
-import getEmojis from '../../src/utils/getEmojis'
-import isHookCreated from '../../src/utils/isHookCreated'
-import commit from '../../src/commands/commit'
-import guard from '../../src/commands/commit/guard'
-import prompts from '../../src/commands/commit/prompts'
+import configurationVault from '@utils/configurationVault'
+import getDefaultCommitContent from '@utils/getDefaultCommitContent'
+import getEmojis from '@utils/getEmojis'
+import isHookCreated from '@utils/isHookCreated'
+import commit from '@commands/commit'
+import guard from '@commands/commit/guard'
+import prompts from '@commands/commit/prompts'
 import * as stubs from './stubs'
-import { COMMIT_MESSAGE_SOURCE } from '../../src/commands/commit/withHook/index'
+import { COMMIT_MESSAGE_SOURCE } from '@commands/commit/withHook/index'
 
-jest.mock('../../src/utils/getDefaultCommitContent')
-jest.mock('../../src/utils/getEmojis')
-jest.mock('../../src/utils/isHookCreated')
-jest.mock('../../src/utils/configurationVault')
+jest.mock('@utils/getDefaultCommitContent')
+jest.mock('@utils/getEmojis')
+jest.mock('@utils/isHookCreated')
+jest.mock('@utils/configurationVault')
 
 describe('commit command', () => {
   describe('withClient', () => {
