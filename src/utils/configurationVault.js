@@ -6,7 +6,18 @@ import {
   EMOJI_COMMIT_FORMATS
 } from '@commands/config/prompts'
 
-export const config: typeof Conf = new Conf({ projectName: 'gitmoji' })
+export const config: typeof Conf = new Conf({
+  projectName: 'gitmoji',
+  schema: {
+    [CONFIGURATION_PROMPT_NAMES.AUTO_ADD]: { type: 'boolean' },
+    [CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]: {
+      enum: Object.values(EMOJI_COMMIT_FORMATS)
+    },
+    [CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT]: { type: 'boolean' },
+    [CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]: { type: 'boolean' },
+    [CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]: { type: 'string', format: 'url' }
+  }
+})
 
 const setAutoAdd = (autoAdd: boolean): void => {
   config.set(CONFIGURATION_PROMPT_NAMES.AUTO_ADD, autoAdd)
