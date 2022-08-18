@@ -22,10 +22,6 @@ describe('configurationVault', () => {
       expect(configurationVault.getEmojiFormat()).toEqual('code')
     })
 
-    it('should return the default value for signedCommit', () => {
-      expect(configurationVault.getSignedCommit()).toEqual(false)
-    })
-
     it('should return the default value for scopePrompt', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
     })
@@ -71,20 +67,7 @@ describe('configurationVault', () => {
       )
     })
 
-    it('should set and return value for signedCommit', () => {
-      configurationVault.setSignedCommit(true)
-      configurationVault.getSignedCommit()
-
-      expect(config.set).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT,
-        true
-      )
-      expect(config.get).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT
-      )
-    })
-
-    it('should set and return value for signedCommit', () => {
+    it('should set and return value for scopePrompt', () => {
       configurationVault.setScopePrompt(true)
       configurationVault.getScopePrompt()
 

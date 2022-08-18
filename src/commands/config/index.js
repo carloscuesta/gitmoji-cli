@@ -10,9 +10,6 @@ const config = () => {
     configurationVault.setEmojiFormat(
       answers[CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]
     )
-    configurationVault.setSignedCommit(
-      answers[CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT]
-    )
     configurationVault.setScopePrompt(
       answers[CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]
     )

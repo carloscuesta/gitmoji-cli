@@ -24,9 +24,6 @@ describe('config command', () => {
     expect(configurationVault.setEmojiFormat).toHaveBeenCalledWith(
       stubs.configAnswers.emojiFormat
     )
-    expect(configurationVault.setSignedCommit).toHaveBeenCalledWith(
-      stubs.configAnswers.signedCommit
-    )
     expect(configurationVault.setScopePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.scopePrompt
     )
