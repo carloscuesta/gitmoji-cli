@@ -5,7 +5,6 @@ export const CONFIGURATION_PROMPT_NAMES = {
   AUTO_ADD: 'autoAdd',
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
-  SIGNED_COMMIT: 'signedCommit',
   GITMOJIS_URL: 'gitmojisUrl'
 }
 
@@ -30,12 +29,6 @@ export default (): Array<Object> => [
       { name: '😄', value: EMOJI_COMMIT_FORMATS.EMOJI }
     ],
     default: configurationVault.getEmojiFormat()
-  },
-  {
-    name: CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT,
-    message: 'Enable signed commits',
-    type: 'confirm',
-    default: configurationVault.getSignedCommit()
   },
   {
     name: CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT,

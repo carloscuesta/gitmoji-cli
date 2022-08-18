@@ -66,7 +66,6 @@ describe('commit command', () => {
         getEmojis.mockResolvedValue(stubs.gitmojis)
         isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
-        configurationVault.getSignedCommit.mockReturnValue(true)
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )
@@ -86,7 +85,6 @@ describe('commit command', () => {
           'git',
           [
             'commit',
-            '-S',
             '-m',
             `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
             '-m',
@@ -133,7 +131,6 @@ describe('commit command', () => {
         getEmojis.mockResolvedValue(stubs.gitmojis)
         isHookCreated.mockResolvedValue(false)
         configurationVault.getAutoAdd.mockReturnValue(true)
-        configurationVault.getSignedCommit.mockReturnValue(true)
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent
         )

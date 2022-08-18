@@ -6,11 +6,9 @@ Object {
   "getEmojiFormat": [Function],
   "getGitmojisUrl": [Function],
   "getScopePrompt": [Function],
-  "getSignedCommit": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setGitmojisUrl": [Function],
   "setScopePrompt": [Function],
-  "setSignedCommit": [Function],
 }
 `;

@@ -1,12 +1,32 @@
+import Conf from 'conf'
 import configurationVault, { config, GITMOJIS_URL } from '../../src/utils/configurationVault'
 import {
   CONFIGURATION_PROMPT_NAMES,
   EMOJI_COMMIT_FORMATS
 } from '../../src/commands/config/prompts'
 
+
+jest.createMockFromModule('conf')
+
 describe('configurationVault', () => {
   it('should match the module', () => {
     expect(configurationVault).toMatchSnapshot()
+  })
+
+  describe('setup', () => {
+    it('should create the `config` object', () => {
+      expect(Conf).toHaveBeenCalledWith({
+        projectName: 'gitmoji',
+        schema: {
+          [CONFIGURATION_PROMPT_NAMES.AUTO_ADD]: { type: 'boolean' },
+          [CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]: {
+            enum: Object.values(EMOJI_COMMIT_FORMATS)
+          },
+          [CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]: { type: 'boolean' },
+          [CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]: { type: 'string', format: 'url' }
+        }
+      })
+    })
   })
 
   describe('defaults', () => {
@@ -20,10 +40,6 @@ describe('configurationVault', () => {
 
     it('should return the default value for emojiFormat', () => {
       expect(configurationVault.getEmojiFormat()).toEqual('code')
-    })
-
-    it('should return the default value for signedCommit', () => {
-      expect(configurationVault.getSignedCommit()).toEqual(false)
     })
 
     it('should return the default value for scopePrompt', () => {
@@ -71,20 +87,7 @@ describe('configurationVault', () => {
       )
     })
 
-    it('should set and return value for signedCommit', () => {
-      configurationVault.setSignedCommit(true)
-      configurationVault.getSignedCommit()
-
-      expect(config.set).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT,
-        true
-      )
-      expect(config.get).toHaveBeenCalledWith(
-        CONFIGURATION_PROMPT_NAMES.SIGNED_COMMIT
-      )
-    })
-
-    it('should set and return value for signedCommit', () => {
+    it('should set and return value for scopePrompt', () => {
       configurationVault.setScopePrompt(true)
       configurationVault.getScopePrompt()
 
