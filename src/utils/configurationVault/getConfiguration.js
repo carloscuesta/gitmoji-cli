@@ -2,33 +2,30 @@ import Conf from 'conf'
 import { cwd } from 'process'
 import pathExists from 'path-exists'
 
-import {
-  CONFIGURATION_PROMPT_NAMES,
-  EMOJI_COMMIT_FORMATS
-} from '@commands/config/prompts'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 
 const DEFAULT_CONFIGURATION = {
-  [CONFIGURATION_PROMPT_NAMES.AUTO_ADD]: false,
-  [CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]: EMOJI_COMMIT_FORMATS.CODE,
-  [CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]: false,
-  [CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]: 'https://gitmoji.dev/api/gitmojis'
+  [CONFIG.AUTO_ADD]: false,
+  [CONFIG.EMOJI_FORMAT]: EMOJI_COMMIT_FORMATS.CODE,
+  [CONFIG.SCOPE_PROMPT]: false,
+  [CONFIG.GITMOJIS_URL]: 'https://gitmoji.dev/api/gitmojis'
 }
 
 const LOCAL_CONFIGURATION: typeof Conf = new Conf({
   projectName: 'gitmoji',
   schema: {
-    [CONFIGURATION_PROMPT_NAMES.AUTO_ADD]: { type: 'boolean' },
-    [CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT]: {
+    [CONFIG.AUTO_ADD]: { type: 'boolean' },
+    [CONFIG.EMOJI_FORMAT]: {
       enum: Object.values(EMOJI_COMMIT_FORMATS)
     },
-    [CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT]: { type: 'boolean' },
-    [CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL]: { type: 'string', format: 'url' }
+    [CONFIG.SCOPE_PROMPT]: { type: 'boolean' },
+    [CONFIG.GITMOJIS_URL]: { type: 'string', format: 'url' }
   }
 })
 
 const getConfiguration = (): { get: Function, set: Function } => {
   const loadConfig = (): {
-    [$Values<typeof CONFIGURATION_PROMPT_NAMES>]: string | boolean
+    [$Values<typeof CONFIG>]: string | boolean
   } => {
     const packageJson = `${cwd()}/package.json`
     const configurationFile = `${cwd()}/.gitmojirc.json`

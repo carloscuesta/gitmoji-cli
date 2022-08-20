@@ -1,27 +1,16 @@
 // @flow
 import configurationVault from '@utils/configurationVault'
-
-export const CONFIGURATION_PROMPT_NAMES = {
-  AUTO_ADD: 'autoAdd',
-  EMOJI_FORMAT: 'emojiFormat',
-  SCOPE_PROMPT: 'scopePrompt',
-  GITMOJIS_URL: 'gitmojisUrl'
-}
-
-export const EMOJI_COMMIT_FORMATS = {
-  CODE: 'code',
-  EMOJI: 'emoji'
-}
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 
 export default (): Array<Object> => [
   {
-    name: CONFIGURATION_PROMPT_NAMES.AUTO_ADD,
+    name: CONFIG.AUTO_ADD,
     message: 'Enable automatic "git add ."',
     type: 'confirm',
     default: configurationVault.getAutoAdd()
   },
   {
-    name: CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT,
+    name: CONFIG.EMOJI_FORMAT,
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
@@ -31,13 +20,13 @@ export default (): Array<Object> => [
     default: configurationVault.getEmojiFormat()
   },
   {
-    name: CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT,
+    name: CONFIG.SCOPE_PROMPT,
     message: 'Enable scope prompt',
     type: 'confirm',
     default: configurationVault.getScopePrompt()
   },
   {
-    name: CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL,
+    name: CONFIG.GITMOJIS_URL,
     message: 'Set gitmojis api url',
     type: 'input',
     default: configurationVault.getGitmojisUrl()

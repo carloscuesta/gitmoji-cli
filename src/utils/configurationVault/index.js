@@ -1,39 +1,39 @@
 // @flow
-import { CONFIGURATION_PROMPT_NAMES } from '@commands/config/prompts'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 import getConfiguration from './getConfiguration'
 
 const configuration = getConfiguration()
 
 const setAutoAdd = (autoAdd: boolean): void => {
-  configuration.set(CONFIGURATION_PROMPT_NAMES.AUTO_ADD, autoAdd)
+  configuration.set(CONFIG.AUTO_ADD, autoAdd)
 }
 
 const setEmojiFormat = (emojiFormat: string): void => {
-  configuration.set(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT, emojiFormat)
+  configuration.set(CONFIG.EMOJI_FORMAT, emojiFormat)
 }
 
 const setScopePrompt = (scopePrompt: boolean): void => {
-  configuration.set(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT, scopePrompt)
+  configuration.set(CONFIG.SCOPE_PROMPT, scopePrompt)
 }
 
 const setGitmojisUrl = (gitmojisUrl: string): void => {
-  configuration.set(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL, gitmojisUrl)
+  configuration.set(CONFIG.GITMOJIS_URL, gitmojisUrl)
 }
 
 const getAutoAdd = (): boolean => {
-  return configuration.get(CONFIGURATION_PROMPT_NAMES.AUTO_ADD)
+  return configuration.get(CONFIG.AUTO_ADD)
 }
 
 const getEmojiFormat = (): string => {
-  return configuration.get(CONFIGURATION_PROMPT_NAMES.EMOJI_FORMAT)
+  return configuration.get(CONFIG.EMOJI_FORMAT)
 }
 
 const getScopePrompt = (): boolean => {
-  return configuration.get(CONFIGURATION_PROMPT_NAMES.SCOPE_PROMPT)
+  return configuration.get(CONFIG.SCOPE_PROMPT)
 }
 
 const getGitmojisUrl = (): string => {
-  return configuration.get(CONFIGURATION_PROMPT_NAMES.GITMOJIS_URL)
+  return configuration.get(CONFIG.GITMOJIS_URL)
 }
 
 export default {
