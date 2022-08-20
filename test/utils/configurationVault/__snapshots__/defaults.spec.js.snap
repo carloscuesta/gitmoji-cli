@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`configurationVault should match the module 1`] = `
+exports[`index should match the module 1`] = `
 Object {
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
