@@ -116,6 +116,24 @@ describe('getConfiguration', () => {
         expect(configuration.get('from')).toEqual('local-cli')
       })
     })
+
+    describe('when no configuration is available', () => {
+      beforeAll(() => {
+        pathExists.sync.mockReturnValue(false)
+        Conf().store = undefined
+      })
+
+      it('should return the default configuration', () => {
+        const configuration = getConfiguration()
+
+        expect(configuration.get('autoAdd')).toEqual(false)
+        expect(configuration.get('emojiFormat')).toEqual('code')
+        expect(configuration.get('scopePrompt')).toEqual(false)
+        expect(configuration.get('gitmojisUrl')).toEqual(
+          'https://gitmoji.dev/api/gitmojis'
+        )
+      })
+    })
   })
 
   describe('set', () => {
