@@ -43,7 +43,12 @@ const getConfiguration = (): { get: Function, set: Function } => {
 
   return {
     get: (key: string): string | boolean => {
-      const configuration = loadConfig() || DEFAULT_CONFIGURATION
+      const resolvedConfiguration = loadConfig()
+      const configuration =
+        typeof resolvedConfiguration === 'object' &&
+        Object.keys(resolvedConfiguration).length
+          ? resolvedConfiguration
+          : DEFAULT_CONFIGURATION
 
       return configuration[key]
     },
