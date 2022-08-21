@@ -50,7 +50,6 @@ export default (
           {
             name: 'scope',
             message: 'Enter the scope of current changes:',
-            validate: guard.scope,
             ...(scope ? { default: scope } : {})
           }
         ]
@@ -69,7 +68,6 @@ export default (
     {
       name: 'message',
       message: 'Enter the commit message:',
-      validate: guard.message,
       ...(message ? { default: message } : {})
     }
   ]

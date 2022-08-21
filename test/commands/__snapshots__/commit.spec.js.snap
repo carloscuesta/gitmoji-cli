@@ -2,8 +2,6 @@
 
 exports[`commit command guard should match guard 1`] = `
 Object {
-  "message": [Function],
-  "scope": [Function],
   "title": [Function],
 }
 `;
@@ -19,7 +17,6 @@ Array [
   Object {
     "message": "Enter the scope of current changes:",
     "name": "scope",
-    "validate": [Function],
   },
   Object {
     "message": "Enter the commit title",
@@ -30,7 +27,6 @@ Array [
   Object {
     "message": "Enter the commit message:",
     "name": "message",
-    "validate": [Function],
   },
 ]
 `;
@@ -46,7 +42,6 @@ Array [
   Object {
     "message": "Enter the scope of current changes:",
     "name": "scope",
-    "validate": [Function],
   },
   Object {
     "default": "commit title",
@@ -59,7 +54,6 @@ Array [
     "default": "commit message",
     "message": "Enter the commit message:",
     "name": "message",
-    "validate": [Function],
   },
 ]
 `;
@@ -75,7 +69,6 @@ Array [
   Object {
     "message": "Enter the scope of current changes:",
     "name": "scope",
-    "validate": [Function],
   },
   Object {
     "message": "Enter the commit title",
@@ -86,7 +79,6 @@ Array [
   Object {
     "message": "Enter the commit message:",
     "name": "message",
-    "validate": [Function],
   },
 ]
 `;
@@ -108,7 +100,6 @@ Array [
   Object {
     "message": "Enter the commit message:",
     "name": "message",
-    "validate": [Function],
   },
 ]
 `;
@@ -132,7 +123,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
@@ -153,7 +143,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
@@ -179,7 +168,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
@@ -205,7 +193,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
@@ -226,7 +213,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
@@ -247,7 +233,6 @@ Array [
       Object {
         "message": "Enter the commit message:",
         "name": "message",
-        "validate": [Function],
       },
     ],
   ],
