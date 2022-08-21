@@ -334,44 +334,6 @@ describe('commit command', () => {
       it('should return error message when empty', () => {
         expect(guard.title('')).toEqual(expect.any(String))
       })
-
-      it('should return error message with invalid characters', () => {
-        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
-          expect.any(String)
-        )
-      })
-    })
-
-    describe('message', () => {
-      it('should return true when valid', () => {
-        expect(guard.title(stubs.commitTitle)).toBe(true)
-      })
-
-      it('should return error message when empty', () => {
-        expect(guard.title('')).toEqual(expect.any(String))
-      })
-
-      it('should return error message with invalid characters', () => {
-        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
-          expect.any(String)
-        )
-      })
-    })
-
-    describe('scope', () => {
-      it('should return true when valid', () => {
-        expect(guard.title(stubs.commitTitle)).toBe(true)
-      })
-
-      it('should return error message when empty', () => {
-        expect(guard.title('')).toEqual(expect.any(String))
-      })
-
-      it('should return error message with invalid characters', () => {
-        expect(guard.title(stubs.commitTitleInvalid)).toEqual(
-          expect.any(String)
-        )
-      })
     })
   })
 
