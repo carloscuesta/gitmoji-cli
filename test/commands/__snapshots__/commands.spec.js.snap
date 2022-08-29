@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`commands should match commands 1`] = `
-Object {
+{
   "commit": [Function],
   "config": [Function],
   "createHook": [Function],

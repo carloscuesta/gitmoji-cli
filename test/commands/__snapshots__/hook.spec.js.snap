@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`hook command should match hook configuration 1`] = `
-Object {
+{
   "CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
@@ -13,7 +13,7 @@ gitmoji --hook $1 $2
 `;
 
 exports[`hook command should match hook module export 1`] = `
-Object {
+{
   "create": [Function],
   "remove": [Function],
 }
