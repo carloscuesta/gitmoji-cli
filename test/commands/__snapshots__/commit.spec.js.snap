@@ -1,30 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`commit command guard should match guard 1`] = `
-Object {
+{
   "title": [Function],
 }
 `;
 
 exports[`commit command prompts with default commit content in commit mode should not fill default title and message 1`] = `
-Array [
-  Object {
+[
+  {
     "message": "Choose a gitmoji:",
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
   },
-  Object {
+  {
     "message": "Enter the scope of current changes:",
     "name": "scope",
   },
-  Object {
+  {
     "message": "Enter the commit title",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
   },
-  Object {
+  {
     "message": "Enter the commit message:",
     "name": "message",
   },
@@ -32,25 +32,25 @@ Array [
 `;
 
 exports[`commit command prompts with default commit content in hook mode should match the default title and message 1`] = `
-Array [
-  Object {
+[
+  {
     "message": "Choose a gitmoji:",
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
   },
-  Object {
+  {
     "message": "Enter the scope of current changes:",
     "name": "scope",
   },
-  Object {
+  {
     "default": "commit title",
     "message": "Enter the commit title",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
   },
-  Object {
+  {
     "default": "commit message",
     "message": "Enter the commit message:",
     "name": "message",
@@ -59,24 +59,24 @@ Array [
 `;
 
 exports[`commit command prompts with scope prompt should match the array of questions 1`] = `
-Array [
-  Object {
+[
+  {
     "message": "Choose a gitmoji:",
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
   },
-  Object {
+  {
     "message": "Enter the scope of current changes:",
     "name": "scope",
   },
-  Object {
+  {
     "message": "Enter the commit title",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
   },
-  Object {
+  {
     "message": "Enter the commit message:",
     "name": "message",
   },
@@ -84,20 +84,20 @@ Array [
 `;
 
 exports[`commit command prompts without scope prompt should match the array of questions 1`] = `
-Array [
-  Object {
+[
+  {
     "message": "Choose a gitmoji:",
     "name": "gitmoji",
     "source": [Function],
     "type": "autocomplete",
   },
-  Object {
+  {
     "message": "Enter the commit title",
     "name": "title",
     "transformer": [Function],
     "validate": [Function],
   },
-  Object {
+  {
     "message": "Enter the commit message:",
     "name": "message",
   },
@@ -105,42 +105,42 @@ Array [
 `;
 
 exports[`commit command withClient with autoAdd, signed commits and scope should call inquirer with prompts 1`] = `
-Array [
-  Array [
-    Array [
-      Object {
+[
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },
     ],
   ],
-  Array [
-    Array [
-      Object {
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },
@@ -150,22 +150,22 @@ Array [
 `;
 
 exports[`commit command withClient with no autoAdd and no signed commits and no scope should call inquirer with prompts 1`] = `
-Array [
-  Array [
-    Array [
-      Object {
+[
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },
@@ -175,62 +175,62 @@ Array [
 `;
 
 exports[`commit command withClient with the commit hook created should call inquirer with prompts 1`] = `
-Array [
-  Array [
-    Array [
-      Object {
+[
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },
     ],
   ],
-  Array [
-    Array [
-      Object {
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },
     ],
   ],
-  Array [
-    Array [
-      Object {
+  [
+    [
+      {
         "message": "Choose a gitmoji:",
         "name": "gitmoji",
         "source": [Function],
         "type": "autocomplete",
       },
-      Object {
+      {
         "message": "Enter the commit title",
         "name": "title",
         "transformer": [Function],
         "validate": [Function],
       },
-      Object {
+      {
         "message": "Enter the commit message:",
         "name": "message",
       },

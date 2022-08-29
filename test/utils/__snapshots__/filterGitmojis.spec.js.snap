@@ -1,44 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`filterGitmojis should match a list of filteredGitmojis 1`] = `
-Array [
-  Object {
+[
+  {
     "code": ":bug:",
     "description": "Fixing a bug.",
     "emoji": "🐛",
     "name": "bug",
   },
-  Object {
+  {
     "code": ":busts_in_silhouette:",
     "description": "Adding contributor(s).",
     "emoji": "👥",
     "name": "busts-in-silhouette",
   },
-  Object {
+  {
     "code": ":bulb:",
     "description": "Documenting source code.",
     "emoji": "💡",
     "name": "bulb",
   },
-  Object {
+  {
     "code": ":building_construction:",
     "description": "Making architectural changes.",
     "emoji": "🏗",
     "name": "building-construction",
   },
-  Object {
+  {
     "code": ":ambulance:",
     "description": "Critical hotfix.",
     "emoji": "🚑",
     "name": "ambulance",
   },
-  Object {
+  {
     "code": ":green_heart:",
     "description": "Fixing CI Build.",
     "emoji": "💚",
     "name": "green-heart",
   },
-  Object {
+  {
     "code": ":construction_worker:",
     "description": "Adding CI build system.",
     "emoji": "👷",
