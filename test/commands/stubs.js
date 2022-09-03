@@ -60,3 +60,5 @@ export const defaultCommitContent = {
   title: 'commit title',
   message: 'commit message'
 }
+
+export const url = 'https://carloscuesta.me'

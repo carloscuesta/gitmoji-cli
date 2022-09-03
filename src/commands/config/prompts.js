@@ -1,6 +1,7 @@
 // @flow
 import configurationVault from '@utils/configurationVault'
 import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+import guard from './guard'
 
 export default (): Array<Object> => [
   {
@@ -29,6 +30,7 @@ export default (): Array<Object> => [
     name: CONFIG.GITMOJIS_URL,
     message: 'Set gitmojis api url',
     type: 'input',
-    default: configurationVault.getGitmojisUrl()
+    default: configurationVault.getGitmojisUrl(),
+    validate: guard.url
   }
 ]

@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 
 import config from '@commands/config'
 import configurationPrompts from '@commands/config/prompts'
+import guard from '@commands/config/guard'
 import configurationVault from '@utils/configurationVault'
 import * as stubs from './stubs'
 
@@ -30,5 +31,21 @@ describe('config command', () => {
     expect(configurationVault.setGitmojisUrl).toHaveBeenCalledWith(
       stubs.configAnswers.gitmojisUrl
     )
+  })
+
+  describe('guard', () => {
+    it('should match guard', () => {
+      expect(guard).toMatchSnapshot()
+    })
+
+    describe('title', () => {
+      it('should return true when valid', () => {
+        expect(guard.url(stubs.url)).toBe(true)
+      })
+
+      it('should return error message when empty', () => {
+        expect(guard.url('')).toEqual(expect.any(String))
+      })
+    })
   })
 })
