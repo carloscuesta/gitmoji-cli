@@ -78,6 +78,9 @@
       [
         "@babel/preset-env",
         {
+          "exclude": [
+            "proposal-dynamic-import"
+          ],
           "targets": {
             "node": "12"
           }
@@ -85,6 +88,21 @@
       ],
       "@babel/preset-flow"
     ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "12"
+              }
+            }
+          ],
+          "@babel/preset-flow"
+        ]
+      }
+    },
     "plugins": [
       [
         "module-resolver",
