@@ -146,8 +146,8 @@ If no user configuration is found, a set of default values will be used.
   "gitmoji": {
     "autoAdd": false,
     "emojiFormat": "code | emoji",
-    "scopePrompt": false
-    "gitmojisUrl": "https://gitmoji.dev/api/gitmojis",
+    "scopePrompt": false,
+    "gitmojisUrl": "https://gitmoji.dev/api/gitmojis"
   }
 }
 ```
