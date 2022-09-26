@@ -30,12 +30,12 @@ const getConfiguration = (): { get: Function, set: Function } => {
     const packageJson = `${cwd()}/package.json`
     const configurationFile = `${cwd()}/.gitmojirc.json`
 
-    if (pathExists.sync(packageJson)) {
-      return require(packageJson).gitmoji || LOCAL_CONFIGURATION.store
+    if (pathExists.sync(packageJson) && require(packageJson)?.gitmoji) {
+      return require(packageJson).gitmoji
     }
 
-    if (pathExists.sync(configurationFile)) {
-      return require(configurationFile) || LOCAL_CONFIGURATION.store
+    if (pathExists.sync(configurationFile) && require(configurationFile)) {
+      return require(configurationFile)
     }
 
     return LOCAL_CONFIGURATION.store
