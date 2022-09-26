@@ -1,5 +1,5 @@
-import getEmojis from '@utils/getEmojis'
-import printEmojis from '@utils/printEmojis'
+import getEmojis from '@utils/getEmojis.js'
+import printEmojis from '@utils/printEmojis.js'
 import update from '@commands/update'
 
 import * as stubs from './stubs'

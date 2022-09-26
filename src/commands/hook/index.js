@@ -1,5 +1,5 @@
-import create from './create'
-import remove from './remove'
+import create from './create/index.js'
+import remove from './remove/index.js'
 
 export default {
   create,

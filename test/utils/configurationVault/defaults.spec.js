@@ -1,4 +1,4 @@
-import configurationVault from '@utils/configurationVault'
+import configurationVault from '@utils/configurationVault/index.js'
 
 describe('index', () => {
   it('should match the module', () => {

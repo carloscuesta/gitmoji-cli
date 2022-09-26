@@ -1,9 +1,9 @@
 // @flow
 import inquirer from 'inquirer'
 
-import configurationPrompts from './prompts'
-import { CONFIG } from '@constants/configuration'
-import configurationVault from '@utils/configurationVault'
+import configurationPrompts from './prompts.js'
+import { CONFIG } from '@constants/configuration.js'
+import configurationVault from '@utils/configurationVault/index.js'
 
 const config = () => {
   inquirer.prompt(configurationPrompts()).then((answers) => {

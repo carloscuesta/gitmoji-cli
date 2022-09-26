@@ -1,11 +1,11 @@
 // @flow
-import execa from 'execa'
+import { execa } from 'execa'
 import fs from 'fs'
 import chalk from 'chalk'
 
-import isHookCreated from '@utils/isHookCreated'
-import configurationVault from '@utils/configurationVault'
-import { type Answers } from '../prompts'
+import isHookCreated from '@utils/isHookCreated.js'
+import configurationVault from '@utils/configurationVault/index.js'
+import { type Answers } from '../prompts.js'
 
 const withClient = async (answers: Answers): Promise<void> => {
   try {

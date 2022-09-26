@@ -1,12 +1,12 @@
 import inquirer from 'inquirer'
-import execa from 'execa'
+import { execa } from 'execa'
 import fs from 'fs'
 import chalk from 'chalk'
 const mockProcess = require('jest-mock-process')
 
-import configurationVault from '@utils/configurationVault'
-import getDefaultCommitContent from '@utils/getDefaultCommitContent'
-import getEmojis from '@utils/getEmojis'
+import configurationVault from '@utils/configurationVault/index.js'
+import getDefaultCommitContent from '@utils/getDefaultCommitContent.js'
+import getEmojis from '@utils/getEmojis.js'
 import isHookCreated from '@utils/isHookCreated'
 import commit from '@commands/commit'
 import guard from '@commands/commit/guard'

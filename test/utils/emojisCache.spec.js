@@ -1,4 +1,4 @@
-import pathExists from 'path-exists'
+import { pathExistsSync } from 'path-exists'
 import fs from 'fs'
 import path from 'path'
 
@@ -25,14 +25,14 @@ describe('emojisCache', () => {
     emojisCache.isAvailable()
 
     it('should check that cache path exists', () => {
-      expect(pathExists.sync).toHaveBeenCalledWith(CACHE_PATH)
+      expect(pathExistsSync).toHaveBeenCalledWith(CACHE_PATH)
     })
   })
 
   describe('createEmojis', () => {
     describe('when cache directory does not exists', () => {
       beforeAll(() => {
-        pathExists.sync.mockReturnValue(false)
+        pathExistsSync.mockReturnValue(false)
         emojisCache.createEmojis(stubs.gitmojis)
       })
 
@@ -50,7 +50,7 @@ describe('emojisCache', () => {
 
     describe('when cache directory exists', () => {
       beforeAll(() => {
-        pathExists.sync.mockReturnValue(true)
+        pathExistsSync.mockReturnValue(true)
         fs.mkdirSync.mockClear()
         fs.writeFileSync.mockClear()
         emojisCache.createEmojis(stubs.gitmojis)

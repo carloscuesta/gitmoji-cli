@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execa } from 'execa'
 
 import getAbsoluteHooksPath from '../../src/utils/getAbsoluteHooksPath'
 import * as stubs from './stubs'

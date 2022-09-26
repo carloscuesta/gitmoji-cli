@@ -1,6 +1,6 @@
 // @flow
-import getEmojis from '@utils/getEmojis'
-import printEmojis from '@utils/printEmojis'
+import getEmojis from '@utils/getEmojis.js'
+import printEmojis from '@utils/printEmojis.js'
 
 const list = (): Promise<void> =>
   getEmojis().then((gitmojis) => printEmojis(gitmojis))

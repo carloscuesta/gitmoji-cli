@@ -1,8 +1,8 @@
 // @flow
-import execa from 'execa'
+import { execa } from 'execa'
 import fs from 'fs'
 
-import { type Answers } from '../prompts'
+import { type Answers } from '../prompts.js'
 
 const withHook = (answers: Answers) => {
   try {
