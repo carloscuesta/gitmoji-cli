@@ -79,6 +79,14 @@
     "presets": [
       "@babel/preset-flow"
     ],
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-flow"
+        ]
+      }
+    },
     "plugins": [
       [
         "module-resolver",
