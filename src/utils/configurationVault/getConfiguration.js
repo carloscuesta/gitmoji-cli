@@ -1,8 +1,8 @@
 import Conf from 'conf'
 import { cwd } from 'process'
-import pathExists from 'path-exists'
+import { pathExistsSync } from 'path-exists'
 
-import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration.js'
 
 const DEFAULT_CONFIGURATION = {
   [CONFIG.AUTO_ADD]: false,
@@ -30,11 +30,11 @@ const getConfiguration = (): { get: Function, set: Function } => {
     const packageJson = `${cwd()}/package.json`
     const configurationFile = `${cwd()}/.gitmojirc.json`
 
-    if (pathExists.sync(packageJson) && require(packageJson)?.gitmoji) {
+    if (pathExistsSync(packageJson) && require(packageJson)?.gitmoji) {
       return require(packageJson).gitmoji
     }
 
-    if (pathExists.sync(configurationFile) && require(configurationFile)) {
+    if (pathExistsSync(configurationFile) && require(configurationFile)) {
       return require(configurationFile)
     }
 

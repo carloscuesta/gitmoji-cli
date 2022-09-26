@@ -1,5 +1,5 @@
 import Conf from 'conf'
-import pathExists from 'path-exists'
+import { pathExistsSync } from 'path-exists'
 
 import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 import getConfiguration from '@utils/configurationVault/getConfiguration'
@@ -33,7 +33,7 @@ describe('getConfiguration', () => {
       })
 
       beforeAll(() => {
-        pathExists.sync.mockImplementation((path) => {
+        pathExistsSync.mockImplementation((path) => {
           return path.includes('package.json')
         })
       })
@@ -73,7 +73,7 @@ describe('getConfiguration', () => {
       })
 
       beforeAll(() => {
-        pathExists.sync.mockImplementation((path) => {
+        pathExistsSync.mockImplementation((path) => {
           return path.includes('.gitmojirc.json')
         })
       })
@@ -107,7 +107,7 @@ describe('getConfiguration', () => {
 
     describe('when package.json and .gitmojirc are not available', () => {
       beforeAll(() => {
-        pathExists.sync.mockReturnValue(false)
+        pathExistsSync.mockReturnValue(false)
       })
 
       it('should return local configuration', () => {
@@ -119,7 +119,7 @@ describe('getConfiguration', () => {
 
     describe('when no configuration is available', () => {
       beforeAll(() => {
-        pathExists.sync.mockReturnValue(false)
+        pathExistsSync.mockReturnValue(false)
         Conf().store = undefined
       })
 

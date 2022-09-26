@@ -2,13 +2,17 @@
 // @flow
 import meow from 'meow'
 import updateNotifier from 'update-notifier'
+import { readFileSync } from 'fs'
 
-import pkg from '../package.json'
-import commands from './commands'
-import FLAGS from '@constants/flags'
-import findGitmojiCommand from '@utils/findGitmojiCommand'
+import commands from '@commands/index.js'
+import FLAGS from '@constants/flags.js'
+import findGitmojiCommand from '@utils/findGitmojiCommand.js'
 
-updateNotifier({ pkg }).notify({ isGlobal: true })
+const packageJson: Object = readFileSync(
+  new URL('../package.json', import.meta.url)
+)
+
+updateNotifier({ pkg: JSON.parse(packageJson) }).notify({ isGlobal: true })
 
 const cli = meow(
   `
@@ -28,6 +32,7 @@ const cli = meow(
     $ gitmoji bug linter -s
 `,
   {
+    importMeta: import.meta,
     flags: {
       [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
       [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },

@@ -1,4 +1,4 @@
-import configurationVault from '@utils/configurationVault'
+import configurationVault from '@utils/configurationVault/index.js'
 import getConfiguration from '@utils/configurationVault/getConfiguration'
 import {
   CONFIG,

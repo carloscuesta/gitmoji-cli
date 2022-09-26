@@ -1,5 +1,5 @@
 // @flow
-import execa from 'execa'
+import { execa } from 'execa'
 import path from 'path'
 
 const getAbsoluteHooksPath = async (hookName: string): Promise<string> => {
