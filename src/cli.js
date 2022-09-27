@@ -8,9 +8,11 @@ import commands from '@commands/index.js'
 import FLAGS from '@constants/flags.js'
 import findGitmojiCommand from '@utils/findGitmojiCommand.js'
 
-const meta = { url: import.meta.url }
+const importMeta = { url: import.meta.url }
 
-const packageJson: Object = readFileSync(new URL('../package.json', meta.url))
+const packageJson: Object = readFileSync(
+  new URL('../package.json', importMeta.url)
+)
 
 updateNotifier({ pkg: JSON.parse(packageJson) }).notify({ isGlobal: true })
 
@@ -32,7 +34,7 @@ const cli = meow(
     $ gitmoji bug linter -s
 `,
   {
-    importMeta: meta,
+    importMeta,
     flags: {
       [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
       [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },
