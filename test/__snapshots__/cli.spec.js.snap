@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`cli should match meow with cli information 1`] = `
-[
-  [
-    "
+"
   Usage
     $ gitmoji
   Options
@@ -18,50 +16,51 @@ exports[`cli should match meow with cli information 1`] = `
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
-",
-    {
-      "flags": {
-        "commit": {
-          "alias": "c",
-          "type": "boolean",
-        },
-        "config": {
-          "alias": "g",
-          "type": "boolean",
-        },
-        "help": {
-          "alias": "h",
-          "type": "boolean",
-        },
-        "init": {
-          "alias": "i",
-          "type": "boolean",
-        },
-        "list": {
-          "alias": "l",
-          "type": "boolean",
-        },
-        "remove": {
-          "alias": "r",
-          "type": "boolean",
-        },
-        "search": {
-          "alias": "s",
-          "type": "boolean",
-        },
-        "update": {
-          "alias": "u",
-          "type": "boolean",
-        },
-        "version": {
-          "alias": "v",
-          "type": "boolean",
-        },
-      },
-      "importMeta": {
-        "url": "file:///home/aaditmshah/Repositories/gitmoji-cli/src/cli.js",
-      },
+"
+`;
+
+exports[`cli should match meow with cli information 2`] = `
+{
+  "flags": {
+    "commit": {
+      "alias": "c",
+      "type": "boolean",
     },
-  ],
-]
+    "config": {
+      "alias": "g",
+      "type": "boolean",
+    },
+    "help": {
+      "alias": "h",
+      "type": "boolean",
+    },
+    "init": {
+      "alias": "i",
+      "type": "boolean",
+    },
+    "list": {
+      "alias": "l",
+      "type": "boolean",
+    },
+    "remove": {
+      "alias": "r",
+      "type": "boolean",
+    },
+    "search": {
+      "alias": "s",
+      "type": "boolean",
+    },
+    "update": {
+      "alias": "u",
+      "type": "boolean",
+    },
+    "version": {
+      "alias": "v",
+      "type": "boolean",
+    },
+  },
+  "importMeta": ObjectContaining {
+    "url": Any<String>,
+  },
+}
 `;

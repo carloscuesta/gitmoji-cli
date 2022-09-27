@@ -16,7 +16,16 @@ describe('cli', () => {
   })
 
   it('should match meow with cli information', () => {
-    expect(meow.mock.calls).toMatchSnapshot()
+    expect.assertions(4)
+    const { calls } = meow.mock
+    expect(calls).toHaveLength(1)
+    const [call] = calls
+    expect(call).toHaveLength(2)
+    const [helpMessage, options] = call
+    expect(helpMessage).toMatchSnapshot()
+    expect(options).toMatchSnapshot({
+      importMeta: expect.objectContaining({ url: expect.any(String) })
+    })
   })
 
   it('should call commit command on commit', () => {
