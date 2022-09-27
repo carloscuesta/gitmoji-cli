@@ -3,6 +3,9 @@ import fetchMock from 'jest-fetch-mock'
 jest.setMock('node-fetch', fetchMock)
 jest.mock('path-exists')
 jest.mock('fs')
+jest
+  .requireMock('fs')
+  .readFileSync.mockImplementation(jest.requireActual('fs').readFileSync)
 jest.mock('ora', () =>
   jest.fn().mockReturnValue({
     start: jest.fn(function () {

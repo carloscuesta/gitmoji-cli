@@ -65,6 +65,7 @@
     "@babel/preset-env": "7.19.1",
     "@babel/preset-flow": "7.18.6",
     "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-import-meta": "^2.2.0",
     "codecov": "3.8.3",
     "flow-bin": "^0.187.0",
     "husky": "8.0.1",
@@ -74,32 +75,6 @@
     "lint-staged": "13.0.3",
     "pkg": "5.8.0",
     "prettier": "2.7.1"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-flow"
-    ],
-    "env": {
-      "test": {
-        "presets": [
-          "@babel/preset-env",
-          "@babel/preset-flow"
-        ]
-      }
-    },
-    "plugins": [
-      [
-        "module-resolver",
-        {
-          "alias": {
-            "@utils": "./src/utils",
-            "@commands": "./src/commands",
-            "@constants": "./src/constants"
-          }
-        }
-      ],
-      "@babel/plugin-syntax-import-assertions"
-    ]
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -113,7 +88,10 @@
     "setupFiles": [
       "./test/setupTests.js"
     ],
+    "transformIgnorePatterns": [],
     "moduleNameMapper": {
+      "^#ansi-styles$": "<rootDir>/node_modules/chalk/source/vendor/ansi-styles/index.js",
+      "^#supports-color$": "<rootDir>/node_modules/chalk/source/vendor/supports-color/index.js",
       "@utils/(.*)$": "<rootDir>/src/utils/$1",
       "@commands/(.*)$": "<rootDir>/src/commands/$1",
       "@constants/(.*)$": "<rootDir>/src/constants/$1"

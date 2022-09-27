@@ -58,6 +58,9 @@ exports[`cli should match meow with cli information 1`] = `
           "type": "boolean",
         },
       },
+      "importMeta": {
+        "url": "file:///home/aaditmshah/Repositories/gitmoji-cli/src/cli.js",
+      },
     },
   ],
 ]
