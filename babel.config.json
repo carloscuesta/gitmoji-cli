@@ -13,7 +13,8 @@
         }
       }
     ],
-    "@babel/plugin-syntax-import-assertions"
+    "@babel/plugin-syntax-import-assertions",
+    "module-extension-resolver"
   ],
   "env": {
     "test": {

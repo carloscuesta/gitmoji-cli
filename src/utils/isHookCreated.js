@@ -1,8 +1,8 @@
 // @flow
 import fs from 'fs'
 
-import HOOK from '@commands/hook/hook.js'
-import getAbsoluteHooksPath from './getAbsoluteHooksPath.js'
+import HOOK from '@commands/hook/hook'
+import getAbsoluteHooksPath from './getAbsoluteHooksPath'
 
 const isHookCreated = async (): Promise<?boolean> => {
   try {

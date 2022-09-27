@@ -3,7 +3,7 @@ import inquirer from 'inquirer'
 import config from '@commands/config'
 import configurationPrompts from '@commands/config/prompts'
 import guard from '@commands/config/guard'
-import configurationVault from '@utils/configurationVault/index.js'
+import configurationVault from '@utils/configurationVault'
 import * as stubs from './stubs'
 
 jest.mock('@utils/configurationVault')

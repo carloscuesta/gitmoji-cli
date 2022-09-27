@@ -2,7 +2,7 @@
 import { execa } from 'execa'
 import fs from 'fs'
 
-import { type Answers } from '../prompts.js'
+import { type Answers } from '../prompts'
 
 const withHook = (answers: Answers) => {
   try {

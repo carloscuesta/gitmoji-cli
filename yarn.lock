@@ -1626,6 +1626,11 @@ babel-plugin-jest-hoist@^29.0.2:
     "@types/babel__core" "^7.1.14"
     "@types/babel__traverse" "^7.0.6"
 
+babel-plugin-module-extension-resolver@^1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-module-extension-resolver/-/babel-plugin-module-extension-resolver-1.0.0-rc.2.tgz#c12a5bc29c478cc87cdf9359188bf500db53eae9"
+  integrity sha512-nSvCi7Eq079snAYgWbq+VM8eci7OER9MAhDchuxpdimuyJr06x/Stsmc2b6zP5CDv4XR54Etkpf7jOo5NfzgVg==
+
 babel-plugin-module-resolver@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-module-resolver/-/babel-plugin-module-resolver-4.1.0.tgz#22a4f32f7441727ec1fbf4967b863e1e3e9f33e2"

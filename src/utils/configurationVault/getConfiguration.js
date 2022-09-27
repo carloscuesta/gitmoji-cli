@@ -2,7 +2,7 @@ import Conf from 'conf'
 import { cwd } from 'process'
 import { pathExistsSync } from 'path-exists'
 
-import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration.js'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 
 const DEFAULT_CONFIGURATION = {
   [CONFIG.AUTO_ADD]: false,

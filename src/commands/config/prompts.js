@@ -1,7 +1,7 @@
 // @flow
-import configurationVault from '@utils/configurationVault/index.js'
-import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration.js'
-import guard from './guard.js'
+import configurationVault from '@utils/configurationVault'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+import guard from './guard'
 
 export default (): Array<Object> => [
   {

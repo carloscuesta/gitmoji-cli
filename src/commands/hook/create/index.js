@@ -2,8 +2,8 @@
 import fs from 'fs'
 import ora from 'ora'
 
-import getAbsoluteHooksPath from '@utils/getAbsoluteHooksPath.js'
-import HOOK from '../hook.js'
+import getAbsoluteHooksPath from '@utils/getAbsoluteHooksPath'
+import HOOK from '../hook'
 
 const createHook = async () => {
   const spinner = ora('Creating the gitmoji commit hook').start()

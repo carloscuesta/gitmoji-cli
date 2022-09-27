@@ -2,7 +2,7 @@ import fs from 'fs'
 
 import hook from '@commands/hook'
 import hookConfig from '@commands/hook/hook'
-import getAbsoluteHooksPath from '@utils/getAbsoluteHooksPath.js'
+import getAbsoluteHooksPath from '@utils/getAbsoluteHooksPath'
 import * as stubs from './stubs'
 
 jest.mock('@utils/getAbsoluteHooksPath')

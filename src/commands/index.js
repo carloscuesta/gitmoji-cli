@@ -1,10 +1,10 @@
 // @flow
-import commit from './commit/index.js'
-import config from './config/index.js'
-import hook from './hook/index.js'
-import list from './list/index.js'
-import search from './search/index.js'
-import update from './update/index.js'
+import commit from './commit'
+import config from './config'
+import hook from './hook'
+import list from './list'
+import search from './search'
+import update from './update'
 
 export default {
   commit,

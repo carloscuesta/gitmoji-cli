@@ -1,7 +1,7 @@
 // @flow
-import filterGitmojis from '@utils/filterGitmojis.js'
-import getEmojis from '@utils/getEmojis.js'
-import printEmojis from '@utils/printEmojis.js'
+import filterGitmojis from '@utils/filterGitmojis'
+import getEmojis from '@utils/getEmojis'
+import printEmojis from '@utils/printEmojis'
 
 const search = (query: string): Promise<void> => {
   return getEmojis()

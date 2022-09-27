@@ -4,9 +4,9 @@ import meow from 'meow'
 import updateNotifier from 'update-notifier'
 import { readFileSync } from 'fs'
 
-import commands from '@commands/index.js'
-import FLAGS from '@constants/flags.js'
-import findGitmojiCommand from '@utils/findGitmojiCommand.js'
+import FLAGS from '@constants/flags'
+import findGitmojiCommand from '@utils/findGitmojiCommand'
+import commands from './commands'
 
 const packageJson: Object = readFileSync(
   new URL('../package.json', import.meta.url)

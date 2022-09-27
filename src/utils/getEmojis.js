@@ -3,9 +3,9 @@ import chalk from 'chalk'
 import fetch from 'node-fetch'
 import ora from 'ora'
 
-import cache from './emojisCache.js'
-import buildFetchOptions from './buildFetchOptions.js'
-import configurationVault from './configurationVault/index.js'
+import cache from './emojisCache'
+import buildFetchOptions from './buildFetchOptions'
+import configurationVault from './configurationVault'
 
 const getEmojis = async (
   skipCache: boolean = false

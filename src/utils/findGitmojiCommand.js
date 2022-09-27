@@ -1,6 +1,6 @@
 // @flow
-import COMMIT_MODES from '@constants/commit.js'
-import FLAGS from '@constants/flags.js'
+import COMMIT_MODES from '@constants/commit'
+import FLAGS from '@constants/flags'
 
 const getOptionsForCommand = (command: ?string, flags: Object): ?Object => {
   const commandsWithOptions = [FLAGS.COMMIT, FLAGS.HOOK]
