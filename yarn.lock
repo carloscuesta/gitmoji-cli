@@ -2502,6 +2502,10 @@ flow-bin@^0.187.0:
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.187.1.tgz#0704d8f16bcf58c07decc09daebbf0d3ce845bc8"
   integrity sha512-rG2p8NAJ7By0QTh+RMQRIGfM7nuKKp4XANqYUAoi6tDuEULLjlNxSa1vcwqW+O2EXGeLKYDkz/QVhefH/pBToA==
 
+foreach@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
+
 from2@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/from2/-/from2-2.3.0.tgz#8bfb5502bde4a4d36cfdeea007fcca21d7e382af"
