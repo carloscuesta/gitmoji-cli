@@ -16,9 +16,9 @@ describe('cli', () => {
   })
 
   it('should match meow with cli information', () => {
-    meow.mock.calls[0][1].importMeta.url = 'import.meta'
+    meow.mock.calls[0][1].importMeta = 'import.meta.url'
 
-    expect(meow.mock.calls[0]).toMatchSnapshot()
+    expect(meow.mock.calls).toMatchSnapshot()
   })
 
   it('should call commit command on commit', () => {
