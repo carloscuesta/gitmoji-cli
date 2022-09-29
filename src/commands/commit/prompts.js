@@ -1,15 +1,16 @@
 // @flow
 import inquirer from 'inquirer'
+import inquirerAutocompletePrompt from 'inquirer-autocomplete-prompt'
 
 import configurationVault from '@utils/configurationVault'
 import filterGitmojis from '@utils/filterGitmojis'
 import getDefaultCommitContent from '@utils/getDefaultCommitContent'
-import { type CommitOptions } from './index'
+import { type CommitOptions } from '.'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
 
-inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+inquirer.registerPrompt('autocomplete', inquirerAutocompletePrompt)
 
 export type Gitmoji = {
   code: string,

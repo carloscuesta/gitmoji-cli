@@ -58,6 +58,7 @@ exports[`cli should match meow with cli information 1`] = `
           "type": "boolean",
         },
       },
+      "importMeta": "import.meta.url",
     },
   ],
 ]

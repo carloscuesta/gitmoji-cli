@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import isURL from 'validator/lib/isURL'
+import isURL from 'validator/lib/isURL.js'
 
 const errors = {
   url: chalk.red('Enter a valid API URL')

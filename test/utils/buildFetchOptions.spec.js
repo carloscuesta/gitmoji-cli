@@ -103,11 +103,12 @@ describe('buildFetchOptions', () => {
 
     describe('when using an anonymous proxy', () => {
       describe('when is http proxy', () => {
-        it('should return an object containing a proxy agent', () => {
+        it('should return an object containing a proxy agent', async () => {
           process.env.http_proxy = 'http://localhost-env:8080'
 
-          const buildFetchOptionsFromEnv = require('../../src/utils/buildFetchOptions')
-            .default
+          const { default: buildFetchOptionsFromEnv } = await import(
+            '../../src/utils/buildFetchOptions'
+          )
 
           expect(buildFetchOptionsFromEnv()).toMatchObject({
             agent: {
@@ -126,11 +127,12 @@ describe('buildFetchOptions', () => {
       })
 
       describe('when is https proxy', () => {
-        it('should return an object containing a proxy agent', () => {
+        it('should return an object containing a proxy agent', async () => {
           process.env.https_proxy = 'https://localhost-env:8080'
 
-          const buildFetchOptionsFromEnv = require('../../src/utils/buildFetchOptions')
-            .default
+          const { default: buildFetchOptionsFromEnv } = await import(
+            '../../src/utils/buildFetchOptions'
+          )
 
           expect(buildFetchOptionsFromEnv()).toMatchObject({
             agent: {
@@ -151,11 +153,12 @@ describe('buildFetchOptions', () => {
 
     describe('when using an authenticated proxy', () => {
       describe('when is http proxy', () => {
-        it('should return an object containing a proxy agent', () => {
+        it('should return an object containing a proxy agent', async () => {
           process.env.http_proxy = 'http://user:pass@localhost-env:8080'
 
-          const buildFetchOptionsFromEnv = require('../../src/utils/buildFetchOptions')
-            .default
+          const { default: buildFetchOptionsFromEnv } = await import(
+            '../../src/utils/buildFetchOptions'
+          )
 
           expect(buildFetchOptionsFromEnv()).toMatchObject({
             agent: {
@@ -174,11 +177,12 @@ describe('buildFetchOptions', () => {
       })
 
       describe('when is https proxy', () => {
-        it('should return an object containing a proxy agent', () => {
+        it('should return an object containing a proxy agent', async () => {
           process.env.https_proxy = 'https://user:pass@localhost-env:8080'
 
-          const buildFetchOptionsFromEnv = require('../../src/utils/buildFetchOptions')
-            .default
+          const { default: buildFetchOptionsFromEnv } = await import(
+            '../../src/utils/buildFetchOptions'
+          )
 
           expect(buildFetchOptionsFromEnv()).toMatchObject({
             agent: {

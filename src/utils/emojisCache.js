@@ -2,7 +2,7 @@
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
-import pathExists from 'path-exists'
+import { pathExistsSync } from 'path-exists'
 
 export const GITMOJI_CACHE: Object = {
   FOLDER: '.gitmoji',
@@ -16,7 +16,7 @@ export const CACHE_PATH: string = path.join(
 )
 
 const createEmojis = (emojis: Array<Object>): void => {
-  if (!pathExists.sync(path.dirname(CACHE_PATH))) {
+  if (!pathExistsSync(path.dirname(CACHE_PATH))) {
     fs.mkdirSync(path.dirname(CACHE_PATH))
   }
 
@@ -31,7 +31,7 @@ const getEmojis = (): Array<Object> => {
   }
 }
 
-const isAvailable = (): boolean => pathExists.sync(CACHE_PATH)
+const isAvailable = (): boolean => pathExistsSync(CACHE_PATH)
 
 export default {
   createEmojis,

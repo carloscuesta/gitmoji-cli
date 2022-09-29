@@ -1,0 +1,30 @@
+{
+  "presets": [
+    "@babel/preset-flow"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@utils": "./src/utils",
+          "@commands": "./src/commands",
+          "@constants": "./src/constants"
+        }
+      }
+    ],
+    "@babel/plugin-syntax-import-assertions",
+    "module-extension-resolver"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-flow"
+      ],
+      "plugins": [
+        "babel-plugin-transform-import-meta"
+      ]
+    }
+  }
+}

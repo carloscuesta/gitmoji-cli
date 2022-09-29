@@ -1,8 +1,8 @@
 import inquirer from 'inquirer'
-import execa from 'execa'
+import { execa } from 'execa'
 import fs from 'fs'
 import chalk from 'chalk'
-const mockProcess = require('jest-mock-process')
+import { mockProcessExit } from 'jest-mock-process'
 
 import configurationVault from '@utils/configurationVault'
 import getDefaultCommitContent from '@utils/getDefaultCommitContent'
@@ -162,7 +162,7 @@ describe('commit command', () => {
           Promise.resolve(stubs.clientCommitAnswers)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
-        mockProcess.mockProcessExit()
+        mockProcessExit()
         process.argv[3] = stubs.argv
         process.argv[COMMIT_MESSAGE_SOURCE] = undefined
         getDefaultCommitContent.mockReturnValueOnce(
@@ -192,7 +192,7 @@ describe('commit command', () => {
           Promise.resolve(stubs.clientCommitAnswersWithScope)
         )
         getEmojis.mockResolvedValue(stubs.gitmojis)
-        mockProcess.mockProcessExit()
+        mockProcessExit()
         process.argv[3] = stubs.argv
         process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
         getDefaultCommitContent.mockReturnValueOnce(
@@ -223,7 +223,7 @@ describe('commit command', () => {
         Simulation needed because if we just mock process exit, then the code execution resume in the test.
         */
         process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
-        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        mockProcessExit(new Error('ProcessExit0'))
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         // mock that we found one of the rebase trigger (file existence in .git)
         fs.existsSync.mockReturnValueOnce(true)
@@ -245,7 +245,7 @@ describe('commit command', () => {
         when the hook mode detect that the user is rebasing. (Simulated to not kill the tests)
         Simulation needed because if we just mock process exit, then the code execution resume in the test.
         */
-        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        mockProcessExit(new Error('ProcessExit0'))
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         // mock that we are amending
         process.argv[COMMIT_MESSAGE_SOURCE] = 'commit sha123'
@@ -282,7 +282,7 @@ describe('commit command', () => {
         getEmojis.mockResolvedValue(stubs.gitmojis)
 
         // Use an exception to suspend code execution to simulate process.exit
-        mockProcess.mockProcessExit(new Error('SIGINT'))
+        mockProcessExit(new Error('SIGINT'))
         process.argv[3] = stubs.argv
         process.argv[COMMIT_MESSAGE_SOURCE] = stubs.commitSource
 
@@ -303,7 +303,7 @@ describe('commit command', () => {
 
     describe('with git auto merge trigger by git pull', () => {
       it('should cancel the hook', async () => {
-        mockProcess.mockProcessExit(new Error('ProcessExit0'))
+        mockProcessExit(new Error('ProcessExit0'))
         execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
         // mock that we are merging
         process.argv[3] = '.git/MERGE_MSG'
@@ -318,7 +318,6 @@ describe('commit command', () => {
         expect(process.exit).toHaveBeenCalledWith(0)
       })
     })
-
   })
 
   describe('guard', () => {
