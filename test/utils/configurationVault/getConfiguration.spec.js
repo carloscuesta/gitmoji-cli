@@ -1,13 +1,16 @@
 import Conf from 'conf'
+import { readFileSync } from 'fs'
 import { pathExistsSync } from 'path-exists'
 
 import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 import getConfiguration from '@utils/configurationVault/getConfiguration'
 
-jest.mock('conf', () => jest.fn().mockReturnValue({
-  store: { from: 'local-cli' },
-  set: jest.fn()
-}))
+jest.mock('conf', () =>
+  jest.fn().mockReturnValue({
+    store: { from: 'local-cli' },
+    set: jest.fn()
+  })
+)
 
 describe('getConfiguration', () => {
   describe('setup', () => {
@@ -40,9 +43,9 @@ describe('getConfiguration', () => {
 
       describe('when `gitmoji` key is defined', () => {
         beforeAll(() => {
-          jest.doMock('../../../package.json', () => ({
-            gitmoji: { from: 'package.json' }
-          }))
+          readFileSync.mockImplementation(() =>
+            JSON.stringify({ gitmoji: { from: 'package.json' } })
+          )
         })
 
         it('should return package.json configuration', () => {
@@ -54,9 +57,7 @@ describe('getConfiguration', () => {
 
       describe('when `gitmoji` key is not defined', () => {
         beforeAll(() => {
-          jest.doMock('../../../package.json', () => ({
-            gitmoji: undefined
-          }))
+          readFileSync.mockImplementation(() => JSON.stringify({}))
         })
 
         it('should return local configuration', () => {
@@ -80,9 +81,7 @@ describe('getConfiguration', () => {
 
       describe('when file contains a valid json', () => {
         beforeAll(() => {
-          jest.doMock('../../../.gitmojirc.json', () => ({
-            from: 'rc'
-          }), { virtual: true })
+          readFileSync.mockImplementation(() => JSON.stringify({ from: 'rc' }))
         })
 
         it('should return .gitmojirc.json configuration', () => {
@@ -94,7 +93,7 @@ describe('getConfiguration', () => {
 
       describe('when file is empty', () => {
         beforeAll(() => {
-          jest.doMock('../../../.gitmojirc.json', () => undefined, { virtual: true })
+          readFileSync.mockImplementation(() => JSON.stringify(null))
         })
 
         it('should return .gitmojirc.json configuration', () => {

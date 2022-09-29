@@ -1,5 +1,6 @@
 import Conf from 'conf'
 import { cwd } from 'process'
+import { readFileSync } from 'fs'
 import { pathExistsSync } from 'path-exists'
 
 import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
@@ -30,12 +31,14 @@ const getConfiguration = (): { get: Function, set: Function } => {
     const packageJson = `${cwd()}/package.json`
     const configurationFile = `${cwd()}/.gitmojirc.json`
 
-    if (pathExistsSync(packageJson) && require(packageJson)?.gitmoji) {
-      return require(packageJson).gitmoji
+    if (pathExistsSync(packageJson)) {
+      const config = JSON.parse(readFileSync(packageJson))?.gitmoji
+      if (config) return config
     }
 
-    if (pathExistsSync(configurationFile) && require(configurationFile)) {
-      return require(configurationFile)
+    if (pathExistsSync(configurationFile)) {
+      const config = JSON.parse(readFileSync(configurationFile))
+      if (config) return config
     }
 
     return LOCAL_CONFIGURATION.store
