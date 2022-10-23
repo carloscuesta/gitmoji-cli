@@ -19,10 +19,10 @@ jobs:
     - name: Install dependencies 📦
       run: yarn --frozen-lockfile --ignore-scripts
     - name: Lint 🎨
-      run: yarn run lint
+      run: yarn turbo lint
     - name: Flow types 🏷
-      run: yarn run flow
+      run: yarn turbo flow
     - name: Tests ✅
-      run: yarn run test
+      run: yarn turbo test
     - name: Upload Coverage 📈
-      run: yarn run coverage
+      run: yarn turbo coverage
