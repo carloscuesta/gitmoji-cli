@@ -21,7 +21,7 @@
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "prepare": "husky install",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
-    "test": "jest"
+    "test": "FORCE_COLOR=1 jest"
   },
   "repository": {
     "type": "git",
