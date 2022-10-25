@@ -21,7 +21,7 @@
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "prepare": "husky install",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
-    "test": "jest"
+    "test": "FORCE_COLOR=1 jest"
   },
   "repository": {
     "type": "git",
@@ -75,7 +75,8 @@
     "jest-mock-process": "2.0.0",
     "lint-staged": "13.0.3",
     "pkg": "5.8.0",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "turbo": "^1.6.1"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

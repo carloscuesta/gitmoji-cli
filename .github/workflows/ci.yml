@@ -10,6 +10,9 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
     - uses: actions/checkout@v2
     - name: Install Node.js ${{ matrix.node-version }}
@@ -19,10 +22,10 @@ jobs:
     - name: Install dependencies 📦
       run: yarn --frozen-lockfile --ignore-scripts
     - name: Lint 🎨
-      run: yarn run lint
+      run: yarn turbo lint
     - name: Flow types 🏷
-      run: yarn run flow
+      run: yarn turbo flow
     - name: Tests ✅
-      run: yarn run test
+      run: yarn turbo test
     - name: Upload Coverage 📈
-      run: yarn run coverage
+      run: yarn turbo coverage
