@@ -10,6 +10,9 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     steps:
     - uses: actions/checkout@v2
     - name: Install Node.js ${{ matrix.node-version }}
