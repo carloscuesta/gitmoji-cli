@@ -2564,10 +2564,10 @@ find-up@^6.3.0:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
 
-flow-bin@^0.191.0:
-  version "0.191.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.191.0.tgz#9324c9498584b60575fd8d77a2897ee4f384443b"
-  integrity sha512-IhaDGoOtRDdGUJLjm7KQlHK8BAzOVJmpx+CIR6bCju4pF7zon2v7WNrds5706WZqDE3rD2c8cM4GdhDnIFYXtg==
+flow-bin@^0.192.0:
+  version "0.192.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.192.0.tgz#a1d75fb955b3980b23cff43577044c52f5d95d33"
+  integrity sha512-RlHhXn9m1IRTB5yKhnLGgLWq9z4qJ76slum/DXvmTlrAUPaVcmU/IsTHiY4JpjqK7nFz4oyrnU/YES8xDVBoZg==
 
 form-data-encoder@^2.1.2:
   version "2.1.2"

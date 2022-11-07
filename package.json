@@ -68,7 +68,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
     "codecov": "3.8.3",
-    "flow-bin": "^0.191.0",
+    "flow-bin": "^0.192.0",
     "husky": "8.0.1",
     "jest": "29.2.2",
     "jest-fetch-mock": "3.0.3",
