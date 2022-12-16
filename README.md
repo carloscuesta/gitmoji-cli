@@ -1,6 +1,6 @@
 # gitmoji-cli
 
-[![Build Status](https://img.shields.io/github/workflow/status/carloscuesta/gitmoji-cli/CI?style=flat-square)](https://github.com/carloscuesta/gitmoji-cli/actions?query=workflow%3ACI+branch%3Amaster)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/carloscuesta/gitmoji-cli/ci.yml?branch=master&style=flat-square)](https://github.com/carloscuesta/gitmoji-cli/actions?query=workflow%3ACI+branch%3Amaster)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://codeclimate.com/github/carloscuesta/gitmoji-cli)
 [![Codecov](https://img.shields.io/codecov/c/github/carloscuesta/gitmoji-cli.svg?style=flat-square)](https://github.com/carloscuesta/gitmoji-cli)
 [![npm version](https://img.shields.io/npm/v/gitmoji-cli.svg?style=flat-square)](https://www.npmjs.com/package/gitmoji-cli)
