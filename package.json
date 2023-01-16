@@ -45,7 +45,7 @@
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
     "chalk": "^5.0.1",
-    "conf": "10.2.0",
+    "conf": "11.0.0",
     "execa": "^6.1.0",
     "fuse.js": "6.6.2",
     "inquirer": "^9.1.2",
