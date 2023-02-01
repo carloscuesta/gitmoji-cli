@@ -25,10 +25,20 @@ const withClient = async (answers: Answers): Promise<void> => {
 
     if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
 
-    await execa('git', ['commit', '-m', title, '-m', answers.message], {
-      buffer: false,
-      stdio: 'inherit'
-    })
+    await execa(
+      'git',
+      [
+        'commit',
+        configurationVault.getAutoAdd() ? '-am' : '-m',
+        title,
+        '-m',
+        answers.message
+      ],
+      {
+        buffer: false,
+        stdio: 'inherit'
+      }
+    )
   } catch (error) {
     console.error(
       chalk.red(
