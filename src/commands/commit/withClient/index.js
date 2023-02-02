@@ -22,18 +22,13 @@ const withClient = async (answers: Answers): Promise<void> => {
         )
       )
     }
+    const autoAdd = configurationVault.getAutoAdd()
 
-    if (configurationVault.getAutoAdd()) await execa('git', ['add', '.'])
+    if (autoAdd) await execa('git', ['add', '.'])
 
     await execa(
       'git',
-      [
-        'commit',
-        configurationVault.getAutoAdd() ? '-am' : '-m',
-        title,
-        '-m',
-        answers.message
-      ],
+      ['commit', autoAdd ? '-am' : '-m', title, '-m', answers.message],
       {
         buffer: false,
         stdio: 'inherit'
