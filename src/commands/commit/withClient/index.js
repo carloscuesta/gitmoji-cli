@@ -11,6 +11,7 @@ const withClient = async (answers: Answers): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
+    const isAutoAddEnabled = configurationVault.getAutoAdd()
 
     if (await isHookCreated()) {
       return console.log(
@@ -22,13 +23,12 @@ const withClient = async (answers: Answers): Promise<void> => {
         )
       )
     }
-    const autoAdd = configurationVault.getAutoAdd()
 
-    if (autoAdd) await execa('git', ['add', '.'])
+    if (isAutoAddEnabled) await execa('git', ['add', '.'])
 
     await execa(
       'git',
-      ['commit', autoAdd ? '-am' : '-m', title, '-m', answers.message],
+      ['commit', isAutoAddEnabled ? '-am' : '-m', title, '-m', answers.message],
       {
         buffer: false,
         stdio: 'inherit'
