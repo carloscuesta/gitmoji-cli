@@ -85,7 +85,7 @@ describe('commit command', () => {
           'git',
           [
             'commit',
-            '-m',
+            '-am',
             `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
             '-m',
             stubs.clientCommitAnswersWithScope.message
