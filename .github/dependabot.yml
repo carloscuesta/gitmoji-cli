@@ -6,6 +6,7 @@ updates:
       interval: weekly
       time: "04:00"
     open-pull-requests-limit: 10
+    versioning-strategy: increase
 
   - package-ecosystem: "github-actions"
     directory: "/"
