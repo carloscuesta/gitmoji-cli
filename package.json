@@ -4,7 +4,7 @@
   "type": "module",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
-    "node": ">=14.16"
+    "node": ">=16"
   },
   "bin": {
     "gitmoji": "lib/cli.js"
