@@ -70,7 +70,7 @@
     "codecov": "3.8.3",
     "flow-bin": "^0.199.1",
     "husky": "8.0.3",
-    "jest": "29.4.2",
+    "jest": "29.4.3",
     "jest-fetch-mock": "3.0.3",
     "jest-mock-process": "2.0.0",
     "lint-staged": "13.1.2",
