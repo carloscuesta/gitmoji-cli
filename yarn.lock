@@ -2581,10 +2581,10 @@ find-up@^6.3.0:
     locate-path "^7.1.0"
     path-exists "^5.0.0"
 
-flow-bin@^0.200.1:
-  version "0.200.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.200.1.tgz#6d32ef92972709ab7c06b27cb7fa4137c6e2c9eb"
-  integrity sha512-0VCo3uZb0XIYF/sNFuLsGRpsUWnXbPi27MQ3AW7F1n7yAy2FEgMxDS/XQ3ubh5ga4M+yKrdeDsZ3IXwYyRNXMQ==
+flow-bin@^0.201.0:
+  version "0.201.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.201.0.tgz#bc8d7c3687526313d7a24dd920873a0273148d81"
+  integrity sha512-fqx6CMOhX9Xm4mN+tq/c7sqcm8aHFV1ipbLz2ZCzoNcPuUNZPoSVYm4p0qZqH0HyzMMEP1OWlU7dIkuSJ02cpg==
 
 form-data-encoder@^2.1.2:
   version "2.1.2"
