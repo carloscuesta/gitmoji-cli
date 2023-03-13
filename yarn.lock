@@ -2430,10 +2430,10 @@ execa@^6.1.0:
     signal-exit "^3.0.7"
     strip-final-newline "^3.0.0"
 
-execa@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-7.0.0.tgz#2a44e20e73797f6c2df23889927972386157d7e4"
-  integrity sha512-tQbH0pH/8LHTnwTrsKWideqi6rFB/QNUawEwrn+WHyz7PX1Tuz2u7wfTvbaNBdP5JD5LVWxNo8/A8CHNZ3bV6g==
+execa@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/execa/-/execa-7.1.0.tgz#50c6f39438b7ce407e8c7a6829c72b074778238d"
+  integrity sha512-T6nIJO3LHxUZ6ahVRaxXz9WLEruXLqdcluA+UuTptXmLM7nDAn9lx9IfkxPyzEL21583qSt4RmL44pO71EHaJQ==
   dependencies:
     cross-spawn "^7.0.3"
     get-stream "^6.0.1"
