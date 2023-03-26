@@ -5,7 +5,7 @@ exports[`hook command should match hook configuration 1`] = `
   "CONTENTS": "#!/bin/sh
 # gitmoji as a commit hook
 exec < /dev/tty
-gitmoji --hook $1 $2
+npx gitmoji --hook $1 $2
 ",
   "FILENAME": "prepare-commit-msg",
   "PERMISSIONS": 509,
