@@ -75,7 +75,7 @@
     "jest-mock-process": "2.0.0",
     "lint-staged": "13.2.0",
     "pkg": "5.8.1",
-    "prettier": "2.8.4",
+    "prettier": "2.8.7",
     "turbo": "^1.8.3"
   },
   "jest": {
