@@ -52,7 +52,7 @@
     "inquirer-autocomplete-prompt": "^3.0.0",
     "meow": "^11.0.0",
     "node-fetch": "^3.3.1",
-    "ora": "^6.2.0",
+    "ora": "^6.3.0",
     "path-exists": "^5.0.0",
     "proxy-agent": "5.0.0",
     "update-notifier": "^6.0.2",
@@ -68,15 +68,15 @@
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
     "codecov": "3.8.3",
-    "flow-bin": "^0.202.0",
+    "flow-bin": "^0.202.1",
     "husky": "8.0.3",
     "jest": "29.5.0",
     "jest-fetch-mock": "3.0.3",
     "jest-mock-process": "2.0.0",
     "lint-staged": "13.2.0",
     "pkg": "5.8.1",
-    "prettier": "2.8.4",
-    "turbo": "^1.8.3"
+    "prettier": "2.8.7",
+    "turbo": "^1.8.5"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
