@@ -19,7 +19,7 @@ const cli = meow(
   Usage
     $ gitmoji
   Options
-    --${FLAGS.COMMIT}, -c    Interactively commit using the prompts
+    --${FLAGS.COMMIT}, -c    Interactively commit using the prompts. In addition you can use additional git commit flags
     --${FLAGS.CONFIG}, -g    Setup gitmoji-cli preferences.
     --${FLAGS.INIT}, -i      Initialize gitmoji as a commit hook
     --${FLAGS.LIST}, -l      List all the available gitmojis

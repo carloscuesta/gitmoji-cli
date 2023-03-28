@@ -7,7 +7,10 @@ import isHookCreated from '@utils/isHookCreated'
 import configurationVault from '@utils/configurationVault'
 import { type Answers } from '../prompts'
 
-const withClient = async (answers: Answers): Promise<void> => {
+const withClient = async (
+  answers: Answers,
+  gitFlags: Object
+): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
@@ -26,9 +29,24 @@ const withClient = async (answers: Answers): Promise<void> => {
 
     if (isAutoAddEnabled) await execa('git', ['add', '.'])
 
+    // TODO(anau) possible to change to map/filter/reduce?
+    const gitFlagsPrepared = []
+    Object.keys(gitFlags).forEach((key) => {
+      if (gitFlags[key]) {
+        gitFlagsPrepared.push('-' + key)
+      }
+    })
+
     await execa(
       'git',
-      ['commit', isAutoAddEnabled ? '-am' : '-m', title, '-m', answers.message],
+      [
+        'commit',
+        isAutoAddEnabled ? '-am' : '-m',
+        title,
+        '-m',
+        answers.message,
+        ...gitFlagsPrepared
+      ],
       {
         buffer: false,
         stdio: 'inherit'

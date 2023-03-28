@@ -7,7 +7,7 @@ exports[`cli should match meow with cli information 1`] = `
   Usage
     $ gitmoji
   Options
-    --commit, -c    Interactively commit using the prompts
+    --commit, -c    Interactively commit using the prompts. In addition you can use additional git commit flags
     --config, -g    Setup gitmoji-cli preferences.
     --init, -i      Initialize gitmoji as a commit hook
     --list, -l      List all the available gitmojis

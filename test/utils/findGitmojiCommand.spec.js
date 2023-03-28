@@ -10,6 +10,7 @@ describe('findGitmojiCommand', () => {
         findGitmojiCommand(stubs.cliMock({ [command]: true }), stubs.optionsMock)
         expect(stubs.optionsMock[command]).toHaveBeenCalledWith({
           mode: command === FLAGS.HOOK ? COMMIT_MODES.HOOK : COMMIT_MODES.CLIENT,
+          gitFlags: {},
           message: undefined,
           scope: undefined,
           title: undefined,

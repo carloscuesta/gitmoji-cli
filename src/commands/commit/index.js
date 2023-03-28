@@ -14,7 +14,8 @@ export type CommitOptions = {
   message?: string,
   mode: typeof COMMIT_MODES.CLIENT | typeof COMMIT_MODES.HOOK,
   scope?: string,
-  title?: string
+  title?: string,
+  gitFlags: Object
 }
 
 const promptAndCommit = (options: CommitOptions): Function =>
@@ -24,7 +25,7 @@ const promptAndCommit = (options: CommitOptions): Function =>
       inquirer.prompt(questions).then((answers) => {
         if (options.mode === COMMIT_MODES.HOOK) return withHook(answers)
 
-        return withClient(answers)
+        return withClient(answers, options.gitFlags)
       })
     })
 
