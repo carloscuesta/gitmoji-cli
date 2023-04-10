@@ -4,7 +4,7 @@ exports[`hook command should match hook configuration 1`] = `
 {
   "CONTENTS": "#!/usr/bin/env sh
 # gitmoji as a commit hook
-if npx -v >/dev/null
+if npx -v >&/dev/null
 then
   exec < /dev/tty
   npx -c gitmoji --hook $1 $2

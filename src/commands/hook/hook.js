@@ -4,7 +4,7 @@ const HOOK: Object = {
   FILENAME: 'prepare-commit-msg',
   CONTENTS:
     '#!/usr/bin/env sh\n# gitmoji as a commit hook\n' +
-    'if npx -v >/dev/null\n' +
+    'if npx -v >&/dev/null\n' +
     'then\n' +
     '  exec < /dev/tty\n  npx -c gitmoji --hook $1 $2\n' +
     'else\n' +
