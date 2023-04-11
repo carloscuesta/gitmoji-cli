@@ -29,29 +29,25 @@ const withClient = async (
 
     if (isAutoAddEnabled) await execa('git', ['add', '.'])
 
-    // TODO(anau) possible to change to map/filter/reduce?
-    const gitFlagsPrepared = []
-    Object.keys(gitFlags).forEach((key) => {
-      if (gitFlags[key]) {
-        gitFlagsPrepared.push('-' + key)
-      }
-    })
+    const execeaArguments = [
+      'commit',
+      isAutoAddEnabled ? '-am' : '-m',
+      title,
+      '-m',
+      answers.message
+    ]
+    if (gitFlags) {
+      Object.keys(gitFlags).forEach((key) => {
+        if (gitFlags[key]) {
+          execeaArguments.push('-' + key)
+        }
+      })
+    }
 
-    await execa(
-      'git',
-      [
-        'commit',
-        isAutoAddEnabled ? '-am' : '-m',
-        title,
-        '-m',
-        answers.message,
-        ...gitFlagsPrepared
-      ],
-      {
-        buffer: false,
-        stdio: 'inherit'
-      }
-    )
+    await execa('git', execeaArguments, {
+      buffer: false,
+      stdio: 'inherit'
+    })
   } catch (error) {
     console.error(
       chalk.red(

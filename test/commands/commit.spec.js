@@ -39,7 +39,7 @@ describe('commit command', () => {
         expect(inquirer.prompt.mock.calls).toMatchSnapshot()
       })
 
-      it.skip('should call execa with the commit command based on answers', () => {
+      it('should call execa with the commit command based on answers', () => {
         expect(execa).toHaveBeenCalledWith(
           'git',
           [
@@ -80,7 +80,7 @@ describe('commit command', () => {
         expect(execa).toHaveBeenCalledWith('git', ['add', '.'])
       })
 
-      it.skip('should call execa with the commit command based on answers', () => {
+      it('should call execa with the commit command based on answers', () => {
         expect(execa).toHaveBeenLastCalledWith(
           'git',
           [
