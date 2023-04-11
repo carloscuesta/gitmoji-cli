@@ -6,7 +6,7 @@ const HOOK: Object = {
     '#!/usr/bin/env sh\n# gitmoji as a commit hook\n' +
     'if npx -v >&/dev/null\n' +
     'then\n' +
-    '  exec < /dev/tty\n  npx -c gitmoji --hook $1 $2\n' +
+    '  exec < /dev/tty\n  npx -c "gitmoji --hook $1 $2"\n' +
     'else\n' +
     '  exec < /dev/tty\n  gitmoji --hook $1 $2\n' +
     'fi'
