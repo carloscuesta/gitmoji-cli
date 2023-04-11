@@ -13,8 +13,7 @@ const getOptionsForCommand = (command: ?string, flags: Object): ?Object => {
       ...Object.values(COMMIT_MESSAGE_PARTS),
       ...Object.values(FLAGS)
     )
-    // TODO(anau) check if message, mode, scope, title in git flags (-m ":mode: (scope) title" -m "message" -> 'm' is array if 2 times) includes #1037
-    // currently those messages are removed
+
     return {
       message: flags[COMMIT_MESSAGE_PARTS.MESSAGE],
       mode: command === FLAGS.HOOK ? COMMIT_MODES.HOOK : COMMIT_MODES.CLIENT,
