@@ -104,8 +104,73 @@ exports[`commit command prompts without scope prompt should match the array of q
 ]
 `;
 
+exports[`commit command withClient with autoAdd, commits with scope, git -S option should call inquirer with prompts 1`] = `
+[
+  [
+    [
+      {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      {
+        "message": "Enter the commit message:",
+        "name": "message",
+      },
+    ],
+  ],
+  [
+    [
+      {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      {
+        "message": "Enter the commit message:",
+        "name": "message",
+      },
+    ],
+  ],
+]
+`;
+
 exports[`commit command withClient with autoAdd, signed commits and scope should call inquirer with prompts 1`] = `
 [
+  [
+    [
+      {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      {
+        "message": "Enter the commit message:",
+        "name": "message",
+      },
+    ],
+  ],
   [
     [
       {
@@ -176,6 +241,26 @@ exports[`commit command withClient with no autoAdd and no signed commits and no 
 
 exports[`commit command withClient with the commit hook created should call inquirer with prompts 1`] = `
 [
+  [
+    [
+      {
+        "message": "Choose a gitmoji:",
+        "name": "gitmoji",
+        "source": [Function],
+        "type": "autocomplete",
+      },
+      {
+        "message": "Enter the commit title",
+        "name": "title",
+        "transformer": [Function],
+        "validate": [Function],
+      },
+      {
+        "message": "Enter the commit message:",
+        "name": "message",
+      },
+    ],
+  ],
   [
     [
       {

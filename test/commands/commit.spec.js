@@ -57,6 +57,48 @@ describe('commit command', () => {
       })
     })
 
+    describe('with autoAdd, commits with scope, git -S option', () => {
+      beforeAll(() => {
+        execa.mockReturnValue({ stdout: stubs.commitResult })
+        inquirer.prompt.mockReturnValue(
+          Promise.resolve(stubs.clientCommitAnswersWithScope)
+        )
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+        isHookCreated.mockResolvedValue(false)
+        configurationVault.getAutoAdd.mockReturnValue(true)
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        commit({ mode: 'client', gitFlags: {"S": true} })
+      })
+
+      it('should call inquirer with prompts', () => {
+        expect(inquirer.prompt.mock.calls).toMatchSnapshot()
+      })
+
+      it('should call execa with the add command', () => {
+        expect(execa).toHaveBeenCalledWith('git', ['add', '.'])
+      })
+
+      it('should call execa with the commit command based on answers', () => {
+        expect(execa).toHaveBeenLastCalledWith(
+          'git',
+          [
+            'commit',
+            '-am',
+            `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+            '-m',
+            stubs.clientCommitAnswersWithScope.message,
+            '-S'
+          ],
+          {
+            buffer: false,
+            stdio: 'inherit'
+          }
+        )
+      })
+    })
+
     describe('with autoAdd, signed commits and scope', () => {
       beforeAll(() => {
         execa.mockReturnValue({ stdout: stubs.commitResult })
