@@ -2,11 +2,16 @@
 
 exports[`hook command should match hook configuration 1`] = `
 {
-  "CONTENTS": "#!/bin/sh
+  "CONTENTS": "#!/usr/bin/env sh
 # gitmoji as a commit hook
-exec < /dev/tty
-gitmoji --hook $1 $2
-",
+if npx -v >&/dev/null
+then
+  exec < /dev/tty
+  npx -c gitmoji --hook $1 $2
+else
+  exec < /dev/tty
+  gitmoji --hook $1 $2
+fi",
   "FILENAME": "prepare-commit-msg",
   "PERMISSIONS": 509,
 }
