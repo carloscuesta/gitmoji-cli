@@ -48,7 +48,7 @@
     "conf": "11.0.1",
     "execa": "^7.1.1",
     "fuse.js": "6.6.2",
-    "inquirer": "^9.1.5",
+    "inquirer": "^9.2.0",
     "inquirer-autocomplete-prompt": "^3.0.0",
     "meow": "^11.0.0",
     "node-fetch": "^3.3.1",
@@ -68,15 +68,15 @@
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
     "codecov": "3.8.3",
-    "flow-bin": "^0.203.1",
+    "flow-bin": "^0.204.0",
     "husky": "8.0.3",
     "jest": "29.5.0",
     "jest-fetch-mock": "3.0.3",
     "jest-mock-process": "2.0.0",
     "lint-staged": "13.2.1",
     "pkg": "5.8.1",
-    "prettier": "2.8.7",
-    "turbo": "^1.8.8"
+    "prettier": "2.8.8",
+    "turbo": "^1.9.3"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
