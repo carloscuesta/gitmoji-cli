@@ -417,3 +417,71 @@ export const relativeCoreHooksPath = '.git/hooks'
 
 export const hooksPath =
   '/Users/carloscuesta/GitHub/gitmoji-cli/.git/hooks/prepare-commit-msg'
+
+export const diff = `diff --git a/src/utils/getGeneratedMessage.js b/src/utils/getGeneratedMessage.js
+  index fb985d7..9236238 100644
+  --- a/src/utils/getGeneratedMessage.js
+  +++ b/src/utils/getGeneratedMessage.js
+  @@ -3,6 +3,8 @@ import { encoding_for_model } from '@dqbd/tiktoken'
+  import fetch from 'node-fetch'
+  import getPrompt from './getPrompt'
+  import chalk from 'chalk'
+  +import configurationVault from '@utils/configurationVault'
+  +import { EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+
+  const MAX_TOKEN_LENGTH = 500
+
+  @@ -21,7 +23,13 @@ const parseMessage = (
+  ): ParsedMessage | void => {
+    // Replace emojis with codes
+    for (const gitmoji of gitmojis) {
+  -    message = message.replace(gitmoji.emoji, gitmoji.code)
+  +    const format = configurationVault.getEmojiFormat()
+  +
+  +    if (format === EMOJI_COMMIT_FORMATS.CODE) {
+  +      message = message.replace(gitmoji.emoji, gitmoji.code)
+  +    } else {
+  +      message = message.replace(gitmoji.code, gitmoji.emoji)
+  +    }
+    }
+
+    // Force only one sentence if for some reason multiple are returned
+`
+
+export const lockDiff = `diff --git a/package.json b/package.json
+  index fe4e593..15206f1 100644
+  --- a/package.json
+  +++ b/package.json
+  @@ -44,6 +44,7 @@
+    },
+    "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
+    "dependencies": {
+  +    "@dqbd/tiktoken": "^1.0.7",
+      "chalk": "^5.0.1",
+      "conf": "11.0.1",
+      "execa": "^7.1.1",
+  diff --git a/yarn.lock b/yarn.lock
+  index f99fe64..dce9a83 100644
+  --- a/yarn.lock
+  +++ b/yarn.lock
+  @@ -4,7 +4,7 @@
+
+  "@ampproject/remapping@^2.2.0":
+    version "2.2.0"
+  -  resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.2.0.tgz#56c133824780de3174aed5ab6834f3026790154d"
+  +  resolved "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
+    integrity sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==
+    dependencies:
+      "@jridgewell/gen-mapping" "^0.1.0"
+  @@ -12,7 +12,7 @@
+`
+
+export const gptResponse = {
+  choices: [
+    {
+      message: {
+        content: ':sparkles: Added a new feature'
+      }
+    }
+  ]
+}
