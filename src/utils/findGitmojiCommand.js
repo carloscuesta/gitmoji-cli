@@ -7,18 +7,23 @@ const isSupportedCommand = (command: ?string, options: Object): boolean => {
 }
 
 const getOptionsForCommand = (command: ?string, flags: Object): ?Object => {
-  const commandsWithOptions = [FLAGS.COMMIT, FLAGS.HOOK]
-
-  if (commandsWithOptions.includes(command)) {
-    return {
-      message: flags['message'],
-      mode: command === FLAGS.HOOK ? COMMIT_MODES.HOOK : COMMIT_MODES.CLIENT,
-      scope: flags['scope'],
-      title: flags['title']
-    }
+  switch (command) {
+    case FLAGS.COMMIT:
+    case FLAGS.HOOK:
+      return {
+        message: flags['message'],
+        mode: command === FLAGS.HOOK ? COMMIT_MODES.HOOK : COMMIT_MODES.CLIENT,
+        scope: flags['scope'],
+        title: flags['title']
+      }
+    case FLAGS.GENERATE:
+      return {
+        context: flags['context'],
+        model: flags['model']
+      }
+    default:
+      return null
   }
-
-  return null
 }
 
 const findGitmojiCommand = (cli: any, options: Object): void => {

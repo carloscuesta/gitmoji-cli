@@ -9,6 +9,7 @@ const FLAGS = Object.freeze({
   REMOVE: 'remove',
   SEARCH: 'search',
   UPDATE: 'update',
+  GENERATE: 'generate',
   VERSION: 'version'
 })
 

@@ -26,6 +26,7 @@ const cli = meow(
     --${FLAGS.REMOVE}, -r    Remove a previously initialized commit hook
     --${FLAGS.SEARCH}, -s    Search gitmojis
     --${FLAGS.UPDATE}, -u    Sync emoji list with the repo
+    --${FLAGS.GENERATE}, -g  Generate a commit message using OpenAI's GPT model
     --${FLAGS.VERSION}, -v   Print gitmoji-cli installed version
   Commands
     commit          Interactively commit using the prompts
@@ -35,6 +36,7 @@ const cli = meow(
     remove          Remove a previously initialized commit hook
     search          Search gitmojis
     update          Sync emoji list with the repo
+    generate        Generate a commit message using OpenAI's GPT model
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
@@ -63,7 +65,8 @@ export const options = ({
   [FLAGS.LIST]: () => commands.list(),
   [FLAGS.REMOVE]: () => commands.removeHook(),
   [FLAGS.SEARCH]: () => cli.input.map((input) => commands.search(input)),
-  [FLAGS.UPDATE]: () => commands.update()
+  [FLAGS.UPDATE]: () => commands.update(),
+  [FLAGS.GENERATE]: (options: Object) => commands.generate(options)
 }: { [$Values<typeof FLAGS>]: Function })
 
 findGitmojiCommand(cli, options)
