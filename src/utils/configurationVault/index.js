@@ -16,6 +16,10 @@ const setScopePrompt = (scopePrompt: boolean): void => {
   configuration.set(CONFIG.SCOPE_PROMPT, scopePrompt)
 }
 
+const setMessagePrompt = (messagePrompt: boolean): void => {
+  configuration.set(CONFIG.MESSAGE_PROMPT, messagePrompt)
+}
+
 const setGitmojisUrl = (gitmojisUrl: string): void => {
   configuration.set(CONFIG.GITMOJIS_URL, gitmojisUrl)
 }
@@ -32,6 +36,10 @@ const getScopePrompt = (): boolean => {
   return configuration.get(CONFIG.SCOPE_PROMPT)
 }
 
+const getMessagePrompt = (): boolean => {
+  return configuration.get(CONFIG.MESSAGE_PROMPT)
+}
+
 const getGitmojisUrl = (): string => {
   return configuration.get(CONFIG.GITMOJIS_URL)
 }
@@ -40,9 +48,11 @@ export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
+  getMessagePrompt,
   getGitmojisUrl,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
+  setMessagePrompt,
   setGitmojisUrl
 }

@@ -27,6 +27,12 @@ export default (): Array<Object> => [
     default: configurationVault.getScopePrompt()
   },
   {
+    name: CONFIG.MESSAGE_PROMPT,
+    message: 'Enable message prompt',
+    type: 'confirm',
+    default: configurationVault.getMessagePrompt()
+  },
+  {
     name: CONFIG.GITMOJIS_URL,
     message: 'Set gitmojis api url',
     type: 'input',
