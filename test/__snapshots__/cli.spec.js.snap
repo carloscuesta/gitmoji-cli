@@ -5,7 +5,7 @@ exports[`cli should match meow with cli information 1`] = `
   [
     "
   Usage
-    $ gitmoji
+    $ gitmoji [option] [command]
   Options
     --commit, -c    Interactively commit using the prompts
     --config, -g    Setup gitmoji-cli preferences.
@@ -15,6 +15,14 @@ exports[`cli should match meow with cli information 1`] = `
     --search, -s    Search gitmojis
     --update, -u    Sync emoji list with the repo
     --version, -v   Print gitmoji-cli installed version
+  Commands
+    commit          Interactively commit using the prompts
+    config          Setup gitmoji-cli preferences.
+    init            Initialize gitmoji as a commit hook
+    list            List all the available gitmojis
+    remove          Remove a previously initialized commit hook
+    search          Search gitmojis
+    update          Sync emoji list with the repo
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
