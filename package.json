@@ -44,6 +44,7 @@
   },
   "homepage": "https://github.com/carloscuesta/gitmoji-cli#readme",
   "dependencies": {
+    "@dqbd/tiktoken": "^1.0.7",
     "chalk": "^5.0.1",
     "conf": "11.0.1",
     "execa": "^7.1.1",
