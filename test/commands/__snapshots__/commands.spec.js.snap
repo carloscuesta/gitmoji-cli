@@ -5,6 +5,7 @@ exports[`commands should match commands 1`] = `
   "commit": [Function],
   "config": [Function],
   "createHook": [Function],
+  "generate": [Function],
   "list": [Function],
   "removeHook": [Function],
   "search": [Function],

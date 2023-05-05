@@ -14,6 +14,7 @@ exports[`cli should match meow with cli information 1`] = `
     --remove, -r    Remove a previously initialized commit hook
     --search, -s    Search gitmojis
     --update, -u    Sync emoji list with the repo
+    --generate, -g  Generate a commit message using OpenAI's GPT model
     --version, -v   Print gitmoji-cli installed version
   Commands
     commit          Interactively commit using the prompts
@@ -23,6 +24,7 @@ exports[`cli should match meow with cli information 1`] = `
     remove          Remove a previously initialized commit hook
     search          Search gitmojis
     update          Sync emoji list with the repo
+    generate        Generate a commit message using OpenAI's GPT model
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s

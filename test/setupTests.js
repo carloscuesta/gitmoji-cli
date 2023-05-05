@@ -30,3 +30,11 @@ jest.mock('update-notifier', () =>
     notify: jest.fn()
   })
 )
+jest.mock('@dqbd/tiktoken', () => {
+  return {
+    encoding_for_model: jest.fn().mockReturnValue({
+      encode: jest.fn().mockReturnValue('testToken'),
+      free: jest.fn()
+    })
+  }
+})
