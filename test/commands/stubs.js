@@ -63,3 +63,45 @@ export const defaultCommitContent = {
 }
 
 export const url = 'https://carloscuesta.me'
+
+export const diffResult = `diff --git a/src/utils/getGeneratedMessage.js b/src/utils/getGeneratedMessage.js
+index fb985d7..9236238 100644
+--- a/src/utils/getGeneratedMessage.js
++++ b/src/utils/getGeneratedMessage.js
+@@ -3,6 +3,8 @@ import { encoding_for_model } from '@dqbd/tiktoken'
+import fetch from 'node-fetch'
+import getPrompt from './getPrompt'
+import chalk from 'chalk'
++import configurationVault from '@utils/configurationVault'
++import { EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+
+const MAX_TOKEN_LENGTH = 500
+
+@@ -21,7 +23,13 @@ const parseMessage = (
+): ParsedMessage | void => {
+  // Replace emojis with codes
+  for (const gitmoji of gitmojis) {
+-    message = message.replace(gitmoji.emoji, gitmoji.code)
++    const format = configurationVault.getEmojiFormat()
++
++    if (format === EMOJI_COMMIT_FORMATS.CODE) {
++      message = message.replace(gitmoji.emoji, gitmoji.code)
++    } else {
++      message = message.replace(gitmoji.code, gitmoji.emoji)
++    }
+  }
+
+  // Force only one sentence if for some reason multiple are returned
+`
+
+export const generatedMessage = {
+  gitmoji: ':sparkles:',
+  title: 'Added a new feature',
+  raw: ':sparkles: Added a new feature'
+}
+
+export const confirmMessageAnswer = {
+  confirm: true
+}
+
+export const apiKey = '1234567890'
