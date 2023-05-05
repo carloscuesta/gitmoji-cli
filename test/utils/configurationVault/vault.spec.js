@@ -51,6 +51,19 @@ describe('index > vault', () => {
       )
     })
 
+    it('should set and return value for messagePrompt', () => {
+      configurationVault.setMessagePrompt(false)
+      configurationVault.getMessagePrompt()
+
+      expect(getConfiguration().set).toHaveBeenCalledWith(
+        CONFIG.MESSAGE_PROMPT,
+        false
+      )
+      expect(getConfiguration().get).toHaveBeenCalledWith(
+        CONFIG.MESSAGE_PROMPT
+      )
+    })
+
     it('should set and return value for gitmojisUrl', () => {
       const testGitmojisUrl = 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
       configurationVault.setGitmojisUrl(testGitmojisUrl)

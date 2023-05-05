@@ -5,10 +5,12 @@ exports[`index should match the module 1`] = `
   "getAutoAdd": [Function],
   "getEmojiFormat": [Function],
   "getGitmojisUrl": [Function],
+  "getMessagePrompt": [Function],
   "getScopePrompt": [Function],
   "setAutoAdd": [Function],
   "setEmojiFormat": [Function],
   "setGitmojisUrl": [Function],
+  "setMessagePrompt": [Function],
   "setScopePrompt": [Function],
 }
 `;

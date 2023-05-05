@@ -33,6 +33,7 @@ describe('commit command', () => {
           stubs.emptyDefaultCommitContent
         )
         commit({ mode: 'client' })
+        configurationVault.getMessagePrompt.mockReturnValue(true)
       })
 
       it('should call inquirer with prompts', () => {
@@ -337,6 +338,10 @@ describe('commit command', () => {
   })
 
   describe('prompts', () => {
+    beforeAll(() => {
+      configurationVault.getMessagePrompt.mockReturnValue(true)
+    })
+
     it('should register the autoComplete inquirer prompt', () => {
       expect(inquirer.registerPrompt).toHaveBeenCalledWith(
         'autocomplete',
@@ -388,6 +393,19 @@ describe('commit command', () => {
 
       it('should not fill default title and message', () => {
         expect(prompts(stubs.gitmojis, 'commit')).toMatchSnapshot()
+      })
+    })
+
+    describe('without message prompt', () => {
+      beforeAll(() => {
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        configurationVault.getMessagePrompt.mockReturnValue(false)
+      })
+
+      it('should match the array of questions', () => {
+        expect(prompts(stubs.gitmojis, 'client')).toMatchSnapshot()
       })
     })
   })

@@ -23,6 +23,7 @@ describe('getConfiguration', () => {
             enum: Object.values(EMOJI_COMMIT_FORMATS)
           },
           [CONFIG.SCOPE_PROMPT]: { type: 'boolean' },
+          [CONFIG.MESSAGE_PROMPT]: { type: 'boolean' },
           [CONFIG.GITMOJIS_URL]: { type: 'string', format: 'url' }
         }
       })
@@ -52,6 +53,12 @@ describe('getConfiguration', () => {
           const configuration = getConfiguration()
 
           expect(configuration.get('from')).toEqual('package.json')
+        })
+
+        it('should fallback to default config value if not set', () => {
+          const configuration = getConfiguration()
+
+          expect(configuration.get(CONFIG.MESSAGE_PROMPT)).toEqual(true)
         })
       })
 
@@ -89,6 +96,12 @@ describe('getConfiguration', () => {
 
           expect(configuration.get('from')).toEqual('rc')
         })
+
+        it('should fallback to default config value if not set', () => {
+          const configuration = getConfiguration()
+
+          expect(configuration.get(CONFIG.MESSAGE_PROMPT)).toEqual(true)
+        })
       })
 
       describe('when file is empty', () => {
@@ -114,6 +127,12 @@ describe('getConfiguration', () => {
 
         expect(configuration.get('from')).toEqual('local-cli')
       })
+
+      it('should fallback to default config value if not set', () => {
+        const configuration = getConfiguration()
+
+        expect(configuration.get(CONFIG.MESSAGE_PROMPT)).toEqual(true)
+      })
     })
 
     describe('when no configuration is available', () => {
@@ -128,6 +147,7 @@ describe('getConfiguration', () => {
         expect(configuration.get('autoAdd')).toEqual(false)
         expect(configuration.get('emojiFormat')).toEqual('code')
         expect(configuration.get('scopePrompt')).toEqual(false)
+        expect(configuration.get('messagePrompt')).toEqual(true)
         expect(configuration.get('gitmojisUrl')).toEqual(
           'https://gitmoji.dev/api/gitmojis'
         )

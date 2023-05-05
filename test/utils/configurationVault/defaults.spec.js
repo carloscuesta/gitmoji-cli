@@ -18,6 +18,10 @@ describe('index', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
     })
 
+    it('should return the default value for messagePrompt', () => {
+      expect(configurationVault.getMessagePrompt()).toEqual(true)
+    })
+
     it('should return the default value for gitmojisUrl', () => {
       expect(configurationVault.getGitmojisUrl()).toEqual(
         'https://gitmoji.dev/api/gitmojis'
