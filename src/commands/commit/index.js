@@ -9,6 +9,7 @@ import withHook, {
 } from './withHook'
 import withClient from './withClient'
 import prompts from './prompts'
+import type { Answers } from './prompts'
 
 export type CommitOptions = {
   message?: string,
@@ -21,8 +22,14 @@ const promptAndCommit = (options: CommitOptions): Function =>
   getEmojis()
     .then((gitmojis) => prompts(gitmojis, options))
     .then((questions) => {
-      inquirer.prompt(questions).then((answers) => {
-        if (options.mode === COMMIT_MODES.HOOK) return withHook(answers)
+      inquirer.prompt(questions).then((answers: Answers) => {
+        // Make sure the title is capitalized
+        answers.title =
+          answers.title.charAt(0).toUpperCase() + answers.title.slice(1)
+
+        if (options.mode === COMMIT_MODES.HOOK) {
+          return withHook(answers)
+        }
 
         return withClient(answers)
       })
