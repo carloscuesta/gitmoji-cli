@@ -18,6 +18,9 @@ export type CommitOptions = {
   title?: string
 }
 
+export const capitalizeTitle = (title: string): string =>
+  title.charAt(0).toUpperCase() + title.slice(1)
+
 const promptAndCommit = (options: CommitOptions): Function =>
   getEmojis()
     .then((gitmojis) => prompts(gitmojis, options))
@@ -25,7 +28,7 @@ const promptAndCommit = (options: CommitOptions): Function =>
       inquirer.prompt(questions).then((answers: Answers) => {
         const transformedAnswers = {
           ...answers,
-          title: answers.title.charAt(0).toUpperCase() + answers.title.slice(1)
+          title: capitalizeTitle(answers.title)
         }
 
         if (options.mode === COMMIT_MODES.HOOK) {
