@@ -24,17 +24,11 @@ const getOptionsForCommand = (command: ?string, flags: Object): ?Object => {
 const findGitmojiCommand = (cli: any, options: Object): void => {
   const flags = cli.flags
 
-  // Attempt to get the command out of the flags
-  let command = Object.keys(flags)
-    .map((flag) => flags[flag] && flag)
-    .find((flag) => options[flag])
+  const command =
+    Object.keys(flags)
+      .map((flag) => flags[flag] && flag)
+      .find((flag) => options[flag]) || cli.input[0]
 
-  if (!command && cli.input.length) {
-    // See if the user provided the command as a subcommand
-    command = cli.input[0]
-  }
-
-  // Unable to determine requested command so display help
   if (!command || !isSupportedCommand(command, options)) {
     return cli.showHelp()
   }
