@@ -5,7 +5,7 @@ import inquirerAutocompletePrompt from 'inquirer-autocomplete-prompt'
 import configurationVault from '@utils/configurationVault'
 import filterGitmojis from '@utils/filterGitmojis'
 import getDefaultCommitContent from '@utils/getDefaultCommitContent'
-import { type CommitOptions } from '.'
+import { type CommitOptions, capitalizeTitle } from '.'
 import guard from './guard'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
@@ -62,7 +62,7 @@ export default (
       transformer: (input: string) => {
         return `[${
           (title || input).length
-        }/${TITLE_MAX_LENGTH_COUNT}]: ${input}`
+        }/${TITLE_MAX_LENGTH_COUNT}]: ${capitalizeTitle(input)}`
       },
       ...(title ? { default: title } : {})
     },
