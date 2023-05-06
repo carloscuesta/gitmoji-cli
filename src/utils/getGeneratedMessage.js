@@ -27,15 +27,28 @@ const parseMessage = (
   message: string,
   gitmojis: Object[]
 ): ParsedMessage | void => {
-  // Replace emojis with codes
+  let gitmojiUsed
   for (const gitmoji of gitmojis) {
-    const format = configurationVault.getEmojiFormat()
+    if (!message.includes(gitmoji.emoji) && !message.includes(gitmoji.code)) {
+      continue
+    }
 
+    const format = configurationVault.getEmojiFormat()
     if (format === EMOJI_COMMIT_FORMATS.CODE) {
       message = message.replace(gitmoji.emoji, gitmoji.code)
+      gitmojiUsed = gitmoji.code
     } else {
       message = message.replace(gitmoji.code, gitmoji.emoji)
+      gitmojiUsed = gitmoji.emoji
     }
+  }
+
+  if (!gitmojiUsed) {
+    return console.error(
+      chalk.red(
+        'The generated commit message did not contain any gitmojis. Contact the author.'
+      )
+    )
   }
 
   // Force only one sentence if for some reason multiple are returned
@@ -44,15 +57,9 @@ const parseMessage = (
   // Remove trailing punctuation
   message = message.replace(/\.$/g, '')
 
-  // Extract the gitmoji from the generated message
-  const matches = message.match(/^(:\w+:)\s(.+)$/)
-  if (!matches) {
-    return console.error(chalk.red(`Unable to parse message: ${message}`))
-  }
-
   return {
-    gitmoji: matches[1],
-    title: matches[2],
+    gitmoji: gitmojiUsed,
+    title: message.replace(gitmojiUsed, '').trim(),
     raw: message
   }
 }
