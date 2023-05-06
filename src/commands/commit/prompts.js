@@ -66,10 +66,14 @@ export default (
       },
       ...(title ? { default: title } : {})
     },
-    {
-      name: 'message',
-      message: 'Enter the commit message:',
-      ...(message ? { default: message } : {})
-    }
+    ...(configurationVault.getMessagePrompt()
+      ? [
+          {
+            name: 'message',
+            message: 'Enter the commit message:',
+            ...(message ? { default: message } : {})
+          }
+        ]
+      : [])
   ]
 }
