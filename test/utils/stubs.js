@@ -9,7 +9,8 @@ export const commands = [
   'update'
 ]
 
-export const cliMock = (options) => ({
+export const cliMock = (options, input?: string[]) => ({
+  input: input || [],
   flags: {
     commit: options.commit || false,
     config: options.config || false,
