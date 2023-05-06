@@ -23,15 +23,16 @@ const promptAndCommit = (options: CommitOptions): Function =>
     .then((gitmojis) => prompts(gitmojis, options))
     .then((questions) => {
       inquirer.prompt(questions).then((answers: Answers) => {
-        // Make sure the title is capitalized
-        answers.title =
-          answers.title.charAt(0).toUpperCase() + answers.title.slice(1)
-
-        if (options.mode === COMMIT_MODES.HOOK) {
-          return withHook(answers)
+        const transformedAnswers = {
+          ...answers,
+          title: answers.title.charAt(0).toUpperCase() + answers.title.slice(1)
         }
 
-        return withClient(answers)
+        if (options.mode === COMMIT_MODES.HOOK) {
+          return withHook(transformedAnswers)
+        }
+
+        return withClient(transformedAnswers)
       })
     })
 
