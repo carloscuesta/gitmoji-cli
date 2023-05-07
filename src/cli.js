@@ -17,7 +17,7 @@ updateNotifier({ pkg: JSON.parse(packageJson) }).notify({ isGlobal: true })
 const cli = meow(
   `
   Usage
-    $ gitmoji
+    $ gitmoji [option] [command]
   Options
     --${FLAGS.COMMIT}, -c    Interactively commit using the prompts
     --${FLAGS.CONFIG}, -g    Setup gitmoji-cli preferences.
@@ -27,6 +27,14 @@ const cli = meow(
     --${FLAGS.SEARCH}, -s    Search gitmojis
     --${FLAGS.UPDATE}, -u    Sync emoji list with the repo
     --${FLAGS.VERSION}, -v   Print gitmoji-cli installed version
+  Commands
+    commit          Interactively commit using the prompts
+    config          Setup gitmoji-cli preferences.
+    init            Initialize gitmoji as a commit hook
+    list            List all the available gitmojis
+    remove          Remove a previously initialized commit hook
+    search          Search gitmojis
+    update          Sync emoji list with the repo
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
