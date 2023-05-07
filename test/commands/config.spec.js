@@ -28,6 +28,9 @@ describe('config command', () => {
     expect(configurationVault.setScopePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.scopePrompt
     )
+    expect(configurationVault.setMessagePrompt).toHaveBeenCalledWith(
+      stubs.configAnswers.messagePrompt
+    )
     expect(configurationVault.setGitmojisUrl).toHaveBeenCalledWith(
       stubs.configAnswers.gitmojisUrl
     )

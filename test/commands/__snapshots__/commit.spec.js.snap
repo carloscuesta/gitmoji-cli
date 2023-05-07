@@ -238,3 +238,24 @@ exports[`commit command withClient with the commit hook created should call inqu
   ],
 ]
 `;
+
+exports[`commit command prompts without message prompt should match the array of questions 1`] = `
+[
+  {
+    "message": "Choose a gitmoji:",
+    "name": "gitmoji",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  {
+    "message": "Enter the scope of current changes:",
+    "name": "scope",
+  },
+  {
+    "message": "Enter the commit title",
+    "name": "title",
+    "transformer": [Function],
+    "validate": [Function],
+  },
+]
+`;
