@@ -11,7 +11,7 @@ describe('search command', () => {
   beforeAll(() => {
     console.log = jest.fn()
     getEmojis.mockResolvedValue(stubs.gitmojis)
-    search(stubs.searchQuery)
+    search({ query: [stubs.searchQuery] })
   })
 
   it('should call getEmojis', () => {

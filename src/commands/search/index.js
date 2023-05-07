@@ -3,10 +3,21 @@ import filterGitmojis from '@utils/filterGitmojis'
 import getEmojis from '@utils/getEmojis'
 import printEmojis from '@utils/printEmojis'
 
-const search = (query: string): Promise<void> => {
+type SearchOptions = {
+  query?: string[]
+}
+
+const search = (options: SearchOptions): Promise<void> => {
   return getEmojis()
-    .then((gitmojis) => filterGitmojis(query, gitmojis))
-    .then((gitmojisFiltered) => printEmojis(gitmojisFiltered))
+    .then((gitmojis) => {
+      if (!options.query) {
+        return printEmojis(gitmojis)
+      }
+
+      for (const query of options.query) {
+        printEmojis(filterGitmojis(query, gitmojis))
+      }
+    })
     .catch((err) => console.error(err))
 }
 

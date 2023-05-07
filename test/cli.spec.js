@@ -52,12 +52,12 @@ describe('cli', () => {
   })
 
   it('should call search command on search', () => {
-    options.search()
-    expect(commands.search).toHaveBeenCalledWith('testSearchQuery')
+    options.search({ query: ['testSearchQuery'] })
+    expect(commands.search).toHaveBeenCalledWith({ query: ['testSearchQuery'] })
   })
 
   it('should call update command on update', () => {
     options.update()
-    expect(commands.search).toHaveBeenCalledWith('testSearchQuery')
+    expect(commands.update).toHaveBeenCalledWith()
   })
 })

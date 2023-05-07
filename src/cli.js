@@ -62,7 +62,7 @@ export const options = ({
   [FLAGS.INIT]: () => commands.createHook(),
   [FLAGS.LIST]: () => commands.list(),
   [FLAGS.REMOVE]: () => commands.removeHook(),
-  [FLAGS.SEARCH]: () => cli.input.map((input) => commands.search(input)),
+  [FLAGS.SEARCH]: (options: Object) => commands.search(options),
   [FLAGS.UPDATE]: () => commands.update()
 }: { [$Values<typeof FLAGS>]: Function })
 
