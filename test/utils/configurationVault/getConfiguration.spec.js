@@ -18,13 +18,21 @@ describe('getConfiguration', () => {
       expect(Conf).toHaveBeenCalledWith({
         projectName: 'gitmoji',
         schema: {
-          [CONFIG.AUTO_ADD]: { type: 'boolean' },
+          [CONFIG.AUTO_ADD]: { type: 'boolean', default: false },
           [CONFIG.EMOJI_FORMAT]: {
-            enum: Object.values(EMOJI_COMMIT_FORMATS)
+            enum: Object.values(EMOJI_COMMIT_FORMATS),
+            default: 'code'
           },
-          [CONFIG.SCOPE_PROMPT]: { type: 'boolean' },
-          [CONFIG.MESSAGE_PROMPT]: { type: 'boolean' },
-          [CONFIG.GITMOJIS_URL]: { type: 'string', format: 'url' }
+          [CONFIG.SCOPE_PROMPT]: {
+            type: 'boolean',
+            default: false
+          },
+          [CONFIG.MESSAGE_PROMPT]: { type: 'boolean', default: true },
+          [CONFIG.GITMOJIS_URL]: {
+            type: 'string',
+            format: 'url',
+            default: 'https://gitmoji.dev/api/gitmojis'
+          }
         }
       })
     })

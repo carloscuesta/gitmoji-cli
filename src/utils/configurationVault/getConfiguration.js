@@ -16,13 +16,27 @@ const DEFAULT_CONFIGURATION = {
 const LOCAL_CONFIGURATION: typeof Conf = new Conf({
   projectName: 'gitmoji',
   schema: {
-    [CONFIG.AUTO_ADD]: { type: 'boolean' },
-    [CONFIG.EMOJI_FORMAT]: {
-      enum: Object.values(EMOJI_COMMIT_FORMATS)
+    [CONFIG.AUTO_ADD]: {
+      type: 'boolean',
+      default: DEFAULT_CONFIGURATION[CONFIG.AUTO_ADD]
     },
-    [CONFIG.SCOPE_PROMPT]: { type: 'boolean' },
-    [CONFIG.MESSAGE_PROMPT]: { type: 'boolean' },
-    [CONFIG.GITMOJIS_URL]: { type: 'string', format: 'url' }
+    [CONFIG.EMOJI_FORMAT]: {
+      enum: Object.values(EMOJI_COMMIT_FORMATS),
+      default: DEFAULT_CONFIGURATION[CONFIG.EMOJI_FORMAT]
+    },
+    [CONFIG.SCOPE_PROMPT]: {
+      type: 'boolean',
+      default: DEFAULT_CONFIGURATION[CONFIG.SCOPE_PROMPT]
+    },
+    [CONFIG.MESSAGE_PROMPT]: {
+      type: 'boolean',
+      default: DEFAULT_CONFIGURATION[CONFIG.MESSAGE_PROMPT]
+    },
+    [CONFIG.GITMOJIS_URL]: {
+      type: 'string',
+      format: 'url',
+      default: DEFAULT_CONFIGURATION[CONFIG.GITMOJIS_URL]
+    }
   }
 })
 
@@ -61,7 +75,7 @@ const getConfiguration = (): { get: Function, set: Function } => {
           ? resolvedConfiguration
           : DEFAULT_CONFIGURATION
 
-      return configuration[key]
+      return configuration[key] ?? DEFAULT_CONFIGURATION[key]
     },
     set: (key: string, value: string | boolean): void =>
       LOCAL_CONFIGURATION.set(key, value)
