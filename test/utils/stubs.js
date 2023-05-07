@@ -417,3 +417,5 @@ export const relativeCoreHooksPath = '.git/hooks'
 
 export const hooksPath =
   '/Users/carloscuesta/GitHub/gitmoji-cli/.git/hooks/prepare-commit-msg'
+
+export const searchQuery = 'LoVe'

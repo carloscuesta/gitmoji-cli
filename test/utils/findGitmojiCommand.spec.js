@@ -35,5 +35,15 @@ describe('findGitmojiCommand', () => {
         })
       }
     )
+
+    it('should exclude subcommand from search query', () => {
+      findGitmojiCommand(
+        stubs.cliMock({}, [FLAGS.SEARCH, stubs.searchQuery]),
+        stubs.optionsMock
+      )
+      expect(stubs.optionsMock.search).toHaveBeenCalledWith({
+        query: [stubs.searchQuery]
+      })
+    })
   })
 })
