@@ -147,6 +147,7 @@ If no user configuration is found, a set of default values will be used.
     "autoAdd": false,
     "emojiFormat": "code | emoji",
     "scopePrompt": false,
+    "messagePrompt": false,
     "gitmojisUrl": "https://gitmoji.dev/api/gitmojis"
   }
 }
@@ -159,6 +160,7 @@ If no user configuration is found, a set of default values will be used.
   "autoAdd": false,
   "emojiFormat": "code | emoji" ,
   "scopePrompt": false,
+  "messagePrompt": false,
   "gitmojisUrl": "https://gitmoji.dev/api/gitmojis"
 }
 ```
