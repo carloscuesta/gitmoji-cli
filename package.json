@@ -50,7 +50,7 @@
     "fuse.js": "6.6.2",
     "inquirer": "^9.2.2",
     "inquirer-autocomplete-prompt": "^3.0.0",
-    "meow": "^11.0.0",
+    "meow": "^12.0.1",
     "node-fetch": "^3.3.1",
     "ora": "^6.3.0",
     "path-exists": "^5.0.0",
