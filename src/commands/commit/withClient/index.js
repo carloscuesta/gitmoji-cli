@@ -26,13 +26,19 @@ const withClient = async (answers: Answers): Promise<void> => {
 
     if (isAutoAddEnabled) await execa('git', ['add', '.'])
 
-    const args = ['commit', isAutoAddEnabled ? '-am' : '-m', title]
-    if (answers.message) args.push('-m', answers.message)
-
-    await execa('git', args, {
-      buffer: false,
-      stdio: 'inherit'
-    })
+    await execa(
+      'git',
+      [
+        'commit',
+        isAutoAddEnabled ? '-am' : '-m',
+        title,
+        ...(answers.message ? ['-m', answers.message] : [])
+      ],
+      {
+        buffer: false,
+        stdio: 'inherit'
+      }
+    )
   } catch (error) {
     console.error(
       chalk.red(
