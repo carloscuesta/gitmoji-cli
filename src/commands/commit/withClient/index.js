@@ -28,7 +28,12 @@ const withClient = async (answers: Answers): Promise<void> => {
 
     await execa(
       'git',
-      ['commit', isAutoAddEnabled ? '-am' : '-m', title, '-m', answers.message],
+      [
+        'commit',
+        isAutoAddEnabled ? '-am' : '-m',
+        title,
+        ...(answers.message ? ['-m', answers.message] : [])
+      ],
       {
         buffer: false,
         stdio: 'inherit'
