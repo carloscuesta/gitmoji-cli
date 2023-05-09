@@ -33,6 +33,12 @@ export default (): Array<Object> => [
     default: configurationVault.getMessagePrompt()
   },
   {
+    name: CONFIG.CAPITALIZE_TITLE,
+    message: 'Capitalize title',
+    type: 'confirm',
+    default: configurationVault.getCapitalizeTitle()
+  },
+  {
     name: CONFIG.GITMOJIS_URL,
     message: 'Set gitmojis api url',
     type: 'input',

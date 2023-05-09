@@ -1,4 +1,4 @@
-import { GITMOJIS_URL } from "../../src/utils/configurationVault"
+import { GITMOJIS_URL } from '../../src/utils/configurationVault'
 
 export const gitmojis = [
   {
@@ -23,6 +23,7 @@ export const configAnswers = {
   signedCommit: true,
   scopePrompt: false,
   messagePrompt: true,
+  capitalizeTitle: true,
   gitmojisUrl: GITMOJIS_URL
 }
 

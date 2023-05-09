@@ -10,6 +10,7 @@ const DEFAULT_CONFIGURATION = {
   [CONFIG.EMOJI_FORMAT]: EMOJI_COMMIT_FORMATS.CODE,
   [CONFIG.SCOPE_PROMPT]: false,
   [CONFIG.MESSAGE_PROMPT]: true,
+  [CONFIG.CAPITALIZE_TITLE]: true,
   [CONFIG.GITMOJIS_URL]: 'https://gitmoji.dev/api/gitmojis'
 }
 
@@ -31,6 +32,10 @@ const LOCAL_CONFIGURATION: typeof Conf = new Conf({
     [CONFIG.MESSAGE_PROMPT]: {
       type: 'boolean',
       default: DEFAULT_CONFIGURATION[CONFIG.MESSAGE_PROMPT]
+    },
+    [CONFIG.CAPITALIZE_TITLE]: {
+      type: 'boolean',
+      default: DEFAULT_CONFIGURATION[CONFIG.CAPITALIZE_TITLE]
     },
     [CONFIG.GITMOJIS_URL]: {
       type: 'string',

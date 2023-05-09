@@ -28,6 +28,7 @@ describe('getConfiguration', () => {
             default: false
           },
           [CONFIG.MESSAGE_PROMPT]: { type: 'boolean', default: true },
+          [CONFIG.CAPITALIZE_TITLE]: { type: 'boolean', default: true },
           [CONFIG.GITMOJIS_URL]: {
             type: 'string',
             format: 'url',
@@ -156,6 +157,7 @@ describe('getConfiguration', () => {
         expect(configuration.get('emojiFormat')).toEqual('code')
         expect(configuration.get('scopePrompt')).toEqual(false)
         expect(configuration.get('messagePrompt')).toEqual(true)
+        expect(configuration.get('capitalizeTitle')).toEqual(true)
         expect(configuration.get('gitmojisUrl')).toEqual(
           'https://gitmoji.dev/api/gitmojis'
         )

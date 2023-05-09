@@ -20,6 +20,10 @@ const setMessagePrompt = (messagePrompt: boolean): void => {
   configuration.set(CONFIG.MESSAGE_PROMPT, messagePrompt)
 }
 
+const setCapitalizeTitle = (capitalizeTitle: boolean): void => {
+  configuration.set(CONFIG.CAPITALIZE_TITLE, capitalizeTitle)
+}
+
 const setGitmojisUrl = (gitmojisUrl: string): void => {
   configuration.set(CONFIG.GITMOJIS_URL, gitmojisUrl)
 }
@@ -40,6 +44,10 @@ const getMessagePrompt = (): boolean => {
   return configuration.get(CONFIG.MESSAGE_PROMPT)
 }
 
+const getCapitalizeTitle = (): boolean => {
+  return configuration.get(CONFIG.CAPITALIZE_TITLE)
+}
+
 const getGitmojisUrl = (): string => {
   return configuration.get(CONFIG.GITMOJIS_URL)
 }
@@ -49,10 +57,12 @@ export default {
   getEmojiFormat,
   getScopePrompt,
   getMessagePrompt,
+  getCapitalizeTitle,
   getGitmojisUrl,
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
   setMessagePrompt,
+  setCapitalizeTitle,
   setGitmojisUrl
 }
