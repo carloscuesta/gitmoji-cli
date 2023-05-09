@@ -8,7 +8,9 @@ const withHook = (answers: Answers) => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
-    const commitMessage = `${title}\n\n${answers.message}`
+    const commitMessage = `${title}${
+      answers.message ? `\n\n${answers.message}` : ''
+    }`
 
     fs.writeFileSync(process.argv[3], commitMessage)
   } catch (error) {
