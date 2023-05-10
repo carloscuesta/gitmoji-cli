@@ -1,6 +1,7 @@
 // @flow
 import inquirer from 'inquirer'
 
+import configurationVault from '@utils/configurationVault'
 import getEmojis from '@utils/getEmojis'
 import COMMIT_MODES from '@constants/commit'
 import withHook, {
@@ -28,7 +29,9 @@ const promptAndCommit = (options: CommitOptions): Function =>
       inquirer.prompt(questions).then((answers: Answers) => {
         const transformedAnswers = {
           ...answers,
-          title: capitalizeTitle(answers.title)
+          title: configurationVault.getCapitalizeTitle()
+            ? capitalizeTitle(answers.title)
+            : answers.title
         }
 
         if (options.mode === COMMIT_MODES.HOOK) {

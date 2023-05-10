@@ -1,14 +1,13 @@
 import configurationVault from '@utils/configurationVault'
 import getConfiguration from '@utils/configurationVault/getConfiguration'
-import {
-  CONFIG,
-  EMOJI_COMMIT_FORMATS
-} from '@constants/configuration'
+import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
 
-jest.mock('@utils/configurationVault/getConfiguration', () => jest.fn().mockReturnValue({
-  set: jest.fn(),
-  get: jest.fn()
-}))
+jest.mock('@utils/configurationVault/getConfiguration', () =>
+  jest.fn().mockReturnValue({
+    set: jest.fn(),
+    get: jest.fn()
+  })
+)
 
 describe('index > vault', () => {
   describe('setter and getters', () => {
@@ -16,13 +15,8 @@ describe('index > vault', () => {
       configurationVault.setAutoAdd(true)
       configurationVault.getAutoAdd()
 
-      expect(getConfiguration().set).toHaveBeenCalledWith(
-        CONFIG.AUTO_ADD,
-        true
-      )
-      expect(getConfiguration().get).toHaveBeenCalledWith(
-        CONFIG.AUTO_ADD,
-      )
+      expect(getConfiguration().set).toHaveBeenCalledWith(CONFIG.AUTO_ADD, true)
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.AUTO_ADD)
     })
 
     it('should set and return value for emojiFormat', () => {
@@ -33,9 +27,7 @@ describe('index > vault', () => {
         CONFIG.EMOJI_FORMAT,
         EMOJI_COMMIT_FORMATS.EMOJI
       )
-      expect(getConfiguration().get).toHaveBeenCalledWith(
-        CONFIG.EMOJI_FORMAT
-      )
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.EMOJI_FORMAT)
     })
 
     it('should set and return value for scopePrompt', () => {
@@ -46,9 +38,7 @@ describe('index > vault', () => {
         CONFIG.SCOPE_PROMPT,
         true
       )
-      expect(getConfiguration().get).toHaveBeenCalledWith(
-        CONFIG.SCOPE_PROMPT
-      )
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.SCOPE_PROMPT)
     })
 
     it('should set and return value for messagePrompt', () => {
@@ -59,13 +49,25 @@ describe('index > vault', () => {
         CONFIG.MESSAGE_PROMPT,
         false
       )
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.MESSAGE_PROMPT)
+    })
+
+    it('should set and return value for capitalizeTitle', () => {
+      configurationVault.setCapitalizeTitle(false)
+      configurationVault.getCapitalizeTitle()
+
+      expect(getConfiguration().set).toHaveBeenCalledWith(
+        CONFIG.CAPITALIZE_TITLE,
+        false
+      )
       expect(getConfiguration().get).toHaveBeenCalledWith(
-        CONFIG.MESSAGE_PROMPT
+        CONFIG.CAPITALIZE_TITLE
       )
     })
 
     it('should set and return value for gitmojisUrl', () => {
-      const testGitmojisUrl = 'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
+      const testGitmojisUrl =
+        'https://raw.githubusercontent.com/carloscuesta/gitmoji/master/src/data/gitmojis.json'
       configurationVault.setGitmojisUrl(testGitmojisUrl)
       configurationVault.getGitmojisUrl()
 
@@ -73,9 +75,7 @@ describe('index > vault', () => {
         CONFIG.GITMOJIS_URL,
         testGitmojisUrl
       )
-      expect(getConfiguration().get).toHaveBeenCalledWith(
-        CONFIG.GITMOJIS_URL
-      )
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.GITMOJIS_URL)
     })
   })
 })

@@ -31,6 +31,9 @@ describe('config command', () => {
     expect(configurationVault.setMessagePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.messagePrompt
     )
+    expect(configurationVault.setCapitalizeTitle).toHaveBeenCalledWith(
+      stubs.configAnswers.capitalizeTitle
+    )
     expect(configurationVault.setGitmojisUrl).toHaveBeenCalledWith(
       stubs.configAnswers.gitmojisUrl
     )
