@@ -1,5 +1,4 @@
 // @flow
-import chalk from 'chalk'
 import fetch from 'node-fetch'
 import ora from 'ora'
 

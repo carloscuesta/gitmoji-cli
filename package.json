@@ -17,7 +17,7 @@
     "clean": "rm -rf lib",
     "coverage": "codecov",
     "flow": "flow",
-    "lint": "prettier --check src/**/*.js",
+    "lint": "eslint ./src && prettier --check src/**/*.js",
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "prepare": "husky install",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
@@ -68,7 +68,11 @@
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
     "codecov": "3.8.3",
+    "eslint": "8.40.0",
+    "eslint-plugin-ft-flow": "2.0.3",
+    "eslint-plugin-immutable": "1.0.0",
     "flow-bin": "^0.205.1",
+    "hermes-eslint": "0.11.1",
     "husky": "8.0.3",
     "jest": "29.5.0",
     "jest-fetch-mock": "3.0.3",
@@ -105,10 +109,37 @@
     "singleQuote": true,
     "trailingComma": "none"
   },
+  "eslintConfig": {
+    "parser": "hermes-eslint",
+    "plugins": [
+      "ft-flow",
+      "immutable"
+    ],
+    "env": {
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "overrides": [],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-var": "error",
+      "no-undef": "error",
+      "no-param-reassign": "error"
+    },
+    "globals": {
+      "jest": true,
+      "$Values": "readonly"
+    }
+  },
   "lint-staged": {
     "src/**/*.js": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "funding": [
