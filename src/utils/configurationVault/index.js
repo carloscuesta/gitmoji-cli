@@ -1,5 +1,5 @@
 // @flow
-import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
+import { CONFIG } from '@constants/configuration'
 import getConfiguration from './getConfiguration'
 
 const configuration = getConfiguration()

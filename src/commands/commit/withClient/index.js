@@ -1,6 +1,5 @@
 // @flow
 import { execa } from 'execa'
-import fs from 'fs'
 import chalk from 'chalk'
 
 import isHookCreated from '@utils/isHookCreated'
