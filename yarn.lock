@@ -3239,10 +3239,10 @@ inquirer-autocomplete-prompt@^3.0.0:
     run-async "^2.4.1"
     rxjs "^7.5.6"
 
-inquirer@^9.2.2:
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-9.2.2.tgz#fe0befdab64801c66c436a1190d3011af2a22341"
-  integrity sha512-VV2ZOZe4ilLlOgEo7drIdzbi+EYJcNty0leF2vJq49zOW8+IoK1miJ+V5FjZY/X21Io29j66T/AiqHvS4tPIrw==
+inquirer@^9.2.3:
+  version "9.2.3"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-9.2.3.tgz#48993a6cf832b581a0df0ba0445c435e3d76a69c"
+  integrity sha512-/Et0+d28D7hnTYaqeCQkp3FYuD/X5cc2qbM6BzFdC5zs30oByoU5W/pmLc493FVVMwYmAILKjPBEmwRKTtknSQ==
   dependencies:
     ansi-escapes "^4.3.2"
     chalk "^5.2.0"
@@ -3253,10 +3253,10 @@ inquirer@^9.2.2:
     lodash "^4.17.21"
     mute-stream "1.0.0"
     ora "^5.4.1"
-    run-async "^2.4.0"
+    run-async "^3.0.0"
     rxjs "^7.8.1"
     string-width "^4.2.3"
-    strip-ansi "^7.0.1"
+    strip-ansi "^6.0.1"
     through "^2.3.6"
     wrap-ansi "^6.0.1"
 
@@ -5061,10 +5061,15 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-run-async@^2.4.0, run-async@^2.4.1:
+run-async@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.4.1.tgz#8440eccf99ea3e70bd409d49aab88e10c189a455"
   integrity sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==
+
+run-async@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/run-async/-/run-async-3.0.0.tgz#42a432f6d76c689522058984384df28be379daad"
+  integrity sha512-540WwVDOMxA6dN6We19EcT9sc3hkXPw5mzRNGM3FkdN/vtE9NFvj5lFAPNwUDmJjXidm3v7TC1cTE7t17Ulm1Q==
 
 run-parallel@^1.1.9:
   version "1.2.0"
