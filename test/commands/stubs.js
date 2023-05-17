@@ -22,6 +22,7 @@ export const configAnswers = {
   emojiFormat: 'emoji',
   signedCommit: true,
   scopePrompt: false,
+  storyIdPrompt: false,
   messagePrompt: true,
   capitalizeTitle: true,
   gitmojisUrl: GITMOJIS_URL

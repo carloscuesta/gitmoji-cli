@@ -41,6 +41,17 @@ describe('index > vault', () => {
       expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.SCOPE_PROMPT)
     })
 
+    it('should set and return value for storyIdPrompt', () => {
+      configurationVault.setStoryIdPrompt(true)
+      configurationVault.getStoryIdPrompt()
+
+      expect(getConfiguration().set).toHaveBeenCalledWith(
+        CONFIG.STORYID_PROMPT,
+        true
+      )
+      expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.STORYID_PROMPT)
+    })
+
     it('should set and return value for messagePrompt', () => {
       configurationVault.setMessagePrompt(false)
       configurationVault.getMessagePrompt()

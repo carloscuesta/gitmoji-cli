@@ -27,6 +27,10 @@ describe('getConfiguration', () => {
             type: 'boolean',
             default: false
           },
+          [CONFIG.STORYID_PROMPT]: {
+            type: 'boolean',
+            default: false
+          },
           [CONFIG.MESSAGE_PROMPT]: { type: 'boolean', default: true },
           [CONFIG.CAPITALIZE_TITLE]: { type: 'boolean', default: true },
           [CONFIG.GITMOJIS_URL]: {
@@ -156,6 +160,7 @@ describe('getConfiguration', () => {
         expect(configuration.get('autoAdd')).toEqual(false)
         expect(configuration.get('emojiFormat')).toEqual('code')
         expect(configuration.get('scopePrompt')).toEqual(false)
+        expect(configuration.get('storyIdPrompt')).toEqual(false)
         expect(configuration.get('messagePrompt')).toEqual(true)
         expect(configuration.get('capitalizeTitle')).toEqual(true)
         expect(configuration.get('gitmojisUrl')).toEqual(

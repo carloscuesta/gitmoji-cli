@@ -28,6 +28,9 @@ describe('config command', () => {
     expect(configurationVault.setScopePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.scopePrompt
     )
+    expect(configurationVault.setStoryIdPrompt).toHaveBeenCalledWith(
+      stubs.configAnswers.storyIdPrompt
+    )
     expect(configurationVault.setMessagePrompt).toHaveBeenCalledWith(
       stubs.configAnswers.messagePrompt
     )

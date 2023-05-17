@@ -18,6 +18,10 @@ describe('index', () => {
       expect(configurationVault.getScopePrompt()).toEqual(false)
     })
 
+    it('should return the default value for storyIdPrompt', () => {
+      expect(configurationVault.getStoryIdPrompt()).toEqual(false)
+    })
+
     it('should return the default value for messagePrompt', () => {
       expect(configurationVault.getMessagePrompt()).toEqual(true)
     })
