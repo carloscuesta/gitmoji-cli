@@ -71,6 +71,7 @@ export default {
   setAutoAdd,
   setEmojiFormat,
   setScopePrompt,
+  setStoryIdPrompt,
   setMessagePrompt,
   setCapitalizeTitle,
   setGitmojisUrl
