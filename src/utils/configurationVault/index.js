@@ -16,6 +16,10 @@ const setScopePrompt = (scopePrompt: boolean): void => {
   configuration.set(CONFIG.SCOPE_PROMPT, scopePrompt)
 }
 
+const setStoryIdPrompt = (storyIdPrompt: boolean): void => {
+  configuration.set(CONFIG.STORYID_PROMPT, storyIdPrompt)
+}
+
 const setMessagePrompt = (messagePrompt: boolean): void => {
   configuration.set(CONFIG.MESSAGE_PROMPT, messagePrompt)
 }
@@ -40,6 +44,10 @@ const getScopePrompt = (): boolean => {
   return configuration.get(CONFIG.SCOPE_PROMPT)
 }
 
+const getStoryIdPrompt = (): boolean => {
+  return configuration.get(CONFIG.STORYID_PROMPT)
+}
+
 const getMessagePrompt = (): boolean => {
   return configuration.get(CONFIG.MESSAGE_PROMPT)
 }
@@ -56,6 +64,7 @@ export default {
   getAutoAdd,
   getEmojiFormat,
   getScopePrompt,
+  getStoryIdPrompt,
   getMessagePrompt,
   getCapitalizeTitle,
   getGitmojisUrl,

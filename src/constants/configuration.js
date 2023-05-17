@@ -3,6 +3,7 @@ export const CONFIG = {
   EMOJI_FORMAT: 'emojiFormat',
   SCOPE_PROMPT: 'scopePrompt',
   GITMOJIS_URL: 'gitmojisUrl',
+  STORYID_PROMPT: 'storyIdPrompt',
   MESSAGE_PROMPT: 'messagePrompt',
   CAPITALIZE_TITLE: 'capitalizeTitle'
 }

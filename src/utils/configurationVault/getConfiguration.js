@@ -9,6 +9,7 @@ const DEFAULT_CONFIGURATION = {
   [CONFIG.AUTO_ADD]: false,
   [CONFIG.EMOJI_FORMAT]: EMOJI_COMMIT_FORMATS.CODE,
   [CONFIG.SCOPE_PROMPT]: false,
+  [CONFIG.STORYID_PROMPT]: false,
   [CONFIG.MESSAGE_PROMPT]: true,
   [CONFIG.CAPITALIZE_TITLE]: true,
   [CONFIG.GITMOJIS_URL]: 'https://gitmoji.dev/api/gitmojis'
@@ -28,6 +29,10 @@ const LOCAL_CONFIGURATION: typeof Conf = new Conf({
     [CONFIG.SCOPE_PROMPT]: {
       type: 'boolean',
       default: DEFAULT_CONFIGURATION[CONFIG.SCOPE_PROMPT]
+    },
+    [CONFIG.STORYID_PROMPT]: {
+      type: 'boolean',
+      default: DEFAULT_CONFIGURATION[CONFIG.STORYID_PROMPT]
     },
     [CONFIG.MESSAGE_PROMPT]: {
       type: 'boolean',

@@ -27,6 +27,18 @@ export default (): Array<Object> => [
     default: configurationVault.getScopePrompt()
   },
   {
+    name: CONFIG.STORYID_PROMPT,
+    message: 'Enable story id prompt',
+    type: 'confirm',
+    default: configurationVault.getStoryIdPrompt()
+  },
+  {
+    name: CONFIG.STORYID_PROMPT,
+    message: 'Enable story_id prompt',
+    type: 'confirm',
+    default: configurationVault.getStoryIdPrompt()
+  },
+  {
     name: CONFIG.MESSAGE_PROMPT,
     message: 'Enable message prompt',
     type: 'confirm',

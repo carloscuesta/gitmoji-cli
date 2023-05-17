@@ -68,6 +68,15 @@ export default (
       },
       ...(title ? { default: title } : {})
     },
+    ...(configurationVault.getStoryIdPrompt()
+      ? [
+          {
+            name: 'storyId',
+            message: 'Enter the story id:',
+            ...(message ? { default: message } : {})
+          }
+        ]
+      : [])
     ...(configurationVault.getMessagePrompt()
       ? [
           {
