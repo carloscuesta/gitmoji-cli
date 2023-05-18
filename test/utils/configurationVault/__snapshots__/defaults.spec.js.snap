@@ -8,11 +8,13 @@ exports[`index should match the module 1`] = `
   "getGitmojisUrl": [Function],
   "getMessagePrompt": [Function],
   "getScopePrompt": [Function],
+  "getStoryIdPrompt": [Function],
   "setAutoAdd": [Function],
   "setCapitalizeTitle": [Function],
   "setEmojiFormat": [Function],
   "setGitmojisUrl": [Function],
   "setMessagePrompt": [Function],
   "setScopePrompt": [Function],
+  "setStoryIdPrompt": [Function],
 }
 `;
