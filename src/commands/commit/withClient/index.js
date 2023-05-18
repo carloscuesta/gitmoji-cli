@@ -10,8 +10,8 @@ const withClient = async (answers: Answers): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const storyId = answers.storyId ? `(${answers.storyId}): ` : ''
-    const title = `${answers.gitmoji} ${scope}${answers.title}`
-    const isAutoAddEnabled = configurationVault.getAutoAdd()
+    const title = `${answers.gitmoji} ${scope}${answers.title}${storyId}`
+    const isAuyoAddEnabled = configurationVault.getAutoAdd()
 
     if (await isHookCreated()) {
       return console.log(
