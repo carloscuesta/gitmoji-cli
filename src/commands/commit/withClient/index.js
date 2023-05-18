@@ -9,8 +9,7 @@ import { type Answers } from '../prompts'
 const withClient = async (answers: Answers): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
-    const storyId = answers.storyId ? `(${answers.storyId}): ` : ''
-    const title = `${answers.gitmoji} ${scope}${answers.title}${storyId}`
+    const title = `${answers.gitmoji} ${scope}${answers.title}`
     const isAutoAddEnabled = configurationVault.getAutoAdd()
 
     if (await isHookCreated()) {
