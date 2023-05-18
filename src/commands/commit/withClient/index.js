@@ -9,6 +9,7 @@ import { type Answers } from '../prompts'
 const withClient = async (answers: Answers): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
+    const storyId = answers.storyId ? `(${answers.storyId}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const isAutoAddEnabled = configurationVault.getAutoAdd()
 
@@ -31,7 +32,8 @@ const withClient = async (answers: Answers): Promise<void> => {
         'commit',
         isAutoAddEnabled ? '-am' : '-m',
         title,
-        ...(answers.message ? ['-m', answers.message] : [])
+        ...(answers.message ? ['-m', answers.message] : []),
+        ...(answers.storyId ? ['-m', '[' + answers.storyId + ']'] : [])
       ],
       {
         buffer: false,

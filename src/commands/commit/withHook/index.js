@@ -7,10 +7,11 @@ import { type Answers } from '../prompts'
 const withHook = (answers: Answers) => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
+    const storyId = answers.storyId ? `(${answers.storyId}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const commitMessage = `${title}${
       answers.message ? `\n\n${answers.message}` : ''
-    }`
+    }${storyId}`
 
     fs.writeFileSync(process.argv[3], commitMessage)
   } catch (error) {

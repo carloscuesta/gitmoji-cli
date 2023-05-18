@@ -16,6 +16,7 @@ export type CommitOptions = {
   message?: string,
   mode: typeof COMMIT_MODES.CLIENT | typeof COMMIT_MODES.HOOK,
   scope?: string,
+  storyId?: string,
   title?: string
 }
 
