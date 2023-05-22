@@ -3233,10 +3233,10 @@ inquirer-autocomplete-prompt@^3.0.0:
     run-async "^2.4.1"
     rxjs "^7.5.6"
 
-inquirer@^9.2.3:
-  version "9.2.3"
-  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-9.2.3.tgz#48993a6cf832b581a0df0ba0445c435e3d76a69c"
-  integrity sha512-/Et0+d28D7hnTYaqeCQkp3FYuD/X5cc2qbM6BzFdC5zs30oByoU5W/pmLc493FVVMwYmAILKjPBEmwRKTtknSQ==
+inquirer@^9.2.6:
+  version "9.2.6"
+  resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-9.2.6.tgz#802a61ee3eefbf1cb82a7fb6c2ae95a106050e01"
+  integrity sha512-y71l237eJJKS4rl7sQcEUiMhrR0pB/ZnRMMTxLpjJhWL4hdWCT03a6jJnC1w6qIPSRZWEozuieGt3v7XaEJYFw==
   dependencies:
     ansi-escapes "^4.3.2"
     chalk "^5.2.0"
