@@ -2,7 +2,9 @@
 import { execa } from 'execa'
 import fs from 'fs'
 
+import getDefaultCommitContent from '@utils/getDefaultCommitContent'
 import { type Answers } from '../prompts'
+import { type CommitOptions } from '../index'
 
 const withHook = (answers: Answers) => {
   try {
@@ -66,5 +68,18 @@ export const cancelIfAmending = (): Promise<void> =>
 // I avoid Promise.all to avoid race condition in future cancel callbacks
 export const cancelIfNeeded = (): Promise<void> =>
   cancelIfAmending().then(cancelIfRebasing)
+
+export const skipIfGitmojiIsPresent = (options: CommitOptions) => {
+  const { title } = getDefaultCommitContent(options)
+  const UNICODE_EMOJI_REGEX =
+    /[\p{Extended_Pictographic}\u{1F3FB}-\u{1F3FF}\u{1F9B0}-\u{1F9B3}]/u
+  const SHORTCODE_EMOJI_REGEX = /:[a-z_]+:/
+
+  if (!title) return
+
+  if (UNICODE_EMOJI_REGEX.test(title) || SHORTCODE_EMOJI_REGEX.test(title)) {
+    process.exit(0)
+  }
+}
 
 export default withHook

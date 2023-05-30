@@ -6,7 +6,8 @@ import getEmojis from '@utils/getEmojis'
 import COMMIT_MODES from '@constants/commit'
 import withHook, {
   registerHookInterruptionHandler,
-  cancelIfNeeded
+  cancelIfNeeded,
+  skipIfGitmojiIsPresent
 } from './withHook'
 import withClient from './withClient'
 import prompts from './prompts'
@@ -44,6 +45,7 @@ const promptAndCommit = (options: CommitOptions): Function =>
 
 const commit = (options: CommitOptions): Function => {
   if (options.mode === COMMIT_MODES.HOOK) {
+    skipIfGitmojiIsPresent(options)
     registerHookInterruptionHandler()
     return cancelIfNeeded().then(() => promptAndCommit(options))
   }
