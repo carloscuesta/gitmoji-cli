@@ -63,4 +63,14 @@ export const defaultCommitContent = {
   message: 'commit message'
 }
 
+export const gitmojiShortcodeCommitContent = {
+  title: ':zap: commit title',
+  message: 'commit message'
+}
+
+export const gitmojiUnicodeCommitContent = {
+  title: '🔥 commit title',
+  message: 'commit message'
+}
+
 export const url = 'https://carloscuesta.me'

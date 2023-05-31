@@ -14,7 +14,7 @@ import prompts from '@commands/commit/prompts'
 import * as stubs from './stubs'
 import { COMMIT_MESSAGE_SOURCE } from '@commands/commit/withHook/index'
 
-jest.mock('@utils/getDefaultCommitContent')
+jest.mock('@utils/getDefaultCommitContent', () => jest.fn().mockReturnValue({}))
 jest.mock('@utils/getEmojis')
 jest.mock('@utils/isHookCreated')
 jest.mock('@utils/configurationVault')
@@ -317,6 +317,46 @@ describe('commit command', () => {
         }
 
         expect(process.exit).toHaveBeenCalledWith(0)
+      })
+    })
+
+    describe('when gitmoji is present in the title', () => {
+      beforeAll(() => {
+        mockProcessExit(new Error('ProcessExit0'))
+        execa.mockReturnValueOnce(Promise.resolve(stubs.gitAbsoluteDir))
+        getEmojis.mockResolvedValue(stubs.gitmojis)
+      })
+
+      describe('as a shortcode', () => {
+        beforeAll(() => {
+          getDefaultCommitContent.mockReturnValueOnce(
+            stubs.gitmojiShortcodeCommitContent
+          )
+        })
+
+        it('should cancel the hook', async () => {
+          try {
+            await commit({ mode: 'hook' })
+          } catch (e) {
+            expect(process.exit).toHaveBeenCalledWith(0)
+          }
+        })
+      })
+
+      describe('as a unicode', () => {
+        beforeAll(() => {
+          getDefaultCommitContent.mockReturnValueOnce(
+            stubs.gitmojiUnicodeCommitContent
+          )
+        })
+
+        it('should cancel the hook', async () => {
+          try {
+            await commit({ mode: 'hook' })
+          } catch (e) {
+            expect(process.exit).toHaveBeenCalledWith(0)
+          }
+        })
       })
     })
   })
