@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --extensions \".js,.ts\"",
     "clean": "rm -rf lib",
     "coverage": "codecov",
     "flow": "flow",

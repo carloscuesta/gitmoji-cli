@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "@babel/preset-flow"
-  ],
+  "presets": ["@babel/preset-flow"],
   "plugins": [
     [
       "module-resolver",
@@ -18,13 +16,14 @@
   ],
   "env": {
     "test": {
-      "presets": [
-        "@babel/preset-env",
-        "@babel/preset-flow"
-      ],
-      "plugins": [
-        "babel-plugin-transform-import-meta"
-      ]
+      "presets": ["@babel/preset-env", "@babel/preset-flow"],
+      "plugins": ["babel-plugin-transform-import-meta"]
     }
-  }
+  },
+  "overrides": [
+    {
+      "test": ["./src/**/*.ts"],
+      "presets": ["@babel/preset-typescript"]
+    }
+  ]
 }
