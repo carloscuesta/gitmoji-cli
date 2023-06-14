@@ -1,6 +1,5 @@
 import updateNotifier from 'update-notifier'
 import meow from 'meow'
-import { describe, expect, it, jest } from '@jest/globals'
 
 import pkg from '../package.json'
 import { options } from '../src/cli'
@@ -25,8 +24,8 @@ describe('cli', () => {
   })
 
   it('should call commit command on commit', () => {
-    options.commit('client')
-    expect(commands.commit).toHaveBeenCalledWith('client')
+    options.commit({ mode: 'client' })
+    expect(commands.commit).toHaveBeenCalledWith({ mode: 'client' })
   })
 
   it('should call config command on config', () => {
@@ -35,8 +34,8 @@ describe('cli', () => {
   })
 
   it('should call commit command on hook', () => {
-    options.hook('hook')
-    expect(commands.commit).toHaveBeenLastCalledWith('hook')
+    options.hook({ mode: 'hook' })
+    expect(commands.commit).toHaveBeenLastCalledWith({ mode: 'hook' })
   })
 
   it('should call createHook command on init', () => {
