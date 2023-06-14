@@ -67,6 +67,8 @@
     "@babel/preset-typescript": "^7.22.5",
     "@jest/globals": "^29.5.0",
     "@types/update-notifier": "^6.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
@@ -117,16 +119,34 @@
     "parser": "hermes-eslint",
     "plugins": [
       "ft-flow",
-      "immutable"
+      "immutable",
+      "@typescript-eslint"
     ],
     "env": {
       "es2021": true,
       "node": true
     },
     "extends": [
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
-    "overrides": [],
+    "overrides": [
+      {
+        "files": [
+          "./**/*.spec.js",
+          "./**/*.spec.ts"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
+      {
+        "files": [
+          "./**/*.ts"
+        ],
+        "parser": "@typescript-eslint/parser"
+      }
+    ],
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module"
@@ -137,7 +157,6 @@
       "no-param-reassign": "error"
     },
     "globals": {
-      "jest": true,
       "$Values": "readonly"
     }
   },
