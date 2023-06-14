@@ -1,5 +1,6 @@
 import updateNotifier from 'update-notifier'
 import meow from 'meow'
+import { describe, expect, it, jest } from '@jest/globals'
 
 import pkg from '../package.json'
 import { options } from '../src/cli'
@@ -16,9 +17,11 @@ describe('cli', () => {
   })
 
   it('should match meow with cli information', () => {
-    meow.mock.calls[0][1].importMeta = 'import.meta.url'
+    (
+      (meow as jest.Mock).mock.calls[0][1] as { importMeta: string }
+    ).importMeta = 'import.meta.url'
 
-    expect(meow.mock.calls).toMatchSnapshot()
+    expect((meow as jest.Mock).mock.calls).toMatchSnapshot()
   })
 
   it('should call commit command on commit', () => {
