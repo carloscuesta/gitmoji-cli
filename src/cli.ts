@@ -43,7 +43,7 @@ const cli = meow(
     $ gitmoji bug linter -s
 `,
   {
-    importMeta: { url: import.meta.url },
+    importMeta: { url: import.meta.url } as ImportMeta,
     flags: {
       [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
       [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },
