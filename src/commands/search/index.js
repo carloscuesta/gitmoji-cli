@@ -3,7 +3,7 @@ import filterGitmojis from '@utils/filterGitmojis'
 import getEmojis from '@utils/getEmojis'
 import printEmojis from '@utils/printEmojis'
 
-type SearchOptions = {
+export type SearchOptions = {
   query?: string[]
 }
 

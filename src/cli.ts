@@ -1,18 +1,21 @@
 #!/usr/bin/env node
-// @flow
 import meow from 'meow'
 import updateNotifier from 'update-notifier'
 import { readFileSync } from 'fs'
 
 import FLAGS from '@constants/flags'
 import findGitmojiCommand from '@utils/findGitmojiCommand'
-import commands from './commands'
+import commands from '@commands/index'
+import type { CommitOptions } from '@commands/commit'
+import type { SearchOptions } from '@commands/search'
 
-const packageJson: Object = readFileSync(
+const packageJson = readFileSync(
   new URL('../package.json', import.meta.url)
-)
+).toString()
 
-updateNotifier({ pkg: JSON.parse(packageJson) }).notify({ isGlobal: true })
+updateNotifier({ pkg: JSON.parse(packageJson) }).notify({
+  isGlobal: true
+})
 
 const cli = meow(
   `
@@ -40,7 +43,7 @@ const cli = meow(
     $ gitmoji bug linter -s
 `,
   {
-    importMeta: { url: import.meta.url },
+    importMeta: { url: import.meta.url } as ImportMeta,
     flags: {
       [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
       [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },
@@ -55,15 +58,15 @@ const cli = meow(
   }
 )
 
-export const options = ({
-  [FLAGS.COMMIT]: (options: Object) => commands.commit(options),
+export const options = {
+  [FLAGS.COMMIT]: (options: CommitOptions) => commands.commit(options),
   [FLAGS.CONFIG]: () => commands.config(),
-  [FLAGS.HOOK]: (options: Object) => commands.commit(options),
+  [FLAGS.HOOK]: (options: CommitOptions) => commands.commit(options),
   [FLAGS.INIT]: () => commands.createHook(),
   [FLAGS.LIST]: () => commands.list(),
   [FLAGS.REMOVE]: () => commands.removeHook(),
-  [FLAGS.SEARCH]: (options: Object) => commands.search(options),
+  [FLAGS.SEARCH]: (options: SearchOptions) => commands.search(options),
   [FLAGS.UPDATE]: () => commands.update()
-}: { [$Values<typeof FLAGS>]: Function })
+}
 
 findGitmojiCommand(cli, options)

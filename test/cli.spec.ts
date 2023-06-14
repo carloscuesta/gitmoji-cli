@@ -16,14 +16,16 @@ describe('cli', () => {
   })
 
   it('should match meow with cli information', () => {
-    meow.mock.calls[0][1].importMeta = 'import.meta.url'
+    (
+      (meow as jest.Mock).mock.calls[0][1] as { importMeta: string }
+    ).importMeta = 'import.meta.url'
 
-    expect(meow.mock.calls).toMatchSnapshot()
+    expect((meow as jest.Mock).mock.calls).toMatchSnapshot()
   })
 
   it('should call commit command on commit', () => {
-    options.commit('client')
-    expect(commands.commit).toHaveBeenCalledWith('client')
+    options.commit({ mode: 'client' })
+    expect(commands.commit).toHaveBeenCalledWith({ mode: 'client' })
   })
 
   it('should call config command on config', () => {
@@ -32,8 +34,8 @@ describe('cli', () => {
   })
 
   it('should call commit command on hook', () => {
-    options.hook('hook')
-    expect(commands.commit).toHaveBeenLastCalledWith('hook')
+    options.hook({ mode: 'hook' })
+    expect(commands.commit).toHaveBeenLastCalledWith({ mode: 'hook' })
   })
 
   it('should call createHook command on init', () => {

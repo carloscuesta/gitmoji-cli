@@ -13,7 +13,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --extensions \".js,.ts\"",
     "clean": "rm -rf lib",
     "coverage": "codecov",
     "flow": "flow",
@@ -64,6 +64,11 @@
     "@babel/plugin-syntax-import-assertions": "^7.18.6",
     "@babel/preset-env": "7.22.5",
     "@babel/preset-flow": "7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/jest": "^29.5.2",
+    "@types/update-notifier": "^6.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
@@ -80,7 +85,8 @@
     "lint-staged": "13.2.2",
     "pkg": "5.8.1",
     "prettier": "2.8.8",
-    "turbo": "^1.10.3"
+    "turbo": "^1.10.3",
+    "typescript": "^5.1.3"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
@@ -113,16 +119,34 @@
     "parser": "hermes-eslint",
     "plugins": [
       "ft-flow",
-      "immutable"
+      "immutable",
+      "@typescript-eslint"
     ],
     "env": {
       "es2021": true,
       "node": true
     },
     "extends": [
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
-    "overrides": [],
+    "overrides": [
+      {
+        "files": [
+          "./**/*.spec.js",
+          "./**/*.spec.ts"
+        ],
+        "env": {
+          "jest": true
+        }
+      },
+      {
+        "files": [
+          "./**/*.ts"
+        ],
+        "parser": "@typescript-eslint/parser"
+      }
+    ],
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module"
@@ -133,7 +157,6 @@
       "no-param-reassign": "error"
     },
     "globals": {
-      "jest": true,
       "$Values": "readonly"
     }
   },
