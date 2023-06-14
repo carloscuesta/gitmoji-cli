@@ -65,6 +65,7 @@
     "@babel/preset-env": "7.22.5",
     "@babel/preset-flow": "7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@jest/globals": "^29.5.0",
     "@types/update-notifier": "^6.0.4",
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.0",
