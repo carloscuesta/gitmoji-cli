@@ -5,7 +5,6 @@ import { readFileSync } from 'fs'
 
 import FLAGS from '@constants/flags'
 import findGitmojiCommand from '@utils/findGitmojiCommand'
-import commands from '@commands/index'
 import type { CommitOptions } from '@commands/commit'
 import type { SearchOptions } from '@commands/search'
 
@@ -59,14 +58,20 @@ const cli = meow(
 )
 
 export const options = {
-  [FLAGS.COMMIT]: (options: CommitOptions) => commands.commit(options),
-  [FLAGS.CONFIG]: () => commands.config(),
-  [FLAGS.HOOK]: (options: CommitOptions) => commands.commit(options),
-  [FLAGS.INIT]: () => commands.createHook(),
-  [FLAGS.LIST]: () => commands.list(),
-  [FLAGS.REMOVE]: () => commands.removeHook(),
-  [FLAGS.SEARCH]: (options: SearchOptions) => commands.search(options),
-  [FLAGS.UPDATE]: () => commands.update()
+  [FLAGS.COMMIT]: async (options: CommitOptions) =>
+    await (await import('@commands/commit')).default(options),
+  [FLAGS.CONFIG]: async () =>
+    await (await import('@commands/config')).default(),
+  [FLAGS.HOOK]: async (options: CommitOptions) =>
+    await (await import('@commands/commit')).default(options),
+  [FLAGS.INIT]: async () =>
+    await (await import('@commands/hook')).default.create(),
+  [FLAGS.LIST]: async () => await (await import('@commands/list')).default(),
+  [FLAGS.REMOVE]: async () =>
+    await (await import('@commands/hook')).default.remove(),
+  [FLAGS.SEARCH]: async (options: SearchOptions) =>
+    await (await import('@commands/search')).default(options),
+  [FLAGS.UPDATE]: async () => await (await import('@commands/update')).default()
 }
 
 findGitmojiCommand(cli, options)
