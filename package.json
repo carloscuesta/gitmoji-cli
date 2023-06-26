@@ -85,7 +85,7 @@
     "lint-staged": "13.2.2",
     "pkg": "5.8.1",
     "prettier": "2.8.8",
-    "turbo": "^1.10.3",
+    "turbo": "^1.10.6",
     "typescript": "^5.1.3"
   },
   "jest": {
