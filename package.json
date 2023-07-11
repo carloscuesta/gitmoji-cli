@@ -68,7 +68,7 @@
     "@types/jest": "^29.5.2",
     "@types/update-notifier": "^6.0.4",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.60.1",
+    "@typescript-eslint/parser": "^5.62.0",
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.0",
     "babel-plugin-transform-import-meta": "^2.2.0",
