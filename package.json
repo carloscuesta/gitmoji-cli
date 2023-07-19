@@ -59,7 +59,7 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.22.6",
+    "@babel/cli": "7.22.9",
     "@babel/core": "7.22.9",
     "@babel/plugin-syntax-import-assertions": "^7.18.6",
     "@babel/preset-env": "7.22.9",
