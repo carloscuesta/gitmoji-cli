@@ -54,7 +54,7 @@
     "node-fetch": "^3.3.1",
     "ora": "^6.3.1",
     "path-exists": "^5.0.0",
-    "proxy-agent": "5.0.0",
+    "proxy-agent": "6.3.0",
     "update-notifier": "^6.0.2",
     "validator": "^13.9.0"
   },
