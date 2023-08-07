@@ -56,7 +56,7 @@
     "path-exists": "^5.0.0",
     "proxy-agent": "5.0.0",
     "update-notifier": "^6.0.2",
-    "validator": "^13.9.0"
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@babel/cli": "7.22.6",
