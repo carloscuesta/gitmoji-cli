@@ -48,7 +48,7 @@
     "conf": "11.0.2",
     "execa": "^7.2.0",
     "fuse.js": "6.6.2",
-    "inquirer": "^9.2.9",
+    "inquirer": "^9.2.10",
     "inquirer-autocomplete-prompt": "^3.0.0",
     "meow": "^11.0.0",
     "node-fetch": "^3.3.2",
