@@ -1619,10 +1619,10 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
-"@types/update-notifier@^6.0.4":
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/@types/update-notifier/-/update-notifier-6.0.4.tgz#fb8c6d739ea16066077fe27bb48af000d23097c2"
-  integrity sha512-CiKJPSmt/3F4sVnkQTjnP/onKtTJxRkib6Gvw4XESM8FNsHlvRnBNqU5qL0IQmqjtKnz5e9E6Y7xChOpvxFzKg==
+"@types/update-notifier@^6.0.5":
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/@types/update-notifier/-/update-notifier-6.0.5.tgz#3988576f106b105062ce0588b763534f5ef23dee"
+  integrity sha512-uUOhxsJ3edPHu06r3k4I2yJ4eoyqBt+53ra9+caXEx0ruoPwqNHTlkq75CUvI4yWsrCA5+31tih+opunLCYnXw==
   dependencies:
     "@types/configstore" "*"
     boxen "^7.0.0"
