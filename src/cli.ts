@@ -44,15 +44,15 @@ const cli = meow(
   {
     importMeta: { url: import.meta.url } as ImportMeta,
     flags: {
-      [FLAGS.COMMIT]: { type: 'boolean', alias: 'c' },
-      [FLAGS.CONFIG]: { type: 'boolean', alias: 'g' },
-      [FLAGS.HELP]: { type: 'boolean', alias: 'h' },
-      [FLAGS.INIT]: { type: 'boolean', alias: 'i' },
-      [FLAGS.LIST]: { type: 'boolean', alias: 'l' },
-      [FLAGS.REMOVE]: { type: 'boolean', alias: 'r' },
-      [FLAGS.SEARCH]: { type: 'boolean', alias: 's' },
-      [FLAGS.UPDATE]: { type: 'boolean', alias: 'u' },
-      [FLAGS.VERSION]: { type: 'boolean', alias: 'v' }
+      [FLAGS.COMMIT]: { type: 'boolean', shortFlag: 'c' },
+      [FLAGS.CONFIG]: { type: 'boolean', shortFlag: 'g' },
+      [FLAGS.HELP]: { type: 'boolean', shortFlag: 'h' },
+      [FLAGS.INIT]: { type: 'boolean', shortFlag: 'i' },
+      [FLAGS.LIST]: { type: 'boolean', shortFlag: 'l' },
+      [FLAGS.REMOVE]: { type: 'boolean', shortFlag: 'r' },
+      [FLAGS.SEARCH]: { type: 'boolean', shortFlag: 's' },
+      [FLAGS.UPDATE]: { type: 'boolean', shortFlag: 'u' },
+      [FLAGS.VERSION]: { type: 'boolean', shortFlag: 'v' }
     }
   }
 )
