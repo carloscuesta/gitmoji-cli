@@ -76,7 +76,7 @@
     "eslint": "8.50.0",
     "eslint-plugin-ft-flow": "3.0.0",
     "eslint-plugin-immutable": "1.0.0",
-    "flow-bin": "^0.214.0",
+    "flow-bin": "^0.220.0",
     "hermes-eslint": "0.15.1",
     "husky": "8.0.3",
     "jest": "29.7.0",
