@@ -1626,13 +1626,13 @@
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.1.tgz#20f18294f797f2209b5f65c8e3b5c8e8261d127c"
   integrity sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==
 
-"@types/update-notifier@^6.0.5":
-  version "6.0.5"
-  resolved "https://registry.yarnpkg.com/@types/update-notifier/-/update-notifier-6.0.5.tgz#3988576f106b105062ce0588b763534f5ef23dee"
-  integrity sha512-uUOhxsJ3edPHu06r3k4I2yJ4eoyqBt+53ra9+caXEx0ruoPwqNHTlkq75CUvI4yWsrCA5+31tih+opunLCYnXw==
+"@types/update-notifier@^6.0.8":
+  version "6.0.8"
+  resolved "https://registry.yarnpkg.com/@types/update-notifier/-/update-notifier-6.0.8.tgz#b145580a5cf218e862ad384bede152118eba0bb0"
+  integrity sha512-IlDFnfSVfYQD+cKIg63DEXn3RFmd7W1iYtKQsJodcHK9R1yr8aKbKaPKfBxzPpcHCq2DU8zUq4PIPmy19Thjfg==
   dependencies:
     "@types/configstore" "*"
-    boxen "^7.0.0"
+    boxen "^7.1.1"
 
 "@types/yargs-parser@*":
   version "21.0.0"
@@ -2049,7 +2049,7 @@ bl@^5.0.0:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
-boxen@^7.0.0, boxen@^7.1.1:
+boxen@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-7.1.1.tgz#f9ba525413c2fec9cdb88987d835c4f7cad9c8f4"
   integrity sha512-2hCgjEmP8YLWQ130n2FerGv7rYpfBmnmp9Uy2Le1vge6X3gZIfSmEzP5QTDElFxcvVcXlEn8Aq6MU/PZygIOog==
