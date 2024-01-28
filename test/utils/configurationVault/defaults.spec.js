@@ -11,7 +11,7 @@ describe('index', () => {
     })
 
     it('should return the default value for emojiFormat', () => {
-      expect(configurationVault.getEmojiFormat()).toEqual('code')
+      expect(configurationVault.getEmojiFormat()).toEqual('emoji')
     })
 
     it('should return the default value for scopePrompt', () => {

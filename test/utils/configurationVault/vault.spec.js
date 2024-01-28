@@ -20,12 +20,12 @@ describe('index > vault', () => {
     })
 
     it('should set and return value for emojiFormat', () => {
-      configurationVault.setEmojiFormat('emoji')
+      configurationVault.setEmojiFormat('code')
       configurationVault.getEmojiFormat()
 
       expect(getConfiguration().set).toHaveBeenCalledWith(
         CONFIG.EMOJI_FORMAT,
-        EMOJI_COMMIT_FORMATS.EMOJI
+        EMOJI_COMMIT_FORMATS.CODE
       )
       expect(getConfiguration().get).toHaveBeenCalledWith(CONFIG.EMOJI_FORMAT)
     })

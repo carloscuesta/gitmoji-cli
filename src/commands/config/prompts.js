@@ -15,8 +15,8 @@ export default (): Array<Object> => [
     message: 'Select how emojis should be used in commits',
     type: 'list',
     choices: [
-      { name: ':smile:', value: EMOJI_COMMIT_FORMATS.CODE },
-      { name: '😄', value: EMOJI_COMMIT_FORMATS.EMOJI }
+      { name: '😄', value: EMOJI_COMMIT_FORMATS.EMOJI },
+      { name: ':smile:', value: EMOJI_COMMIT_FORMATS.CODE }
     ],
     default: configurationVault.getEmojiFormat()
   },

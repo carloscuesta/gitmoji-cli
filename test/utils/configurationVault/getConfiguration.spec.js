@@ -21,7 +21,7 @@ describe('getConfiguration', () => {
           [CONFIG.AUTO_ADD]: { type: 'boolean', default: false },
           [CONFIG.EMOJI_FORMAT]: {
             enum: Object.values(EMOJI_COMMIT_FORMATS),
-            default: 'code'
+            default: 'emoji'
           },
           [CONFIG.SCOPE_PROMPT]: {
             type: 'boolean',
@@ -154,7 +154,7 @@ describe('getConfiguration', () => {
         const configuration = getConfiguration()
 
         expect(configuration.get('autoAdd')).toEqual(false)
-        expect(configuration.get('emojiFormat')).toEqual('code')
+        expect(configuration.get('emojiFormat')).toEqual('emoji')
         expect(configuration.get('scopePrompt')).toEqual(false)
         expect(configuration.get('messagePrompt')).toEqual(true)
         expect(configuration.get('capitalizeTitle')).toEqual(true)
