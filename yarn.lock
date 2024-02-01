@@ -441,10 +441,10 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.3"
 
-"@babel/plugin-syntax-flow@^7.22.5":
-  version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.22.5.tgz#163b820b9e7696ce134df3ee716d9c0c98035859"
-  integrity sha512-9RdCl0i+q0QExayk2nOS7853w08yLucnnPML6EN9S8fgMPVtdLDCdx/cOQ/i44Lb9UeQX9A35yaqBBOMMZxPxQ==
+"@babel/plugin-syntax-flow@^7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.23.3.tgz#084564e0f3cc21ea6c70c44cff984a1c0509729a"
+  integrity sha512-YZiAIpkJAwQXBJLIQbRFayR5c+gJ35Vcz3bg954k7cd73zqjvhacJuL9RbrzPz8qPmZdgqP6EUKwy0PCNhaaPA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
 
@@ -687,13 +687,13 @@
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/plugin-syntax-export-namespace-from" "^7.8.3"
 
-"@babel/plugin-transform-flow-strip-types@^7.22.5":
-  version "7.22.5"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.22.5.tgz#0bb17110c7bf5b35a60754b2f00c58302381dee2"
-  integrity sha512-tujNbZdxdG0/54g/oua8ISToaXTFBf8EnSb5PgQSciIXWOWKX3S4+JR7ZE9ol8FZwf9kxitzkGQ+QWeov/mCiA==
+"@babel/plugin-transform-flow-strip-types@^7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.23.3.tgz#cfa7ca159cc3306fab526fc67091556b51af26ff"
+  integrity sha512-26/pQTf9nQSNVJCrLB1IkHUKyPxR+lMrH2QDPG89+Znu9rAMbtrybdbWeE9bb7gzjmE5iXHEY+e0HUwM6Co93Q==
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
-    "@babel/plugin-syntax-flow" "^7.22.5"
+    "@babel/plugin-syntax-flow" "^7.23.3"
 
 "@babel/plugin-transform-for-of@^7.23.6":
   version "7.23.6"
@@ -1054,14 +1054,14 @@
     core-js-compat "^3.31.0"
     semver "^6.3.1"
 
-"@babel/preset-flow@7.22.15":
-  version "7.22.15"
-  resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.22.15.tgz#30318deb9b3ebd9f5738e96da03a531e0cd3165d"
-  integrity sha512-dB5aIMqpkgbTfN5vDdTRPzjqtWiZcRESNR88QYnoPR+bmdYoluOzMX9tQerTv0XzSgZYctPfO1oc0N5zdog1ew==
+"@babel/preset-flow@7.23.3":
+  version "7.23.3"
+  resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.23.3.tgz#8084e08b9ccec287bd077ab288b286fab96ffab1"
+  integrity sha512-7yn6hl8RIv+KNk6iIrGZ+D06VhVY35wLVf23Cz/mMu1zOr7u4MMP4j0nZ9tLf8+4ZFpnib8cFYgB/oYg9hfswA==
   dependencies:
     "@babel/helper-plugin-utils" "^7.22.5"
     "@babel/helper-validator-option" "^7.22.15"
-    "@babel/plugin-transform-flow-strip-types" "^7.22.5"
+    "@babel/plugin-transform-flow-strip-types" "^7.23.3"
 
 "@babel/preset-modules@0.1.6-no-external-plugins":
   version "0.1.6-no-external-plugins"
