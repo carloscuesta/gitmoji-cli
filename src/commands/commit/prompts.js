@@ -60,7 +60,9 @@ export default (
       message: 'Enter the commit title',
       validate: guard.title,
       transformer: (input: string) => {
-        return `[${(title || input).length}/${TITLE_MAX_LENGTH_COUNT}]: ${
+        const length = (title || input).length.toString().padStart(2, '0');
+        
+        return `[${length}/${TITLE_MAX_LENGTH_COUNT}]: ${
           configurationVault.getCapitalizeTitle()
             ? capitalizeTitle(input)
             : input
