@@ -2952,10 +2952,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-flow-bin@^0.227.0:
-  version "0.227.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.227.0.tgz#64eba189d2b233d04171828983dd5e6b2abadc3b"
-  integrity sha512-UkIzYbyUDmfztEbvS39ksR+vSu9WwUJQ4D+UvIW0ILrDuhPRN3XjheB1+mv2b/4H011HCM5y9nENXrDEaiIKtg==
+flow-bin@^0.229.2:
+  version "0.229.2"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.229.2.tgz#6ce5575c8d6fe93390430f9e13da4c06a9a250f4"
+  integrity sha512-4hjnaApj/BUhosbStw9Tqk0Muf3WCxAnauPOEHvxIfvHWBHJH3wPCCWryPkLPoifjvvcRYYEKPNWHrYF3PkErA==
 
 form-data-encoder@^2.1.2:
   version "2.1.2"
