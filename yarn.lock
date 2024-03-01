@@ -2638,10 +2638,10 @@ escodegen@^2.1.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-plugin-ft-flow@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ft-flow/-/eslint-plugin-ft-flow-3.0.3.tgz#6d8f41b5f06c00bb1b59b3a09d902799b7ae3ccd"
-  integrity sha512-dym24KLcyCZWMv3bKvDRFJeqs4cijIyp9Ld3Ip8/hM8dQUgEU8SKaVhYllO9EvNqF2eWiK1Bb84ts3mE1lr3ug==
+eslint-plugin-ft-flow@3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ft-flow/-/eslint-plugin-ft-flow-3.0.5.tgz#388dbe89466b862f60940aaef3847531f88c13bf"
+  integrity sha512-owZMmncrI6m4+ypPoGRAFZY3SGcJ+9tFSxeR/aTHTXm14/BWVRqVVeg8fc+k8Ljbfv7dhe+FY4ZVBjgLBV/Ndg==
   dependencies:
     lodash "^4.17.21"
     string-natural-compare "^3.0.1"

@@ -74,7 +74,7 @@
     "babel-plugin-transform-import-meta": "^2.2.1",
     "codecov": "3.8.3",
     "eslint": "8.56.0",
-    "eslint-plugin-ft-flow": "3.0.3",
+    "eslint-plugin-ft-flow": "3.0.5",
     "eslint-plugin-immutable": "1.0.0",
     "flow-bin": "^0.227.0",
     "hermes-eslint": "0.16.0",
