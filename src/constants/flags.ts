@@ -10,6 +10,6 @@ const FLAGS = Object.freeze({
   SEARCH: 'search',
   UPDATE: 'update',
   VERSION: 'version'
-})
+}) as const;
 
-export default FLAGS
+export default FLAGS;
