@@ -30,39 +30,39 @@ exports[`cli should match meow with cli information 1`] = `
     {
       "flags": {
         "commit": {
-          "alias": "c",
+          "shortFlag": "c",
           "type": "boolean",
         },
         "config": {
-          "alias": "g",
+          "shortFlag": "g",
           "type": "boolean",
         },
         "help": {
-          "alias": "h",
+          "shortFlag": "h",
           "type": "boolean",
         },
         "init": {
-          "alias": "i",
+          "shortFlag": "i",
           "type": "boolean",
         },
         "list": {
-          "alias": "l",
+          "shortFlag": "l",
           "type": "boolean",
         },
         "remove": {
-          "alias": "r",
+          "shortFlag": "r",
           "type": "boolean",
         },
         "search": {
-          "alias": "s",
+          "shortFlag": "s",
           "type": "boolean",
         },
         "update": {
-          "alias": "u",
+          "shortFlag": "u",
           "type": "boolean",
         },
         "version": {
-          "alias": "v",
+          "shortFlag": "v",
           "type": "boolean",
         },
       },
