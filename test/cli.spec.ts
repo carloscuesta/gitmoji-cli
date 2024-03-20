@@ -2,8 +2,8 @@ import updateNotifier from 'update-notifier'
 import meow from 'meow'
 
 import pkg from '../package.json'
-import { options } from '../src/cli'
-import commands from '../src/commands'
+import { options } from '../src/cli.js'
+import commands from '../src/commands/index.js'
 
 jest.mock('../src/commands')
 
