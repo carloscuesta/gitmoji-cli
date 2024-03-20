@@ -5,18 +5,9 @@ import chalk from 'chalk'
 import isHookCreated from '@utils/isHookCreated'
 import configurationVault from '@utils/configurationVault'
 import { type Answers } from '../prompts'
-import isGitRepository from '@utils/isGitRepository'
 
 const withClient = async (answers: Answers): Promise<void> => {
   try {
-    if(!isGitRepository()) {
-      return console.log(
-        chalk.red(
-          "\nError: Seems that you're trying to commit outside a git repository \n" +
-          'Please navigate to a git repository to use `gitmoji` \n'
-        )
-      )
-    }
     const scope = answers.scope ? `(${answers.scope}): ` : ''
     const title = `${answers.gitmoji} ${scope}${answers.title}`
     const isAutoAddEnabled = configurationVault.getAutoAdd()
@@ -50,12 +41,10 @@ const withClient = async (answers: Answers): Promise<void> => {
   } catch (error) {
     console.error(
       chalk.red(
-        '\n',
-        'Oops! An error occurred. There is likely additional logging output above.\n',
-        'You can run the same commit with this command:\n'
-      ),
-      '\t',
-      error.escapedCommand
+        error,
+        '\n\n',
+        'Oops! An error occurred. There is likely additional logging output above.\n'
+      )
     )
   }
 }
