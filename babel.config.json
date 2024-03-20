@@ -22,7 +22,7 @@
   },
   "overrides": [
     {
-      "test": ["./src/**/*.ts"],
+      "test": ["**/*.ts"],
       "presets": ["@babel/preset-typescript"]
     }
   ]
