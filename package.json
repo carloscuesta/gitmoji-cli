@@ -18,6 +18,7 @@
     "coverage": "codecov",
     "flow": "flow",
     "lint": "eslint ./src && prettier --check src/**/*.js --parser=flow && prettier --check src/**/*.ts --parser=typescript",
+    "lint-fix": "eslint ./src && prettier --write src/**/*.js --parser=flow && prettier --write src/**/*.ts --parser=typescript",
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "prepare": "husky install",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
