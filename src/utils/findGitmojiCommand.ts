@@ -2,11 +2,11 @@ import { CommitModes } from '@constants/commit'; // Assuming COMMIT_MODES is exp
 import FLAGS from '@constants/flags';
 
 type Options = {
-  [key: string]: any;
+  [key: string]: object;
 }
 
 type Cli = {
-  flags: Record<string, any>;
+  flags: Record<string, object>;
   input: string[];
   showHelp(): void;
 }
