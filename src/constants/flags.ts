@@ -1,4 +1,3 @@
-// @flow
 const FLAGS = Object.freeze({
   COMMIT: 'commit',
   CONFIG: 'config',
