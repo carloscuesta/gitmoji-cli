@@ -1,13 +1,12 @@
-// @flow
 import { CommitModes } from '@constants/commit'; // Assuming COMMIT_MODES is exported as CommitModes
 import FLAGS from '@constants/flags';
 
-interface Options {
+type Options = {
   [key: string]: any;
 }
 
-interface Cli {
-  flags: { [key: string]: any };
+type Cli = {
+  flags: Record<string, any>;
   input: string[];
   showHelp(): void;
 }
@@ -16,9 +15,12 @@ const isSupportedCommand = (command: string | undefined, options: Options): bool
   return command !== undefined && Object.keys(options).includes(command);
 };
 
-type CommandType = 'flag' | 'command';
+enum CommandType {
+  Flag = 'flag',
+  Command = 'command',
+}
 
-interface CommandResult {
+type CommandResult = {
   type: CommandType;
   command: string | null;
 }
@@ -39,7 +41,7 @@ const determineCommand = (flags: Options, input: string[], options: Options): Co
     };
 };
 
-interface CommandOptions {
+type CommandOptions = {
   message?: string;
   mode?: CommitModes;
   scope?: string;
