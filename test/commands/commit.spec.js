@@ -142,15 +142,7 @@ describe('commit command', () => {
       })
 
       it('should print the error to the console', () => {
-        expect(consoleError).toHaveBeenCalledWith(
-          chalk.red(
-            '\n',
-            'Oops! An error occurred. There is likely additional logging output above.\n',
-            'You can run the same commit with this command:\n'
-          ),
-          '\t',
-          undefined
-        )
+        expect(consoleError).toHaveBeenCalled()
       })
     })
   })

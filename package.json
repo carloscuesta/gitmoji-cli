@@ -1,6 +1,6 @@
 {
   "name": "gitmoji-cli",
-  "version": "9.1.0",
+  "version": "9.2.0",
   "type": "module",
   "description": "A gitmoji client for using emojis on commit messages.",
   "engines": {
@@ -17,7 +17,7 @@
     "clean": "rm -rf lib",
     "coverage": "codecov",
     "flow": "flow",
-    "lint": "eslint ./src && prettier --check src/**/*.js",
+    "lint": "eslint ./src && prettier --check src/**/*.js --parser=flow && prettier --check src/**/*.ts --parser=typescript",
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
     "prepare": "husky install",
     "prepublishOnly": "yarn run lint && yarn run flow && yarn run test",
@@ -162,6 +162,9 @@
   },
   "lint-staged": {
     "src/**/*.js": [
+      "prettier --write"
+    ],
+    "src/**/*.ts": [
       "prettier --write"
     ]
   },
