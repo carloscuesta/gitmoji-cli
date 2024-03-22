@@ -18,10 +18,7 @@ const isSupportedCommand = (
   return command !== undefined && Object.keys(options).includes(command)
 }
 
-enum CommandType {
-  Flag = 'flag',
-  Command = 'command'
-}
+type CommandType = 'flag' | 'command'
 
 type CommandResult = {
   type: CommandType
