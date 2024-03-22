@@ -92,13 +92,18 @@
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.js",
+      "src/**/*.ts"
     ],
     "testMatch": [
-      "**/*.(spec).(js)"
+      "**/*.(spec).(js|ts)"
     ],
     "setupFiles": [
       "./test/setupTests.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
     ],
     "transformIgnorePatterns": [],
     "moduleNameMapper": {
@@ -106,7 +111,8 @@
       "^#supports-color$": "<rootDir>/node_modules/chalk/source/vendor/supports-color/index.js",
       "@utils/(.*)$": "<rootDir>/src/utils/$1",
       "@commands/(.*)$": "<rootDir>/src/commands/$1",
-      "@constants/(.*)$": "<rootDir>/src/constants/$1"
+      "@constants/(.*)$": "<rootDir>/src/constants/$1",
+      "^(\\.\\.?\\/.+)\\.js$": "$1"
     }
   },
   "prettier": {
@@ -124,22 +130,14 @@
     ],
     "env": {
       "es2021": true,
-      "node": true
+      "node": true,
+      "jest": true
     },
     "extends": [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended"
     ],
     "overrides": [
-      {
-        "files": [
-          "./**/*.spec.js",
-          "./**/*.spec.ts"
-        ],
-        "env": {
-          "jest": true
-        }
-      },
       {
         "files": [
           "./**/*.ts"
