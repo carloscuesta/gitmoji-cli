@@ -15,6 +15,7 @@ module.name_mapper='^@utils\/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
 module.name_mapper='^@constants\/\(.*\)$' -> '<PROJECT_ROOT>/src/constants/\1'
 module.name_mapper='^@commands\/\(.*\)$' -> '<PROJECT_ROOT>/src/commands/\1'
 exact_by_default=true
+module.file_ext=.ts
 
 [strict]
 

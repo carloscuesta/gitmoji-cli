@@ -3,10 +3,10 @@ import meow from 'meow'
 import updateNotifier from 'update-notifier'
 import { readFileSync } from 'fs'
 
-import FLAGS from '@constants/flags'
-import findGitmojiCommand from '@utils/findGitmojiCommand'
-import type { CommitOptions } from '@commands/commit'
-import type { SearchOptions } from '@commands/search'
+import FLAGS from '@constants/flags.js'
+import findGitmojiCommand from '@utils/findGitmojiCommand.js'
+import type { CommitOptions } from '@commands/commit/index.js'
+import type { SearchOptions } from '@commands/search/index.js'
 
 const packageJson = readFileSync(
   new URL('../package.json', import.meta.url)
@@ -59,19 +59,21 @@ const cli = meow(
 
 export const options = {
   [FLAGS.COMMIT]: async (options: CommitOptions) =>
-    await (await import('@commands/commit')).default(options),
+    await (await import('@commands/commit/index.js')).default(options),
   [FLAGS.CONFIG]: async () =>
-    await (await import('@commands/config')).default(),
+    await (await import('@commands/config/index.js')).default(),
   [FLAGS.HOOK]: async (options: CommitOptions) =>
-    await (await import('@commands/commit')).default(options),
+    await (await import('@commands/commit/index.js')).default(options),
   [FLAGS.INIT]: async () =>
-    await (await import('@commands/hook')).default.create(),
-  [FLAGS.LIST]: async () => await (await import('@commands/list')).default(),
+    await (await import('@commands/hook/index.js')).default.create(),
+  [FLAGS.LIST]: async () =>
+    await (await import('@commands/list/index.js')).default(),
   [FLAGS.REMOVE]: async () =>
-    await (await import('@commands/hook')).default.remove(),
+    await (await import('@commands/hook/index.js')).default.remove(),
   [FLAGS.SEARCH]: async (options: SearchOptions) =>
-    await (await import('@commands/search')).default(options),
-  [FLAGS.UPDATE]: async () => await (await import('@commands/update')).default()
+    await (await import('@commands/search/index.js')).default(options),
+  [FLAGS.UPDATE]: async () =>
+    await (await import('@commands/update/index.js')).default()
 }
 
 findGitmojiCommand(cli, options)
