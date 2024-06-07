@@ -61,7 +61,7 @@
   "devDependencies": {
     "@babel/cli": "7.24.5",
     "@babel/core": "7.24.5",
-    "@babel/plugin-syntax-import-assertions": "^7.23.3",
+    "@babel/plugin-syntax-import-assertions": "^7.24.7",
     "@babel/preset-env": "7.24.5",
     "@babel/preset-flow": "7.24.7",
     "@babel/preset-typescript": "^7.23.3",
