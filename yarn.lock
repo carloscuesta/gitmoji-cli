@@ -3485,7 +3485,7 @@ inquirer-autocomplete-prompt@^3.0.1:
     run-async "^2.4.1"
     rxjs "^7.5.6"
 
-inquirer@^9.2.23:
+inquirer@~9.2.23:
   version "9.2.23"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-9.2.23.tgz#cd2fe34edca12315b624fbc3c8cb99b1c4f61f90"
   integrity sha512-kod5s+FBPIDM2xiy9fu+6wdU/SkK5le5GS9lh4FEBjBHqiMgD9lLFbCbuqFNAjNL2ZOy9Wd9F694IOzN9pZHBA==
