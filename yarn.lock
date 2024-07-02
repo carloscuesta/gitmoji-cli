@@ -15,13 +15,13 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@babel/cli@7.24.5":
-  version "7.24.5"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.24.5.tgz#9eba21699f289c32e63a28aedf82f888dc134b30"
-  integrity sha512-2qg1mYtJRsOOWF6IUwLP5jI42P8Cc0hQ5TmnjLrik/4DKouO8dFJN80HEz81VmVeUs97yuuf3vQ/9j7Elrcjlg==
+"@babel/cli@7.24.7":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.24.7.tgz#eb2868c1fa384b17ea88d60107577d3e6fd05c4e"
+  integrity sha512-8dfPprJgV4O14WTx+AQyEA+opgUKPrsIXX/MdL50J1n06EQJ6m1T+CdsJe0qEC0B/Xl85i+Un5KVAxd/PACX9A==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.25"
-    commander "^4.0.1"
+    commander "^6.2.0"
     convert-source-map "^2.0.0"
     fs-readdir-recursive "^1.1.0"
     glob "^7.2.0"
@@ -2379,10 +2379,10 @@ colorette@^2.0.20:
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.20.tgz#9eb793e6833067f7235902fcd3b09917a000a95a"
   integrity sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==
 
-commander@^4.0.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
-  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
+commander@^6.2.0:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
+  integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
 commander@~12.1.0:
   version "12.1.0"
