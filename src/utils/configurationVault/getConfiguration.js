@@ -26,7 +26,10 @@ const LOCAL_CONFIGURATION: typeof Conf = new Conf({
       default: DEFAULT_CONFIGURATION[CONFIG.EMOJI_FORMAT]
     },
     [CONFIG.SCOPE_PROMPT]: {
-      type: 'boolean',
+      anyOf: [
+        { type: 'boolean' },
+        { type: 'array', items: { type: 'string' } }
+      ],
       default: DEFAULT_CONFIGURATION[CONFIG.SCOPE_PROMPT]
     },
     [CONFIG.MESSAGE_PROMPT]: {

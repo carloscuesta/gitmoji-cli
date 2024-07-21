@@ -35,6 +35,19 @@ export const optionsMock = {
   update: jest.fn()
 }
 
+export const scopes = [
+  "all",
+  "apps",
+  "apps/demo",
+  "apps/web",
+  "toolings",
+  "toolings/typescript",
+  "toolings/elint",
+  "packages",
+  "packages/ui",
+  "packages/shared",
+]
+
 export const gitmojis = [
   {
     emoji: '🎨',
