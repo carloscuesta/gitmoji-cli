@@ -7,6 +7,7 @@ import filterGitmojis from '@utils/filterGitmojis'
 import getDefaultCommitContent from '@utils/getDefaultCommitContent'
 import { type CommitOptions, capitalizeTitle } from '.'
 import guard from './guard'
+import Fuse from 'fuse.js'
 
 const TITLE_MAX_LENGTH_COUNT: number = 48
 
@@ -26,11 +27,58 @@ export type Answers = {
   message: ?string
 }
 
+export const filterScopes = (
+  input?: string,
+  scopes: Array<string>
+): Function | Array<string> => {
+  const fuse = new Fuse(scopes, {
+    includeScore: true
+  })
+
+  return input ? fuse.search(input).map((scope) => scope.item) : scopes
+}
+
 export default (
   gitmojis: Array<Gitmoji>,
   options: CommitOptions
 ): Array<Object> => {
   const { title, message, scope } = getDefaultCommitContent(options)
+
+  const getScopePrompt = (scopes?: boolean | string[]): Array<Object> => {
+    const name = 'scope'
+    const message = 'Enter the scope of current changes:'
+
+    switch (scopes) {
+      case false:
+      case undefined:
+        return []
+      case true:
+        return [
+          {
+            name,
+            message,
+            ...(scope ? { default: scope } : {})
+          }
+        ]
+      default:
+        return [
+          {
+            name,
+            message,
+            ...(scope ? { default: scope } : {}),
+            type: 'autocomplete',
+            source: (answersSoFor: any, input: string) => {
+              return Promise.resolve(
+                filterScopes(input, scopes).map((scopeSearch) => ({
+                  name: scopeSearch,
+                  value: scopeSearch
+                }))
+              )
+            }
+          }
+        ]
+    }
+  }
 
   return [
     {
@@ -46,22 +94,14 @@ export default (
         )
       }
     },
-    ...(configurationVault.getScopePrompt()
-      ? [
-          {
-            name: 'scope',
-            message: 'Enter the scope of current changes:',
-            ...(scope ? { default: scope } : {})
-          }
-        ]
-      : []),
+    ...getScopePrompt(configurationVault.getScopePrompt()),
     {
       name: 'title',
       message: 'Enter the commit title',
       validate: guard.title,
       transformer: (input: string) => {
-        const length = (title || input).length.toString().padStart(2, '0');
-        
+        const length = (title || input).length.toString().padStart(2, '0')
+
         return `[${length}/${TITLE_MAX_LENGTH_COUNT}]: ${
           configurationVault.getCapitalizeTitle()
             ? capitalizeTitle(input)
