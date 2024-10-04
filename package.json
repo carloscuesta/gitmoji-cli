@@ -16,7 +16,6 @@
   "scripts": {
     "build": "babel src -d lib --extensions \".js,.ts\"",
     "clean": "rm -rf lib",
-    "coverage": "codecov",
     "flow": "flow",
     "lint": "eslint ./src && prettier --check src/**/*.js --parser=flow && prettier --check src/**/*.ts --parser=typescript",
     "package": "pkg . --output ./bin/gitmoji --targets latest-linux-x64,latest-macos-x64,latest-win-x64",
@@ -73,7 +72,6 @@
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.2",
     "babel-plugin-transform-import-meta": "^2.2.1",
-    "codecov": "3.8.3",
     "eslint": "8.57.0",
     "eslint-plugin-ft-flow": "3.0.11",
     "eslint-plugin-immutable": "1.0.0",
