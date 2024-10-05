@@ -72,7 +72,7 @@
     "babel-plugin-module-extension-resolver": "^1.0.0-rc.2",
     "babel-plugin-module-resolver": "5.0.2",
     "babel-plugin-transform-import-meta": "^2.2.1",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "eslint-plugin-ft-flow": "3.0.11",
     "eslint-plugin-immutable": "1.0.0",
     "flow-bin": "^0.247.1",
