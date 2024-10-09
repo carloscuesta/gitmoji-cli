@@ -1,6 +1,6 @@
 {
   "name": "gitmoji-cli",
-  "version": "9.4.0",
+  "version": "9.5.0",
   "packageManager": "yarn@1.22.22",
   "type": "module",
   "description": "A gitmoji client for using emojis on commit messages.",
