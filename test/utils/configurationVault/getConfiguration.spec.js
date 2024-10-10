@@ -24,7 +24,10 @@ describe('getConfiguration', () => {
             default: 'emoji'
           },
           [CONFIG.SCOPE_PROMPT]: {
-            type: 'boolean',
+            anyOf: [
+              { type: 'boolean' },
+              { type: 'array', items: { type: 'string' } }
+            ],
             default: false
           },
           [CONFIG.MESSAGE_PROMPT]: { type: 'boolean', default: true },
