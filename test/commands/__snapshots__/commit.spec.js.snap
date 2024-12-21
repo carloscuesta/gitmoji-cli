@@ -58,7 +58,34 @@ exports[`commit command prompts with default commit content in hook mode should 
 ]
 `;
 
-exports[`commit command prompts with scope prompt should match the array of questions 1`] = `
+exports[`commit command prompts with list of scopes prompt should match the array of questions with scopes list 1`] = `
+[
+  {
+    "message": "Choose a gitmoji:",
+    "name": "gitmoji",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  {
+    "message": "Enter the scope of current changes:",
+    "name": "scope",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  {
+    "message": "Enter the commit title",
+    "name": "title",
+    "transformer": [Function],
+    "validate": [Function],
+  },
+  {
+    "message": "Enter the commit message:",
+    "name": "message",
+  },
+]
+`;
+
+exports[`commit command prompts with scope prompt with scope enabled should match the array of questions 1`] = `
 [
   {
     "message": "Choose a gitmoji:",
@@ -79,6 +106,27 @@ exports[`commit command prompts with scope prompt should match the array of ques
   {
     "message": "Enter the commit message:",
     "name": "message",
+  },
+]
+`;
+
+exports[`commit command prompts without message prompt should match the array of questions 1`] = `
+[
+  {
+    "message": "Choose a gitmoji:",
+    "name": "gitmoji",
+    "source": [Function],
+    "type": "autocomplete",
+  },
+  {
+    "message": "Enter the scope of current changes:",
+    "name": "scope",
+  },
+  {
+    "message": "Enter the commit title",
+    "name": "title",
+    "transformer": [Function],
+    "validate": [Function],
   },
 ]
 `;
@@ -236,26 +284,5 @@ exports[`commit command withClient with the commit hook created should call inqu
       },
     ],
   ],
-]
-`;
-
-exports[`commit command prompts without message prompt should match the array of questions 1`] = `
-[
-  {
-    "message": "Choose a gitmoji:",
-    "name": "gitmoji",
-    "source": [Function],
-    "type": "autocomplete",
-  },
-  {
-    "message": "Enter the scope of current changes:",
-    "name": "scope",
-  },
-  {
-    "message": "Enter the commit title",
-    "name": "title",
-    "transformer": [Function],
-    "validate": [Function],
-  },
 ]
 `;
