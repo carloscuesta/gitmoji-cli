@@ -2770,10 +2770,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-flow-bin@^0.257.0:
-  version "0.257.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.257.0.tgz#5e0ca987ca0533b65865d0378d2d5c902a11332a"
-  integrity sha512-tGl+GEBXVWw+DqMble1n/oiXN4iil9s9HG1U3GOaeSXUxKe+tedzIMetU3ZvS+BGC54OhdJvPGdR3MrG4V5vvw==
+flow-bin@^0.259.0:
+  version "0.259.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.259.0.tgz#ad9cf5a99e20153b577f29f6d4d411475b072288"
+  integrity sha512-BMx6by/cINAyQfoxL2aRAFUM4YbfZLqBISCHawcZPQJG8Fyd9MUpzIfPFZ9+qOOjVIR1Wv6FJTew6H4xkig5UQ==
 
 formdata-polyfill@^4.0.10:
   version "4.0.10"
