@@ -118,6 +118,7 @@
     }
   },
   "prettier": {
+    "parser": "flow",
     "arrowParens": "always",
     "semi": false,
     "singleQuote": true,
