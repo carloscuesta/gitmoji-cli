@@ -50,7 +50,7 @@
     "chalk": "^5.4.1",
     "conf": "13.1.0",
     "execa": "^8.0.1",
-    "fuse.js": "7.0.0",
+    "fuse.js": "7.1.0",
     "inquirer": "~9.3.7",
     "inquirer-autocomplete-prompt": "^3.0.1",
     "meow": "^13.2.0",
