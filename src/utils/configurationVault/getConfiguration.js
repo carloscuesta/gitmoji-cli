@@ -1,6 +1,7 @@
 import Conf from 'conf'
 import { cwd } from 'process'
 import { readFileSync } from 'fs'
+import { dirname } from 'path'
 import { pathExistsSync } from 'path-exists'
 
 import { CONFIG, EMOJI_COMMIT_FORMATS } from '@constants/configuration'
@@ -57,15 +58,21 @@ const getConfiguration = (): { get: Function, set: Function } => {
   const loadConfig = (): {
     [$Values<typeof CONFIG>]: string | boolean
   } => {
-    const packageJson = `${cwd()}/package.json`
-    const configurationFile = `${cwd()}/.gitmojirc.json`
+    let currentDir = cwd()
 
-    if (pathExistsSync(packageJson) && getFile(packageJson)?.gitmoji) {
-      return getFile(packageJson)?.gitmoji
-    }
+    while (currentDir !== dirname(currentDir)) {
+      const packageJson = `${currentDir}/package.json`
+      const configurationFile = `${currentDir}/.gitmojirc.json`
 
-    if (pathExistsSync(configurationFile) && getFile(configurationFile)) {
-      return getFile(configurationFile)
+      if (pathExistsSync(packageJson) && getFile(packageJson)?.gitmoji) {
+        return getFile(packageJson)?.gitmoji
+      }
+
+      if (pathExistsSync(configurationFile) && getFile(configurationFile)) {
+        return getFile(configurationFile)
+      }
+
+      currentDir = dirname(currentDir)
     }
 
     return LOCAL_CONFIGURATION.store
