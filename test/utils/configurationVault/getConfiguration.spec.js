@@ -126,6 +126,110 @@ describe('getConfiguration', () => {
       })
     })
 
+    describe('when config exists in parent directory', () => {
+      const originalCwd = process.cwd
+
+      beforeEach(() => {
+        jest.resetModules()
+      })
+
+      beforeAll(() => {
+        process.cwd = jest.fn(() => '/home/user/project/subfolder')
+
+        pathExistsSync.mockImplementation((path) => {
+          return path.includes('/home/user/project/.gitmojirc.json')
+        })
+
+        readFileSync.mockImplementation((path) => {
+          if (path.includes('/home/user/project/.gitmojirc.json')) {
+            return JSON.stringify({ from: 'parent' })
+          }
+          return ''
+        })
+      })
+
+      afterAll(() => {
+        process.cwd = originalCwd
+      })
+
+      it('should load config from parent directory', () => {
+        const configuration = getConfiguration()
+        expect(configuration.get('from')).toEqual('parent')
+      })
+    })
+
+    describe('when config exists in grandparent directory', () => {
+      const originalCwd = process.cwd
+
+      beforeEach(() => {
+        jest.resetModules()
+      })
+
+      beforeAll(() => {
+        process.cwd = jest.fn(() => '/home/user/project/subfolder')
+
+        pathExistsSync.mockImplementation((path) => {
+          return path.includes('/home/user/.gitmojirc.json')
+        })
+
+        readFileSync.mockImplementation((path) => {
+          if (path.includes('/home/user/.gitmojirc.json')) {
+            return JSON.stringify({ from: 'grandparent' })
+          }
+          return ''
+        })
+      })
+
+      afterAll(() => {
+        process.cwd = originalCwd
+      })
+
+      it('should load config from grandparent directory', () => {
+        const configuration = getConfiguration()
+        expect(configuration.get('from')).toEqual('grandparent')
+      })
+    })
+
+    describe('when config exists in current and parent directory', () => {
+      const originalCwd = process.cwd
+
+      beforeEach(() => {
+        jest.resetModules()
+      })
+
+      beforeAll(() => {
+        process.cwd = jest.fn(() => '/home/user/project/subfolder')
+
+        pathExistsSync.mockImplementation((path) => {
+          return (
+            path.includes('/home/user/project/subfolder/.gitmojirc.json') ||
+            path.includes('/home/user/project/.gitmojirc.json')
+          )
+        })
+
+        readFileSync.mockImplementation((path) => {
+          if (path.includes('/home/user/project/subfolder/.gitmojirc.json')) {
+            return JSON.stringify({ from: 'current' })
+          }
+
+          if (path.includes('/home/user/project/.gitmojirc.json')) {
+            return JSON.stringify({ from: 'parent' })
+          }
+
+          return ''
+        })
+      })
+
+      afterAll(() => {
+        process.cwd = originalCwd
+      })
+
+      it('should prefer config from current directory over parent', () => {
+        const configuration = getConfiguration()
+        expect(configuration.get('from')).toEqual('current')
+      })
+    })
+
     describe('when package.json and .gitmojirc are not available', () => {
       beforeAll(() => {
         pathExistsSync.mockReturnValue(false)
