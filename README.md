@@ -136,6 +136,8 @@ You can configure these options via (in order of precedence):
 
 - A `gitmoji` key in your `package.json` file
 - A `.gitmojirc.json` file.
+- A `gitmoji` key in a package.json file in a parent directory (recursively)
+- A `.gitmojirc.json` file in a parent directory (recursively)
 - Using the global cli configuration.
 
 If no user configuration is found, a set of default values will be used.
