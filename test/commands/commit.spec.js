@@ -395,7 +395,20 @@ describe('commit command', () => {
       })
     })
 
-    describe('with scope prompt', () => {
+    describe('with list of scopes prompt', () => {
+      beforeAll(() => {
+        getDefaultCommitContent.mockReturnValueOnce(
+          stubs.emptyDefaultCommitContent
+        )
+        configurationVault.getScopePrompt.mockReturnValue([])
+      })
+
+      it('should match the array of questions with scopes list', () => {
+        expect(prompts(stubs.gitmojis, 'client')).toMatchSnapshot()
+      })
+    })
+
+    describe('with scope prompt with scope enabled', () => {
       beforeAll(() => {
         getDefaultCommitContent.mockReturnValueOnce(
           stubs.emptyDefaultCommitContent

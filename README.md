@@ -129,7 +129,7 @@ The cli has some built-in configuration options that you can tweak at your own p
 - **Automatic git add**: Enable or disable the automatic `git add .` every time you use the commit command.
 - **Emoji format**: Switch between the emoji format.
 - **Message prompt**: Enable or disable the message prompt.
-- **Scope prompt**: Enable or disable [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary).
+- **Scope prompt**: Enable or disable the [conventional commits scope prompt](https://www.conventionalcommits.org/en/v1.0.0/#summary), or specify your own predefined scopes in a array.
 - **Gitmojis api URL**: Set a custom URL to use it as the library of gitmojis.
 
 You can configure these options via (in order of precedence):
