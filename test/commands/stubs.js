@@ -42,8 +42,8 @@ export const commitTitleInvalid = 'Invalid commit `title'
 
 export const clientCommitAnswers = {
   gitmoji: ':zap:',
-  title: 'Improving performance issues.',
-  message: 'Refactored code. Fixes #5'
+  title: '"Improving performance issues."',
+  message: '"Refactored code. Fixes #5"'
 }
 
 export const clientCommitAnswersWithScope = {

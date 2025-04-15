@@ -46,11 +46,12 @@ describe('commit command', () => {
           [
             'commit',
             '-m',
-            `${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}`,
+            `"${stubs.clientCommitAnswers.gitmoji} ${stubs.clientCommitAnswers.title}"`,
             '-m',
-            stubs.clientCommitAnswers.message
+            `"${stubs.clientCommitAnswers.message}"`
           ],
           {
+            shell: true,
             buffer: false,
             stdio: 'inherit'
           }
@@ -87,11 +88,12 @@ describe('commit command', () => {
           [
             'commit',
             '-am',
-            `${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}`,
+            `"${stubs.clientCommitAnswersWithScope.gitmoji} (${stubs.clientCommitAnswersWithScope.scope}): ${stubs.clientCommitAnswersWithScope.title}"`,
             '-m',
-            stubs.clientCommitAnswersWithScope.message
+            `"${stubs.clientCommitAnswersWithScope.message}"`
           ],
           {
+            shell: true,
             buffer: false,
             stdio: 'inherit'
           }
