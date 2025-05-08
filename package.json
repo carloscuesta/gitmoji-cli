@@ -67,7 +67,7 @@
     "@babel/plugin-syntax-import-assertions": "^7.26.0",
     "@babel/preset-env": "7.27.1",
     "@babel/preset-flow": "7.27.1",
-    "@babel/preset-typescript": "^7.27.0",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/jest": "^29.5.14",
     "@types/update-notifier": "^6.0.8",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
