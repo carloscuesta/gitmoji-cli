@@ -1,4 +1,4 @@
-import { execa } from 'execa'
+import { execa, ExecaError } from 'execa'
 import chalk from 'chalk'
 
 import isHookCreated from '@utils/isHookCreated.js'
@@ -8,7 +8,7 @@ import { type Answers } from '../prompts.js'
 const withClient = async (answers: Answers): Promise<void> => {
   try {
     const scope = answers.scope ? `(${answers.scope}): ` : ''
-    const title = `"${answers.gitmoji} ${scope}${answers.title}"`
+    const title = `${answers.gitmoji} ${scope}${answers.title}`
     const isAutoAddEnabled = configurationVault.getAutoAdd()
 
     if (await isHookCreated()) {
@@ -30,7 +30,7 @@ const withClient = async (answers: Answers): Promise<void> => {
         'commit',
         isAutoAddEnabled ? '-am' : '-m',
         title,
-        ...(answers.message ? ['-m', `"${answers.message}"`] : [])
+        ...(answers.message ? ['-m', `${answers.message}`] : [])
       ],
       {
         shell: true,
