@@ -2068,10 +2068,10 @@ babel-plugin-polyfill-regenerator@^0.6.1:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.6.2"
 
-babel-plugin-transform-import-meta@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-import-meta/-/babel-plugin-transform-import-meta-2.3.2.tgz#320bd0cd878fe38f39e136edb198c535391bf156"
-  integrity sha512-902o4GiQqI1GqAXfD5rEoz0PJamUfJ3VllpdWaNsFTwdaNjFSFHawvBO+cp5K2j+g2h3bZ4lnM1Xb6yFYGihtA==
+babel-plugin-transform-import-meta@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-import-meta/-/babel-plugin-transform-import-meta-2.3.3.tgz#863de841f7df37e2bf39a057572a24e4f65f3c51"
+  integrity sha512-bbh30qz1m6ZU1ybJoNOhA2zaDvmeXMnGNBMVMDOJ1Fni4+wMBoy/j7MTRVmqAUCIcy54/rEnr9VEBsfcgbpm3Q==
   dependencies:
     "@babel/template" "^7.25.9"
     tslib "^2.8.1"
