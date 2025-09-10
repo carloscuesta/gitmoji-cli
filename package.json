@@ -62,7 +62,7 @@
     "validator": "^13.15.15"
   },
   "devDependencies": {
-    "@babel/cli": "7.28.0",
+    "@babel/cli": "7.28.3",
     "@babel/core": "7.28.3",
     "@babel/plugin-syntax-import-assertions": "^7.26.0",
     "@babel/preset-env": "7.28.0",
