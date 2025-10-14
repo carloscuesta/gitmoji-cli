@@ -3301,26 +3301,26 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-hermes-eslint@0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/hermes-eslint/-/hermes-eslint-0.32.0.tgz#a23bcaece522f356cb1b8e990e57117dca13852d"
-  integrity sha512-f/gnFD3Nl7QNrclG6otkHnHsUbwYrJGO76AMtoDeIYs2+i7fFgqJgSg7DKwejTtAKBoXQg51hAQuo9cgcp1R1w==
+hermes-eslint@0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/hermes-eslint/-/hermes-eslint-0.32.1.tgz#75cb0a49ef8324fcc1de65cee4baac71a8ffc960"
+  integrity sha512-3ljktN2ek+bRRsPAcMeqMEJou6s2MRe6VuLkLsXDXuVrJfRZ7V2VUw41T9uAt9lcA2xaJP4yykYAnMg15nsRPw==
   dependencies:
     esrecurse "^4.3.0"
-    hermes-estree "0.32.0"
-    hermes-parser "0.32.0"
+    hermes-estree "0.32.1"
+    hermes-parser "0.32.1"
 
-hermes-estree@0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/hermes-estree/-/hermes-estree-0.32.0.tgz#bb7da6613ab8e67e334a1854ea1e209f487d307b"
-  integrity sha512-KWn3BqnlDOl97Xe1Yviur6NbgIZ+IP+UVSpshlZWkq+EtoHg6/cwiDj/osP9PCEgFE15KBm1O55JRwbMEm5ejQ==
+hermes-estree@0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/hermes-estree/-/hermes-estree-0.32.1.tgz#04075556a559da284d8a3eba01c07595d5e05ce3"
+  integrity sha512-ne5hkuDxheNBAikDjqvCZCwihnz0vVu9YsBzAEO1puiyFR4F1+PAz/SiPHSsNTuOveCYGRMX8Xbx4LOubeC0Qg==
 
-hermes-parser@0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/hermes-parser/-/hermes-parser-0.32.0.tgz#7916984ef6fdce62e7415d354cf35392061cd303"
-  integrity sha512-g4nBOWFpuiTqjR3LZdRxKUkij9iyveWeuks7INEsMX741f3r9xxrOe8TeQfUxtda0eXmiIFiMQzoeSQEno33Hw==
+hermes-parser@0.32.1:
+  version "0.32.1"
+  resolved "https://registry.yarnpkg.com/hermes-parser/-/hermes-parser-0.32.1.tgz#c1bce9405055609233710ad26de6955396a706ba"
+  integrity sha512-175dz634X/W5AiwrpLdoMl/MOb17poLHyIqgyExlE8D9zQ1OPnoORnGMB5ltRKnpvQzBjMYvT2rN/sHeIfZW5Q==
   dependencies:
-    hermes-estree "0.32.0"
+    hermes-estree "0.32.1"
 
 html-escaper@^2.0.0:
   version "2.0.2"
