@@ -65,7 +65,7 @@
     "@babel/cli": "7.28.3",
     "@babel/core": "7.28.4",
     "@babel/plugin-syntax-import-assertions": "^7.26.0",
-    "@babel/preset-env": "7.28.3",
+    "@babel/preset-env": "7.28.5",
     "@babel/preset-flow": "7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@types/jest": "^30.0.0",
