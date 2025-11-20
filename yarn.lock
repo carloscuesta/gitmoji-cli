@@ -2383,10 +2383,15 @@ cli-cursor@^5.0.0:
   dependencies:
     restore-cursor "^5.0.0"
 
-cli-spinners@^2.5.0, cli-spinners@^2.9.2:
+cli-spinners@^2.5.0:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.9.2.tgz#1773a8f4b9c4d6ac31563df53b3fc1d79462fe41"
   integrity sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==
+
+cli-spinners@^3.2.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-3.3.0.tgz#2ba7c98b4f4662e67315b5634365661be8574440"
+  integrity sha512-/+40ljC3ONVnYIttjMWrlL51nItDAbBrq2upN8BPyvGU/2n5Oxw3tbNwORCaNuNqLJnxGqOfjUuhsv7l5Q4IsQ==
 
 cli-truncate@^5.0.0:
   version "5.1.0"
@@ -3587,15 +3592,15 @@ is-unicode-supported@^0.1.0:
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz#3f26c76a809593b52bfa2ecb5710ed2779b522a7"
   integrity sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==
 
-is-unicode-supported@^1.2.0, is-unicode-supported@^1.3.0:
+is-unicode-supported@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz#d824984b616c292a2e198207d4a609983842f714"
   integrity sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==
 
-is-unicode-supported@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-2.0.0.tgz#fdf32df9ae98ff6ab2cedc155a5a6e895701c451"
-  integrity sha512-FRdAyx5lusK1iHG0TWpVtk9+1i+GjrzRffhDg4ovQ7mcidMQ6mj+MhKPmvh7Xwyv5gIS06ns49CA7Sqg7lC22Q==
+is-unicode-supported@^2.0.0, is-unicode-supported@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-2.1.0.tgz#09f0ab0de6d3744d48d265ebb98f65d11f2a9b3a"
+  integrity sha512-mE00Gnza5EEB3Ds0HfMyllZzbBrmLOX3vfWoj9A9PEnTfratQ/BcaJOuMhnkhjXvb2+FkY3VuHqtAGpTPmglFQ==
 
 isarray@~1.0.0:
   version "1.0.0"
@@ -4280,13 +4285,13 @@ log-symbols@^4.1.0:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
 
-log-symbols@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-6.0.0.tgz#bb95e5f05322651cac30c0feb6404f9f2a8a9439"
-  integrity sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==
+log-symbols@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-7.0.1.tgz#f52e68037d96f589fc572ff2193dc424d48c195b"
+  integrity sha512-ja1E3yCr9i/0hmBVaM0bfwDjnGy8I/s6PP4DFp+yP+a+mrHO4Rm7DtmnqROTUkHIkqffC84YY7AeqX6oFk0WFg==
   dependencies:
-    chalk "^5.3.0"
-    is-unicode-supported "^1.3.0"
+    is-unicode-supported "^2.0.0"
+    yoctocolors "^2.1.1"
 
 log-update@^6.1.0:
   version "6.1.0"
@@ -4587,20 +4592,20 @@ ora@^5.4.1:
     strip-ansi "^6.0.0"
     wcwidth "^1.0.1"
 
-ora@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-8.2.0.tgz#8fbbb7151afe33b540dd153f171ffa8bd38e9861"
-  integrity sha512-weP+BZ8MVNnlCm8c0Qdc1WSWq4Qn7I+9CJGm7Qali6g44e/PUzbjNqJX5NJ9ljlNMosfJvg1fKEGILklK9cwnw==
+ora@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-9.0.0.tgz#945236f5ce78a024cf4c25df6c46ecd09ab6e685"
+  integrity sha512-m0pg2zscbYgWbqRR6ABga5c3sZdEon7bSgjnlXC64kxtxLOyjRcbbUkLj7HFyy/FTD+P2xdBWu8snGhYI0jc4A==
   dependencies:
-    chalk "^5.3.0"
+    chalk "^5.6.2"
     cli-cursor "^5.0.0"
-    cli-spinners "^2.9.2"
+    cli-spinners "^3.2.0"
     is-interactive "^2.0.0"
-    is-unicode-supported "^2.0.0"
-    log-symbols "^6.0.0"
+    is-unicode-supported "^2.1.0"
+    log-symbols "^7.0.1"
     stdin-discarder "^0.2.2"
-    string-width "^7.2.0"
-    strip-ansi "^7.1.0"
+    string-width "^8.1.0"
+    strip-ansi "^7.1.2"
 
 p-is-promise@^3.0.0:
   version "3.0.0"
@@ -5386,7 +5391,7 @@ string-width@^7.0.0, string-width@^7.2.0:
     get-east-asian-width "^1.0.0"
     strip-ansi "^7.1.0"
 
-string-width@^8.0.0:
+string-width@^8.0.0, string-width@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-8.1.0.tgz#9e9fb305174947cf45c30529414b5da916e9e8d1"
   integrity sha512-Kxl3KJGb/gxkaUMOjRsQ8IrXiGW75O4E3RPjFIINOVH8AMl2SQ/yWdTzWwF3FevIX9LcMAjJW+GRwAlAbTSXdg==
@@ -5422,10 +5427,10 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   dependencies:
     ansi-regex "^5.0.1"
 
-strip-ansi@^7.0.1, strip-ansi@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-7.1.0.tgz#d5b6568ca689d8561370b0707685d22434faff45"
-  integrity sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==
+strip-ansi@^7.0.1, strip-ansi@^7.1.0, strip-ansi@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-7.1.2.tgz#132875abde678c7ea8d691533f2e7e22bb744dba"
+  integrity sha512-gmBGslpoQJtgnMAvOVqGZpEz9dyoKTCzy2nfz/n8aIFhN/jCE/rCmcxabB6jOOHV+0WNnylOxaxBQPSvcWklhA==
   dependencies:
     ansi-regex "^6.0.1"
 
@@ -5964,3 +5969,8 @@ yoctocolors-cjs@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/yoctocolors-cjs/-/yoctocolors-cjs-2.1.2.tgz#f4b905a840a37506813a7acaa28febe97767a242"
   integrity sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==
+
+yoctocolors@^2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/yoctocolors/-/yoctocolors-2.1.2.tgz#d795f54d173494e7d8db93150cec0ed7f678c83a"
+  integrity sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==
