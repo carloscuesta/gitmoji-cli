@@ -2466,20 +2466,20 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-conf@13.1.0:
-  version "13.1.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-13.1.0.tgz#c6e797d6157253c1baac3788bb121f2ee085f902"
-  integrity sha512-Bi6v586cy1CoTFViVO4lGTtx780lfF96fUmS1lSX6wpZf6330NvHUu6fReVuDP1de8Mg0nkZb01c8tAQdz1o3w==
+conf@15.0.2:
+  version "15.0.2"
+  resolved "https://registry.yarnpkg.com/conf/-/conf-15.0.2.tgz#b983be81227a304b9f885fde6c86c7fe5902dc9d"
+  integrity sha512-JBSrutapCafTrddF9dH3lc7+T2tBycGF4uPkI4Js+g4vLLEhG6RZcFi3aJd5zntdf5tQxAejJt8dihkoQ/eSJw==
   dependencies:
     ajv "^8.17.1"
     ajv-formats "^3.0.1"
     atomically "^2.0.3"
     debounce-fn "^6.0.0"
-    dot-prop "^9.0.0"
+    dot-prop "^10.0.0"
     env-paths "^3.0.0"
     json-schema-typed "^8.0.1"
-    semver "^7.6.3"
-    uint8array-extras "^1.4.0"
+    semver "^7.7.2"
+    uint8array-extras "^1.5.0"
 
 config-chain@^1.1.11:
   version "1.1.13"
@@ -2629,6 +2629,13 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dot-prop@^10.0.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-10.1.0.tgz#91dbeb6771a9d2c31eab11ade3fdb1d83c4376c4"
+  integrity sha512-MVUtAugQMOff5RnBy2d9N31iG0lNwg1qAoAOn7pOK5wf94WIaE3My2p3uwTQuvS2AcqchkcR3bHByjaM0mmi7Q==
+  dependencies:
+    type-fest "^5.0.0"
 
 dot-prop@^9.0.0:
   version "9.0.0"
@@ -5485,6 +5492,11 @@ synckit@^0.11.8:
   dependencies:
     "@pkgr/core" "^0.2.4"
 
+tagged-tag@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tagged-tag/-/tagged-tag-1.0.0.tgz#a0b5917c2864cba54841495abfa3f6b13edcf4d6"
+  integrity sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==
+
 tar-fs@^2.0.0, tar-fs@^2.1.1:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.4.tgz#800824dbf4ef06ded9afea4acafe71c67c76b930"
@@ -5650,15 +5662,22 @@ type-fest@^4.21.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.23.0.tgz#8196561a6b835175473be744f3e41e2dece1496b"
   integrity sha512-ZiBujro2ohr5+Z/hZWHESLz3g08BBdrdLMieYFULJO+tWc437sn8kQsWLJoZErY8alNhxre9K4p3GURAG11n+w==
 
+type-fest@^5.0.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-5.2.0.tgz#7dd671273eb6bcba71af0babe303e8dbab60f795"
+  integrity sha512-xxCJm+Bckc6kQBknN7i9fnP/xobQRsRQxR01CztFkp/h++yfVxUUcmMgfR2HttJx/dpWjS9ubVuyspJv24Q9DA==
+  dependencies:
+    tagged-tag "^1.0.0"
+
 typescript@^5.9.3:
   version "5.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.9.3.tgz#5b4f59e15310ab17a216f5d6cf53ee476ede670f"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
-uint8array-extras@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/uint8array-extras/-/uint8array-extras-1.4.0.tgz#e42a678a6dd335ec2d21661333ed42f44ae7cc74"
-  integrity sha512-ZPtzy0hu4cZjv3z5NW9gfKnNLjoz4y6uv4HlelAjDK7sY/xOkKZv9xK/WQpcsBB3jEybChz9DPC2U/+cusjJVQ==
+uint8array-extras@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/uint8array-extras/-/uint8array-extras-1.5.0.tgz#10d2a85213de3ada304fea1c454f635c73839e86"
+  integrity sha512-rvKSBiC5zqCCiDZ9kAOszZcDvdAHwwIKJG33Ykj43OKcWsnmcBRL09YTU4nOeHZ8Y2a7l1MgTd08SBe9A8Qj6A==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"
