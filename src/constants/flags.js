@@ -1,6 +1,7 @@
 // @flow
 const FLAGS = Object.freeze({
   COMMIT: 'commit',
+  COMPLETIONS: 'completions',
   CONFIG: 'config',
   HELP: 'help',
   HOOK: 'hook',

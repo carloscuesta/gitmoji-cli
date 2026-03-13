@@ -5,6 +5,7 @@ import { readFileSync } from 'fs'
 
 import FLAGS from '@constants/flags.js'
 import findGitmojiCommand from '@utils/findGitmojiCommand.js'
+import completions from '@utils/completions.js'
 import type { CommitOptions } from '@commands/commit/index.js'
 import type { SearchOptions } from '@commands/search/index.js'
 
@@ -21,14 +22,15 @@ const cli = meow(
   Usage
     $ gitmoji [option] [command]
   Options
-    --${FLAGS.COMMIT}, -c    Interactively commit using the prompts
-    --${FLAGS.CONFIG}, -g    Setup gitmoji-cli preferences.
-    --${FLAGS.INIT}, -i      Initialize gitmoji as a commit hook
-    --${FLAGS.LIST}, -l      List all the available gitmojis
-    --${FLAGS.REMOVE}, -r    Remove a previously initialized commit hook
-    --${FLAGS.SEARCH}, -s    Search gitmojis
-    --${FLAGS.UPDATE}, -u    Sync emoji list with the repo
-    --${FLAGS.VERSION}, -v   Print gitmoji-cli installed version
+    --${FLAGS.COMMIT}, -c        Interactively commit using the prompts
+    --${FLAGS.COMPLETIONS}, -C   Generate shell completions
+    --${FLAGS.CONFIG}, -g        Setup gitmoji-cli preferences.
+    --${FLAGS.INIT}, -i          Initialize gitmoji as a commit hook
+    --${FLAGS.LIST}, -l          List all the available gitmojis
+    --${FLAGS.REMOVE}, -r        Remove a previously initialized commit hook
+    --${FLAGS.SEARCH}, -s        Search gitmojis
+    --${FLAGS.UPDATE}, -u        Sync emoji list with the repo
+    --${FLAGS.VERSION}, -v      Print gitmoji-cli installed version
   Commands
     commit          Interactively commit using the prompts
     config          Setup gitmoji-cli preferences.
@@ -40,11 +42,17 @@ const cli = meow(
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
+    $ gitmoji --completions bash
 `,
   {
     importMeta: { url: import.meta.url } as ImportMeta,
     flags: {
       [FLAGS.COMMIT]: { type: 'boolean', shortFlag: 'c' },
+      [FLAGS.COMPLETIONS]: {
+        type: 'string',
+        shortFlag: 'C',
+        isRequired: false
+      },
       [FLAGS.CONFIG]: { type: 'boolean', shortFlag: 'g' },
       [FLAGS.HELP]: { type: 'boolean', shortFlag: 'h' },
       [FLAGS.INIT]: { type: 'boolean', shortFlag: 'i' },
@@ -56,6 +64,13 @@ const cli = meow(
     }
   }
 )
+
+// Handle --completions flag
+if (cli.flags[FLAGS.COMPLETIONS]) {
+  const shell = cli.flags[FLAGS.COMPLETIONS]
+  console.log(completions.generateCompletions(cli, shell))
+  process.exit(0)
+}
 
 export const options = {
   [FLAGS.COMMIT]: async (options: CommitOptions) =>

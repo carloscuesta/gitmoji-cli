@@ -7,14 +7,15 @@ exports[`cli should match meow with cli information 1`] = `
   Usage
     $ gitmoji [option] [command]
   Options
-    --commit, -c    Interactively commit using the prompts
-    --config, -g    Setup gitmoji-cli preferences.
-    --init, -i      Initialize gitmoji as a commit hook
-    --list, -l      List all the available gitmojis
-    --remove, -r    Remove a previously initialized commit hook
-    --search, -s    Search gitmojis
-    --update, -u    Sync emoji list with the repo
-    --version, -v   Print gitmoji-cli installed version
+    --commit, -c        Interactively commit using the prompts
+    --completions, -C   Generate shell completions
+    --config, -g        Setup gitmoji-cli preferences.
+    --init, -i          Initialize gitmoji as a commit hook
+    --list, -l          List all the available gitmojis
+    --remove, -r        Remove a previously initialized commit hook
+    --search, -s        Search gitmojis
+    --update, -u        Sync emoji list with the repo
+    --version, -v      Print gitmoji-cli installed version
   Commands
     commit          Interactively commit using the prompts
     config          Setup gitmoji-cli preferences.
@@ -26,12 +27,18 @@ exports[`cli should match meow with cli information 1`] = `
   Examples
     $ gitmoji -l
     $ gitmoji bug linter -s
+    $ gitmoji --completions bash
 ",
     {
       "flags": {
         "commit": {
           "shortFlag": "c",
           "type": "boolean",
+        },
+        "completions": {
+          "isRequired": false,
+          "shortFlag": "C",
+          "type": "string",
         },
         "config": {
           "shortFlag": "g",
