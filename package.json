@@ -88,7 +88,7 @@
     "pkg": "5.8.1",
     "prettier": "3.8.1",
     "turbo": "^2.9.3",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
