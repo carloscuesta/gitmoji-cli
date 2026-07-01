@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@babel/cli@7.28.6":
-  version "7.28.6"
-  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.28.6.tgz#1da8eb79f92cbe75542b853b3b1db683c5ea406a"
-  integrity sha512-6EUNcuBbNkj08Oj4gAZ+BUU8yLCgKzgVX4gaTh09Ya2C8ICM4P+G30g4m3akRxSYAp3A/gnWchrNst7px4/nUQ==
+"@babel/cli@7.29.7":
+  version "7.29.7"
+  resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.29.7.tgz#ae6bd1b11ede44b46ea5624892f62724c4a20ccb"
+  integrity sha512-/75HwRbAYPqXv/Ax1h7Fg3IZfXgdU98jnA8H93/m/QBaPV3Hp5ICoLqzGYye1yHBCgpmXvtqgSUN8oOKX5tojQ==
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.28"
     commander "^6.2.0"
